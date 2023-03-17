@@ -7,6 +7,7 @@ import {
 import { Global } from "@emotion/react";
 // import { createUploadLink } from "apollo-upload-client";
 import { globalStyles } from "../src/commons/styles/globalStyles";
+import Layout from "../src/componets/commons/layout";
 
 export default function App({ Component, pageProps }): JSX.Element {
   // const uploadLink = createUploadLink({
@@ -23,8 +24,9 @@ export default function App({ Component, pageProps }): JSX.Element {
     <div>
       <ApolloProvider client={client}>
         <Global styles={globalStyles} />
-
-        <Component {...pageProps} />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
       </ApolloProvider>
     </div>
   );
