@@ -1,4 +1,4 @@
-import { UserOutlined } from "@ant-design/icons";
+
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
@@ -33,11 +33,4 @@ export const Wrapper = styled.div`
 export const DvideLine = styled.div`
   width: 100%;
   border-bottom: 1px solid #d2d2d2;
-`;
-
-export const UserIcon = styled(UserOutlined)`
-  width: 20px;
-  height: 20px;
-  font-size: 20px;
-  color: #656565dd;
 `;
