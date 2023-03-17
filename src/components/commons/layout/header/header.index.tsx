@@ -5,8 +5,7 @@ export default function LayoutHeader(): JSX.Element {
     <>
       <S.Wrapper>
         <img src="/images/layout/logo.svg" alt="로고" />
-        <div>
-        </div>
+        <div></div>
       </S.Wrapper>
       <S.DvideLine />
     </>
