@@ -13,6 +13,7 @@ export const Wrapper = styled.div`
   align-items: center;
 
   > img {
+    height: 30px;
     cursor: pointer;
   }
 
@@ -29,7 +30,7 @@ export const Wrapper = styled.div`
   }
 `;
 
-export const DvideLine = styled.div`
+export const DivideLine = styled.div`
   width: 100%;
   border-bottom: 1px solid #d2d2d2;
 `;
