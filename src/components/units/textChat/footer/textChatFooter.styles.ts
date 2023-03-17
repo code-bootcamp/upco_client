@@ -10,6 +10,7 @@ import styled from "@emotion/styled";
 export const SendContents = styled.textarea`
   width: 500px;
   height: 100%;
+  max-width: 1200px;
   font-size: 1rem;
   line-height: 1.5rem;
   padding: 0.5rem;

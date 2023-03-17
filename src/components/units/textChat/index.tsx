@@ -1,5 +1,5 @@
 import TextChatFooter from "./footer/textChatFooter.index";
 
-export default function TextChatPage(): JSX.Element {
+export default function TextChat(): JSX.Element {
   return <TextChatFooter />;
 }

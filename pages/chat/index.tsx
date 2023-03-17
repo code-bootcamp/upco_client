@@ -1,5 +1,5 @@
-import TextChatPage from "../../src/components/units/textChat";
+import TextChat from "../../src/components/units/textChat";
 
-export default function TextChat(): JSX.Element {
-  return <TextChatPage />;
+export default function TextChatPage(): JSX.Element {
+  return <TextChat />;
 }
