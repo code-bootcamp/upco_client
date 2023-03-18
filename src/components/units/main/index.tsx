@@ -1,11 +1,14 @@
 import { useState } from "react";
-import { mapCreationMode } from "../../commons/hooks/customs/mapCreationMode";
+import { useGeolocationMode } from "../../commons/hooks/customs/useGeolocationMode";
+import { useMapCreationMode } from "../../commons/hooks/customs/useMapCreationMode";
 import MapBody from "./body/main.body.index";
 
 export default function MainPage(): JSX.Element {
   const [state, setState] = useState();
-  const { isOpen, mapCreation } = mapCreationMode();
+  const { isOpen, mapCreation } = useMapCreationMode();
+  const { position, geolocationFn } = useGeolocationMode();
+  geolocationFn();
   mapCreation();
 
-  return <>{isOpen && <MapBody state={state} setState={setState}></MapBody>}</>;
+  return <>{isOpen && <MapBody state={state} setState={setState} position={position}></MapBody>}</>;
 }
