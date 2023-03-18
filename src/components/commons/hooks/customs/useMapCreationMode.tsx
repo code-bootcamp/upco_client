@@ -3,7 +3,7 @@ declare const window: typeof globalThis & {
   kakao?: any;
 };
 
-export const mapCreationMode = (): JSX.Element => {
+export const useMapCreationMode = (): JSX.Element => {
   const [isOpen, setIsOpen] = useState(false);
   const mapCreation = (): void => {
     useEffect(() => {
