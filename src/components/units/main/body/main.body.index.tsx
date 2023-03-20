@@ -1,4 +1,4 @@
-import { CustomOverlayMap, Map, MarkerClusterer } from "react-kakao-maps-sdk";
+import { CustomOverlayMap, Map, MarkerClusterer, ZoomControl } from "react-kakao-maps-sdk";
 import { CustomMarker } from "./main.body.styles";
 
 export default function MainBody(props: {
@@ -24,9 +24,12 @@ export default function MainBody(props: {
               ne: map.getBounds().getNorthEast().toString(),
             })
           }
-          level={12}
+          maxLevel={12}
+          level={3}
+          onZoomChanged={(map) => props.setLevel(map.getLevel())}
         >
-          <MarkerClusterer averageCenter={true} minLevel={3}>
+          <ZoomControl />
+          <MarkerClusterer averageCenter={true} minLevel={2}>
             <CustomOverlayMap
               position={{
                 lat: props.position?.coords.latitude,
