@@ -27,6 +27,7 @@ const ChatListColumn = styled.div`
   display: flex;
   flex-direction: column;
 `;
+
 const DivideLine = styled.div`
   border-bottom: 1px solid #d9d9d9;
   width: 100%;
@@ -74,7 +75,6 @@ export default function ChatList(): JSX.Element {
               <ImageSection src={el.images} />
               <ChatListColumn>
                 <NickNameSection>{el.name}</NickNameSection>
-
                 <ChatSection>{chatCut(el.chat, 12)}</ChatSection>
               </ChatListColumn>
             </ChatListRow>
