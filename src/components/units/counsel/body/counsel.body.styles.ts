@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 export const Wrapper = styled.div`
   font-size: 14px;
-  margin-bottom: 150px;
+  margin: 80px 0px 150px 0px;
   width: 1200px;
 `;
 export const BodyRow = styled.div`

@@ -4,7 +4,7 @@ const ChatWrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-
+  padding-left: 18px;
   width: 250px;
 `;
 const NickNameSection = styled.div`
@@ -75,7 +75,7 @@ export default function ChatList(): JSX.Element {
               <ImageSection src={el.images} />
               <ChatListColumn>
                 <NickNameSection>{el.name}</NickNameSection>
-                <ChatSection>{chatCut(el.chat, 12)}</ChatSection>
+                <ChatSection>{chatCut(el.chat, 11)}</ChatSection>
               </ChatListColumn>
             </ChatListRow>
           </ChatWrapper>

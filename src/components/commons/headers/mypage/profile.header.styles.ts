@@ -12,4 +12,6 @@ export const Wrapper = styled.div`
 export const MenuTitle = styled.div`
   margin-right: 15px;
   color: gray;
+  user-select: none;
+  cursor: pointer;
 `;
