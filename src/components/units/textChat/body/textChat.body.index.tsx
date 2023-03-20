@@ -4,7 +4,9 @@
 import * as S from "./textChat.body.styles";
 import { BsEmojiSmile, BsCameraVideo } from "react-icons/bs";
 import { SlPicture } from "react-icons/sl";
-export default function TextChatBody(): JSX.Element {
+import { ITextChatBodyProps } from "./textChat.body.types";
+
+export default function TextChatBody(props: ITextChatBodyProps): JSX.Element {
   // const [message, setMessage] = useState("");
 
   // const handleChange = (e: ChangeEvent<HTMLTextAreaElement>): void => {
@@ -36,7 +38,7 @@ export default function TextChatBody(): JSX.Element {
                 <SlPicture />
               </S.Icon>
               <S.Icon>
-                <BsCameraVideo />
+                <BsCameraVideo onClick={props.onClickVideo} />
               </S.Icon>
             </S.IconSection>
             <S.SendBtn>전송</S.SendBtn>

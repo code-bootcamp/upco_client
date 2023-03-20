@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
   height: 70px;
   max-width: 1240px;
   margin: 0 auto;
-  padding: 0 40px;
+  padding: 0 20px;
   background-color: #fff;
   display: flex;
   flex-direction: row;
