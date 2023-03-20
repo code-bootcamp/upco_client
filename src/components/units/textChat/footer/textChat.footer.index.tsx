@@ -32,6 +32,7 @@ export default function TextChatFooter(): JSX.Element {
 
       <S.DivideLine />
       <div onClick={followerOpen}>친구 요청</div>
+      <S.DivideLine />
       {isFollower && <div>친구 리스트</div>}
       {selectedComponent === "chat" ? (
         <ChatList />

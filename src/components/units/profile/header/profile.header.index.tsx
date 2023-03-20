@@ -1,11 +1,5 @@
-import { MenuTitle, Wrapper } from "./profile.header.styles";
+import Header from "../../../commons/headers/mypage/profile.header.index";
 
 export default function ProfileHeader(): JSX.Element {
-  return (
-    <Wrapper>
-      <MenuTitle>내 정보</MenuTitle>
-      <MenuTitle>프로필 수정</MenuTitle>
-      <MenuTitle>문의하기</MenuTitle>
-    </Wrapper>
-  );
+  return <Header />;
 }

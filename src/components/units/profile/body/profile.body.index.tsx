@@ -1,6 +1,13 @@
+import { useRouter } from "next/router";
 import * as S from "./profile.body.styles";
 
 export default function ProfileBody(): JSX.Element {
+  const router = useRouter();
+
+  const onClickEdit = (): void => {
+    void router.push("/profile/profileEdit");
+  };
+
   return (
     <S.Wrapper>
       <S.InWrapper>
@@ -19,7 +26,7 @@ export default function ProfileBody(): JSX.Element {
         </S.RightWrapper>
       </S.InWrapper>
       <S.LastWrapper>
-        <div>프로필 수정</div>
+        <div onClick={onClickEdit}>프로필 수정</div>
         <img src="imgtest"></img>
       </S.LastWrapper>
     </S.Wrapper>
