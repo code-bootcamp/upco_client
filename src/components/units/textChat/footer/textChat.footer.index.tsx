@@ -1,10 +1,11 @@
 import * as S from "./textChat.footer.styles";
 import { useState } from "react";
-import ChatList from "../../../commons/hocs/chatList";
-import FollowerList from "../../../commons/hocs/followerList";
+import ChatList from "../../../list/chatList";
+import FollowerList from "../../../list/followerList";
 
 export default function TextChatFooter(): JSX.Element {
   const [selectedComponent, setSelectedComponent] = useState("chat");
+  const [isFollower, setIsFollower] = useState(false);
 
   const handleChatClick = (): void => {
     setSelectedComponent("chat");
@@ -12,6 +13,10 @@ export default function TextChatFooter(): JSX.Element {
 
   const handleFollowerClick = (): void => {
     setSelectedComponent("follower");
+  };
+
+  const followerOpen = (): void => {
+    setIsFollower((prev) => !prev);
   };
 
   return (
@@ -26,6 +31,8 @@ export default function TextChatFooter(): JSX.Element {
       </S.ChatFooterTitle>
 
       <S.DivideLine />
+      <div onClick={followerOpen}>친구 요청</div>
+      {isFollower && <div>친구 리스트</div>}
       {selectedComponent === "chat" ? (
         <ChatList />
       ) : selectedComponent === "follower" ? (

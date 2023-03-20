@@ -61,7 +61,7 @@ const chatData: ChatData[] = [
   },
 ];
 
-export default function Follower(): JSX.Element {
+export default function FollowerList(): JSX.Element {
   const chatCut = (str: string, n: number): string => {
     return str.length > n ? str.substr(0, n - 1) + "..." : str;
   };

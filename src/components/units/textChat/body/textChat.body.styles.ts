@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
-  max-width: 1160px;
+  width: 100%;
   display: flex;
   flex-direction: column;
 `;
@@ -10,7 +10,6 @@ export const SendContents = styled.textarea`
   width: 100%;
   height: 110px;
   font-size: 14px;
-  line-height: 1.5rem;
   padding: 0.5rem;
   border: 1px solid #d9d9d9;
   resize: none;

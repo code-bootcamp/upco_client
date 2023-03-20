@@ -5,9 +5,9 @@ import ProfileFooter from "./footer/profile.footer.index";
 export default function ProfileUI(): JSX.Element {
   return (
     <>
-      <Header></Header>
-      <ProfileBody></ProfileBody>
-      <ProfileFooter></ProfileFooter>
+      <Header />
+      <ProfileBody />
+      <ProfileFooter />
     </>
   );
 }
