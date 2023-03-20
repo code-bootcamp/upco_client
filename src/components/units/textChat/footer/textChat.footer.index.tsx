@@ -2,6 +2,7 @@ import * as S from "./textChat.footer.styles";
 import { useState } from "react";
 import ChatList from "../../../commons/hocs/chatList";
 import FollowerList from "../../../commons/hocs/followerList";
+import LocationList from "../../../commons/hocs/locationList";
 
 export default function TextChatFooter(): JSX.Element {
   const [selectedComponent, setSelectedComponent] = useState("chat");
@@ -29,7 +30,7 @@ export default function TextChatFooter(): JSX.Element {
       {selectedComponent === "chat" ? (
         <ChatList />
       ) : selectedComponent === "follower" ? (
-        <FollowerList />
+        <LocationList />
       ) : (
         <ChatList />
       )}
