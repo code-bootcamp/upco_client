@@ -11,7 +11,7 @@ const LocationWrapper = styled.div`
   background-color: transparent;
   transition: background-color 0.2s ease-in-out;
   &:hover {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.7);
     button {
       display: block;
     }
@@ -40,6 +40,7 @@ const NickNameSection = styled.div`
 const AgeSection = styled.div`
   color: #b1b1b1;
   margin-top: 10px;
+  z-index: -1;
 `;
 
 const InterestSection = styled.div`
@@ -77,7 +78,7 @@ const ButtonWrapper = styled.div`
   display: flex;
   flex-direction: row;
   position: absolute;
-  top: 40%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 `;
@@ -92,7 +93,7 @@ const HoverButton = styled.button`
   margin-right: 10px;
   font-size: 30px;
   display: none;
-  margin: 15px;
+  margin: 0 15px;
   padding-top: 4px;
   &:hover {
     cursor: pointer;
