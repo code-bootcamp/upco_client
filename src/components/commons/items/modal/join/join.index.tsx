@@ -1,8 +1,15 @@
+import { useFormJoin } from "../../../hooks/useForm/useForm.join";
 import AccountInput from "../../inputs/account/account.input.index";
 import * as S from "./join.styles";
 import { IJoinUIProps } from "./join.types";
 
 export default function JoinUI(props: IJoinUIProps): JSX.Element {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useFormJoin();
+
   return (
     <>
       <S.Background onClick={props.onClickClose} />
@@ -10,21 +17,35 @@ export default function JoinUI(props: IJoinUIProps): JSX.Element {
         <S.Close onClick={props.onClickClose} />
         <img src="/images/layout/logo.svg" />
         <S.InputBox>
-          <AccountInput placeholder="이메일을 입력해주세요." />
+          <AccountInput placeholder="닉네임을 입력해주세요." register={register("name")} />
           <div>
-            <p>에러메세지</p>
+            <p>{errors.name?.message}</p>
           </div>
         </S.InputBox>
         <S.InputBox>
-          <AccountInput type="password" placeholder="비밀번호를 입력해주세요." />
+          <AccountInput placeholder="이메일을 입력해주세요." register={register("email")} />
           <div>
-            <p>에러메세지</p>
+            <p>{errors.email?.message}</p>
           </div>
         </S.InputBox>
         <S.InputBox>
-          <AccountInput type="password" placeholder="비밀번호를 다시 입력해주세요." />
+          <AccountInput
+            type="password"
+            placeholder="비밀번호를 입력해주세요."
+            register={register("password")}
+          />
           <div>
-            <p>에러메세지</p>
+            <p>{errors.password?.message}</p>
+          </div>
+        </S.InputBox>
+        <S.InputBox>
+          <AccountInput
+            type="password"
+            placeholder="비밀번호를 다시 입력해주세요."
+            register={register("passwordCheck")}
+          />
+          <div>
+            <p>{errors.passwordCheck?.message}</p>
           </div>
         </S.InputBox>
         <button>회원가입</button>

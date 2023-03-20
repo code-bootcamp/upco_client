@@ -20,7 +20,7 @@ export const Wrapper = styled.form`
   border-radius: 6px;
   top: 50%;
   left: 50%;
-  margin-top: -297px;
+  margin-top: -333px;
   margin-left: -200px;
   z-index: 999;
 
