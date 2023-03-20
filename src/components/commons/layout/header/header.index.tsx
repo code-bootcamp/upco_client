@@ -37,8 +37,8 @@ export default function LayoutHeader(): JSX.Element {
             </Link>
           </li>
         </S.MenuBox>
-        <S.UserBox onClick={onClickLogin}>
-          <div>
+        <S.UserBox>
+          <div onClick={onClickLogin}>
             <S.UserIcon />
           </div>
         </S.UserBox>

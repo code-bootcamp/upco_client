@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { useState } from "react";
 import TextChatBody from "./body/textChat.body.index";
 import TextChatFooter from "./footer/textChat.footer.index";
 import TextChatHeader from "./header/textChat.header.index";
@@ -18,12 +19,18 @@ const LeftContents = styled.div`
 `;
 
 export default function TextChat(): JSX.Element {
+  const [isVideo, setIsVideo] = useState(false);
+
+  const onClickVideo = (): void => {
+    setIsVideo(true);
+  };
+
   return (
     <>
       <Wrapper>
         <LeftContents>
-          <TextChatHeader />
-          <TextChatBody />
+          <TextChatHeader isVideo={isVideo} />
+          <TextChatBody onClickVideo={onClickVideo} />
         </LeftContents>
         <TextChatFooter />
       </Wrapper>
