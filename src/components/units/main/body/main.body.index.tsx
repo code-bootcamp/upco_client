@@ -1,4 +1,5 @@
-import { Map, MapMarker } from "react-kakao-maps-sdk";
+import { CustomOverlayMap, Map, MarkerClusterer } from "react-kakao-maps-sdk";
+import { CustomMarker } from "./main.body.styles";
 
 export default function MainBody(props: {
   state: {
@@ -23,17 +24,46 @@ export default function MainBody(props: {
               ne: map.getBounds().getNorthEast().toString(),
             })
           }
+          level={12}
         >
-          <MapMarker
-            position={{
-              lat: props.position?.coords.latitude,
-              lng: props.position?.coords.longitude,
-            }}
-          ></MapMarker>
-          <MapMarker position={{ lat: 34.55635, lng: 127.795841 }}></MapMarker>
-          <MapMarker position={{ lat: 35.55635, lng: 128.795841 }}></MapMarker>
-          <MapMarker position={{ lat: 36.55635, lng: 129.795841 }}></MapMarker>
-          <MapMarker position={{ lat: 37.55635, lng: 130.795841 }}></MapMarker>
+          <MarkerClusterer averageCenter={true} minLevel={3}>
+            <CustomOverlayMap
+              position={{
+                lat: props.position?.coords.latitude,
+                lng: props.position?.coords.longitude,
+              }}
+            >
+              <CustomMarker></CustomMarker>
+            </CustomOverlayMap>
+            <CustomOverlayMap position={{ lat: 37.4847446, lng: 126.8969638 }}>
+              <CustomMarker></CustomMarker>
+            </CustomOverlayMap>
+            <CustomOverlayMap position={{ lat: 37.4848446, lng: 126.8969738 }}>
+              <CustomMarker></CustomMarker>
+            </CustomOverlayMap>{" "}
+            <CustomOverlayMap position={{ lat: 37.4849446, lng: 126.8969938 }}>
+              <CustomMarker></CustomMarker>
+            </CustomOverlayMap>{" "}
+            <CustomOverlayMap position={{ lat: 37.4846446, lng: 126.8969838 }}>
+              <CustomMarker></CustomMarker>
+            </CustomOverlayMap>
+            <CustomOverlayMap
+              position={{
+                lat: 33.450701,
+                lng: 126.570667,
+              }}
+            >
+              <CustomMarker></CustomMarker>
+            </CustomOverlayMap>
+            <CustomOverlayMap
+              position={{
+                lat: 33.450801,
+                lng: 126.570767,
+              }}
+            >
+              <CustomMarker></CustomMarker>
+            </CustomOverlayMap>
+          </MarkerClusterer>
         </Map>
       )}
     </>
