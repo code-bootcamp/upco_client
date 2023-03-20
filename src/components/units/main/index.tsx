@@ -8,6 +8,7 @@ export default function MainPage(): JSX.Element {
   const [state, setState] = useState();
   const [isFollower, setIsFollower] = useState(false);
   const [isTitle, setIsTitle] = useState(true);
+  const [level, setLevel] = useState();
 
   const { isOpen, mapCreation } = useMapCreationMode();
   const { position, geolocationFn } = useGeolocationMode();
@@ -22,9 +23,17 @@ export default function MainPage(): JSX.Element {
     setIsTitle(move);
   };
 
+  console.log(level);
   return (
     <div style={{ display: "flex", flexDirection: "row" }}>
-      {isOpen && <MainBody state={state} setState={setState} position={position}></MainBody>}
+      {isOpen && (
+        <MainBody
+          state={state}
+          setState={setState}
+          position={position}
+          setLevel={setLevel}
+        ></MainBody>
+      )}
       <MainSideBar
         isFollower={isFollower}
         followerOpen={followerOpen}
