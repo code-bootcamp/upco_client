@@ -1,6 +1,6 @@
 import { Map, MapMarker } from "react-kakao-maps-sdk";
 
-export default function MapBody(props: {
+export default function MainBody(props: {
   state: {
     sw: string | undefined;
     ne: string | undefined;
@@ -16,7 +16,7 @@ export default function MapBody(props: {
             lat: props.position?.coords.latitude ?? 34.55635,
             lng: props.position?.coords.longitude ?? 127.795841,
           }}
-          style={{ width: "1200px", height: "800px" }}
+          style={{ width: "1200px", height: "900px" }}
           onBoundsChanged={(map) =>
             props.setState({
               sw: map.getBounds().getSouthWest().toString(),
@@ -35,13 +35,6 @@ export default function MapBody(props: {
           <MapMarker position={{ lat: 36.55635, lng: 129.795841 }}></MapMarker>
           <MapMarker position={{ lat: 37.55635, lng: 130.795841 }}></MapMarker>
         </Map>
-      )}
-
-      {props.position && (
-        <div>
-          <p>latitude: {props.position?.coords.latitude}</p>
-          <p>longitude: {props.position?.coords.longitude}</p>
-        </div>
       )}
     </>
   );
