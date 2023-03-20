@@ -29,6 +29,7 @@
     "react-infinite-scroller": "^1.2.6",
     "react-kakao-maps-sdk": "^1.1.6",
     "recoil": "^0.7.7",
+    "socket.io-client": "^4.6.1",
     "ts-node": "^10.9.1",
     "uuid": "^9.0.0",
     "yup": "^1.0.2"

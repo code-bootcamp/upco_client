@@ -4,7 +4,7 @@ import ChatList from "../../../commons/hocs/chatList";
 import FollowerList from "../../../commons/hocs/followerList";
 
 export default function TextChatFooter(): JSX.Element {
-  const [selectedComponent, setSelectedComponent] = useState("none");
+  const [selectedComponent, setSelectedComponent] = useState("chat");
 
   const handleChatClick = (): void => {
     setSelectedComponent("chat");
@@ -15,12 +15,16 @@ export default function TextChatFooter(): JSX.Element {
   };
 
   return (
-    <>
-      <S.Wrapper>
-        <S.ChatTitle onClick={handleChatClick}>채팅</S.ChatTitle>
-        <S.FollowerTitle onClick={handleFollowerClick}>친구 목록</S.FollowerTitle>
-      </S.Wrapper>
-
+    <S.Wrapper>
+      <S.ChatFooterTitle>
+        <S.ChatTitle selected={selectedComponent === "chat"} onClick={handleChatClick}>
+          채팅
+        </S.ChatTitle>
+        <S.FollowerTitle selected={selectedComponent === "follower"} onClick={handleFollowerClick}>
+          친구 목록
+        </S.FollowerTitle>
+      </S.ChatFooterTitle>
+      <S.DivideLine />
       {selectedComponent === "chat" ? (
         <ChatList />
       ) : selectedComponent === "follower" ? (
@@ -28,6 +32,6 @@ export default function TextChatFooter(): JSX.Element {
       ) : (
         <ChatList />
       )}
-    </>
+    </S.Wrapper>
   );
 }
