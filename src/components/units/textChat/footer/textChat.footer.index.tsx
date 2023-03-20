@@ -24,6 +24,7 @@ export default function TextChatFooter(): JSX.Element {
           친구 목록
         </S.FollowerTitle>
       </S.ChatFooterTitle>
+
       <S.DivideLine />
       {selectedComponent === "chat" ? (
         <ChatList />
