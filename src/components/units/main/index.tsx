@@ -14,11 +14,11 @@ export default function MainPage(): JSX.Element {
 
   geolocationFn();
   mapCreation();
-  const followerOpen = () => {
+  const followerOpen = (): void => {
     setIsFollower((prev) => !prev);
   };
 
-  const titleMove = (move) => () => {
+  const titleMove = (move: boolean) => () => {
     setIsTitle(move);
   };
 
