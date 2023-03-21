@@ -12,9 +12,14 @@ import { getAccessToken } from "../hooks/getAccessToken";
 import { onError } from "@apollo/client/link/error";
 import { useEffect } from "react";
 
-export default function ApolloSetting(props): JSX.Element {
-  const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
+const GLOBAL_STATE = new InMemoryCache();
 
+interface IApolloSettingProps {
+  children: JSX.Element;
+}
+
+export default function ApolloSetting(props: IApolloSettingProps): JSX.Element {
+  const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
   const refresh = useRecoilValueLoadable(restoreAccessTokenLoadable);
 
   useEffect(() => {
@@ -46,13 +51,15 @@ export default function ApolloSetting(props): JSX.Element {
 
   const uploadLink = createUploadLink({
     uri: "https://api.upco.space/main",
-    headers: { Authorization: `Bearer ${accessToken}` },
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
     credentials: "include",
   });
 
   const client = new ApolloClient({
     link: ApolloLink.from([errorLink, uploadLink]),
-    cache: new InMemoryCache(),
+    cache: GLOBAL_STATE,
   });
 
   return <ApolloProvider client={client}>{props.children}</ApolloProvider>;

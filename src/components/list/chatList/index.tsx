@@ -1,14 +1,5 @@
 import styled from "@emotion/styled";
 
-const Title = styled.div`
-  width: 100%;
-  text-align: center;
-  font-size: 18px;
-  font-weight: bold;
-  color: #01b6ad;
-  margin: 10px 0px;
-`;
-
 const ChatWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -75,7 +66,6 @@ export default function ChatList(): JSX.Element {
   };
   return (
     <>
-      <Title>채팅 목록</Title>
       <DivideLine />
       {chatData.map((el) => (
         <>

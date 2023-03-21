@@ -18,7 +18,14 @@ const Wrapper = styled.div`
     border-left: 1px solid #c9c9c9;
   }
 `;
-
+const Title = styled.div`
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: #01b6ad;
+  margin: 10px 0px;
+`;
 const LeftContents = styled.div`
   width: 100%;
   display: flex;
@@ -36,6 +43,7 @@ export default function TextChat(): JSX.Element {
     <>
       <Wrapper>
         <div>
+          <Title>채팅 목록</Title>
           <ChatList />
         </div>
         <LeftContents>
@@ -43,6 +51,7 @@ export default function TextChat(): JSX.Element {
           <TextChatBody onClickVideo={onClickVideo} />
         </LeftContents>
         <div>
+          <Title>내 친구</Title>
           <FollowerList />
         </div>
       </Wrapper>
