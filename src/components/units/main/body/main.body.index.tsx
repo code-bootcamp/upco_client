@@ -1,5 +1,5 @@
 import { CustomOverlayMap, Map, MarkerClusterer, ZoomControl } from "react-kakao-maps-sdk";
-import { CustomMarker } from "./main.body.styles";
+import { CustomMarker, MabWeb } from "./main.body.styles";
 
 export default function MainBody(props: {
   state: {
@@ -12,12 +12,11 @@ export default function MainBody(props: {
       {props.position === null ? (
         <div style={{ width: 1200, height: 800, backgroundColor: "gray" }}></div>
       ) : (
-        <Map
+        <MabWeb
           center={{
             lat: props.position?.coords.latitude ?? 34.55635,
             lng: props.position?.coords.longitude ?? 127.795841,
           }}
-          style={{ width: "1200px", height: "900px" }}
           onBoundsChanged={(map) =>
             props.setState({
               sw: map.getBounds().getSouthWest().toString(),
@@ -67,7 +66,7 @@ export default function MainBody(props: {
               <CustomMarker></CustomMarker>
             </CustomOverlayMap>
           </MarkerClusterer>
-        </Map>
+        </MabWeb>
       )}
     </>
   );
