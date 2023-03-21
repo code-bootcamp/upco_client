@@ -1,6 +1,10 @@
 import * as S from "./profileEdit.body.styles";
 
 export default function ProfileEditBody(): JSX.Element {
+  const openPasswordReset = (): void => {
+    window.open("/passwordReset", "_blank", "width=800px ,height=600px");
+  };
+
   return (
     <S.Wrapper>
       <S.Title>프로필 정보</S.Title>
@@ -21,7 +25,7 @@ export default function ProfileEditBody(): JSX.Element {
         <S.SectionTitle>비밀번호</S.SectionTitle>
         <S.DefaultBox>
           <span>*********</span>
-          <button>변경</button>
+          <button onClick={openPasswordReset}>변경</button>
         </S.DefaultBox>
       </S.Section>
       <S.Section>
