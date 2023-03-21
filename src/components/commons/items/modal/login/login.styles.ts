@@ -38,6 +38,12 @@ export const Wrapper = styled.form`
     border-radius: 50px;
     cursor: pointer;
     margin-bottom: 20px;
+    :hover {
+      background-color: #9fa0e5;
+    }
+    :active {
+      background-color: #c6c3ff;
+    }
   }
 `;
 
@@ -84,16 +90,12 @@ export const FindBox = styled.div`
   user-select: none;
 
   > p {
-    font-size: 8px;
+    font-size: 12px;
     color: #979797;
     cursor: pointer;
-  }
-
-  > p:first-of-type::after {
-    content: "";
-    background-color: red;
-    border-right: 1px solid #ddd;
-    margin: 0 20px;
+    :hover {
+      color: #000000;
+    }
   }
 `;
 
@@ -106,9 +108,12 @@ export const JoinText = styled.div`
 
   > p {
     text-decoration: underline;
-    font-size: 8px;
+    font-size: 12px;
     color: #979797;
     cursor: pointer;
+    :hover {
+      color: #000000;
+    }
   }
 `;
 

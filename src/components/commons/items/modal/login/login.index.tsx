@@ -3,10 +3,20 @@ import { useFormLogin } from "../../../hooks/useForm/useForm.login";
 import AccountInput from "../../inputs/account/account.input.index";
 import JoinUI from "../join/join.index";
 import * as S from "./login.styles";
-import { ILoginUIProps } from "./login.types";
+import { FormValues, ILoginUIProps } from "./login.types";
+import { useMutation } from "@apollo/client";
+import gql from "graphql-tag";
+
+const LOGIN = gql`
+  mutation Login($email: String!, $password: String!) {
+    login(email: $email, password: $password)
+  }
+`;
 
 export default function LoginUI(props: ILoginUIProps): JSX.Element {
   const [isJoin, setIsJoin] = useState(false);
+
+  const [login, { data, error }] = useMutation(LOGIN);
 
   const {
     register,
@@ -22,6 +32,11 @@ export default function LoginUI(props: ILoginUIProps): JSX.Element {
     setIsJoin((prev) => !prev);
   };
 
+  const onSubmit = async (data: FormValues): Promise<void> => {
+    const { email, password } = data;
+    await login({ variables: { email, password } });
+  };
+
   return (
     <>
       {isJoin ? (
@@ -29,7 +44,7 @@ export default function LoginUI(props: ILoginUIProps): JSX.Element {
       ) : (
         <>
           <S.Background onClick={onClickClose} />
-          <S.Wrapper>
+          <S.Wrapper onSubmit={handleSubmit(onSubmit)}>
             <S.Close onClick={onClickClose} />
             <img src="/images/layout/logo.svg" />
             <S.InputBox>
