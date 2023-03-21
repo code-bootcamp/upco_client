@@ -4,9 +4,8 @@ import {
   BsFillCameraVideoOffFill,
   BsFillMicFill,
   BsFillMicMuteFill,
-  BsMicFill,
 } from "react-icons/bs";
-import { HiVolumeOff, HiVolumeUp } from "react-icons/Hi";
+import { HiVolumeOff, HiVolumeUp } from "react-icons/hi";
 
 export const Wrapper = styled.div`
   display: flex;

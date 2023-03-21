@@ -15,33 +15,31 @@ export default function LayoutHeader(): JSX.Element {
       {isOpen && <LoginUI setIsOpen={setIsOpen} />}
       <S.Wrapper>
         <div>
-          <img src="/images/layout/logo.svg" alt="로고" />
-        </div>
-        <S.MenuBox>
-          <li>
-            <S.MapIcon />
-            <Link href="#">
-              <a>지도</a>
+          <S.Logo src="/images/layout/logo.svg" />
+          <S.MenuBox>
+            <Link href="/main">
+              <div>
+                <S.MapIcon />
+                <a>지도</a>
+              </div>
             </Link>
-          </li>
-          <li>
-            <S.MessageIcon />
-            <Link href="#">
-              <a>채팅</a>
+            <Link href="/chat">
+              <div>
+                <S.MessageIcon />
+                <a>채팅</a>
+              </div>
             </Link>
-          </li>
-          <li>
-            <S.FriendListIcon />
-            <Link href="#">
-              <a>친구</a>
+            <Link href="/main">
+              <div>
+                <S.FriendListIcon />
+                <a>친구</a>
+              </div>
             </Link>
-          </li>
-        </S.MenuBox>
-        <S.UserBox>
-          <div onClick={onClickLogin}>
+          </S.MenuBox>
+          <S.UserBox onClick={onClickLogin}>
             <S.UserIcon />
-          </div>
-        </S.UserBox>
+          </S.UserBox>
+        </div>
       </S.Wrapper>
       <S.DivideLine />
     </>
