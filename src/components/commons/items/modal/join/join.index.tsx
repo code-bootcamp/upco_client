@@ -15,7 +15,7 @@ export default function JoinUI(props: IJoinUIProps): JSX.Element {
       <S.Background onClick={props.onClickClose} />
       <S.Wrapper>
         <S.Close onClick={props.onClickClose} />
-        <img src="/images/layout/logo.svg" />
+        <img src="/images/layout/logo01.svg" />
         <S.InputBox>
           <AccountInput placeholder="닉네임을 입력해주세요." register={register("name")} />
           <div>

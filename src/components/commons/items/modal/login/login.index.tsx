@@ -46,7 +46,7 @@ export default function LoginUI(props: ILoginUIProps): JSX.Element {
           <S.Background onClick={onClickClose} />
           <S.Wrapper onSubmit={handleSubmit(onSubmit)}>
             <S.Close onClick={onClickClose} />
-            <img src="/images/layout/logo.svg" />
+            <img src="/images/layout/logo01.svg" />
             <S.InputBox>
               <AccountInput placeholder="이메일을 입력해주세요." register={register("email")} />
               <div>
