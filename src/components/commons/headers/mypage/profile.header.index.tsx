@@ -25,7 +25,7 @@ export default function Header(): JSX.Element {
             onClick={onClickMenu}
             style={{
               fontWeight: currentPath === el.page ? "bold" : "",
-              color: currentPath === el.page ? "#A777B1" : "#000000",
+              color: currentPath === el.page ? "#01B6AD" : "#000000",
             }}
           >
             {el.title}

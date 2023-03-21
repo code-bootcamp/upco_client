@@ -8,23 +8,23 @@ export const Wrapper = styled.div`
 
 export const SendContents = styled.textarea`
   width: 100%;
-  height: 110px;
+  height: 100px;
   font-size: 14px;
   padding: 0.5rem;
-  border: 1px solid #d9d9d9;
+  border-bottom: 1px solid #d9d9d9;
+  border-top: 1px solid #c9c9c9;
   resize: none;
   ::-webkit-scrollbar {
     display: none;
   }
   :focus {
     outline: none;
-    border-color: #a777b1;
   }
 `;
 
 export const SendMenu = styled.div`
   width: 100%;
-  border: 1px solid #d9d9d9;
+  /* border: 1px solid #d9d9d9; */
   border-top: none;
   display: flex;
   flex-direction: row;
@@ -40,7 +40,7 @@ export const IconSection = styled.div`
 export const SendBtn = styled.button`
   width: 64px;
   height: 41px;
-  background-color: #a777b1;
+  background-color: #01b6ad;
   color: white;
   font-size: 18px;
   font-weight: bold;

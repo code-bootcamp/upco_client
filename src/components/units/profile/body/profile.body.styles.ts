@@ -46,7 +46,7 @@ export const TopWrapper = styled.div`
     justify-content: center;
     align-items: center;
     border-radius: 15px;
-    background-color: #a2a0eb;
+    background-color: #01b6ad;
     width: 92px;
     height: 25px;
     color: #fff;
@@ -68,7 +68,7 @@ export const InterestBox = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 15px;
-  background-color: #a2a0eb;
+  background-color: #01b6ad;
   color: #fff;
   width: 92px;
   height: 25px;

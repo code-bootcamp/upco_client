@@ -1,6 +1,11 @@
+import { useQueryFetchLoginUser } from "../../../commons/hooks/queries/fetchLoginUser";
 import * as S from "./profileEdit.body.styles";
 
 export default function ProfileEditBody(): JSX.Element {
+  const { data } = useQueryFetchLoginUser();
+
+  console.log(data);
+
   const openPasswordReset = (): void => {
     window.open("/passwordReset", "_blank", "width=800px ,height=600px");
   };
@@ -11,9 +16,7 @@ export default function ProfileEditBody(): JSX.Element {
       <S.DivideLine />
       <S.Section>
         <S.SectionTitle>닉네임</S.SectionTitle>
-        <S.DefaultBox>
-          <span>문성진</span>
-        </S.DefaultBox>
+        <S.DefaultBox>{/* <span>{data.nickname}</span> */}</S.DefaultBox>
       </S.Section>
       <S.Section>
         <S.SectionTitle>이메일</S.SectionTitle>
