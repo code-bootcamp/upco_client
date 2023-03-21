@@ -1,5 +1,6 @@
 import { CustomOverlayMap, Map, MarkerClusterer, ZoomControl } from "react-kakao-maps-sdk";
-import { CustomMarker, MabWeb } from "./main.body.styles";
+import { BeatLoader } from "react-spinners";
+import { CustomMarker, MabWeb, MabBox } from "./main.body.styles";
 
 export default function MainBody(props: {
   state: {
@@ -10,7 +11,9 @@ export default function MainBody(props: {
   return (
     <>
       {props.position === null ? (
-        <div style={{ width: 1200, height: 800, backgroundColor: "gray" }}></div>
+        <MabBox>
+          <BeatLoader color="#204969" />
+        </MabBox>
       ) : (
         <MabWeb
           center={{
