@@ -9,10 +9,12 @@ export const Input = styled.input`
   height: 50px;
   line-height: 50px;
   padding: 0 20px;
-  font-size: 12px;
 
   ::placeholder {
     color: #ccc;
-    font-size: 8px;
+    font-size: 12px;
+  }
+  :focus {
+    border-color: #b1b2ff;
   }
 `;
