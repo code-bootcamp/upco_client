@@ -58,6 +58,7 @@ const InterestSection = styled.div`
   color: #fff;
   margin: 7px 5px 0px 0px;
   z-index: -1;
+  font-size: 14px;
 `;
 
 const LocationListRow = styled.div`
@@ -107,6 +108,7 @@ const HoverButton = styled.button`
   display: none;
   margin: 0 15px;
   padding-top: 4px;
+
   &:hover {
     cursor: pointer;
   }

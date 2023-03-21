@@ -10,7 +10,7 @@ export const CustomMarker = styled(FaMapMarkerAlt)`
 export const MabBox = styled.div`
   width: calc(100% - 300px);
   height: calc(100vh - 81px);
-  background-color: #ddd;
+  background-color: #e2e2e2;
   color: #fff;
   display: flex;
   flex-direction: row;
