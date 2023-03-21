@@ -1,20 +1,21 @@
 import { Global } from "@emotion/react";
+import type { AppProps } from "next/app";
 import { RecoilRoot } from "recoil";
 import { globalStyles } from "../src/commons/styles/globalStyles";
 import ApolloSetting from "../src/components/commons/apollo";
 import Layout from "../src/components/commons/layout";
 
-export default function App({ Component, pageProps }): JSX.Element {
+export default function App({ Component }: AppProps): JSX.Element {
   return (
-    <div>
-      <RecoilRoot>
-        <Global styles={globalStyles} />
-        <ApolloSetting>
+    <RecoilRoot>
+      <ApolloSetting>
+        <>
+          <Global styles={globalStyles} />
           <Layout>
-            <Component {...pageProps} />
+            <Component />
           </Layout>
-        </ApolloSetting>
-      </RecoilRoot>
-    </div>
+        </>
+      </ApolloSetting>
+    </RecoilRoot>
   );
 }
