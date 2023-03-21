@@ -31,7 +31,7 @@ export default function MainFooter(): JSX.Element {
       </S.ChatFooterTitle>
 
       <S.DivideLine />
-      <div onClick={followerOpen}>친구 요청</div>
+      <S.FollowList onClick={followerOpen}>친구 요청</S.FollowList>
       <S.DivideLine />
       {isFollower && <div>친구 리스트</div>}
       {selectedComponent === "location" ? (

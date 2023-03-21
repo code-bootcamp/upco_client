@@ -3,7 +3,7 @@ import { FaMapMarkerAlt } from "react-icons/fa";
 import { Map } from "react-kakao-maps-sdk";
 
 export const CustomMarker = styled(FaMapMarkerAlt)`
-  color: #b1b2ff;
+  color: #29a2c6;
   font-size: 40px;
 `;
 

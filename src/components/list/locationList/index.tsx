@@ -19,10 +19,13 @@ const LocationWrapper = styled.div`
 `;
 
 const ImageSection = styled.img`
-  width: 80%;
+  width: 100%;
   height: 150px;
-  margin-top: 10px;
+  margin: 20px 20px 0;
+  object-fit: cover;
+  object-position: center;
   z-index: -1;
+  border-radius: 6px;
 `;
 
 const ImageColumn = styled.div`
@@ -34,13 +37,13 @@ const ImageColumn = styled.div`
 const NickNameSection = styled.div`
   font-size: 16px;
   font-weight: bold;
-  margin: 10px 10px 0px 0px;
+  margin-right: 5px;
 `;
 
 const AgeSection = styled.div`
-  color: #b1b1b1;
-  margin-top: 10px;
+  color: #979797;
   z-index: -1;
+  font-size: 14px;
 `;
 
 const InterestSection = styled.div`
@@ -49,19 +52,28 @@ const InterestSection = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 15px;
-  background-color: #a2a0eb;
+  background-color: #01b6ad;
   padding: 3px 18px;
   height: 25px;
   color: #fff;
-  margin: 5px 5px 0px 0px;
+  margin: 7px 5px 0px 0px;
   z-index: -1;
 `;
 
 const LocationListRow = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: flex-end;
   flex-wrap: wrap;
-  margin: 0px 0px 10px 20px;
+  margin: 10px 20px 0;
+`;
+
+const InterestBox = styled.div`
+  margin: 0 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
 `;
 
 const LocationListColumn = styled.div`
@@ -86,7 +98,7 @@ const ButtonWrapper = styled.div`
 const HoverButton = styled.button`
   width: 50px;
   height: 50px;
-  background-color: #b8a5ee;
+  background-color: #01b6ad;
   border: none;
   border-radius: 50px;
   color: #fff;
@@ -151,11 +163,11 @@ export default function LocationList(): JSX.Element {
               <NickNameSection>{el.name}</NickNameSection>
               <AgeSection>{el.age}</AgeSection>
             </LocationListRow>
-            <LocationListRow>
+            <InterestBox>
               {el.interest.map((interest) => (
                 <InterestSection key={el._id}>{interest}</InterestSection>
               ))}
-            </LocationListRow>
+            </InterestBox>
             <ButtonWrapper>
               <HoverButton>
                 <AiOutlineMessage />

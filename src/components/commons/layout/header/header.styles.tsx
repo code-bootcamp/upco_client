@@ -5,7 +5,7 @@ import { FiUsers } from "react-icons/fi";
 import { BiUser } from "react-icons/bi";
 
 export const Wrapper = styled.div`
-  background-color: #204969;
+  background-color: #01b6ad;
   width: 100%;
   height: 80px;
   display: flex;
