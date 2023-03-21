@@ -1,10 +1,19 @@
 import styled from "@emotion/styled";
 
-const ChatWrapper = styled.div`
+const Title = styled.div`
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: #01b6ad;
+  margin: 10px 0px;
+`;
+
+const FollowerWrapper = styled.div`
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  width: 250px;
+  flex-direction: column;
+  padding: 20px 0px 20px 18px;
+  width: 300px;
 `;
 const NickNameSection = styled.div`
   font-weight: bold;
@@ -18,11 +27,11 @@ const ChatSection = styled.div`
   color: #b1b1b1;
   font-size: 14px;
 `;
-const ChatListRow = styled.div`
+const FollowerListRow = styled.div`
   display: flex;
   flex-direction: row;
 `;
-const ChatListColumn = styled.div`
+const FollowerListColumn = styled.div`
   display: flex;
   flex-direction: column;
 `;
@@ -30,7 +39,6 @@ const ChatListColumn = styled.div`
 const DivideLine = styled.div`
   border-bottom: 1px solid #d9d9d9;
   width: 100%;
-  margin: 15px 0px;
 `;
 
 interface ChatData {
@@ -61,23 +69,25 @@ const chatData: ChatData[] = [
   },
 ];
 
-export default function FollowerList(): JSX.Element {
+export default function ChatList(): JSX.Element {
   const chatCut = (str: string, n: number): string => {
     return str.length > n ? str.substr(0, n - 1) + "..." : str;
   };
   return (
     <>
+      <Title>내 친구</Title>
+      <DivideLine />
       {chatData.map((el) => (
         <>
-          <ChatWrapper key={el._id} id={el._id}>
-            <ChatListRow>
+          <FollowerWrapper key={el._id} id={el._id}>
+            <FollowerListRow>
               <ImageSection src={el.images} />
-              <ChatListColumn>
+              <FollowerListColumn>
                 <NickNameSection>{el.name}</NickNameSection>
-                <ChatSection>{chatCut(el.chat, 12)}</ChatSection>
-              </ChatListColumn>
-            </ChatListRow>
-          </ChatWrapper>
+                <ChatSection>{chatCut(el.chat, 11)}</ChatSection>
+              </FollowerListColumn>
+            </FollowerListRow>
+          </FollowerWrapper>
           <DivideLine />
         </>
       ))}

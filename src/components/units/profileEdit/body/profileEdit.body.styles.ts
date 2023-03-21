@@ -59,7 +59,7 @@ export const InterestBox = styled.ul`
   > li {
     font-size: 12px;
     color: #fff;
-    background-color: #a777b1;
+    background-color: #01b6ad;
     padding: 5px 10px;
     border-radius: 20px;
     margin-right: 5px;
