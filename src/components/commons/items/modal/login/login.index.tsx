@@ -5,6 +5,8 @@ import JoinUI from "../join/join.index";
 import * as S from "./login.styles";
 import { FormValues, ILoginUIProps } from "./login.types";
 import { useMutation } from "@apollo/client";
+import { accessTokenState } from "../../../stores";
+import { useRecoilState } from "recoil";
 import gql from "graphql-tag";
 
 const LOGIN = gql`
@@ -17,6 +19,8 @@ export default function LoginUI(props: ILoginUIProps): JSX.Element {
   const [isJoin, setIsJoin] = useState(false);
 
   const [login, { data, error }] = useMutation(LOGIN);
+
+  const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
 
   const {
     register,
@@ -34,7 +38,15 @@ export default function LoginUI(props: ILoginUIProps): JSX.Element {
 
   const onSubmit = async (data: FormValues): Promise<void> => {
     const { email, password } = data;
-    await login({ variables: { email, password } });
+    const result = await login({ variables: { email, password } });
+    const accessToken = result.data.login;
+
+    if (accessToken === undefined) {
+      alert("로그인에 실패하였습니다. 다시 시도해주세요!");
+      return;
+    }
+    setAccessToken(accessToken);
+    alert("로그인 되었습니다.");
   };
 
   return (

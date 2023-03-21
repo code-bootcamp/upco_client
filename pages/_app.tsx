@@ -1,28 +1,20 @@
-import { ApolloClient, InMemoryCache, ApolloProvider, ApolloLink } from "@apollo/client";
 import { Global } from "@emotion/react";
-import { createUploadLink } from "apollo-upload-client";
+import { RecoilRoot } from "recoil";
 import { globalStyles } from "../src/commons/styles/globalStyles";
+import ApolloSetting from "../src/components/commons/apollo";
 import Layout from "../src/components/commons/layout";
 
 export default function App({ Component, pageProps }): JSX.Element {
-  const uploadLink = createUploadLink({
-    uri: "https://api.upco.space/main",
-  });
-
-  const client = new ApolloClient({
-    link: ApolloLink.from([uploadLink]),
-
-    cache: new InMemoryCache(),
-  });
-
   return (
     <div>
-      <ApolloProvider client={client}>
+      <RecoilRoot>
         <Global styles={globalStyles} />
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </ApolloProvider>
+        <ApolloSetting>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </ApolloSetting>
+      </RecoilRoot>
     </div>
   );
 }
