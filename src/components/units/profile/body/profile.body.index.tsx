@@ -1,34 +1,46 @@
-import { useRouter } from "next/router";
+import Link from "next/link";
 import * as S from "./profile.body.styles";
 
 export default function ProfileBody(): JSX.Element {
-  const router = useRouter();
-
-  const onClickEdit = (): void => {
-    void router.push("/profile/profileEdit");
-  };
-
   return (
-    <S.Wrapper>
-      <S.InWrapper>
-        <S.LeftWrapper></S.LeftWrapper>
-        <S.RightWrapper>
-          <S.TopWrapper>
-            <div>문성진</div>
-            <div>20대 중반</div>
-          </S.TopWrapper>
-          <S.MiddleWrapper>eggmun98@gamil.com</S.MiddleWrapper>
-          <S.BottomWrapper>
-            <S.InterestBox>축구</S.InterestBox>
-            <S.InterestBox>농구</S.InterestBox>
-            <S.InterestBox>야구</S.InterestBox>
-          </S.BottomWrapper>
-        </S.RightWrapper>
-      </S.InWrapper>
-      <S.LastWrapper>
-        <div onClick={onClickEdit}>프로필 수정</div>
-        <img src="imgtest"></img>
-      </S.LastWrapper>
-    </S.Wrapper>
+    <>
+      <S.Wrapper>
+        {/* 프로필 */}
+        <S.ProfileLeft>
+          <S.UserIconBox>
+            <img />
+          </S.UserIconBox>
+          <ul>
+            <li>
+              <S.Name>문성진</S.Name>
+              <S.Age>20대중반</S.Age>
+            </li>
+            <li>
+              <S.Email>eggmun98@naver.com</S.Email>
+            </li>
+            <li>
+              <S.Interest>축구</S.Interest>
+              <S.Interest>축구</S.Interest>
+              <S.Interest>축구</S.Interest>
+              <S.Interest>축구</S.Interest>
+              <S.Interest>축구</S.Interest>
+              <S.Interest>축구</S.Interest>
+              <S.Interest>축구</S.Interest>
+              <S.Interest>축구</S.Interest>
+              <S.Interest>축구</S.Interest>
+            </li>
+          </ul>
+        </S.ProfileLeft>
+        <S.ProfileRight>
+          <div>
+            <Link href="/profile/profileEdit">
+              <a>
+                <p>프로필 수정</p>
+              </a>
+            </Link>
+          </div>
+        </S.ProfileRight>
+      </S.Wrapper>
+    </>
   );
 }

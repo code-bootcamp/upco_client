@@ -7,13 +7,9 @@ export const Wrapper = styled.div`
 
 export const Title = styled.h4`
   font-size: 18px;
-`;
-
-export const DivideLine = styled.div`
-  width: 100%;
-  background-color: #000;
-  height: 2px;
-  margin: 15px 0 30px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #191919;
+  margin-bottom: 30px;
 `;
 
 export const Section = styled.div`
@@ -23,46 +19,67 @@ export const Section = styled.div`
 `;
 
 export const SectionTitle = styled.span`
-  color: #a1a1a1;
+  color: #979797;
   font-size: 14px;
 `;
 
 export const DefaultBox = styled.div`
   width: 100%;
-  border-bottom: 1px solid #ebebeb;
-  padding: 10px 0;
+  border-bottom: 1px solid #e2e2e2;
+  padding: 20px 0 5px;
   margin-bottom: 35px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
 
-  > button {
-    font-size: 12px;
-    /* padding: 5px 10px; */
-    width: 60px;
-    height: 20px;
-    border-radius: 6px;
-    background-color: #fff;
-    border: 1px solid #191919;
-    color: #191919;
-    cursor: pointer;
+  > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    > button {
+      padding: 0 20px;
+      font-size: 14px;
+      background-color: #fff;
+      border: 1px solid #979797;
+      border-radius: 6px;
+      color: #979797;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+      white-space: nowrap;
+
+      :hover {
+        color: #fff;
+        background-color: #000;
+        border: 1px solid #000;
+      }
+    }
   }
 `;
 
 export const InterestBox = styled.ul`
   display: flex;
   flex-direction: row;
-  align-items: center;
   flex-wrap: wrap;
 
   > li {
-    font-size: 12px;
+    font-size: 14px;
     color: #fff;
-    background-color: #01b6ad;
+    background-color: #6658ca;
     padding: 5px 10px;
     border-radius: 20px;
     margin-right: 5px;
     margin-bottom: 8px;
   }
+`;
+
+export const InterestAddButton = styled.button`
+  margin-bottom: 8px;
+  padding: 0 20px;
+  font-size: 14px;
+  background-color: #fff;
+  border: 1px solid #979797;
+  border-radius: 6px;
+  color: #979797;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  white-space: nowrap;
 `;

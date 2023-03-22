@@ -13,10 +13,9 @@ export default function ProfileEditBody(): JSX.Element {
   return (
     <S.Wrapper>
       <S.Title>프로필 정보</S.Title>
-      <S.DivideLine />
       <S.Section>
         <S.SectionTitle>닉네임</S.SectionTitle>
-        <S.DefaultBox>{/* <span>{data.nickname}</span> */}</S.DefaultBox>
+        <S.DefaultBox>{/* <span>{data.nickname}</span> */}문성진</S.DefaultBox>
       </S.Section>
       <S.Section>
         <S.SectionTitle>이메일</S.SectionTitle>
@@ -27,21 +26,28 @@ export default function ProfileEditBody(): JSX.Element {
       <S.Section>
         <S.SectionTitle>비밀번호</S.SectionTitle>
         <S.DefaultBox>
-          <span>*********</span>
-          <button onClick={openPasswordReset}>변경</button>
+          <div>
+            <span>*********</span>
+            <button onClick={openPasswordReset}>변경</button>
+          </div>
         </S.DefaultBox>
       </S.Section>
       <S.Section>
         <S.SectionTitle>관심사</S.SectionTitle>
         <S.DefaultBox>
-          <S.InterestBox>
-            <li>스쿠버다이빙</li>
-            <li>축구</li>
-            <li>스쿠버다이빙</li>
-            <li>스쿠버다이빙</li>
-            <li>스쿠버다이빙</li>
-          </S.InterestBox>
-          <button>변경</button>
+          <div>
+            <S.InterestBox>
+              <li>스쿠버다이빙</li>
+              <li>축구</li>
+              <li>스쿠버다이빙</li>
+              <li>스쿠버다이빙</li>
+              <li>축구</li>
+              <li>스쿠버다이빙</li>
+              <li>스쿠버다이빙</li>
+              <li>스쿠버다이빙</li>
+            </S.InterestBox>
+            <S.InterestAddButton>추가</S.InterestAddButton>
+          </div>
         </S.DefaultBox>
       </S.Section>
     </S.Wrapper>

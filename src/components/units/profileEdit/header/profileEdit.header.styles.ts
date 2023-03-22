@@ -8,19 +8,19 @@ export const Wrapper = styled.div`
   height: 150px;
   border-radius: 6px;
   margin-top: 50px;
-  padding: 25px 30px;
+  padding: 20px;
   border: 1px solid #d3d3d3;
 `;
 
 export const ProfileLeft = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: center;
 
   > div {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin: 15px 0;
   }
 `;
 
@@ -33,8 +33,8 @@ export const UserIcon = styled.img`
 `;
 
 export const Name = styled.h4`
-  font-family: "Bold";
-  font-size: 20px;
+  font-size: 18px;
+  margin-bottom: 15px;
 `;
 
 export const Email = styled.p`
@@ -49,7 +49,15 @@ export const EditImage = styled.button`
   border: 1px solid #a6a6a6;
   border-radius: 6px;
   background-color: #fff;
+  margin-top: 15px;
   cursor: pointer;
+  transition: all 0.3s ease-in-out;
+
+  :hover {
+    background-color: #6658ca;
+    color: #fff;
+    border: 1px solid #6658ca;
+  }
 `;
 
 export const ProfileRight = styled.div`
@@ -64,6 +72,11 @@ export const Quit = styled.button`
   cursor: pointer;
   background-color: #fff;
   color: #a6a6a6;
+  transition: all 0.3s ease-in-out;
+
+  :hover {
+    color: #191919;
+  }
 `;
 
 export const CreateId = styled.p`

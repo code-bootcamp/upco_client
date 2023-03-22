@@ -1,87 +1,88 @@
 import styled from "@emotion/styled";
+import { FiEdit } from "react-icons/fi";
 
 export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   width: 100%;
-  margin: 0 auto;
-  margin-top: 10px;
-  max-width: 1200px;
   height: 150px;
-  border: 1px solid gray;
-  border-radius: 15px;
-  display: flex;
-  flex-direction: row;
-  padding: 25px;
-  margin-top: 60px;
+  border-radius: 6px;
+  margin-top: 50px;
+  padding: 20px;
+  border: 1px solid #d3d3d3;
 `;
 
-export const InWrapper = styled.div`
+export const ProfileLeft = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: center;
+
+  > ul {
+    display: flex;
+    flex-direction: column;
+
+    > li {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+  }
 `;
 
-export const LeftWrapper = styled.div`
+export const UserIconBox = styled.div`
   width: 100px;
   height: 100px;
-  background-color: gray;
-  border-radius: 50%;
-  margin-right: 25px;
-`;
+  border-radius: 50px;
+  background-color: #d1d1d1;
+  margin-right: 30px;
 
-export const RightWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-export const TopWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 10px;
-  > div {
-    color: #000000;
-    margin-right: 10px;
-  }
-  > div:nth-of-type(2) {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    border-radius: 15px;
-    background-color: #01b6ad;
-    width: 92px;
-    height: 25px;
-    color: #fff;
+  > img {
+    border-radius: 50px;
+    width: 100%;
+    height: 100%;
   }
 `;
 
-export const MiddleWrapper = styled.div`
-  margin-bottom: 10px;
+export const Name = styled.h4`
+  font-size: 18px;
+  margin-right: 5px;
 `;
 
-export const BottomWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
+export const Age = styled.p`
+  font-size: 14px;
+  color: #979797;
 `;
 
-export const InterestBox = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  border-radius: 15px;
-  background-color: #01b6ad;
+export const Email = styled.p`
+  font-size: 14px;
+  color: #979797;
+  margin-bottom: 15px;
+`;
+
+export const Interest = styled.p`
+  font-size: 14px;
+  padding: 3px 18px;
+  background-color: #6658ca;
   color: #fff;
-  width: 92px;
-  height: 25px;
-  margin-right: 10px;
+  border-radius: 100px;
+  margin-right: 5px;
 `;
 
-export const LastWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
+export const ProfileRight = styled.div`
+  div {
+    a {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      color: #979797;
+      font-size: 14px;
+      text-decoration: underline;
+      transition: all 0.3s ease-in-out;
 
-  > div {
-    cursor: pointer;
+      :hover {
+        color: #191919;
+      }
+    }
   }
 `;
