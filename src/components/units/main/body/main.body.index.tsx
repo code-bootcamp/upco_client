@@ -12,7 +12,7 @@ export default function MainBody(props: {
     <>
       {props.position === null ? (
         <MabBox>
-          <BeatLoader color="#01b6ad" />
+          <BeatLoader color="#6658ca" />
         </MabBox>
       ) : (
         <MabWeb

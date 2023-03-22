@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-const activeColor = "#01B6AD";
+const activeColor = "#6658ca";
 const inactiveColor = "#979797";
 
 export const Wrapper = styled.div`
