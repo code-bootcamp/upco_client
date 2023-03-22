@@ -16,7 +16,7 @@ export default function ProfileEditBody(): JSX.Element {
       <S.DivideLine />
       <S.Section>
         <S.SectionTitle>닉네임</S.SectionTitle>
-        <S.DefaultBox>{/* <span>{data.nickname}</span> */}</S.DefaultBox>
+        <S.DefaultBox>문성진</S.DefaultBox>
       </S.Section>
       <S.Section>
         <S.SectionTitle>이메일</S.SectionTitle>

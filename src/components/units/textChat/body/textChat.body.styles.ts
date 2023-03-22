@@ -11,8 +11,7 @@ export const SendContents = styled.textarea`
   height: 100px;
   font-size: 14px;
   padding: 0.5rem;
-  border-bottom: 1px solid #d9d9d9;
-  border-top: 1px solid #c9c9c9;
+  border: 1px solid #d9d9d9;
   resize: none;
   ::-webkit-scrollbar {
     display: none;
@@ -24,12 +23,12 @@ export const SendContents = styled.textarea`
 
 export const SendMenu = styled.div`
   width: 100%;
-  /* border: 1px solid #d9d9d9; */
   border-top: none;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  border-right: 1px solid #6658ca;
 `;
 export const IconSection = styled.div`
   height: 100%;
@@ -40,7 +39,7 @@ export const IconSection = styled.div`
 export const SendBtn = styled.button`
   width: 64px;
   height: 41px;
-  background-color: #01b6ad;
+  background-color: #6658ca;
   color: white;
   font-size: 18px;
   font-weight: bold;

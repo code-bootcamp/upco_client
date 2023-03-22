@@ -6,6 +6,7 @@ import { BiUser } from "react-icons/bi";
 
 export const colors = {
   menuColor: "#979797",
+  selectedColor: "#6658CA",
 };
 
 export const Wrapper = styled.div`
@@ -72,12 +73,23 @@ export const MenuBox = styled.div`
     align-items: center;
     font-size: 14px;
     cursor: pointer;
+    color: ${colors.menuColor};
 
     a {
       color: ${colors.menuColor};
       text-decoration: none;
       font-size: 14px;
       padding-top: 3px;
+    }
+
+    &.selected {
+      a {
+        color: ${colors.selectedColor};
+      }
+
+      svg {
+        color: ${colors.selectedColor};
+      }
     }
   }
 
@@ -87,19 +99,16 @@ export const MenuBox = styled.div`
 `;
 
 export const MapIcon = styled(BsMap)`
-  color: ${colors.menuColor};
   font-size: 25px;
 `;
 
 export const MessageIcon = styled(TbMessageCircle2)`
-  color: ${colors.menuColor};
   font-size: 25px;
   transform: scale(1.2);
   stroke-width: 1.2;
 `;
 
 export const FriendListIcon = styled(FiUsers)`
-  color: ${colors.menuColor};
   font-size: 25px;
   stroke-width: 1.5;
 `;
