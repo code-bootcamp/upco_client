@@ -8,6 +8,7 @@ import { useMutation } from "@apollo/client";
 import { accessTokenState } from "../../../stores";
 import { useRecoilState } from "recoil";
 import gql from "graphql-tag";
+import FindUI from "../find/find.index";
 
 const LOGIN = gql`
   mutation Login($email: String!, $password: String!) {
@@ -17,10 +18,11 @@ const LOGIN = gql`
 
 export default function LoginUI(props: ILoginUIProps): JSX.Element {
   const [isJoin, setIsJoin] = useState(false);
+  const [isFind, setIsFind] = useState(false);
 
   const [login, { data, error }] = useMutation(LOGIN);
 
-  const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
+  const [_, setAccessToken] = useRecoilState(accessTokenState);
 
   const {
     register,
@@ -32,8 +34,12 @@ export default function LoginUI(props: ILoginUIProps): JSX.Element {
     props.setIsOpen((prev) => !prev);
   };
 
-  const onClickMovedJoin = (): void => {
-    setIsJoin((prev) => !prev);
+  const onClickMoved = (move: string) => () => {
+    if (move === "join" || move === "") {
+      setIsJoin((prev) => !prev);
+    } else {
+      setIsFind((prev) => !prev);
+    }
   };
 
   const onSubmit = async (data: FormValues): Promise<void> => {
@@ -54,8 +60,12 @@ export default function LoginUI(props: ILoginUIProps): JSX.Element {
 
   return (
     <>
-      {isJoin ? (
-        <JoinUI onClickClose={onClickClose} onClickMovedJoin={onClickMovedJoin} />
+      {isJoin || isFind ? (
+        isJoin ? (
+          <JoinUI onClickClose={onClickClose} onClickMoved={onClickMoved("")} />
+        ) : (
+          <FindUI onClickClose={onClickClose} onClickMoved={onClickMoved("find")}></FindUI>
+        )
       ) : (
         <>
           <S.Background onClick={onClickClose} />
@@ -80,11 +90,10 @@ export default function LoginUI(props: ILoginUIProps): JSX.Element {
             </S.InputBox>
             <button>로그인</button>
             <S.FindBox>
-              <p>아이디 찾기</p>
-              <p>비밀번호 찾기</p>
+              <p onClick={onClickMoved("find")}>비밀번호 찾기</p>
             </S.FindBox>
             <S.JoinText>
-              <p onClick={onClickMovedJoin}>회원이 아니신가요?</p>
+              <p onClick={onClickMoved("join")}>회원이 아니신가요?</p>
             </S.JoinText>
             <S.DivideLineBox>
               <div></div>
@@ -94,9 +103,6 @@ export default function LoginUI(props: ILoginUIProps): JSX.Element {
             <S.IconBox>
               <li>
                 <img src="/images/social/google.svg" />
-              </li>
-              <li>
-                <img src="/images/social/naver.svg" />
               </li>
               <li>
                 <img src="/images/social/kakao.svg" />

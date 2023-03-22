@@ -50,7 +50,7 @@ export default function JoinUI(props: IJoinUIProps): JSX.Element {
         </S.InputBox>
         <button>회원가입</button>
         <S.JoinText>
-          <p onClick={props.onClickMovedJoin}>이미 계정이 있으신가요?</p>
+          <p onClick={props.onClickMoved}>이미 계정이 있으신가요?</p>
         </S.JoinText>
         <S.DivideLineBox>
           <div></div>
@@ -60,9 +60,6 @@ export default function JoinUI(props: IJoinUIProps): JSX.Element {
         <S.IconBox>
           <li>
             <img src="/images/social/google.svg" />
-          </li>
-          <li>
-            <img src="/images/social/naver.svg" />
           </li>
           <li>
             <img src="/images/social/kakao.svg" />
