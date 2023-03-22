@@ -155,7 +155,7 @@ export default function LocationList(): JSX.Element {
   return (
     <>
       {locationList.map((el) => (
-        <LocationWrapper key={el._id} id={el._id}>
+        <LocationWrapper key={el._id}>
           <ImageColumn>
             <ImageSection src={el.images} />
           </ImageColumn>
@@ -166,8 +166,8 @@ export default function LocationList(): JSX.Element {
               <AgeSection>{el.age}</AgeSection>
             </LocationListRow>
             <InterestBox>
-              {el.interest.map((interest) => (
-                <InterestSection key={el._id}>{interest}</InterestSection>
+              {el.interest.map((interest, idx) => (
+                <InterestSection key={idx}>{interest}</InterestSection>
               ))}
             </InterestBox>
             <ButtonWrapper>
