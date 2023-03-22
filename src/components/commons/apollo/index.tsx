@@ -7,10 +7,11 @@ import {
   fromPromise,
 } from "@apollo/client";
 import { useRecoilState, useRecoilValueLoadable } from "recoil";
-import { accessTokenState, restoreAccessTokenLoadable } from "../stores";
-import { getAccessToken } from "../hooks/getAccessToken";
-import { onError } from "@apollo/client/link/error";
-import { useEffect } from "react";
+import { accessTokenState } from "../stores";
+// import { accessTokenState, restoreAccessTokenLoadable } from "../stores";
+// import { getAccessToken } from "../hooks/getAccessToken";
+// import { onError } from "@apollo/client/link/error";
+// import { useEffect } from "react";
 
 const GLOBAL_STATE = new InMemoryCache();
 
@@ -20,34 +21,34 @@ interface IApolloSettingProps {
 
 export default function ApolloSetting(props: IApolloSettingProps): JSX.Element {
   const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
-  const refresh = useRecoilValueLoadable(restoreAccessTokenLoadable);
+  // const refresh = useRecoilValueLoadable(restoreAccessTokenLoadable);
 
-  useEffect(() => {
-    void refresh.toPromise().then((newAccessToken) => {
-      setAccessToken(newAccessToken ?? "");
-    });
-  }, []);
+  // useEffect(() => {
+  //   void refresh.toPromise().then((newAccessToken) => {
+  //     setAccessToken(newAccessToken ?? "");
+  //   });
+  // }, []);
 
-  const errorLink = onError(({ graphQLErrors, operation, forward }) => {
-    if (typeof graphQLErrors !== "undefined") {
-      for (const err of graphQLErrors) {
-        if (err.extensions.code === "UNAUTHENTICATED") {
-          return fromPromise(
-            getAccessToken().then((newAccessToken) => {
-              setAccessToken(newAccessToken ?? "");
+  // const errorLink = onError(({ graphQLErrors, operation, forward }) => {
+  //   if (typeof graphQLErrors !== "undefined") {
+  //     for (const err of graphQLErrors) {
+  //       if (err.extensions.code === "UNAUTHENTICATED") {
+  //         return fromPromise(
+  //           getAccessToken().then((newAccessToken) => {
+  //             setAccessToken(newAccessToken ?? "");
 
-              operation.setContext({
-                headers: {
-                  ...operation.getContext().headers,
-                  Authorization: `Bearer ${newAccessToken}`,
-                },
-              });
-            })
-          ).flatMap(() => forward(operation));
-        }
-      }
-    }
-  });
+  //             operation.setContext({
+  //               headers: {
+  //                 ...operation.getContext().headers,
+  //                 Authorization: `Bearer ${newAccessToken}`,
+  //               },
+  //             });
+  //           })
+  //         ).flatMap(() => forward(operation));
+  //       }
+  //     }
+  //   }
+  // });
 
   const uploadLink = createUploadLink({
     uri: "https://api.upco.space/main",
@@ -58,7 +59,7 @@ export default function ApolloSetting(props: IApolloSettingProps): JSX.Element {
   });
 
   const client = new ApolloClient({
-    link: ApolloLink.from([errorLink, uploadLink]),
+    link: ApolloLink.from([uploadLink]),
     cache: GLOBAL_STATE,
   });
 
