@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
-import { useState } from "react";
-
+import { useEffect, useState } from "react";
+import io from "socket.io-client";
 import TextChatBody from "./body/textChat.body.index";
 import TextChatFooter from "./footer/textChat.footer.index";
 import TextChatHeader from "./header/textChat.header.index";
@@ -20,7 +20,32 @@ const LeftContents = styled.div`
 `;
 
 export default function TextChat(): JSX.Element {
+  const [socket, setSocket] = useState(null);
   const [isVideo, setIsVideo] = useState(false);
+  const [message, setMessage] = useState("");
+
+  console.log(socket);
+
+  useEffect(() => {
+    const socket = io.connect("http://현재서버주소:현재포트", {
+      path: "/socket.io",
+      transports: ["websocket"],
+    });
+
+    socket.on("client", (data: any) => {
+      setMessage((prevMessages) => [...prevMessages, data]);
+    });
+
+    setSocket(socket);
+
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
+
+  const emitData = (contents: string): void => {
+    socket.emit("server", contents);
+  };
 
   const onClickVideo = (): void => {
     setIsVideo(true);
@@ -30,8 +55,8 @@ export default function TextChat(): JSX.Element {
     <>
       <Wrapper>
         <LeftContents>
-          <TextChatHeader isVideo={isVideo} />
-          <TextChatBody onClickVideo={onClickVideo} />
+          <TextChatHeader isVideo={isVideo} message={message} />
+          <TextChatBody emitData={emitData} onClickVideo={onClickVideo} />
         </LeftContents>
         <TextChatFooter />
       </Wrapper>
