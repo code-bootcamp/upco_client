@@ -2,12 +2,14 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import LoginUI from "../../items/modal/login/login.index";
+import TooltipUI from "../../items/tooltip/tooltip01.index";
 import * as S from "./header.styles";
 
 export default function LayoutHeader(): JSX.Element {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
-  console.log(router);
+  const [isTooltip, setIsTooltip] = useState(false);
+
   const onClickLogin = (): void => {
     setIsOpen((prev) => !prev);
   };
@@ -38,7 +40,8 @@ export default function LayoutHeader(): JSX.Element {
               </div>
             </Link>
           </S.MenuBox>
-          <S.UserBox onClick={onClickLogin}>
+          <S.UserBox onClick={onClickLogin} style={{ position: "relative" }}>
+            <TooltipUI></TooltipUI>
             <S.UserIcon />
           </S.UserBox>
         </div>
