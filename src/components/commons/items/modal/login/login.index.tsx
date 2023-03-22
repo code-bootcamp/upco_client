@@ -39,7 +39,10 @@ export default function LoginUI(props: ILoginUIProps): JSX.Element {
   const onSubmit = async (data: FormValues): Promise<void> => {
     const { email, password } = data;
     const result = await login({ variables: { email, password } });
+
     const accessToken = result.data.login;
+
+    console.log(accessToken);
 
     if (accessToken === undefined) {
       alert("로그인에 실패하였습니다. 다시 시도해주세요!");

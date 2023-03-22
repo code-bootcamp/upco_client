@@ -41,7 +41,6 @@ export default function LayoutHeader(): JSX.Element {
           </S.UserBox>
         </div>
       </S.Wrapper>
-      <S.DivideLine />
     </>
   );
 }

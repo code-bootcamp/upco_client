@@ -4,26 +4,33 @@ import { BsMap } from "react-icons/bs";
 import { FiUsers } from "react-icons/fi";
 import { BiUser } from "react-icons/bi";
 
+export const colors = {
+  menuColor: "#999",
+};
+
 export const Wrapper = styled.div`
-  background-color: #01b6ad;
+  background-color: #ffffff;
+  position: relative;
   width: 100%;
-  height: 80px;
+  height: 68px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   padding: 0 50px;
-
+  z-index: 9;
+  box-shadow: 0px 1px 0px 1px #e2e2e2;
   > div {
     width: 100%;
     display: flex;
     flex-direction: row;
+    align-items: center;
     justify-content: space-between;
   }
 `;
 
 export const Logo = styled.img`
-  height: 35px;
+  height: 24px;
   cursor: pointer;
 `;
 
@@ -67,7 +74,7 @@ export const MenuBox = styled.div`
     cursor: pointer;
 
     a {
-      color: #fff;
+      color: ${colors.menuColor};
       text-decoration: none;
       font-size: 14px;
       padding-top: 3px;
@@ -80,19 +87,19 @@ export const MenuBox = styled.div`
 `;
 
 export const MapIcon = styled(BsMap)`
-  color: #fff;
+  color: ${colors.menuColor};
   font-size: 25px;
 `;
 
 export const MessageIcon = styled(TbMessageCircle2)`
-  color: #fff;
+  color: ${colors.menuColor};
   font-size: 25px;
   transform: scale(1.2);
   stroke-width: 1.2;
 `;
 
 export const FriendListIcon = styled(FiUsers)`
-  color: #fff;
+  color: ${colors.menuColor};
   font-size: 25px;
   stroke-width: 1.5;
 `;
