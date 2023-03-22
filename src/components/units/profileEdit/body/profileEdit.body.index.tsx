@@ -15,7 +15,7 @@ export default function ProfileEditBody(): JSX.Element {
       <S.Title>프로필 정보</S.Title>
       <S.Section>
         <S.SectionTitle>닉네임</S.SectionTitle>
-        <S.DefaultBox>{/* <span>{data.nickname}</span> */}문성진</S.DefaultBox>
+        <S.DefaultBox>문성진</S.DefaultBox>
       </S.Section>
       <S.Section>
         <S.SectionTitle>이메일</S.SectionTitle>
