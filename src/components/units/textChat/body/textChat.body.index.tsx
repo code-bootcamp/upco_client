@@ -1,34 +1,28 @@
-// import React, { ChangeEvent, useState } from "react";
-// import io from "socket.io-client";
-
 import * as S from "./textChat.body.styles";
 import { BsEmojiSmile, BsCameraVideo } from "react-icons/bs";
 import { SlPicture } from "react-icons/sl";
 import { ITextChatBodyProps } from "./textChat.body.types";
+import { useState } from "react";
 
 export default function TextChatBody(props: ITextChatBodyProps): JSX.Element {
-  // const [message, setMessage] = useState("");
+  const [contents, setContents] = useState("");
 
-  // const handleChange = (e: ChangeEvent<HTMLTextAreaElement>): void => {
-  //   setMessage(e.target.value);
-  // };
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    setContents(e.target.value);
+  };
 
-  // const handleSubmit = (e: React.MouseEvent<HTMLFormElement>): void => {
-  //   e.preventDefault();
-  //   const socket = io("http://localhost:3000");
-  //   socket.emit("chat message", message);
-  //   setMessage("");
-  // };
+  const handleSubmit = (e: ChangeEvent<HTMLFormElement>): void => {
+    e.preventDefault();
+    if (contents.trim() === "") return;
+    props.emitData(contents);
+    setContents("");
+  };
 
   return (
     <>
-      <form
-      // onSubmit={handleSubmit}
-      >
+      <form onSubmit={handleSubmit}>
         <S.Wrapper>
-          <S.SendContents
-          // onChange={handleChange}
-          />
+          <S.SendContents onChange={handleChange} value={contents} />
           <S.SendMenu>
             <S.IconSection>
               <S.Icon>
