@@ -52,7 +52,7 @@ const InterestSection = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 15px;
-  background-color: #01b6ad;
+  background-color: #6658ca;
   padding: 3px 18px;
   height: 25px;
   color: #fff;
@@ -99,7 +99,7 @@ const ButtonWrapper = styled.div`
 const HoverButton = styled.button`
   width: 50px;
   height: 50px;
-  background-color: #01b6ad;
+  background-color: #6658ca;
   border: none;
   border-radius: 50px;
   color: #fff;

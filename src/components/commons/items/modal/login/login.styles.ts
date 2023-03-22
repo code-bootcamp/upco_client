@@ -31,7 +31,7 @@ export const Wrapper = styled.form`
 
   > button {
     font-size: 14px;
-    background-color: #01b6ad;
+    background-color: #6658ca;
     color: #fff;
     height: 50px;
     line-height: 50px;
@@ -39,10 +39,10 @@ export const Wrapper = styled.form`
     cursor: pointer;
     margin-bottom: 20px;
     :hover {
-      background-color: #07a69e;
+      background-color: #5346ad;
     }
     :active {
-      background-color: #c6c3ff;
+      background-color: #5346ad;
     }
   }
 `;

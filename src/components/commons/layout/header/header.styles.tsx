@@ -5,7 +5,7 @@ import { FiUsers } from "react-icons/fi";
 import { BiUser } from "react-icons/bi";
 
 export const colors = {
-  menuColor: "#999",
+  menuColor: "#979797",
 };
 
 export const Wrapper = styled.div`
