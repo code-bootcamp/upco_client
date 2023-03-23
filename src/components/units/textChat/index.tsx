@@ -22,9 +22,8 @@ const LeftContents = styled.div`
 export default function TextChat(): JSX.Element {
   const [socket, setSocket] = useState(null);
   const [isVideo, setIsVideo] = useState(false);
-  const [message, setMessage] = useState("");
+  const [messages, setMessages] = useState<{ content: string; isSent: boolean }[]>([]);
   console.log(socket);
-
   useEffect(() => {
     const socket = io.connect("http://10.34.233.98:4000", {
       path: "/socket.io",
@@ -32,7 +31,7 @@ export default function TextChat(): JSX.Element {
     });
 
     socket.on("client", (data) => {
-      setMessage((prevMessage) => [...prevMessage, data]);
+      setMessages((prevMessages) => [...prevMessages, { content: data, isSent: false }]);
     });
     setSocket(socket);
 
@@ -42,19 +41,22 @@ export default function TextChat(): JSX.Element {
   }, []);
 
   const emitData = (contents: string): void => {
+    setMessages((prevMessages) => [...prevMessages, { content: contents, isSent: true }]);
     socket.emit("server", contents);
+    console.log(contents);
   };
-
   const onClickVideo = (): void => {
     setIsVideo(true);
   };
+
+  // socket.on('server', (data) => { if (data.isSent) { /* 발신 메시지 처리 */ } else { /* 수신 메시지 처리 */ } })
 
   return (
     <>
       <Wrapper>
         <LeftContents>
-          <TextChatHeader isVideo={isVideo} message={message} />
-          <TextChatBody emitData={emitData} onClickVideo={onClickVideo} />
+          <TextChatHeader isVideo={isVideo} messages={messages} />
+          <TextChatBody emitData={emitData} onClickVideo={onClickVideo} messages={messages} />
         </LeftContents>
         <TextChatFooter />
       </Wrapper>

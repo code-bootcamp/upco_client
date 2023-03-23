@@ -6,9 +6,15 @@ export default function TextChatHeader(props: TextChatHeaderProps): JSX.Element 
   return (
     <S.Wrapper>
       {props.isVideo && <VideoChat />}
-      <div key={props.message}>
-        {props.message ? props.message.map((line) => <div>{line}</div>) : "No message received"}{" "}
-      </div>
+      {props.messages.length > 0 ? (
+        props.messages.map((msg, index) => (
+          <div key={index} style={{ textAlign: msg.isSent ? "right" : "left" }}>
+            {msg.content}
+          </div>
+        ))
+      ) : (
+        <div>메시지가 없습니다.</div>
+      )}
     </S.Wrapper>
   );
 }
