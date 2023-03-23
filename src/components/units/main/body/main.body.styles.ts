@@ -1,8 +1,13 @@
 import styled from "@emotion/styled";
-import { FaMapMarkerAlt } from "react-icons/fa";
+import { FaMapMarkerAlt, FaUserAlt } from "react-icons/fa";
 import { Map } from "react-kakao-maps-sdk";
 
 export const CustomMarker = styled(FaMapMarkerAlt)`
+  color: #29a2c6;
+  font-size: 40px;
+`;
+
+export const CustomMyMarker = styled(FaUserAlt)`
   color: #29a2c6;
   font-size: 40px;
 `;
