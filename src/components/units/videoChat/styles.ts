@@ -8,42 +8,53 @@ import {
 import { HiVolumeOff, HiVolumeUp } from "react-icons/hi";
 
 export const Wrapper = styled.div`
+  padding: 30px 0;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 40vh;
+  background-color: #191919;
+`;
+
+export const OpponetVideoBox = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  position: relative;
   width: 100%;
-  height: 50%;
-  background-color: #000;
+  height: 100%;
+
+  > video {
+  }
 `;
 
-export const OpponentVideo = styled.div`
-  width: calc(100% - 250px);
-  color: #fff;
-  background-color: #ddd;
-  object-fit: cover;
-`;
-
-export const Myvideo = styled.div`
-  position: absolute;
-  background-color: #d2d2d2;
-  top: 20px;
-  right: 20px;
-  width: 130px;
-  height: 160px;
+export const MyvideoBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 50%;
+  height: 100%;
   border-radius: 6px;
+
+  > video {
+    /* width: 100%; */
+    height: 100%;
+    border-radius: 6px;
+  }
 `;
 
 export const IconBox = styled.ul`
   position: absolute;
+  left: 50%;
   bottom: 20px;
+  transform: translateX(-50%);
   display: flex;
   flex-direction: row;
   align-items: center;
 
   > li {
     cursor: pointer;
-    background-color: #b1b2ff;
+    background-color: #6658ca;
     width: 40px;
     height: 40px;
     border-radius: 20px;
