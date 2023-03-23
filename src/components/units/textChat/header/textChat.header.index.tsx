@@ -7,11 +7,13 @@ export default function TextChatHeader(props: TextChatHeaderProps): JSX.Element 
     <S.Wrapper>
       {props.isVideo && <VideoChat />}
       {props.messages.length > 0 ? (
-        props.messages.map((msg, index) => (
-          <div key={index} style={{ textAlign: msg.isSent ? "right" : "left" }}>
-            {msg.content}
-          </div>
-        ))
+        <S.Body>
+          {props.messages.map((msg, index) => (
+            <div key={index} className={msg.isSent ? "sent-message" : ""}>
+              {msg.content}
+            </div>
+          ))}
+        </S.Body>
       ) : (
         <div>메시지가 없습니다.</div>
       )}

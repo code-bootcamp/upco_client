@@ -1,20 +1,33 @@
 import styled from "@emotion/styled";
 
-interface MessageProps {
-  isSent: boolean;
-}
-
 export const Wrapper = styled.div`
   width: 100%;
   height: 100%;
-  background-color: #efefef;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
   border-right: 1px solid #d9d9d9;
 `;
 
-export const Message = styled.div<MessageProps>`
-  max-width: 60%;
-  margin-bottom: 5px;
-  padding: 8px 16px;
+export const Body = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
 
-  word-wrap: break-word;
+  > div {
+    max-width: 60%;
+    word-wrap: break-word;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+  }
+
+  > div.sent-message {
+    align-self: flex-end;
+    background-color: #f8e71c;
+    color: #000;
+  }
 `;
