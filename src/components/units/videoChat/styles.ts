@@ -13,7 +13,7 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
-  /* height: 40vh; */
+  height: 40vh;
   background-color: #191919;
 `;
 
