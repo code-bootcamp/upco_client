@@ -39,8 +39,6 @@ export default function MainPage(): JSX.Element {
   geolocationFn();
   mapCreation();
 
-  console.log(Number(state.sw.replace(/\(|\)/g, "").split(", ")[0]), "영역좌표입니다.");
-
   useEffect(() => {
     const interval = setInterval(() => {
       const result = location({
