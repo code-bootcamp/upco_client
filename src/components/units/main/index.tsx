@@ -14,7 +14,6 @@ export default function MainPage(): JSX.Element {
   geolocationFn();
   mapCreation();
 
-  console.log(level);
   return (
     <div style={{ display: "flex", flexDirection: "row" }}>
       {isOpen && (

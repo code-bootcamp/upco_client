@@ -17,6 +17,7 @@ export const useMapCreationMode = (): JSX.Element => {
       script.onload = () => {
         window.kakao.maps.load(function () {
           setIsOpen(true);
+          console.log("지도 실행중");
         });
       };
     }, []);
