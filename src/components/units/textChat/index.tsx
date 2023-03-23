@@ -23,19 +23,17 @@ export default function TextChat(): JSX.Element {
   const [socket, setSocket] = useState(null);
   const [isVideo, setIsVideo] = useState(false);
   const [message, setMessage] = useState("");
-
   console.log(socket);
 
   useEffect(() => {
-    const socket = io.connect("http://현재서버주소:현재포트", {
+    const socket = io.connect("http://10.34.233.98:4000", {
       path: "/socket.io",
       transports: ["websocket"],
     });
 
-    socket.on("client", (data: any) => {
-      setMessage((prevMessages) => [...prevMessages, data]);
+    socket.on("client", (data) => {
+      setMessage((prevMessage) => [...prevMessage, data]);
     });
-
     setSocket(socket);
 
     return () => {

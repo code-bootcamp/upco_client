@@ -5,4 +5,9 @@ export const Wrapper = styled.div`
   height: 100%;
   background-color: #efefef;
   border-right: 1px solid #d9d9d9;
+
+  > div {
+    color: #fff;
+    background-color: #999;
+  }
 `;

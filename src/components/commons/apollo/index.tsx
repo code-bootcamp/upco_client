@@ -21,7 +21,7 @@ interface IApolloSettingProps {
 export default function ApolloSetting(props: IApolloSettingProps): JSX.Element {
   const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
   const refresh = useRecoilValueLoadable(restoreAccessTokenLoadable);
-
+  console.log(accessToken);
   useEffect(() => {
     void refresh.toPromise().then((newAccessToken) => {
       setAccessToken(newAccessToken ?? "");

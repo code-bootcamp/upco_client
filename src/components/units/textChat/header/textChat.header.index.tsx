@@ -1,4 +1,3 @@
-import { Socket } from "socket.io-client";
 import VideoChat from "../../videoChat";
 import * as S from "./textChat.header.styles";
 import { TextChatHeaderProps } from "./textChat.header.types";
@@ -7,7 +6,9 @@ export default function TextChatHeader(props: TextChatHeaderProps): JSX.Element 
   return (
     <S.Wrapper>
       {props.isVideo && <VideoChat />}
-      {props.message ? props.message : "No message received"}
+      <div key={props.message}>
+        {props.message ? props.message.map((line) => <div>{line}</div>) : "No message received"}{" "}
+      </div>
     </S.Wrapper>
   );
 }
