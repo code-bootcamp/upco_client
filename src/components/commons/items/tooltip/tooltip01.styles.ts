@@ -9,8 +9,7 @@ export const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   background-color: #fff;
-  border-radius: 20px;
-  border: 3px solid #e2e2e2;
+  border: 1px solid #e2e2e2;
 `;
 
 export const WrapperPoint = styled.div`
