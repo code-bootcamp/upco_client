@@ -47,8 +47,8 @@ jobs:
           gcloud compute ssh \
           --project "$PROJECT_ID" \
           --zone "$GCE_INSTANCE_ZONE" \
-          root@"$GCE_INSTANCE" \
-          --command 'docker system prune -f -a'
+          "$GCE_INSTANCE" \
+          --command 'sudo docker system prune -f -a'
           
       - name: Deploy
         run: |-
