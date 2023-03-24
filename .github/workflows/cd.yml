@@ -8,7 +8,7 @@ on:
 env:
   PROJECT_ID: ${{ secrets.GCE_PROJECT }}
   GCE_SA_KEY: ${{ secrets.GCE_SA_KEY }}
-  GCE_INSTANCE: team-project-cluster
+  GCE_INSTANCE: upco-client
   GCE_INSTANCE_ZONE: asia-northeast3
   IMAGE: client
 
