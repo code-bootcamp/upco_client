@@ -11,34 +11,41 @@ export default function TextChatBody(props: ITextChatBodyProps): JSX.Element {
     setContents(e.target.value);
   };
 
-  const handleSubmit = (e: ChangeEvent<HTMLFormElement>): void => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     if (contents.trim() === "") return;
     props.emitData(contents);
     setContents("");
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>): void => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      handleSubmit(e as React.FormEvent<HTMLFormElement>);
+    } else if (e.key === "Enter" && e.shiftKey) {
+      setContents((prevContents) => prevContents + "\n");
+    }
+  };
+
   return (
-    <>
-      <form onSubmit={handleSubmit}>
-        <S.Wrapper>
-          <S.SendContents onChange={handleChange} value={contents} />
-          <S.SendMenu>
-            <S.IconSection>
-              <S.Icon>
-                <BsEmojiSmile />
-              </S.Icon>
-              <S.Icon>
-                <SlPicture />
-              </S.Icon>
-              <S.Icon>
-                <BsCameraVideo onClick={props.onClickVideo} />
-              </S.Icon>
-            </S.IconSection>
-            <S.SendBtn>전송</S.SendBtn>
-          </S.SendMenu>
-        </S.Wrapper>
-      </form>
-    </>
+    <form onSubmit={handleSubmit}>
+      <S.Wrapper>
+        <S.SendContents onChange={handleChange} onKeyDown={handleKeyDown} value={contents} />
+        <S.SendMenu>
+          <S.IconSection>
+            <S.Icon>
+              <BsEmojiSmile />
+            </S.Icon>
+            <S.Icon>
+              <SlPicture />
+            </S.Icon>
+            <S.Icon>
+              <BsCameraVideo onClick={props.onClickVideo} />
+            </S.Icon>
+          </S.IconSection>
+          <S.SendBtn>전송</S.SendBtn>
+        </S.SendMenu>
+      </S.Wrapper>
+    </form>
   );
 }
