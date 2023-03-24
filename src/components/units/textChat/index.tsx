@@ -32,7 +32,7 @@ export default function TextChat(): JSX.Element {
   const [socket, setSocket] = useState<Socket<DefaultEventsMap, DefaultEventsMap> | null>(null);
   console.log(socket);
   useEffect(() => {
-    const newSocket = io("http://10.34.233.44:4000", {
+    const newSocket = io("http://upco.space/chat:4000", {
       path: "/socket.io",
       transports: ["websocket"],
     });
