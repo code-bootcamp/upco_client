@@ -1,10 +1,17 @@
 import { useEffect, useState } from "react";
-import { useMutationLocation } from "../mutation/useMutationLocation";
 
-export const useGeolocationMode = () => {
+export const useGeolocationMode = (): {
+  geolocationFn: () => void;
+  position: {
+    coords: {
+      latitude: string;
+      longitude: string;
+    };
+  } | null;
+} => {
   const [position, setPosition] = useState(null);
 
-  const geolocationFn = () => {
+  const geolocationFn = (): void => {
     useEffect(() => {
       const watcher = navigator.geolocation.watchPosition(
         (position) => {

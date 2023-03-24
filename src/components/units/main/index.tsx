@@ -1,5 +1,6 @@
 import { gql, useQuery } from "@apollo/client";
 import { useEffect, useState } from "react";
+import { boolean } from "yup";
 import { useGeolocationMode } from "../../commons/hooks/customs/useGeolocationMode";
 import { useMapCreationMode } from "../../commons/hooks/customs/useMapCreationMode";
 import { useMutationLocation } from "../../commons/hooks/mutation/useMutationLocation";
@@ -19,8 +20,11 @@ const FIND_AROUND_USERS = gql`
 `;
 
 export default function MainPage(): JSX.Element {
-  const [state, setState] = useState();
-  const [_, setLevel] = useState();
+  const [state, setState] = useState<{
+    sw: string;
+    ne: string;
+  }>();
+  const [level, setLevel] = useState<number>();
   const [location] = useMutationLocation();
 
   const { isOpen, mapCreation } = useMapCreationMode();
@@ -37,12 +41,12 @@ export default function MainPage(): JSX.Element {
   });
 
   const [userLocation, setUserLocation] = useState(
-    data?.findAroundUsers !== undefined
-      ? {
-          lat: data?.findAroundUsers.lat,
-          lng: data?.findAroundUsers.lng,
-        }
-      : ""
+    data?.findAroundUsers !== undefined && [
+      {
+        lat: data?.findAroundUsers.lat,
+        lng: data?.findAroundUsers.lng,
+      },
+    ]
   );
 
   // lat1, lng1 남서쪽 위도 경도
@@ -70,6 +74,8 @@ export default function MainPage(): JSX.Element {
       clearInterval(interval);
     };
   }, []);
+
+  console.log("레벨", level);
 
   return (
     <div style={{ display: "flex", flexDirection: "row" }}>
