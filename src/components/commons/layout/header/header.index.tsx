@@ -33,12 +33,6 @@ export default function LayoutHeader(): JSX.Element {
                 <a>채팅</a>
               </div>
             </Link>
-            <Link href="/friend">
-              <div className={router.pathname === "/friend" ? "selected" : ""}>
-                <S.FriendListIcon />
-                <a>친구</a>
-              </div>
-            </Link>
           </S.MenuBox>
           <S.UserBox onClick={onClickLogin} style={{ position: "relative" }}>
             <TooltipUI></TooltipUI>

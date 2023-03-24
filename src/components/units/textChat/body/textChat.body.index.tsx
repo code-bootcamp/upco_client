@@ -22,8 +22,6 @@ export default function TextChatBody(props: ITextChatBodyProps): JSX.Element {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       handleSubmit(e as React.FormEvent<HTMLFormElement>);
-    } else if (e.key === "Enter" && e.shiftKey) {
-      setContents((prevContents) => prevContents + "\n");
     }
   };
 
@@ -43,7 +41,7 @@ export default function TextChatBody(props: ITextChatBodyProps): JSX.Element {
               <BsCameraVideo onClick={props.onClickVideo} />
             </S.Icon>
           </S.IconSection>
-          <S.SendBtn>전송</S.SendBtn>
+          <S.SendBtn type="submit">전송</S.SendBtn>
         </S.SendMenu>
       </S.Wrapper>
     </form>
