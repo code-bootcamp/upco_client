@@ -25,22 +25,20 @@ export default function VideoChat(): JSX.Element {
     <>
       <S.Wrapper>
         <S.OpponetVideoBox>
-          <video ref={localVideoRef} autoPlay />
+          <div>
+            <video ref={localVideoRef} autoPlay />
+          </div>
         </S.OpponetVideoBox>
-        {/* <S.MyvideoBox>
-          <video ref={localVideoRef} autoPlay />
-        </S.MyvideoBox> */}
-        <S.IconBox>
-          <li onClick={onClickVolume}>{isVolume ? <S.VolumeOn /> : <S.VolumeOff />}</li>
-          <li onClick={onClickMic}>{isMic ? <S.MicOn /> : <S.MicOff />}</li>
-          <li onClick={onClickVideo}>{isVideo ? <S.VideoOn /> : <S.VideoOff />}</li>
-        </S.IconBox>
-        {/* <S.VideoBox>
-          <S.OpponetVideo ref={localVideoRef} autoPlay />
-          <S.MyvideoBox>
-            <video ref={remoteVideoRef} autoPlay muted />
-          </S.MyvideoBox>
-        </S.VideoBox> */}
+        <S.MyvideoBox>
+          <div>
+            <video ref={localVideoRef} autoPlay />
+          </div>
+          <S.IconBox>
+            <li onClick={onClickVolume}>{isVolume ? <S.VolumeOn /> : <S.VolumeOff />}</li>
+            <li onClick={onClickMic}>{isMic ? <S.MicOn /> : <S.MicOff />}</li>
+            <li onClick={onClickVideo}>{isVideo ? <S.VideoOn /> : <S.VideoOff />}</li>
+          </S.IconBox>
+        </S.MyvideoBox>
       </S.Wrapper>
     </>
   );

@@ -9,7 +9,6 @@ export const Wrapper = styled.div`
   align-items: center;
   width: 300px;
   height: 100%;
-  /* border-left: 1px solid #e2e2e2; */
 `;
 
 export const ChatFooterTitle = styled.div`

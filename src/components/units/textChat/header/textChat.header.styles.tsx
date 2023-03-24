@@ -4,9 +4,8 @@ export const Wrapper = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-between;
-
   border-right: 1px solid #d9d9d9;
 `;
 
@@ -19,6 +18,8 @@ export const Body = styled.div`
   > div {
     max-width: 60%;
     word-wrap: break-word;
+    /* word-break: keep-all; */
+    overflow-wrap: break-word;
     padding: 10px;
     margin: 5px;
     border-radius: 5px;
