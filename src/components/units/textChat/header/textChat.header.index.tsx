@@ -1,4 +1,3 @@
-import VideoChat from "../../videoChat";
 import * as S from "./textChat.header.styles";
 import { TextChatHeaderProps } from "./textChat.header.types";
 
@@ -14,7 +13,7 @@ export default function TextChatHeader(props: TextChatHeaderProps): JSX.Element 
           ))}
         </S.Body>
       ) : (
-        <div>메시지가 없습니다.</div>
+        <div className="no-Message">메시지가 없습니다.</div>
       )}
     </S.Wrapper>
   );

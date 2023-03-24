@@ -4,9 +4,16 @@ export const Wrapper = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   border-right: 1px solid #d9d9d9;
+  > div.no-Message {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 export const Body = styled.div`
@@ -14,11 +21,11 @@ export const Body = styled.div`
   flex-direction: column;
   align-items: flex-start;
   padding: 20px;
+  white-space: pre-wrap;
 
   > div {
     max-width: 60%;
     word-wrap: break-word;
-    /* word-break: keep-all; */
     overflow-wrap: break-word;
     padding: 10px;
     margin: 5px;

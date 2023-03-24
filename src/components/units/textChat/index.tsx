@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { useEffect, useState } from "react";
-import io from "socket.io-client";
+import io, { Socket } from "socket.io-client";
 import VideoChat from "../videoChat";
 import TextChatBody from "./body/textChat.body.index";
 import TextChatFooter from "./footer/textChat.footer.index";
@@ -27,36 +27,36 @@ const LeftContents = styled.div`
 `;
 
 export default function TextChat(): JSX.Element {
-  const [socket, setSocket] = useState(null);
   const [isVideo, setIsVideo] = useState(false);
-  const [messages, setMessages] = useState<{ content: string; isSent: boolean }[]>([]);
+  const [messages, setMessages] = useState<Array<{ content: string; isSent: boolean }>>([]);
+  const [socket, setSocket] = useState<Socket<DefaultEventsMap, DefaultEventsMap> | null>(null);
   console.log(socket);
   useEffect(() => {
-    const socket = io.connect("http://10.34.233.98:4000", {
+    const newSocket = io("http://upco.space/chat:4000", {
       path: "/socket.io",
       transports: ["websocket"],
     });
 
-    socket.on("client", (data) => {
+    newSocket.on("client", (data: string) => {
       setMessages((prevMessages) => [...prevMessages, { content: data, isSent: false }]);
     });
-    setSocket(socket);
+
+    setSocket(newSocket);
 
     return () => {
-      socket.disconnect();
+      newSocket.disconnect();
     };
   }, []);
 
   const emitData = (contents: string): void => {
-    setMessages((prevMessages) => [...prevMessages, { content: contents, isSent: true }]);
-    socket.emit("server", contents);
-    console.log(contents);
+    if (socket) {
+      setMessages((prevMessages) => [...prevMessages, { content: contents, isSent: true }]);
+      socket.emit("server", contents);
+    }
   };
   const onClickVideo = (): void => {
     setIsVideo(true);
   };
-
-  // socket.on('server', (data) => { if (data.isSent) { /* 발신 메시지 처리 */ } else { /* 수신 메시지 처리 */ } })
 
   return (
     <>
