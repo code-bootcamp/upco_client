@@ -2,12 +2,12 @@ import * as S from "./textChat.body.styles";
 import { BsEmojiSmile, BsCameraVideo } from "react-icons/bs";
 import { SlPicture } from "react-icons/sl";
 import { ITextChatBodyProps } from "./textChat.body.types";
-import { useState } from "react";
+import { KeyboardEventHandler, useState } from "react";
 
 export default function TextChatBody(props: ITextChatBodyProps): JSX.Element {
   const [contents, setContents] = useState("");
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
     setContents(e.target.value);
   };
 
@@ -18,17 +18,22 @@ export default function TextChatBody(props: ITextChatBodyProps): JSX.Element {
     setContents("");
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>): void => {
+  const handleKeyDown: (e: React.KeyboardEvent<HTMLTextAreaElement>) => void = (e) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
-      handleSubmit(e as React.FormEvent<HTMLFormElement>);
+      handleSubmit(e);
     }
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <S.Wrapper>
-        <S.SendContents onChange={handleChange} onKeyDown={handleKeyDown} value={contents} />
+        <S.SendContents
+          onChange={handleChange}
+          onKeyDown={handleKeyDown as KeyboardEventHandler<HTMLTextAreaElement>}
+          value={contents}
+        />
+
         <S.SendMenu>
           <S.IconSection>
             <S.Icon>
