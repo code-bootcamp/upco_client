@@ -1,23 +1,20 @@
 import { Dispatch, SetStateAction } from "react";
 import { CustomOverlayMap, MarkerClusterer, ZoomControl } from "react-kakao-maps-sdk";
 import { BeatLoader } from "react-spinners";
+import { number, string } from "yup";
 import { CustomMarker, MabWeb, MabBox, CustomMyMarker } from "./main.body.styles";
+
+interface IData {
+  findAroundUsers: {
+    lat: number;
+    lng: number;
+    id: string;
+  };
+}
 
 interface IProps {
   state: { sw: string; ne: string } | undefined;
-  position: {
-    coords: {
-      latitude: number;
-      longitude: number;
-    };
-  };
-  userLocation: {
-    lat: string;
-    lng: string;
-  };
-  data?: {
-    findAroundUsers: string;
-  };
+  position: GeolocationPosition | null;
   setLevel: React.Dispatch<React.SetStateAction<number | undefined>>;
   setState: Dispatch<
     SetStateAction<
@@ -28,6 +25,16 @@ interface IProps {
       | undefined
     >
   >;
+  // data: string[];
+  data: IData[];
+}
+
+interface IEL {
+  findAroundUsers: {
+    lat: number;
+    lng: number;
+    id: number;
+  };
 }
 
 export default function MainBody(props: IProps): JSX.Element {
@@ -65,17 +72,29 @@ export default function MainBody(props: IProps): JSX.Element {
             >
               <CustomMyMarker></CustomMyMarker>
             </CustomOverlayMap>
-            {props.data?.findAroundUsers.map((el: { lat: number; lng: number; id: string }) => (
-              <CustomOverlayMap
-                position={{
-                  lat: el.lat ?? props.userLocation.lat,
-                  lng: el.lng ?? props.userLocation.lng,
-                }}
-                key={el.id}
-              >
-                <CustomMarker></CustomMarker>
-              </CustomOverlayMap>
-            ))}
+            {props.data?.map(
+              (
+                el: {
+                  findAroundUsers: {
+                    lat: number;
+                    lng: number;
+                    id: string;
+                  };
+                },
+
+                dex: number
+              ) => (
+                <CustomOverlayMap
+                  position={{
+                    lat: el.findAroundUsers.lat,
+                    lng: el.findAroundUsers.lng,
+                  }}
+                  key={el.findAroundUsers.id}
+                >
+                  <CustomMarker></CustomMarker>
+                </CustomOverlayMap>
+              )
+            )}
           </MarkerClusterer>
         </MabWeb>
       )}

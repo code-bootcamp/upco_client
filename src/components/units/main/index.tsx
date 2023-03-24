@@ -40,15 +40,6 @@ export default function MainPage(): JSX.Element {
     },
   });
 
-  const [userLocation, setUserLocation] = useState(
-    data?.findAroundUsers !== undefined && [
-      {
-        lat: data?.findAroundUsers.lat,
-        lng: data?.findAroundUsers.lng,
-      },
-    ]
-  );
-
   // lat1, lng1 남서쪽 위도 경도
   // lat2, lng2 북동쪽 위도 경도
   console.log("데ㅔ떼이터", data);
@@ -81,7 +72,6 @@ export default function MainPage(): JSX.Element {
     <div style={{ display: "flex", flexDirection: "row" }}>
       {isOpen && (
         <MainBody
-          userLocation={userLocation}
           data={data}
           state={state}
           setState={setState}

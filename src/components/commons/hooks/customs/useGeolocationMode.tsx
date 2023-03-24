@@ -2,14 +2,9 @@ import { useEffect, useState } from "react";
 
 export const useGeolocationMode = (): {
   geolocationFn: () => void;
-  position: {
-    coords: {
-      latitude: string;
-      longitude: string;
-    };
-  } | null;
+  position: GeolocationPosition | null;
 } => {
-  const [position, setPosition] = useState(null);
+  const [position, setPosition] = useState<GeolocationPosition | null>(null);
 
   const geolocationFn = (): void => {
     useEffect(() => {
