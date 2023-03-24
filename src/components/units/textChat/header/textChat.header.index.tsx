@@ -13,7 +13,7 @@ export default function TextChatHeader(props: TextChatHeaderProps): JSX.Element 
           ))}
         </S.Body>
       ) : (
-        <div>메시지가 없습니다.</div>
+        <div className="no-Message">메시지가 없습니다.</div>
       )}
     </S.Wrapper>
   );
