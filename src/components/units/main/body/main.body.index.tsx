@@ -41,7 +41,13 @@ export default function MainBody(props: {
               <CustomMyMarker></CustomMyMarker>
             </CustomOverlayMap>
             {props.data?.findAroundUsers.map((el) => (
-              <CustomOverlayMap position={{ lat: 37.4847446, lng: 126.8969638 }}>
+              <CustomOverlayMap
+                position={{
+                  lat: el.lat ?? props.userLocation.lat,
+                  lng: el.lng ?? props.userLocation.lng,
+                }}
+                key={el.id}
+              >
                 <CustomMarker></CustomMarker>
               </CustomOverlayMap>
             ))}
