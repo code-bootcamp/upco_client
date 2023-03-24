@@ -44,8 +44,10 @@ jobs:
           
       - name: Clear image
         run: |-
-          gcloud compute ssh "$GCE_INSTANCE" \
+          gcloud compute ssh \
+          --project "$PROJECT_ID" \
           --zone "$GCE_INSTANCE_ZONE" \
+          root@"$GCE_INSTANCE" \
           --command 'docker system prune -f -a'
           
       - name: Deploy
