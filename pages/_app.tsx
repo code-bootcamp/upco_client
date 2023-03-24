@@ -1,28 +1,21 @@
-import { ApolloClient, InMemoryCache, ApolloProvider, ApolloLink } from "@apollo/client";
 import { Global } from "@emotion/react";
-import { createUploadLink } from "apollo-upload-client";
+import type { AppProps } from "next/app";
+import { RecoilRoot } from "recoil";
 import { globalStyles } from "../src/commons/styles/globalStyles";
-import Layout from "../src/componets/commons/layout";
+import ApolloSetting from "../src/components/commons/apollo";
+import Layout from "../src/components/commons/layout";
 
-export default function App({ Component, pageProps }): JSX.Element {
-  const uploadLink = createUploadLink({
-    uri: "http://backend-practice.codebootcamp.co.kr/graphql",
-  });
-
-  const client = new ApolloClient({
-    link: ApolloLink.from([uploadLink]),
-
-    cache: new InMemoryCache(),
-  });
-
+export default function App({ Component }: AppProps): JSX.Element {
   return (
-    <div>
-      <ApolloProvider client={client}>
-        <Global styles={globalStyles} />
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </ApolloProvider>
-    </div>
+    <RecoilRoot>
+      <ApolloSetting>
+        <>
+          <Global styles={globalStyles} />
+          <Layout>
+            <Component />
+          </Layout>
+        </>
+      </ApolloSetting>
+    </RecoilRoot>
   );
 }
