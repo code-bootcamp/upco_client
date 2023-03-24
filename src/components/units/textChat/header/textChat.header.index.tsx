@@ -5,7 +5,6 @@ import { TextChatHeaderProps } from "./textChat.header.types";
 export default function TextChatHeader(props: TextChatHeaderProps): JSX.Element {
   return (
     <S.Wrapper>
-      {props.isVideo && <VideoChat />}
       {props.messages.length > 0 ? (
         <S.Body>
           {props.messages.map((msg, index) => (

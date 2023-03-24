@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { useEffect, useState } from "react";
 import io from "socket.io-client";
+import VideoChat from "../videoChat";
 import TextChatBody from "./body/textChat.body.index";
 import TextChatFooter from "./footer/textChat.footer.index";
 import TextChatHeader from "./header/textChat.header.index";
@@ -16,7 +17,13 @@ const Wrapper = styled.div`
 const LeftContents = styled.div`
   width: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+
+  > div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 export default function TextChat(): JSX.Element {
@@ -55,8 +62,11 @@ export default function TextChat(): JSX.Element {
     <>
       <Wrapper>
         <LeftContents>
-          <TextChatHeader isVideo={isVideo} messages={messages} />
-          <TextChatBody emitData={emitData} onClickVideo={onClickVideo} messages={messages} />
+          <div>
+            <TextChatHeader isVideo={isVideo} messages={messages} />
+            <TextChatBody emitData={emitData} onClickVideo={onClickVideo} messages={messages} />
+          </div>
+          {isVideo && <VideoChat />}
         </LeftContents>
         <TextChatFooter />
       </Wrapper>

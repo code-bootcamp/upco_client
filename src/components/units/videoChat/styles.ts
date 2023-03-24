@@ -8,45 +8,67 @@ import {
 import { HiVolumeOff, HiVolumeUp } from "react-icons/hi";
 
 export const Wrapper = styled.div`
-  padding: 30px 0;
-  position: relative;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
-  height: 40vh;
+  height: 100%;
   background-color: #191919;
+  border-right: 1px solid #e2e2e2;
 `;
 
 export const OpponetVideoBox = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
   width: 100%;
-  height: 100%;
+  height: 50%;
+  border-bottom: 1px solid #e2e2e2;
 
-  > video {
+  > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+    > video {
+      width: 100%;
+    }
   }
 `;
 
 export const MyvideoBox = styled.div`
+  position: relative;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  width: 50%;
-  height: 100%;
-  border-radius: 6px;
+  align-items: center;
+  width: 100%;
+  height: 50%;
 
-  > video {
-    /* width: 100%; */
+  > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
     height: 100%;
-    border-radius: 6px;
+    overflow: hidden;
+
+    > video {
+      width: 100%;
+    }
   }
 `;
 
 export const IconBox = styled.ul`
   position: absolute;
   left: 50%;
-  bottom: 20px;
+  bottom: 30px;
   transform: translateX(-50%);
   display: flex;
   flex-direction: row;

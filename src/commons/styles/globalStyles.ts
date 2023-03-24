@@ -7,7 +7,7 @@ export const globalStyles = css`
     padding: 0;
     border: 0;
     list-style: none;
-    font-family: "Regular";
+    font-family: "Regular", "Roboto";
   }
 
   @font-face {
@@ -18,5 +18,10 @@ export const globalStyles = css`
   @font-face {
     font-family: "Bold";
     src: url(/fonts/NotoSansKR-Bold.otf);
+  }
+
+  @font-face {
+    font-family: "Roboto";
+    src: url(/fonts/Roboto-Regular.ttf);
   }
 `;
