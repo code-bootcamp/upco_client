@@ -29,7 +29,7 @@ const LeftContents = styled.div`
 export default function TextChat(): JSX.Element {
   const [socket, setSocket] = useState(null);
   const [isVideo, setIsVideo] = useState(false);
-  const [messages, setMessages] = useState<{ content: string; isSent: boolean }[]>([]);
+  const [messages, setMessages] = useState<Array<{ content: string; isSent: boolean }>>([]);
   console.log(socket);
   useEffect(() => {
     const socket = io.connect("http://10.34.233.98:4000", {

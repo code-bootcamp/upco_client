@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 import { TbMessageCircle2 } from "react-icons/tb";
 import { BsMap } from "react-icons/bs";
-import { FiUsers } from "react-icons/fi";
 import { BiUser } from "react-icons/bi";
 
 export const colors = {
@@ -106,9 +105,4 @@ export const MessageIcon = styled(TbMessageCircle2)`
   font-size: 25px;
   transform: scale(1.2);
   stroke-width: 1.2;
-`;
-
-export const FriendListIcon = styled(FiUsers)`
-  font-size: 25px;
-  stroke-width: 1.5;
 `;
