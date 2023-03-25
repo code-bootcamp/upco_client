@@ -29,6 +29,7 @@ export default function MainPage(): JSX.Element {
 
   const { isOpen, mapCreation } = useMapCreationMode();
   const { position, geolocationFn } = useGeolocationMode();
+
   const { data } = useQuery(FIND_AROUND_USERS, {
     variables: {
       bothLocation: {
@@ -40,9 +41,23 @@ export default function MainPage(): JSX.Element {
     },
   });
 
+  // let result = null;
+
+  // if (state) {
+  //   result = useQuery(FIND_AROUND_USERS, {
+  //     variables: {
+  //       bothLocation: {
+  //         lat1: Number(state?.sw.replace(/\(|\)/g, "").split(", ")[0]),
+  //         lng1: Number(state?.sw.replace(/\(|\)/g, "").split(", ")[1]),
+  //         lat2: Number(state?.ne.replace(/\(|\)/g, "").split(", ")[0]),
+  //         lng2: Number(state?.ne.replace(/\(|\)/g, "").split(", ")[1]),
+  //       },
+  //     },
+  //   });
+  // }
+
   // lat1, lng1 남서쪽 위도 경도
   // lat2, lng2 북동쪽 위도 경도
-  console.log("데ㅔ떼이터", data);
   console.log("영역좌표", state);
 
   geolocationFn();
