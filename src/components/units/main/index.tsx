@@ -1,5 +1,6 @@
 import { gql, useQuery } from "@apollo/client";
-import { useState } from "react";
+import _ from "lodash";
+import { useCallback, useState } from "react";
 import { useGeolocationMode } from "../../commons/hooks/customs/useGeolocationMode";
 import { useLocationMode } from "../../commons/hooks/customs/useLocationMode";
 import { useMapCreationMode } from "../../commons/hooks/customs/useMapCreationMode";
@@ -47,6 +48,16 @@ export default function MainPage(): JSX.Element {
     },
   });
 
+  const debouncedHandler = useCallback(
+    _.debounce((map) => {
+      setLocation({
+        sw: map.getBounds().getSouthWest().toString(),
+        ne: map.getBounds().getNorthEast().toString(),
+      });
+    }, 500),
+    []
+  );
+
   geolocationFn();
   mapCreation();
   useLocation();
@@ -55,6 +66,7 @@ export default function MainPage(): JSX.Element {
     <div style={{ display: "flex", flexDirection: "row" }}>
       {isOpen && (
         <MainBody
+          debouncedHandler={debouncedHandler}
           data={data}
           location={location}
           setLocation={setLocation}
