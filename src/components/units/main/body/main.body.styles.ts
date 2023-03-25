@@ -12,6 +12,17 @@ export const CustomMyMarker = styled(FaUserAlt)`
   font-size: 40px;
 `;
 
+export const MyMarkerBox = styled.div`
+  width: 100px;
+  height: 100px;
+`;
+
+export const MyMarker = styled.img`
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+`;
+
 export const MabBox = styled.div`
   width: calc(100% - 300px);
   height: calc(100vh - 68px);
