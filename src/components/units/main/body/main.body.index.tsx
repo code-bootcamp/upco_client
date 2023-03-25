@@ -1,4 +1,3 @@
-import { Dispatch, SetStateAction } from "react";
 import { CustomOverlayMap, MarkerClusterer, ZoomControl } from "react-kakao-maps-sdk";
 import { BeatLoader } from "react-spinners";
 import { MabWeb, MabBox, MyMarker, MyMarkerBox } from "./main.body.styles";
@@ -17,17 +16,12 @@ export default function MainBody(props: IProps): JSX.Element {
             lat: props.position?.coords.latitude ?? 34.55635,
             lng: props.position?.coords.longitude ?? 127.795841,
           }}
-          onBoundsChanged={(map) => {
-            props.setLocation({
-              sw: map.getBounds().getSouthWest().toString(),
-              ne: map.getBounds().getNorthEast().toString(),
-            });
-          }}
           maxLevel={12}
           level={3}
           onZoomChanged={(map) => {
             props.setLevel(map.getLevel());
           }}
+          onBoundsChanged={(map) => props.debouncedHandler(map)}
         >
           <ZoomControl />
           <MarkerClusterer averageCenter={true} minLevel={4} minClusterSize={1}>

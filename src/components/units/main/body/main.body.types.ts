@@ -10,6 +10,7 @@ interface IData {
 
 export interface IProps {
   data: IData[];
+  debouncedHandler: () => void;
   location: { sw: string; ne: string } | undefined;
   position: GeolocationPosition | null;
   setLevel: React.Dispatch<React.SetStateAction<number | undefined>>;
