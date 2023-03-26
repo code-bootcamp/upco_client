@@ -1,4 +1,5 @@
 import { RefObject, useEffect, useRef, useState } from "react";
+import { io } from "socket.io-client";
 
 interface IMediaStreamConstraints {
   audio?: boolean | MediaTrackConstraints;
@@ -15,12 +16,17 @@ export const useMediaRequest = (): IUseMediaRequestReturnType => {
   const [remoteStream, setRemoteStream] = useState<MediaStream>();
   const localVideoRef = useRef<HTMLVideoElement>(null);
   const remoteVideoRef = useRef<HTMLVideoElement>(null);
-  const pcRef = useRef<RTCPeerConnection>();
+  const pcRef = useRef<RTCPeerConnection | null>(null);
 
   const constraints: IMediaStreamConstraints = { audio: true, video: true };
 
   useEffect(() => {
     const startStream = async (): Promise<void> => {
+      const newSocket = io("http://10.34.232.83:4000/", {
+        path: "/socket.io",
+        transports: ["websocket"],
+      });
+
       try {
         const stream = await navigator.mediaDevices.getUserMedia(constraints);
         setLocalStream(stream);
@@ -30,6 +36,10 @@ export const useMediaRequest = (): IUseMediaRequestReturnType => {
         }
         const pc = new RTCPeerConnection();
         pcRef.current = pc;
+        let pcCurrnent = pcRef.current;
+        if (pcCurrnent) {
+          pcCurrnent = pc;
+        }
 
         stream.getTracks().forEach((track) => {
           pc.addTrack(track, stream);
@@ -45,6 +55,10 @@ export const useMediaRequest = (): IUseMediaRequestReturnType => {
 
         const offer = await pc.createOffer();
         await pc.setLocalDescription(new RTCSessionDescription(offer));
+
+        newSocket.emit("offer", {
+          offer: pc.localDescription,
+        });
       } catch (error) {
         console.error(error);
       }
