@@ -54,7 +54,7 @@ export default function ApolloSetting(props: IApolloSettingProps): JSX.Element {
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },
-    credentials: "include",
+    credentials: "omit",
   });
 
   const client = new ApolloClient({
