@@ -1,41 +1,7 @@
-import { Dispatch, SetStateAction } from "react";
 import { CustomOverlayMap, MarkerClusterer, ZoomControl } from "react-kakao-maps-sdk";
 import { BeatLoader } from "react-spinners";
-import { number, string } from "yup";
-import { CustomMarker, MabWeb, MabBox, CustomMyMarker } from "./main.body.styles";
-
-interface IData {
-  findAroundUsers: {
-    lat: number;
-    lng: number;
-    id: string;
-  };
-}
-
-interface IProps {
-  state: { sw: string; ne: string } | undefined;
-  position: GeolocationPosition | null;
-  setLevel: React.Dispatch<React.SetStateAction<number | undefined>>;
-  setState: Dispatch<
-    SetStateAction<
-      | {
-          sw: string;
-          ne: string;
-        }
-      | undefined
-    >
-  >;
-  // data: string[];
-  data: IData[];
-}
-
-interface IEL {
-  findAroundUsers: {
-    lat: number;
-    lng: number;
-    id: number;
-  };
-}
+import { MabWeb, MabBox, MyMarker, MyMarkerBox } from "./main.body.styles";
+import { IProps } from "./main.body.types";
 
 export default function MainBody(props: IProps): JSX.Element {
   return (
@@ -50,27 +16,24 @@ export default function MainBody(props: IProps): JSX.Element {
             lat: props.position?.coords.latitude ?? 34.55635,
             lng: props.position?.coords.longitude ?? 127.795841,
           }}
-          onBoundsChanged={(map) => {
-            props.setState({
-              sw: map.getBounds().getSouthWest().toString(),
-              ne: map.getBounds().getNorthEast().toString(),
-            });
-          }}
           maxLevel={12}
           level={3}
           onZoomChanged={(map) => {
             props.setLevel(map.getLevel());
           }}
+          onBoundsChanged={(map) => props.debouncedHandler(map)}
         >
           <ZoomControl />
-          <MarkerClusterer averageCenter={true} minLevel={2}>
+          <MarkerClusterer averageCenter={true} minLevel={4} minClusterSize={1}>
             <CustomOverlayMap
               position={{
                 lat: props.position.coords.latitude ?? 37.484,
                 lng: props.position.coords.longitude ?? 126.88,
               }}
             >
-              <CustomMyMarker></CustomMyMarker>
+              <MyMarkerBox>
+                <MyMarker src="/images/marker/ker4.png"></MyMarker>
+              </MyMarkerBox>
             </CustomOverlayMap>
             {props.data?.map(
               (
@@ -91,7 +54,9 @@ export default function MainBody(props: IProps): JSX.Element {
                   }}
                   key={el.findAroundUsers.id}
                 >
-                  <CustomMarker></CustomMarker>
+                  <MyMarkerBox>
+                    <MyMarker src="/images/marker/mar4.png"></MyMarker>
+                  </MyMarkerBox>
                 </CustomOverlayMap>
               )
             )}

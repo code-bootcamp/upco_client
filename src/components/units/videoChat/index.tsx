@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { MediaRequest } from "../../commons/hooks/customs/mediaRequest";
+import { useMediaRequest } from "../../commons/hooks/customs/useMediaRequest";
 import * as S from "./styles";
 
 export default function VideoChat(): JSX.Element {
@@ -7,7 +7,7 @@ export default function VideoChat(): JSX.Element {
   const [isMic, setIsMic] = useState(false);
   const [isVideo, setIsVideo] = useState(false);
 
-  const { localVideoRef, remoteVideoRef } = MediaRequest();
+  const { localVideoRef, remoteVideoRef } = useMediaRequest();
 
   const onClickVolume = (): void => {
     setIsVolume((prev) => !prev);
@@ -26,12 +26,12 @@ export default function VideoChat(): JSX.Element {
       <S.Wrapper>
         <S.OpponetVideoBox>
           <div>
-            <video ref={localVideoRef} autoPlay />
+            <video ref={remoteVideoRef} autoPlay />
           </div>
         </S.OpponetVideoBox>
         <S.MyvideoBox>
           <div>
-            <video ref={localVideoRef} autoPlay />
+            <video ref={localVideoRef} autoPlay muted />
           </div>
           <S.IconBox>
             <li onClick={onClickVolume}>{isVolume ? <S.VolumeOn /> : <S.VolumeOff />}</li>

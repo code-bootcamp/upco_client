@@ -1,6 +1,8 @@
+import { useQuery } from "@apollo/client";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { useQueryFetchLoginUser } from "../../hooks/queries/fetchLoginUser";
 import LoginUI from "../../items/modal/login/login.index";
 import TooltipUI from "../../items/tooltip/tooltip01.index";
 import * as S from "./header.styles";
@@ -9,9 +11,14 @@ export default function LayoutHeader(): JSX.Element {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [isTooltip, setIsTooltip] = useState(false);
+  const { data } = useQueryFetchLoginUser();
 
-  const onClickLogin = (): void => {
-    setIsOpen((prev) => !prev);
+  const onClickOpen = (open: string) => (): void => {
+    if (open === "login") {
+      setIsOpen((prev) => !prev);
+    } else {
+      setIsTooltip((prev) => !prev);
+    }
   };
 
   return (
@@ -34,10 +41,14 @@ export default function LayoutHeader(): JSX.Element {
               </div>
             </Link>
           </S.MenuBox>
-          <S.UserBox onClick={onClickLogin} style={{ position: "relative" }}>
-            <TooltipUI></TooltipUI>
-            <S.UserIcon />
-          </S.UserBox>
+          {data?.fetchLoginUser ? (
+            <S.UserBox style={{ position: "relative" }}>
+              {isTooltip && <TooltipUI></TooltipUI>}
+              <S.UserIcon onClick={onClickOpen("")} />
+            </S.UserBox>
+          ) : (
+            <S.LoginButton onClick={onClickOpen("login")}>로그인</S.LoginButton>
+          )}
         </div>
       </S.Wrapper>
     </>

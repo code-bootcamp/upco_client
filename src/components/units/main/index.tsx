@@ -1,9 +1,9 @@
 import { gql, useQuery } from "@apollo/client";
-import { useEffect, useState } from "react";
-import { boolean } from "yup";
+import _ from "lodash";
+import { useCallback, useState } from "react";
 import { useGeolocationMode } from "../../commons/hooks/customs/useGeolocationMode";
+import { useLocationMode } from "../../commons/hooks/customs/useLocationMode";
 import { useMapCreationMode } from "../../commons/hooks/customs/useMapCreationMode";
-import { useMutationLocation } from "../../commons/hooks/mutation/useMutationLocation";
 import MainBody from "./body/main.body.index";
 import MainFooter from "./footer/main.footer.index";
 
@@ -20,61 +20,56 @@ const FIND_AROUND_USERS = gql`
 `;
 
 export default function MainPage(): JSX.Element {
-  const [state, setState] = useState<{
+  const [location, setLocation] = useState<{
     sw: string;
     ne: string;
-  }>();
+  }>({ sw: "", ne: "" });
   const [level, setLevel] = useState<number>();
-  const [location] = useMutationLocation();
+
+  console.log(location, "영역좌ddd 표");
 
   const { isOpen, mapCreation } = useMapCreationMode();
   const { position, geolocationFn } = useGeolocationMode();
+  const { useLocation } = useLocationMode();
+
+  const [locations] = useState({
+    sw: location.sw.replace(/\(|\)/g, "").split(", ") ?? "",
+    ne: location.ne.replace(/\(|\)/g, "").split(", ") ?? "",
+  });
+
   const { data } = useQuery(FIND_AROUND_USERS, {
     variables: {
       bothLocation: {
-        lat1: Number(state?.sw.replace(/\(|\)/g, "").split(", ")[0]),
-        lng1: Number(state?.sw.replace(/\(|\)/g, "").split(", ")[1]),
-        lat2: Number(state?.ne.replace(/\(|\)/g, "").split(", ")[0]),
-        lng2: Number(state?.ne.replace(/\(|\)/g, "").split(", ")[1]),
+        lat1: Number(locations.sw[0]),
+        lng1: Number(locations.sw[1]),
+        lat2: Number(locations.ne[0]),
+        lng2: Number(locations.ne[1]),
       },
     },
   });
 
-  // lat1, lng1 남서쪽 위도 경도
-  // lat2, lng2 북동쪽 위도 경도
-  console.log("데ㅔ떼이터", data);
-  console.log("영역좌표", state);
+  const debouncedHandler = useCallback(
+    _.debounce((map) => {
+      setLocation({
+        sw: map.getBounds().getSouthWest().toString(),
+        ne: map.getBounds().getNorthEast().toString(),
+      });
+    }, 500),
+    []
+  );
 
   geolocationFn();
   mapCreation();
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const result = location({
-        variables: {
-          location: {
-            lat: position?.coords.latitude ?? 36.4455,
-            lng: position?.coords.longitude ?? 126.12321,
-          },
-        },
-      });
-      console.log(" 현재 위치를 보냈음", result);
-    }, 10000);
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
-
-  console.log("레벨", level);
+  useLocation();
 
   return (
     <div style={{ display: "flex", flexDirection: "row" }}>
       {isOpen && (
         <MainBody
+          debouncedHandler={debouncedHandler}
           data={data}
-          state={state}
-          setState={setState}
+          location={location}
+          setLocation={setLocation}
           position={position}
           setLevel={setLevel}
         ></MainBody>
