@@ -2,6 +2,15 @@ name: Build and Deploy to GCE
 
 on:
   workflow_dispatch:
+    inputs:
+       BRANCH:
+        description: 'Branch to use'
+        required: true
+        default: 'master'
+        type: choice
+        options:
+        - master
+        - develop
   pull_request:
     branches: [ "main" ]
 
