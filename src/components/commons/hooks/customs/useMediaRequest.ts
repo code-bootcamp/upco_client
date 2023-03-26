@@ -59,6 +59,15 @@ export const useMediaRequest = (): IUseMediaRequestReturnType => {
         newSocket.emit("offer", {
           offer: pc.localDescription,
         });
+        newSocket.on("answer", async (data) => {
+          const rtcSessionDescription = new RTCSessionDescription(data.answer);
+          await pc.setRemoteDescription(rtcSessionDescription);
+        });
+
+        newSocket.on("candidate", async (data) => {
+          const candidate = new RTCIceCandidate(data.candidate);
+          await pc.addIceCandidate(candidate);
+        });
       } catch (error) {
         console.error(error);
       }
