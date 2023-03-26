@@ -5,7 +5,7 @@ import * as S from "./profile.header.styles";
 const menuTitles = [
   { title: "내 정보", page: "/profile" },
   { title: "프로필 수정", page: "/profile/profileEdit" },
-  { title: "문의하기", page: "/counsel" },
+  { title: "고객센터", page: "/notice" },
 ];
 
 export default function Header(): JSX.Element {
