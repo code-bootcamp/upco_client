@@ -38,5 +38,5 @@ jobs:
           --project "$PROJECT_ID" \
           --zone "$GCE_INSTANCE_ZONE" \
           $GCE_INSTANCE \
-          --command "docker run gcr.io/$PROJECT_ID"
+          --command "sudo docker run gcr.io/$PROJECT_ID"
 
