@@ -38,5 +38,5 @@ jobs:
           --project "$PROJECT_ID" \
           --zone "$GCE_INSTANCE_ZONE" \
           $GCE_INSTANCE \
-          --command "docker run gcr.io/$(PROJECT_ID)/$(IMAGE)\:$(GITHUB_SHA)"
+          --command "docker run gcr.io/$PROJECT_ID"
 
