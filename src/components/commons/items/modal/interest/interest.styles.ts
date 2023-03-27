@@ -1,11 +1,16 @@
 import styled from "@emotion/styled";
 import { BiX } from "react-icons/bi";
+interface InterestModalProps {
+  selected: boolean;
+}
 
 export const Background = styled.div`
   position: fixed;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.3);
   z-index: 999;
 `;
 
@@ -13,8 +18,10 @@ export const Wrapper = styled.form`
   position: fixed;
   display: flex;
   flex-direction: column;
-  max-width: 400px;
-  min-width: 400px;
+  justify-content: center;
+
+  max-width: 430px;
+  min-width: 430px;
   background-color: #fff;
   padding: 60px 60px;
   border-radius: 6px;
@@ -63,35 +70,19 @@ export const DivideLine = styled.div`
   margin: 20px 0 40px;
 `;
 
-export const InterestButton = styled.button`
-  font-size: 14px;
-  background-color: #6658ca;
-  color: #fff;
-  height: 50px;
-  line-height: 50px;
-  border-radius: 50px;
-  cursor: pointer;
-  margin-top: 30px;
-  :hover {
-    background-color: #5346ad;
-  }
-  :active {
-    background-color: #5346ad;
-  }
-`;
-
 export const InterestWrapper = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: center;
 `;
 
-export const InterestBox = styled.div`
+export const InterestBox = styled.div<InterestModalProps>`
   border: 1px solid #979797;
   border-radius: 30px;
   padding: 3px 18px;
-  background-color: white;
-  color: #979797;
+  background-color: ${(props) => (props.selected ? "#6658ca" : "white")};
+  color: ${(props) => (props.selected ? "#fff" : "#979797")};
   margin-right: 10px;
   margin-bottom: 10px;
   font-size: 14px;
@@ -101,5 +92,22 @@ export const InterestBox = styled.div`
     color: #fff;
     background-color: #6658ca;
     border: 1px solid #6658ca;
+  }
+`;
+
+export const InterestButton = styled.button<InterestModalProps>`
+  height: 50px;
+  font-size: 14px;
+  background-color: #6658ca;
+  color: white;
+  line-height: 50px;
+  border-radius: 50px;
+  cursor: pointer;
+  margin-top: 30px;
+
+  &:hover {
+    color: white;
+    background-color: #6740ca;
+    border: 1px solid #6740ca;
   }
 `;

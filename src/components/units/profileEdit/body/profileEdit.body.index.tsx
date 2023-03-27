@@ -1,19 +1,27 @@
 import { useState } from "react";
 import { useQueryFetchLoginUser } from "../../../commons/hooks/queries/fetchLoginUser";
+import InterestUI from "../../../commons/items/modal/interest/interest.index";
 import PasswordReset from "../../passwordReset/passwordReset.index";
 import * as S from "./profileEdit.body.styles";
 
 export default function ProfileEditBody(): JSX.Element {
-  const { data } = useQueryFetchLoginUser();
-
+  // const { data } = useQueryFetchLoginUser();
   const [isOpen, setIsOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [interestList, setInterestList] = useState<string[]>([]);
 
   const openPasswordReset = (): void => {
     setIsOpen((prev) => !prev);
   };
+  const openInterestModal = (): void => {
+    setIsModalOpen((prev) => !prev);
+  };
 
   return (
     <>
+      {isModalOpen && (
+        <InterestUI setInterestList={setInterestList} setIsModalOpen={setIsModalOpen} />
+      )}
       {isOpen && <PasswordReset setIsOpen={setIsOpen}></PasswordReset>}
       <S.Wrapper>
         <S.Title>프로필 정보</S.Title>
@@ -41,16 +49,11 @@ export default function ProfileEditBody(): JSX.Element {
           <S.DefaultBox>
             <div>
               <S.InterestBox>
-                <li>스쿠버다이빙</li>
-                <li>축구</li>
-                <li>스쿠버다이빙</li>
-                <li>스쿠버다이빙</li>
-                <li>축구</li>
-                <li>스쿠버다이빙</li>
-                <li>스쿠버다이빙</li>
-                <li>스쿠버다이빙</li>
+                {interestList.map((interest) => (
+                  <li key={interest}>{interest}</li>
+                ))}
               </S.InterestBox>
-              <S.InterestAddButton>추가</S.InterestAddButton>
+              <S.InterestAddButton onClick={openInterestModal}>추가</S.InterestAddButton>
             </div>
           </S.DefaultBox>
         </S.Section>
