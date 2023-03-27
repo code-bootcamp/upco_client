@@ -1,8 +1,10 @@
 import styled from "@emotion/styled";
-export const Wrapper = styled.div`
+export const Wrapper = styled.form`
   font-size: 14px;
-  margin: 80px 0px 150px 0px;
+  margin: 50px 0px 150px 0px;
   width: 1200px;
+  display: flex;
+  flex-direction: column;
 `;
 export const BodyRow = styled.div`
   display: flex;
@@ -21,6 +23,7 @@ export const CounselTitle = styled.input`
   padding-left: 10px;
   border: solid 1px #a5a5a5;
   border-radius: 5px;
+  outline: none;
 `;
 export const CounselContents = styled.textarea`
   width: 100%;
@@ -30,4 +33,5 @@ export const CounselContents = styled.textarea`
   border-radius: 5px;
   resize: none;
   height: auto;
+  outline: none;
 `;
