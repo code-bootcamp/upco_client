@@ -26,16 +26,15 @@ export const Body = styled.div`
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
   }
 
+  > div.systemMessage {
+    width: 100%;
+    align-items: center;
+    background-color: red;
+  }
+
   > div.sentMessage {
     align-self: flex-end;
     background-color: #f8e71c;
     color: #000;
-  }
-  > div.noMessage {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
 `;

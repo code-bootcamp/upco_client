@@ -3,8 +3,9 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useQueryFetchLoginUser } from "../../hooks/queries/fetchLoginUser";
+import JoinUI from "../../items/modal/join/join.index";
 import LoginUI from "../../items/modal/login/login.index";
-import TooltipUI from "../../items/tooltip/tooltip01.index";
+import TooltipUI from "../../items/tooltip/01/tooltip01.index";
 import * as S from "./header.styles";
 
 export default function LayoutHeader(): JSX.Element {
@@ -12,10 +13,13 @@ export default function LayoutHeader(): JSX.Element {
   const [isOpen, setIsOpen] = useState(false);
   const [isTooltip, setIsTooltip] = useState(false);
   const { data } = useQueryFetchLoginUser();
+  const [isJoin, setIsJoin] = useState(false);
 
   const onClickOpen = (open: string) => (): void => {
     if (open === "login") {
       setIsOpen((prev) => !prev);
+    } else if (open === "join") {
+      setIsJoin((prev) => !prev);
     } else {
       setIsTooltip((prev) => !prev);
     }
@@ -24,6 +28,7 @@ export default function LayoutHeader(): JSX.Element {
   return (
     <>
       {isOpen && <LoginUI setIsOpen={setIsOpen} />}
+      {isJoin && <JoinUI setIsJoin={setIsJoin} isJoin={isJoin} />}
       <S.Wrapper>
         <div>
           <S.Logo src="/images/layout/logo.svg" />
@@ -47,7 +52,10 @@ export default function LayoutHeader(): JSX.Element {
               <S.UserIcon onClick={onClickOpen("")} />
             </S.UserBox>
           ) : (
-            <S.LoginButton onClick={onClickOpen("login")}>로그인</S.LoginButton>
+            <div>
+              <S.LoginButton onClick={onClickOpen("join")}>회원가입</S.LoginButton>
+              <S.LoginButton onClick={onClickOpen("login")}>로그인</S.LoginButton>
+            </div>
           )}
         </div>
       </S.Wrapper>

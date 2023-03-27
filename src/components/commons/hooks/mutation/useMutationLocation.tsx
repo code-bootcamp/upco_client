@@ -1,4 +1,10 @@
-import { gql, useMutation } from "@apollo/client";
+import {
+  DefaultContext,
+  gql,
+  MutationTuple,
+  OperationVariables,
+  useMutation,
+} from "@apollo/client";
 
 const SAVE_USER_LOCATION = gql`
   mutation saveUserLocation($location: SaveUserLocationInput!) {
@@ -6,7 +12,7 @@ const SAVE_USER_LOCATION = gql`
   }
 `;
 
-export const useMutationLocation = () => {
+export const useMutationLocation = (): MutationTuple<OperationVariables, DefaultContext> => {
   const result = useMutation(SAVE_USER_LOCATION);
 
   return result;

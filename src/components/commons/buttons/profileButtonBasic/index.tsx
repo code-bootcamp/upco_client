@@ -1,12 +1,13 @@
 import styled from "@emotion/styled";
 
 const SubmitBtn = styled.button`
-  height: 50px;
-  width: 290px;
+  padding: 10px 20px;
+  border-radius: 30px;
   font-size: 20px;
-  background-color: #a777b1;
+  background-color: #6658ca;
   color: white;
   font-weight: bold;
+  cursor: pointer;
 `;
 
 interface IProfileButtonBasicProps {

@@ -17,8 +17,8 @@ const LOGIN = gql`
 `;
 
 export default function LoginUI(props: ILoginUIProps): JSX.Element {
-  const [isJoin, setIsJoin] = useState(false);
   const [isFind, setIsFind] = useState(false);
+  // const [isJoin, setIsJoin] = useState(false);
 
   const [login, { data, error }] = useMutation(LOGIN);
 
@@ -36,7 +36,7 @@ export default function LoginUI(props: ILoginUIProps): JSX.Element {
 
   const onClickMoved = (move: string) => () => {
     if (move === "join" || move === "") {
-      setIsJoin((prev) => !prev);
+      props.setIsJoin((prev) => !prev);
     } else {
       setIsFind((prev) => !prev);
     }
@@ -60,8 +60,8 @@ export default function LoginUI(props: ILoginUIProps): JSX.Element {
 
   return (
     <>
-      {isJoin || isFind ? (
-        isJoin ? (
+      {props.isJoin || isFind ? (
+        props.isJoin ? (
           <JoinUI onClickClose={onClickClose} onClickMoved={onClickMoved("")} />
         ) : (
           <FindUI onClickClose={onClickClose} onClickMoved={onClickMoved("find")}></FindUI>

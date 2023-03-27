@@ -18,7 +18,6 @@ export const useJoinMode = (): {
           nickname: data.name,
           email: data.email,
           password: data.password,
-          age: 0,
         },
       },
     });

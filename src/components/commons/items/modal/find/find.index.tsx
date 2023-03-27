@@ -1,20 +1,28 @@
+import { useForm } from "react-hook-form";
+import { usePasswordMailerMode } from "../../../hooks/customs/usePasswordMailerMode";
 import { useFormLogin } from "../../../hooks/useForm/useForm.login";
 import AccountInput from "../../inputs/account/account.input.index";
 import * as S from "./find.styles";
 import { ILoginUIProps } from "./find.types";
+
+interface IData {
+  email: string;
+}
 
 export default function FindUI(props: ILoginUIProps): JSX.Element {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useFormLogin();
+  } = useForm<IData>();
+
+  const { usePasswordMaier } = usePasswordMailerMode();
 
   return (
     <>
       <>
         <S.Background onClick={props.onClickClose} />
-        <S.Wrapper>
+        <S.Wrapper onSubmit={handleSubmit(usePasswordMaier)}>
           <S.Close onClick={props.onClickClose} />
           <img src="/images/layout/logo01.svg" />
           <S.InputBox>
