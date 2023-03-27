@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { useQueryFetchLoginUser } from "../../hooks/queries/fetchLoginUser";
 import LoginUI from "../../items/modal/login/login.index";
-import TooltipUI from "../../items/tooltip/tooltip01.index";
+import TooltipUI from "../../items/tooltip/01/tooltip01.index";
 import * as S from "./header.styles";
 
 export default function LayoutHeader(): JSX.Element {

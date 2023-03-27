@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useQueryFetchLoginUser } from "../../../commons/hooks/queries/fetchLoginUser";
-import PasswordResetUI from "../../../commons/items/modal/passwordReset/find.index";
+import PasswordReset from "../../passwordReset/passwordReset.index";
 import * as S from "./profileEdit.body.styles";
 
 export default function ProfileEditBody(): JSX.Element {
@@ -8,15 +8,13 @@ export default function ProfileEditBody(): JSX.Element {
 
   const [isOpen, setIsOpen] = useState(false);
 
-  console.log(data);
-
   const openPasswordReset = (): void => {
     setIsOpen((prev) => !prev);
   };
 
   return (
     <>
-      {isOpen && <PasswordResetUI setIsOpen={setIsOpen}></PasswordResetUI>}
+      {isOpen && <PasswordReset setIsOpen={setIsOpen}></PasswordReset>}
       <S.Wrapper>
         <S.Title>프로필 정보</S.Title>
         <S.Section>
