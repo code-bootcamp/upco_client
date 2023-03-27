@@ -2,12 +2,6 @@ import { gql, useMutation } from "@apollo/client";
 import { useForm } from "react-hook-form";
 import * as S from "./passwordReset.styles";
 
-const PASSWORD_RESET_MAILER = gql`
-  mutation passwordResetMailer($email: String!) {
-    passwordResetMailer(email: $email)
-  }
-`;
-
 export default function PasswordReset(props): JSX.Element {
   const {
     register,
@@ -17,16 +11,8 @@ export default function PasswordReset(props): JSX.Element {
     email: string;
   }>();
 
-  const [passwordResetMailer] = useMutation(PASSWORD_RESET_MAILER);
-
   const onClickClose = (): void => {
     props.setIsOpen(false);
-  };
-
-  const onClickPasswordReset = async (data: { email: string }): Promise<void> => {
-    const result = await passwordResetMailer({
-      variables: { email: data.email },
-    });
   };
 
   return (
