@@ -1,13 +1,6 @@
-import { gql, useMutation } from "@apollo/client";
 import { useBLockMode } from "../../../hooks/customs/useBlockMode";
 import { useReportMode } from "../../../hooks/customs/useReportMode";
 import * as S from "./tooltip02.styles";
-
-const UNBLOCK_OPPONENT = gql`
-  mutation unblockOpponent($blockUserId: String!) {
-    unblockOpponent(blockUserId: $blockUserId)
-  }
-`;
 
 export default function TooltipUI02(): JSX.Element {
   const { onClickBlock } = useBLockMode();
