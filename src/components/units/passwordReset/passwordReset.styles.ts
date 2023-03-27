@@ -1,11 +1,24 @@
 import styled from "@emotion/styled";
+import { BiX } from "react-icons/bi";
+
+export const Background = styled.div`
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+`;
 
 export const Wrapper = styled.div`
+  position: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
+  top: 0;
   width: 100%;
   height: 100%;
+  z-index: 999;
 `;
 
 export const Container = styled.div`
@@ -45,4 +58,17 @@ export const Button = styled.button`
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
+`;
+
+export const Close = styled(BiX)`
+  top: 15px;
+  right: 15px;
+  font-size: 24px;
+  color: #979797;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+
+  :hover {
+    color: #000;
+  }
 `;

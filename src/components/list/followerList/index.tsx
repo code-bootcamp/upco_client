@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import TooltipUI02 from "../../commons/items/tooltip/02/tooltip02.index";
 
 const FollowerWrapper = styled.div`
   display: flex;
@@ -23,6 +24,7 @@ const FollowerListRow = styled.div`
   flex-direction: row;
 `;
 const FollowerListColumn = styled.div`
+  width: 70%;
   display: flex;
   flex-direction: column;
 `;
@@ -30,6 +32,17 @@ const FollowerListColumn = styled.div`
 const DivideLine = styled.div`
   border-bottom: 1px solid #d9d9d9;
   width: 100%;
+`;
+
+const ToolTipOpen = styled.div`
+  width: 30%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-right: 10px;
+  > div {
+    font-size: 20px;
+  }
 `;
 
 interface ChatData {
@@ -66,7 +79,6 @@ export default function ChatList(): JSX.Element {
   };
   return (
     <>
-      <DivideLine />
       {chatData.map((el) => (
         <>
           <FollowerWrapper key={el._id} id={el._id}>
@@ -76,6 +88,10 @@ export default function ChatList(): JSX.Element {
                 <NickNameSection>{el.name}</NickNameSection>
                 <ChatSection>{chatCut(el.chat, 11)}</ChatSection>
               </FollowerListColumn>
+              <ToolTipOpen>
+                <div>. . .</div>
+                <TooltipUI02></TooltipUI02>
+              </ToolTipOpen>
             </FollowerListRow>
           </FollowerWrapper>
           <DivideLine />
