@@ -1,7 +1,16 @@
+import { useMutation, gql } from "@apollo/client";
+import { useJoinMode } from "../../../hooks/customs/useJoinMode";
 import { useFormJoin } from "../../../hooks/useForm/useForm.join";
 import AccountInput from "../../inputs/account/account.input.index";
 import * as S from "./join.styles";
 import { IJoinUIProps } from "./join.types";
+
+interface IData {
+  name: string;
+  email: string;
+  password: string;
+  passwordCheck: string;
+}
 
 export default function JoinUI(props: IJoinUIProps): JSX.Element {
   const {
@@ -10,10 +19,12 @@ export default function JoinUI(props: IJoinUIProps): JSX.Element {
     formState: { errors },
   } = useFormJoin();
 
+  const { onClickJoin } = useJoinMode();
+
   return (
     <>
       <S.Background onClick={props.onClickClose} />
-      <S.Wrapper>
+      <S.Wrapper onSubmit={handleSubmit(onClickJoin)}>
         <S.Close onClick={props.onClickClose} />
         <img src="/images/layout/logo01.svg" />
         <S.InputBox>
