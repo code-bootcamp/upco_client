@@ -3,7 +3,7 @@ import { gql, useQuery } from "@apollo/client";
 export const FETCH_LOGIN_USER = gql`
   query {
     fetchLoginUser {
-      Id
+      id
       nickname
       email
       age
@@ -11,7 +11,7 @@ export const FETCH_LOGIN_USER = gql`
       reported
       createAt
       updateAt
-      deleteAt
+      deletedAt
     }
   }
 `;
