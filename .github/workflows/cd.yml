@@ -32,15 +32,7 @@ jobs:
       - run: |-
           gcloud --quiet auth configure-docker
           
-      # Build the Docker image
-      - name: Build
-        run: |-
-          docker build --tag "gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA" .
-          
-      # Push the Docker image to Google Container Registry
-      - name: Publish
-        run: |-
-          docker push "gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA"
+
           
       - name: Clear image and Deploy
         run: |-
