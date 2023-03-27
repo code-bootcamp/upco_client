@@ -60,17 +60,16 @@ export const InterestBox = styled.ul`
   flex-direction: row;
   flex-wrap: wrap;
 
-  > li {
+  li {
     font-size: 14px;
     color: #fff;
     background-color: #6658ca;
-    padding: 5px 10px;
+    padding: 5px 20px;
     border-radius: 20px;
     margin-right: 5px;
     margin-bottom: 8px;
   }
 `;
-
 export const InterestAddButton = styled.button`
   margin-bottom: 8px;
   padding: 0 20px;

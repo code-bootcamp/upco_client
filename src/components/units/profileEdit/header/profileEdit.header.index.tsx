@@ -4,7 +4,6 @@ export default function ProfileEditHeader(): JSX.Element {
   return (
     <>
       <S.Wrapper>
-        {/* 프로필 */}
         <S.ProfileLeft>
           <S.UserIcon />
           <div>

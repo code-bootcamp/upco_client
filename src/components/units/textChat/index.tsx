@@ -33,6 +33,7 @@ export default function TextChat(): JSX.Element {
   const [socket, setSocket] = useState<Socket<DefaultEventsMap, DefaultEventsMap> | null>(null);
   const [userId, setUserId] = useState<string>("");
   const userJoinedMessageRef = useRef<HTMLParagraphElement>(null);
+  const [joinMessage, setJoinMessage] = useState("");
   console.log(socket);
   const generateUserId = (): string => {
     return uuidv4();
@@ -51,16 +52,10 @@ export default function TextChat(): JSX.Element {
       const userId = generateUserId();
       setUserId(userId);
       newSocket.emit("new user", userId);
+    });
 
-      const userJoinedMessage = "채팅방에 입장하셨습니다.";
-      setMessages((prevMessages) => [
-        ...prevMessages,
-        { content: userJoinedMessage, isSent: true },
-      ]);
-
-      if (userJoinedMessageRef.current) {
-        userJoinedMessageRef.current.textContent = userJoinedMessage;
-      }
+    newSocket.on("join message", (msg) => {
+      setJoinMessage(msg);
     });
 
     // newSocket.on("join", (userId: string) => {});
@@ -92,6 +87,7 @@ export default function TextChat(): JSX.Element {
               messages={messages}
               userId={userId}
               userJoinedMessageRef={userJoinedMessageRef}
+              joinMessage={joinMessage}
             />
             <TextChatBody emitData={emitData} onClickVideo={onClickVideo} messages={messages} />
           </div>
