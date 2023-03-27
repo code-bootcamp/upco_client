@@ -50,5 +50,5 @@ jobs:
           $GCE_INSTANCE \
           --command "docker stop $(docker ps -q)" \
           --command 'sudo docker system prune -f -a' \
-          --command 'docker run -p 3000:3000 "gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA"
+          --command 'docker run -p 3000:3000 gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA'
 
