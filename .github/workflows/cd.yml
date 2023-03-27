@@ -52,7 +52,7 @@ jobs:
           --project "$PROJECT_ID" \
           --zone "$GCE_INSTANCE_ZONE" \
           "$GCE_INSTANCE" \
-          --command 'sudo docker stop $(docker ps -q)'
+          --command 'sudo docker stop $(docker ps -q)' \
           --command 'sudo docker system prune -f -a'
           
       - name: Deploy
