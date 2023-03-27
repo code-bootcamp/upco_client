@@ -7,13 +7,6 @@ export const Wrapper = styled.div`
   flex-direction: column;
   justify-content: space-between;
   border-right: 1px solid #d9d9d9;
-  > div.no-Message {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
 `;
 
 export const Body = styled.div`
@@ -33,9 +26,16 @@ export const Body = styled.div`
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
   }
 
-  > div.sent-message {
+  > div.sentMessage {
     align-self: flex-end;
     background-color: #f8e71c;
     color: #000;
+  }
+  > div.noMessage {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 `;
