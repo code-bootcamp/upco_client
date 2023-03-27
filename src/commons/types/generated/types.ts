@@ -11,10 +11,23 @@ export type Scalars = {
   Int: number;
   Float: number;
   DateTime: any;
+  Upload: any;
+};
+
+export type IBlockUser = {
+  __typename?: 'BlockUser';
+  blockUserId?: Maybe<Scalars['String']>;
+  id: Scalars['String'];
+  reportedId: Scalars['String'];
+  user: IUser;
+};
+
+export type ICreateQuestionInput = {
+  contents: Scalars['String'];
+  title: Scalars['String'];
 };
 
 export type ICreateUserInput = {
-  age: Scalars['Int'];
   email: Scalars['String'];
   nickname: Scalars['String'];
   password: Scalars['String'];
@@ -40,24 +53,63 @@ export type IFindAroundUserOutput = {
   lng: Scalars['String'];
   nickname: Scalars['String'];
   provider: Scalars['String'];
-  reported: Scalars['Int'];
+  reported?: Maybe<Scalars['Int']>;
   updateAt: Scalars['DateTime'];
+};
+
+export type IFriend = {
+  __typename?: 'Friend';
+  createAt: Scalars['DateTime'];
+  id: Scalars['String'];
+  isSuccess: Scalars['Boolean'];
+  opponentId: Scalars['String'];
+  user: IUser;
 };
 
 export type IMutation = {
   __typename?: 'Mutation';
+  addFriend: IFriend;
+  blockOpponent: IBlockUser;
+  createQuestion: IQuestion;
   createUser: IUser;
+  deleteFriend: Scalars['Boolean'];
   deleteUser: Scalars['Boolean'];
   login: Scalars['String'];
+  passwordResetMailer: Scalars['String'];
+  reportOpponent: IUser;
   restoreAccessToken: Scalars['String'];
   saveUserLocation: Scalars['String'];
+  unblockOpponent: Scalars['Boolean'];
   updateUser: IUser;
-  updateUserPwd: IUser;
+  uploadFile: Scalars['String'];
+};
+
+
+export type IMutationAddFriendArgs = {
+  isSuccess: Scalars['Boolean'];
+  opponentId: Scalars['String'];
+  userId: Scalars['String'];
+};
+
+
+export type IMutationBlockOpponentArgs = {
+  blockUserId: Scalars['String'];
+  userId: Scalars['String'];
+};
+
+
+export type IMutationCreateQuestionArgs = {
+  createQuestionInput: ICreateQuestionInput;
 };
 
 
 export type IMutationCreateUserArgs = {
   createUserInput: ICreateUserInput;
+};
+
+
+export type IMutationDeleteFriendArgs = {
+  opponentId: Scalars['String'];
 };
 
 
@@ -72,25 +124,49 @@ export type IMutationLoginArgs = {
 };
 
 
+export type IMutationPasswordResetMailerArgs = {
+  email: Scalars['String'];
+};
+
+
+export type IMutationReportOpponentArgs = {
+  reportedId: Scalars['String'];
+};
+
+
 export type IMutationSaveUserLocationArgs = {
   location: ISaveUserLocationInput;
 };
 
 
-export type IMutationUpdateUserArgs = {
-  updateAllInput: IUpdateAllInput;
+export type IMutationUnblockOpponentArgs = {
+  blockUserId: Scalars['String'];
 };
 
 
-export type IMutationUpdateUserPwdArgs = {
-  updateUserPwdInput: IUpdateUserPwdInput;
+export type IMutationUpdateUserArgs = {
+  updateUserInput: IUpdateUserInput;
+};
+
+
+export type IMutationUploadFileArgs = {
+  file: Scalars['Upload'];
 };
 
 export type IQuery = {
   __typename?: 'Query';
+  fetchBlockAllOpponent: Array<IBlockUser>;
+  fetchBlockOneOpponent: IBlockUser;
+  fetchFriends: Array<IFriend>;
   fetchId: IUser;
   fetchLoginUser: IUser;
+  fetchQuestions: Array<IQuestion>;
   findAroundUsers: Array<IFindAroundUserOutput>;
+};
+
+
+export type IQueryFetchBlockOneOpponentArgs = {
+  blockUserId: Scalars['String'];
 };
 
 
@@ -103,18 +179,25 @@ export type IQueryFindAroundUsersArgs = {
   bothLocation: IFindAroundUserInput;
 };
 
+export type IQuestion = {
+  __typename?: 'Question';
+  contents: Scalars['String'];
+  createAt: Scalars['DateTime'];
+  id: Scalars['String'];
+  title: Scalars['String'];
+};
+
 export type ISaveUserLocationInput = {
   lat: Scalars['Float'];
   lng: Scalars['Float'];
 };
 
-export type IUpdateAllInput = {
-  image: Scalars['String'];
-  interest: Scalars['String'];
-};
-
-export type IUpdateUserPwdInput = {
-  password: Scalars['String'];
+export type IUpdateUserInput = {
+  age?: InputMaybe<Scalars['Int']>;
+  image?: InputMaybe<Scalars['String']>;
+  interest?: InputMaybe<Scalars['String']>;
+  nickname?: InputMaybe<Scalars['String']>;
+  reported?: InputMaybe<Scalars['Int']>;
 };
 
 export type IUser = {
@@ -128,6 +211,6 @@ export type IUser = {
   interest: Scalars['String'];
   nickname: Scalars['String'];
   provider: Scalars['String'];
-  reported: Scalars['Int'];
+  reported?: Maybe<Scalars['Int']>;
   updateAt: Scalars['DateTime'];
 };
