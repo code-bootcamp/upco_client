@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useQueryFetchLoginUser } from "../../hooks/queries/fetchLoginUser";
+import FindUI from "../../items/modal/find/find.index";
 import JoinUI from "../../items/modal/join/join.index";
 import LoginUI from "../../items/modal/login/login.index";
 import TooltipUI from "../../items/tooltip/01/tooltip01.index";
@@ -14,21 +15,22 @@ export default function LayoutHeader(): JSX.Element {
   const [isTooltip, setIsTooltip] = useState(false);
   const { data } = useQueryFetchLoginUser();
   const [isJoin, setIsJoin] = useState(false);
+  const [isFind, setIsFind] = useState(false);
 
   const onClickOpen = (open: string) => (): void => {
     if (open === "login") {
       setIsOpen((prev) => !prev);
     } else if (open === "join") {
       setIsJoin((prev) => !prev);
-    } else {
-      setIsTooltip((prev) => !prev);
     }
   };
 
   return (
     <>
-      {isOpen && <LoginUI setIsOpen={setIsOpen} />}
-      {isJoin && <JoinUI setIsJoin={setIsJoin} isJoin={isJoin} />}
+      {isOpen && <LoginUI setIsOpen={setIsOpen} setIsJoin={setIsJoin} setIsFind={setIsFind} />}
+      {isJoin && <JoinUI setIsJoin={setIsJoin} setIsOpen={setIsOpen} />}
+      {isFind && <FindUI setIsOpen={setIsOpen} setIsFind={setIsFind}></FindUI>}
+
       <S.Wrapper>
         <div>
           <S.Logo src="/images/layout/logo.svg" />

@@ -21,11 +21,20 @@ export default function JoinUI(props: IJoinUIProps): JSX.Element {
 
   const { onClickJoin } = useJoinMode();
 
+  const onClickClose = (move: string) => (): void => {
+    if (move === "") {
+      props.setIsJoin((prev) => !prev);
+    } else if (move === "join") {
+      props.setIsJoin((prev) => !prev);
+      props.setIsOpen((prev) => !prev);
+    }
+  };
+
   return (
     <>
-      <S.Background onClick={props.onClickClose} />
+      <S.Background onClick={onClickClose("")} />
       <S.Wrapper onSubmit={handleSubmit(onClickJoin)}>
-        <S.Close onClick={props.onClickClose} />
+        <S.Close onClick={onClickClose("")} />
         <img src="/images/layout/logo01.svg" />
         <S.InputBox>
           <AccountInput placeholder="닉네임을 입력해주세요." register={register("name")} />
@@ -61,7 +70,7 @@ export default function JoinUI(props: IJoinUIProps): JSX.Element {
         </S.InputBox>
         <button>회원가입</button>
         <S.JoinText>
-          <p onClick={props.onClickMoved}>이미 계정이 있으신가요?</p>
+          <p onClick={onClickClose("join")}>이미 계정이 있으신가요?</p>
         </S.JoinText>
         <S.DivideLineBox>
           <div></div>
