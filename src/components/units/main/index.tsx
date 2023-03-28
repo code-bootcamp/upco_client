@@ -30,7 +30,7 @@ export default function MainPage(): JSX.Element {
 
   console.log("로그인 데이터", datas);
 
-  // console.log(location, "영역좌ddd 표");
+  // console.log(location, "영역좌표");
 
   const { isOpen, mapCreation } = useMapCreationMode();
   const { position, geolocationFn } = useGeolocationMode();
@@ -40,16 +40,16 @@ export default function MainPage(): JSX.Element {
     sw: location.sw.replace(/\(|\)/g, "").split(", "),
     ne: location.ne.replace(/\(|\)/g, "").split(", "),
   });
-  console.log("aaa", location.sw.replace(/\(|\)/g, "").split(", ")[0]);
-  console.log("bbb", locations);
+  console.log("aaa", Number(location.sw.replace(/\(|\)/g, "").split(", ")[0]));
+  // console.log("bbb", locations);
 
   const { data } = useQuery(FIND_AROUND_USERS, {
     variables: {
       bothLocation: {
-        lat1: location.sw.replace(/\(|\)/g, "").split(", ")[0],
-        lng1: location.sw.replace(/\(|\)/g, "").split(", ")[1],
-        lat2: location.ne.replace(/\(|\)/g, "").split(", ")[0],
-        lng2: location.ne.replace(/\(|\)/g, "").split(", ")[1],
+        lat1: Number(location.sw.replace(/\(|\)/g, "").split(", ")[0]),
+        lng1: Number(location.sw.replace(/\(|\)/g, "").split(", ")[1]),
+        lat2: Number(location.ne.replace(/\(|\)/g, "").split(", ")[0]),
+        lng2: Number(location.ne.replace(/\(|\)/g, "").split(", ")[1]),
       },
     },
   });
