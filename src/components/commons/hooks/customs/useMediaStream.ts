@@ -1,4 +1,4 @@
- import { RefObject, useEffect, useRef } from "react";
+import { RefObject, useEffect, useRef } from "react";
 import { io } from "socket.io-client";
 
 interface IMediaStreamConstraints {
@@ -18,7 +18,7 @@ export const useMediaStream = (): IUseMediaRequestReturnType => {
   const constraints: IMediaStreamConstraints = { audio: true, video: true };
 
   useEffect(() => {
-    const newSocket = io("http://10.34.233.83:4000/", {
+    const newSocket = io("http://10.34.233.64:4000/", {
       path: "/socket.io",
       transports: ["websocket"],
     });
@@ -85,7 +85,7 @@ export const useMediaStream = (): IUseMediaRequestReturnType => {
         try {
           await pc.addIceCandidate(candidate);
         } catch (error) {
-          alert("error");
+          console.error("Error adding ICE candidate:", error);
         }
       });
     };
@@ -95,4 +95,3 @@ export const useMediaStream = (): IUseMediaRequestReturnType => {
 
   return { localVideoRef, remoteVideoRef };
 };
-
