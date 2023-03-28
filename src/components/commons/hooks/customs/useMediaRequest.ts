@@ -22,7 +22,7 @@ export const useMediaRequest = (): IUseMediaRequestReturnType => {
 
   useEffect(() => {
     const startStream = async (): Promise<void> => {
-      const newSocket = io("http://10.34.232.83:4000/", {
+      const newSocket = io("http://10.34.233.64:4000/", {
         path: "/socket.io",
         transports: ["websocket"],
       });
@@ -34,7 +34,17 @@ export const useMediaRequest = (): IUseMediaRequestReturnType => {
         if (localVideoCurrent) {
           localVideoCurrent.srcObject = stream;
         }
-        const pc = new RTCPeerConnection();
+        const pc = new RTCPeerConnection({
+          iceServers: [
+            {
+              urls: "stun.l.google.com:19302",
+            },
+          ],
+        });
+        pc.onicecandidate = (event) => {
+          newSocket.emit("candidate", event.candidate);
+        };
+
         pcRef.current = pc;
         let pcCurrnent = pcRef.current;
         if (pcCurrnent) {
@@ -54,19 +64,32 @@ export const useMediaRequest = (): IUseMediaRequestReturnType => {
         };
 
         const offer = await pc.createOffer();
-        await pc.setLocalDescription(new RTCSessionDescription(offer));
+        const answer = await pc.createAnswer();
+        const candidate = new RTCIceCandidate();
 
-        newSocket.emit("offer", {
-          offer: pc.localDescription,
+        await pc.setLocalDescription(offer);
+        newSocket.emit("offer", offer);
+
+        await pc.setRemoteDescription(answer);
+        newSocket.emit("answer", offer);
+
+        newSocket.emit("answer", {
+          type: "answer",
+          sdp: answer.sdp,
         });
+
+        newSocket.emit("candidate", {
+          label: candidate.sdpMLineIndex,
+          candidate: candidate.candidate,
+        });
+
         newSocket.on("answer", async (data) => {
-          const rtcSessionDescription = new RTCSessionDescription(data.answer);
-          await pc.setRemoteDescription(rtcSessionDescription);
+          console.log(data, "answer!!");
         });
 
-        newSocket.on("candidate", async (data) => {
-          const candidate = new RTCIceCandidate(data.candidate);
-          await pc.addIceCandidate(candidate);
+        newSocket.on("candidate", async (data: RTCIceCandidate) => {
+          await pc.addIceCandidate(data);
+          console.log(data, "candidate!!");
         });
       } catch (error) {
         console.error(error);
