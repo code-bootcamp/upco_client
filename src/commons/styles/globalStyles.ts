@@ -24,4 +24,14 @@ export const globalStyles = css`
     font-family: "Roboto";
     src: url(/fonts/Roboto-Regular.ttf);
   }
+
+  @font-face {
+    font-family: "MainTitle01";
+    src: url(/fonts/Title_Bold.woff);
+  }
+
+  @font-face {
+    font-family: "MainTitle02";
+    src: url(/fonts/Batang_Bold.woff);
+  }
 `;

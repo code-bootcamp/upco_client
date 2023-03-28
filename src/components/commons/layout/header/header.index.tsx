@@ -48,7 +48,7 @@ export default function LayoutHeader(): JSX.Element {
           </S.MenuBox>
           {data?.fetchLoginUser ? (
             <S.UserBox style={{ position: "relative" }}>
-              {isTooltip && <TooltipUI></TooltipUI>}
+              {isTooltip && <TooltipUI />}
               <S.UserIcon onClick={onClickOpen("")} />
             </S.UserBox>
           ) : (
@@ -57,6 +57,7 @@ export default function LayoutHeader(): JSX.Element {
               <S.LoginButton onClick={onClickOpen("login")}>로그인</S.LoginButton>
             </div>
           )}
+          <TooltipUI />
         </div>
       </S.Wrapper>
     </>

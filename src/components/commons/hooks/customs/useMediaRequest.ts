@@ -1,4 +1,4 @@
-import { RefObject, useEffect, useRef } from "react";
+ import { RefObject, useEffect, useRef } from "react";
 import { io } from "socket.io-client";
 
 interface IMediaStreamConstraints {
@@ -95,3 +95,4 @@ export const useMediaStream = (): IUseMediaRequestReturnType => {
 
   return { localVideoRef, remoteVideoRef };
 };
+

@@ -2,7 +2,6 @@ import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
   width: 106px;
-  height: 106px;
   top: 35px;
   position: absolute;
   display: flex;
