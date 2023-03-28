@@ -26,7 +26,7 @@ export default function MainPage(): JSX.Element {
   }>({ sw: "", ne: "" });
   const [level, setLevel] = useState<number>();
 
-  console.log(location, "영역좌ddd 표");
+  // console.log(location, "영역좌ddd 표");
 
   const { isOpen, mapCreation } = useMapCreationMode();
   const { position, geolocationFn } = useGeolocationMode();
@@ -47,6 +47,8 @@ export default function MainPage(): JSX.Element {
       },
     },
   });
+
+  console.log("유저위치데이터", data);
 
   const debouncedHandler = useCallback(
     _.debounce((map) => {
