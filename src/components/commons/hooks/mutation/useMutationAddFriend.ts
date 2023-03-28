@@ -9,7 +9,7 @@ const ADD_FRIEND = gql`
   }
 `;
 
-export const useMutationAddFriend = (): [() => void] => {
+export const useMutationAddFriend = (): [typeof addFriend] => {
   const [addFriend] = useMutation<Pick<IMutation, "addFriend">, IMutationAddFriendArgs>(ADD_FRIEND);
 
   return [addFriend];
