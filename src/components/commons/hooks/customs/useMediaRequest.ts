@@ -1,4 +1,4 @@
-import { RefObject, useEffect, useRef, useState } from "react";
+ import { RefObject, useEffect, useRef } from "react";
 import { io } from "socket.io-client";
 
 interface IMediaStreamConstraints {
@@ -11,109 +11,88 @@ interface IUseMediaRequestReturnType {
   remoteVideoRef: RefObject<HTMLVideoElement>;
 }
 
-export const useMediaRequest = (): IUseMediaRequestReturnType => {
-  const [localStream, setLocalStream] = useState<MediaStream>();
-  const [remoteStream, setRemoteStream] = useState<MediaStream>();
+export const useMediaStream = (): IUseMediaRequestReturnType => {
   const localVideoRef = useRef<HTMLVideoElement>(null);
   const remoteVideoRef = useRef<HTMLVideoElement>(null);
-  const pcRef = useRef<RTCPeerConnection | null>(null);
 
   const constraints: IMediaStreamConstraints = { audio: true, video: true };
 
   useEffect(() => {
-    const startStream = async (): Promise<void> => {
-      const newSocket = io("http://10.34.233.64:4000/", {
-        path: "/socket.io",
-        transports: ["websocket"],
+    const newSocket = io("http://10.34.233.83:4000/", {
+      path: "/socket.io",
+      transports: ["websocket"],
+    });
+
+    const pc = new RTCPeerConnection({
+      iceServers: [
+        {
+          urls: "stun:stun.l.google.com:19302",
+        },
+      ],
+    });
+
+    const getMedia = async (): Promise<void> => {
+      const stream = await navigator.mediaDevices.getUserMedia(constraints);
+
+      // localVideo 출력
+      if (localVideoRef.current) {
+        localVideoRef.current.srcObject = stream;
+      }
+
+      stream.getTracks().forEach((track) => {
+        if (pc) {
+          pc.addTrack(track, stream);
+        }
       });
 
-      try {
-        const stream = await navigator.mediaDevices.getUserMedia(constraints);
-        setLocalStream(stream);
-        const localVideoCurrent = localVideoRef?.current;
-        if (localVideoCurrent) {
-          localVideoCurrent.srcObject = stream;
+      // remoteVideo 출력
+      pc.ontrack = (event: RTCTrackEvent) => {
+        console.log(event, "이벤트다!!!");
+        if (remoteVideoRef.current) {
+          remoteVideoRef.current.srcObject = event.streams[0];
+        } else {
+          alert("remoteVideoRef is null");
         }
-        const pc = new RTCPeerConnection({
-          iceServers: [
-            {
-              urls: "stun.l.google.com:19302",
-            },
-          ],
-        });
-        pc.onicecandidate = (event) => {
+      };
+
+      pc.onicecandidate = (event: RTCPeerConnectionIceEvent) => {
+        const candidate = event.candidate;
+        if (candidate !== null) {
           newSocket.emit("candidate", event.candidate);
-        };
-
-        pcRef.current = pc;
-        let pcCurrnent = pcRef.current;
-        if (pcCurrnent) {
-          pcCurrnent = pc;
         }
+      };
 
-        stream.getTracks().forEach((track) => {
-          pc.addTrack(track, stream);
-        });
+      const offer = await pc.createOffer();
+      await pc.setLocalDescription(offer);
 
-        pc.ontrack = (event) => {
-          setRemoteStream(event.streams[0]);
-          const remoteVideoCurrent = remoteVideoRef?.current;
-          if (remoteVideoCurrent) {
-            remoteVideoCurrent.srcObject = event.streams[0];
-          }
-        };
+      // offer
+      newSocket.emit("offer", async (offer: RTCSessionDescriptionInit) => {
+        await pc.setRemoteDescription(new RTCSessionDescription(offer));
 
-        const offer = await pc.createOffer();
+        // answer 서버에 emit 보내기
         const answer = await pc.createAnswer();
-        const candidate = new RTCIceCandidate();
+        await pc.setLocalDescription(answer);
+        newSocket.emit("answer", answer);
+      });
 
-        await pc.setLocalDescription(offer);
-        newSocket.emit("offer", offer);
+      // answer
+      newSocket.on("answer", async (answer: RTCSessionDescriptionInit) => {
+        await pc.setRemoteDescription(new RTCSessionDescription(answer));
+      });
 
-        await pc.setRemoteDescription(answer);
-        newSocket.emit("answer", offer);
-
-        newSocket.emit("answer", {
-          type: "answer",
-          sdp: answer.sdp,
-        });
-
-        newSocket.emit("candidate", {
-          label: candidate.sdpMLineIndex,
-          candidate: candidate.candidate,
-        });
-
-        newSocket.on("answer", async (data) => {
-          console.log(data, "answer!!");
-        });
-
-        newSocket.on("candidate", async (data: RTCIceCandidate) => {
-          await pc.addIceCandidate(data);
-          console.log(data, "candidate!!");
-        });
-      } catch (error) {
-        console.error(error);
-      }
+      // candidate
+      newSocket.on("candidate", async (candidate: RTCIceCandidate) => {
+        try {
+          await pc.addIceCandidate(candidate);
+        } catch (error) {
+          alert("error");
+        }
+      });
     };
 
-    void startStream();
-
-    return () => {
-      if (localStream) {
-        localStream.getTracks().forEach((track) => {
-          track.stop();
-        });
-      }
-      if (remoteStream) {
-        remoteStream.getTracks().forEach((track) => {
-          track.stop();
-        });
-      }
-      if (pcRef.current) {
-        pcRef.current.close();
-      }
-    };
+    void getMedia();
   }, []);
 
   return { localVideoRef, remoteVideoRef };
 };
+
