@@ -7,8 +7,9 @@ export const Wrapper = styled.div`
   justify-content: center;
   width: 100%;
   height: calc(100vh - 68px);
-  background-color: #6658ca;
   color: white;
+  /* background: linear-gradient(180deg, #6658ca 0%, #9e4dab 100%);  */
+  background-color: #6658ca;
 
   > div {
     display: flex;
@@ -18,7 +19,7 @@ export const Wrapper = styled.div`
     width: 40vw;
     height: 40vh;
     /* background-color: red;  */
-    > div {
+    > form {
       display: flex;
       flex-direction: row;
       align-items: center;
@@ -37,17 +38,21 @@ export const Title01Box = styled.div`
 
 export const Title01 = styled.h1`
   font-size: 50px;
-  font-family: "MainTitle02";
+
+  font-weight: 100;
 `;
 
 export const Title02 = styled.h2`
   font-size: 40px;
-  font-family: "MainTitle01";
+
+  margin-top: 40px;
 `;
 
 export const Title03 = styled.h3`
   font-size: 30px;
-  font-family: "MainTitle01";
+
+  margin-top: 30px;
+  margin-bottom: 30px;
 `;
 
 export const Input01 = styled.input`
@@ -55,10 +60,33 @@ export const Input01 = styled.input`
   height: 50px;
   margin-right: 15px;
   outline: white;
-  padding: 5px;
+  padding: 0, 0, 0, 0;
+  border-bottom: 1px solid #ff6464;
+  color: white;
+  background-color: #6658ca;
+`;
+
+export const Input02 = styled.input`
+  width: 500px;
+  height: 50px;
+  margin-right: 15px;
+  outline: white;
+  padding: 10px;
 `;
 
 export const Button01 = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 89px;
+  height: 50px;
+  background-color: black;
+  cursor: pointer;
+  user-select: none;
+`;
+
+export const Button02 = styled.button`
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -69,4 +97,5 @@ export const Button01 = styled.div`
   background-color: #ff6464;
   cursor: pointer;
   user-select: none;
+  color: white;
 `;

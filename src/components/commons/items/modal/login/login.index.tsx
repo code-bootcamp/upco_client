@@ -3,27 +3,15 @@ import { useFormLogin } from "../../../hooks/useForm/useForm.login";
 import AccountInput from "../../inputs/account/account.input.index";
 import JoinUI from "../join/join.index";
 import * as S from "./login.styles";
-import { FormValues, ILoginUIProps } from "./login.types";
-import { useMutation } from "@apollo/client";
-import { accessTokenState } from "../../../stores";
-import { useRecoilState } from "recoil";
-import gql from "graphql-tag";
+import { ILoginUIProps } from "./login.types";
 import FindUI from "../find/find.index";
-
-const LOGIN = gql`
-  mutation Login($email: String!, $password: String!) {
-    login(email: $email, password: $password)
-  }
-`;
+import { useLoginMode } from "../../../hooks/customs/useLoginMode";
 
 export default function LoginUI(props: ILoginUIProps): JSX.Element {
   const [isFind, setIsFind] = useState(false);
   // const [isJoin, setIsJoin] = useState(false);
 
-  const [login, { data, error }] = useMutation(LOGIN);
-
-  const [_, setAccessToken] = useRecoilState(accessTokenState);
-
+  const { onSubmit } = useLoginMode();
   const {
     register,
     handleSubmit,
@@ -40,22 +28,6 @@ export default function LoginUI(props: ILoginUIProps): JSX.Element {
     } else {
       setIsFind((prev) => !prev);
     }
-  };
-
-  const onSubmit = async (data: FormValues): Promise<void> => {
-    const { email, password } = data;
-    const result = await login({ variables: { email, password } });
-
-    const accessToken = result.data.login;
-
-    console.log(accessToken);
-
-    if (accessToken === undefined) {
-      alert("로그인에 실패하였습니다. 다시 시도해주세요!");
-      return;
-    }
-    setAccessToken(accessToken);
-    alert("로그인 되었습니다.");
   };
 
   return (
