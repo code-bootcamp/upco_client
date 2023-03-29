@@ -4,4 +4,5 @@ export interface TextChatHeaderProps {
   userId: string;
   userJoinedMessageRef: React.RefObject<HTMLParagraphElement>;
   joinMessage: string;
+  messageLog: string[];
 }
