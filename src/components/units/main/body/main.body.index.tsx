@@ -32,10 +32,10 @@ export default function MainBody(props: IProps): JSX.Element {
               }}
             >
               <MyMarkerBox>
-                <MyMarker src="/images/marker/ker4.png"></MyMarker>
+                <MyMarker src="/images/marker/myMarker.png"></MyMarker>
               </MyMarkerBox>
             </CustomOverlayMap>
-            {/* {props.data?.map(
+            {props.data?.findAroundUsers.map(
               (
                 el: {
                   findAroundUsers: {
@@ -49,17 +49,17 @@ export default function MainBody(props: IProps): JSX.Element {
               ) => (
                 <CustomOverlayMap
                   position={{
-                    lat: el.findAroundUsers.lat,
-                    lng: el.findAroundUsers.lng,
+                    lat: el.lat,
+                    lng: el.lng,
                   }}
-                  key={el.findAroundUsers.id}
+                  key={el.id}
                 >
                   <MyMarkerBox>
-                    <MyMarker src="/images/marker/mar4.png"></MyMarker>
+                    <MyMarker src="/images/marker/userMarker.png"></MyMarker>
                   </MyMarkerBox>
                 </CustomOverlayMap>
               )
-            )} */}
+            )}
           </MarkerClusterer>
         </MabWeb>
       )}

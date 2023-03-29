@@ -28,26 +28,27 @@ const locationList: LocationData[] = [
   },
 ];
 
-export default function LocationList(): JSX.Element {
+export default function LocationList(props): JSX.Element {
   const { onClickAddFriend } = useAddFriend();
+  console.log("푸터 데이터", props.data);
 
   return (
     <>
-      {locationList.map((el) => (
-        <S.LocationWrapper key={el._id}>
+      {props.data?.findAroundUsers.map((el) => (
+        <S.LocationWrapper key={el.id}>
           <S.ImageColumn>
-            <S.ImageSection src={el.images} />
+            <S.ImageSection src={el.image} />
           </S.ImageColumn>
 
           <S.LocationListColumn>
             <S.LocationListRow>
-              <S.NickNameSection>{el.name}</S.NickNameSection>
+              <S.NickNameSection>{el.nickname}</S.NickNameSection>
               <S.AgeSection>{el.age}</S.AgeSection>
             </S.LocationListRow>
             <S.InterestBox>
-              {el.interest.map((interest, idx) => (
+              {/* {locationList.map((interest, idx) => (
                 <S.InterestSection key={idx}>{interest}</S.InterestSection>
-              ))}
+              ))} */}
             </S.InterestBox>
             <S.ButtonWrapper>
               <S.HoverButton>

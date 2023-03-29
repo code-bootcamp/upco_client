@@ -3,7 +3,7 @@ import { useState } from "react";
 import FollowerList from "../../../list/followerList";
 import LocationList from "../../../list/locationList";
 
-export default function MainFooter(): JSX.Element {
+export default function MainFooter(props): JSX.Element {
   const [selectedComponent, setSelectedComponent] = useState("location");
   const [isFollower, setIsFollower] = useState(false);
 
@@ -35,7 +35,7 @@ export default function MainFooter(): JSX.Element {
       <S.DivideLine />
       {isFollower && <div>친구 리스트</div>}
       {selectedComponent === "location" ? (
-        <LocationList />
+        <LocationList data={props.data} />
       ) : selectedComponent === "follower" ? (
         <FollowerList />
       ) : (
