@@ -35,7 +35,7 @@ export default function MainBody(props: IProps): JSX.Element {
                 <MyMarker src="/images/marker/ker4.png"></MyMarker>
               </MyMarkerBox>
             </CustomOverlayMap>
-            {props.data?.map(
+            {/* {props.data?.map(
               (
                 el: {
                   findAroundUsers: {
@@ -59,7 +59,7 @@ export default function MainBody(props: IProps): JSX.Element {
                   </MyMarkerBox>
                 </CustomOverlayMap>
               )
-            )}
+            )} */}
           </MarkerClusterer>
         </MabWeb>
       )}
