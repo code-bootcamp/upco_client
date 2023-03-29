@@ -7,7 +7,7 @@ export const globalStyles = css`
     padding: 0;
     border: 0;
     list-style: none;
-    font-family: "Regular", "Roboto";
+    font-family: "Regular";
   }
 
   @font-face {
