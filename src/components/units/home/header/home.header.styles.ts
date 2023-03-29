@@ -19,6 +19,7 @@ export const Wrapper = styled.div`
     width: 40vw;
     height: 40vh;
     /* background-color: red;  */
+
     > form {
       display: flex;
       flex-direction: row;
@@ -60,10 +61,7 @@ export const Input01 = styled.input`
   height: 50px;
   margin-right: 15px;
   outline: white;
-  padding: 0, 0, 0, 0;
-  border-bottom: 1px solid #ff6464;
-  color: white;
-  background-color: #6658ca;
+  padding: 10px;
 `;
 
 export const Input02 = styled.input`
@@ -80,10 +78,12 @@ export const Button01 = styled.div`
   justify-content: center;
   align-items: center;
   width: 89px;
-  height: 50px;
-  background-color: black;
+  height: 68px;
+  border-radius: 50%;
+  background-color: #ff6464;
   cursor: pointer;
   user-select: none;
+  color: white;
 `;
 
 export const Button02 = styled.button`

@@ -2,6 +2,7 @@ import { useQuery } from "@apollo/client";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { movePageMode } from "../../hooks/customs/MovePageMode";
 import { useQueryFetchLoginUser } from "../../hooks/queries/fetchLoginUser";
 import FindUI from "../../items/modal/find/find.index";
 import JoinUI from "../../items/modal/join/join.index";
@@ -16,6 +17,7 @@ export default function LayoutHeader(): JSX.Element {
   const { data } = useQueryFetchLoginUser();
   const [isJoin, setIsJoin] = useState(false);
   const [isFind, setIsFind] = useState(false);
+  const { onClickMovePage } = movePageMode();
 
   const onClickOpen = (open: string) => (): void => {
     if (open === "login") {
@@ -33,7 +35,7 @@ export default function LayoutHeader(): JSX.Element {
 
       <S.Wrapper>
         <div>
-          <S.Logo src="/images/layout/logo.svg" />
+          <S.Logo src="/images/layout/logo.svg" onClick={onClickMovePage("/")} />
           <S.MenuBox>
             <Link href="/main">
               <div className={router.pathname === "/main" ? "selected" : ""}>
