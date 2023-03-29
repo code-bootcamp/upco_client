@@ -6,7 +6,7 @@ import FollowerList from "../../../list/followerList";
 export default function TextChatFooter(): JSX.Element {
   const [selectedComponent, setSelectedComponent] = useState("chat");
   const [isFollower, setIsFollower] = useState(false);
-
+  const [roomId, setRoomId] = useState("");
   const handleChatClick = (): void => {
     setSelectedComponent("chat");
   };

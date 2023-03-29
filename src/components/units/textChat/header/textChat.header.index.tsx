@@ -10,7 +10,7 @@ export default function TextChatHeader(props: TextChatHeaderProps): JSX.Element 
           ? props.messages.map((msg, index) => (
               <div key={index} className={msg.isSent ? "sentMessage" : ""}>
                 {msg.isUserJoinedMessage ? (
-                  <p ref={props.userJoinedMessageRef}>{msg.content}</p>
+                  <p ref={props.userJoinedMessageRef}>{msg}</p>
                 ) : (
                   msg.content
                 )}

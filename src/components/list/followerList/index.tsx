@@ -4,7 +4,8 @@ import { io } from "socket.io-client";
 import { useQueryFetchLoginUser } from "../../commons/hooks/queries/fetchLoginUser";
 import TooltipUI02 from "../../commons/items/tooltip/02/tooltip02.index";
 import { v4 as uuidv4 } from "uuid";
-import { RiContactsBookLine } from "react-icons/ri";
+import { useRecoilState } from "recoil";
+import { roomIdState } from "../../commons/stores";
 
 const FollowerWrapper = styled.div`
   display: flex;
@@ -65,7 +66,7 @@ const chatData: ChatData[] = [
     chat: "안녕하세요!",
   },
   {
-    _id: "555",
+    _id: "04df9e3b-cc46-4b51-96a0-f70e9bbe3037",
     name: "문성진",
     images: "/images/textChat/faceChat.webp",
     chat: "반갑습니다!ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ",
@@ -79,7 +80,7 @@ const chatData: ChatData[] = [
 ];
 
 export default function FollowerList(): JSX.Element {
-  const [roomId, setRoomId] = useState("");
+  const [roomId, setRoomId] = useRecoilState(roomIdState);
   const [socket, setSocket] = useState();
   const data = useQueryFetchLoginUser();
   const chatCut = (str: string, n: number): string => {
@@ -87,24 +88,20 @@ export default function FollowerList(): JSX.Element {
   };
 
   const myId = data.data.fetchLoginUser.id;
-
+  console.log(roomId);
   const onClickChat = (e) => {
     const anotherId = e.currentTarget.id;
     const newSocket = io("http://10.34.233.161:4000/", {
       path: "/socket.io",
       transports: ["websocket"],
     });
-    // console.log(myId, "===============================", anotherId);
     newSocket.emit("createRoom", myId, anotherId);
-
     newSocket.on("roomCreateOrJoin", (roomId) => {
-      console.log("채팅방에입장했습니다:", roomId);
       setRoomId(roomId);
     });
-    console.log(roomId);
-
     setSocket(newSocket);
   };
+
   return (
     <>
       {chatData.map((el) => (
