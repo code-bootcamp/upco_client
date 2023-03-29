@@ -2,7 +2,7 @@ import { useQuery } from "@apollo/client";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { movePageMode } from "../../hooks/customs/MovePageMode";
+import { movePageMode } from "../../hooks/customs/movePageMode";
 import { useQueryFetchLoginUser } from "../../hooks/queries/fetchLoginUser";
 import FindUI from "../../items/modal/find/find.index";
 import JoinUI from "../../items/modal/join/join.index";
