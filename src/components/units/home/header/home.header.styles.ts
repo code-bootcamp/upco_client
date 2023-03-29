@@ -8,8 +8,15 @@ export const Wrapper = styled.div`
   width: 100%;
   height: calc(100vh - 68px);
   color: white;
-  /* background: linear-gradient(180deg, #6658ca 0%, #9e4dab 100%);  */
-  background-color: #6658ca;
+  /* background-color: #6658ca; */
+  /* background: linear-gradient(180deg, #6658ca 0%, rgba(102, 88, 202, 0.67) 100%);
+   */
+  background: linear-gradient(
+    0deg,
+    #6658ca 0%,
+    rgba(31, 0, 255, 0.675156) 99.99%,
+    rgba(102, 88, 202, 0.67) 100%
+  );
 
   > div {
     display: flex;
