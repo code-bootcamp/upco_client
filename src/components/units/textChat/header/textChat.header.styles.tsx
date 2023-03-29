@@ -5,8 +5,16 @@ export const Wrapper = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   border-right: 1px solid #d9d9d9;
+
+  > div.noMessage {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    color: #999;
+  }
 `;
 
 export const Body = styled.div`
@@ -27,14 +35,14 @@ export const Body = styled.div`
   }
 
   > div.systemMessage {
-    width: 100%;
-    align-items: center;
-    background-color: red;
+    margin: 0 auto;
+    color: #333;
+    padding: 5px 10px;
   }
 
   > div.sentMessage {
     align-self: flex-end;
     background-color: #f8e71c;
-    color: #000;
+    color: #333;
   }
 `;
