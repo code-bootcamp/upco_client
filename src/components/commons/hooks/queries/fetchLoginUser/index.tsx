@@ -11,6 +11,7 @@ export const FETCH_LOGIN_USER = gql`
       reported
       createAt
       updateAt
+      deletedAt
     }
   }
 `;
