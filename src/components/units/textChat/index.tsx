@@ -6,6 +6,7 @@ import TextChatBody from "./body/textChat.body.index";
 import TextChatFooter from "./footer/textChat.footer.index";
 import TextChatHeader from "./header/textChat.header.index";
 import { v4 as uuidv4 } from "uuid";
+import { useQueryFetchLoginUser } from "../../commons/hooks/queries/fetchLoginUser";
 
 const Wrapper = styled.div`
   max-width: 100%;
@@ -34,13 +35,19 @@ export default function TextChat(): JSX.Element {
   const [userId, setUserId] = useState<string>("");
   const userJoinedMessageRef = useRef<HTMLParagraphElement>(null);
   const [joinMessage, setJoinMessage] = useState("");
+  const data = useQueryFetchLoginUser();
+  const myId = data.data.fetchLoginUser.id;
   console.log(socket);
-  const generateUserId = (): string => {
+  console.log(joinMessage);
+
+  const generateRoomId = (): string => {
     return uuidv4();
   };
+  const chatroomId = generateRoomId();
+  console.log(myId, "-----", chatroomId);
 
   useEffect(() => {
-    const newSocket = io("http://10.34.233.87:4000/", {
+    const newSocket = io("http://10.34.233.64:4000/", {
       path: "/socket.io",
       transports: ["websocket"],
     });
@@ -48,17 +55,15 @@ export default function TextChat(): JSX.Element {
     newSocket.on("client", (data: string) => {
       setMessages((prevMessages) => [...prevMessages, { content: data, isSent: false }]);
     });
-    newSocket.on("connection", () => {
-      const userId = generateUserId();
-      setUserId(userId);
-      newSocket.emit("new user", userId);
-    });
+    newSocket.on("connection", () => {});
+
+    newSocket.emit("new user", myId);
 
     newSocket.on("join message", (msg) => {
       setJoinMessage(msg);
     });
 
-    // newSocket.on("join", (userId: string) => {});
+    newSocket.emit("join room", chatroomId);
 
     setSocket(newSocket);
 
@@ -85,7 +90,6 @@ export default function TextChat(): JSX.Element {
             <TextChatHeader
               isVideo={isVideo}
               messages={messages}
-              userId={userId}
               userJoinedMessageRef={userJoinedMessageRef}
               joinMessage={joinMessage}
             />

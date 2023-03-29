@@ -5,7 +5,7 @@ import PasswordReset from "../../passwordReset/passwordReset.index";
 import * as S from "./profileEdit.body.styles";
 
 export default function ProfileEditBody(): JSX.Element {
-  // const { data } = useQueryFetchLoginUser();
+  const { data } = useQueryFetchLoginUser();
   const [isOpen, setIsOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [interestList, setInterestList] = useState<string[]>([]);
@@ -27,19 +27,18 @@ export default function ProfileEditBody(): JSX.Element {
         <S.Title>프로필 정보</S.Title>
         <S.Section>
           <S.SectionTitle>닉네임</S.SectionTitle>
-          <S.DefaultBox>문성진</S.DefaultBox>
+          <S.DefaultBox>{data?.fetchLoginUser?.nickname}</S.DefaultBox>
         </S.Section>
         <S.Section>
           <S.SectionTitle>이메일</S.SectionTitle>
           <S.DefaultBox>
-            <span>anstjdwls@naver.com</span>
+            <span>{data?.fetchLoginUser?.email}</span>
           </S.DefaultBox>
         </S.Section>
         <S.Section>
           <S.SectionTitle>비밀번호</S.SectionTitle>
           <S.DefaultBox>
             <div>
-              <span>*********</span>
               <button onClick={openPasswordReset}>변경</button>
             </div>
           </S.DefaultBox>
