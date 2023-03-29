@@ -16,6 +16,7 @@ const FIND_AROUND_USERS = gql`
       lng
       age
       nickname
+      image
     }
   }
 `;
@@ -40,7 +41,13 @@ export default function MainPage(): JSX.Element {
     sw: location.sw.replace(/\(|\)/g, "").split(", "),
     ne: location.ne.replace(/\(|\)/g, "").split(", "),
   });
-  console.log("aaa", Number(location.sw.replace(/\(|\)/g, "").split(", ")[0]));
+  console.log(
+    "aaa",
+    Number(location.sw.replace(/\(|\)/g, "").split(", ")[0]),
+    Number(location.sw.replace(/\(|\)/g, "").split(", ")[1]),
+    Number(location.ne.replace(/\(|\)/g, "").split(", ")[0]),
+    Number(location.ne.replace(/\(|\)/g, "").split(", ")[1])
+  );
   // console.log("bbb", locations);
 
   const { data } = useQuery(FIND_AROUND_USERS, {
@@ -82,7 +89,7 @@ export default function MainPage(): JSX.Element {
           setLevel={setLevel}
         ></MainBody>
       )}
-      <MainFooter />
+      <MainFooter data={data} />
     </div>
   );
 }
