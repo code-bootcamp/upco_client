@@ -1,7 +1,9 @@
 import { useMutation, gql } from "@apollo/client";
+import { useEmailCode } from "../../../hooks/customs/useEmailCode";
 import { useJoinMode } from "../../../hooks/customs/useJoinMode";
 import { useFormJoin } from "../../../hooks/useForm/useForm.join";
 import AccountInput from "../../inputs/account/account.input.index";
+import EmailCodeInput from "../../inputs/email/email.input.index";
 import * as S from "./join.styles";
 import { IJoinUIProps } from "./join.types";
 
@@ -15,11 +17,22 @@ interface IData {
 export default function JoinUI(props: IJoinUIProps): JSX.Element {
   const {
     register,
+    getValues,
     handleSubmit,
     formState: { errors },
   } = useFormJoin();
 
-  const { onClickJoin } = useJoinMode();
+  const {
+    onEmailButtonClick,
+    onEmailInputChange,
+    setErrors,
+    errors: emailError,
+    isSend,
+    isVerify,
+    code,
+  } = useEmailCode(getValues);
+
+  const { onClickJoin } = useJoinMode(isVerify, setErrors);
 
   const onClickClose = (move: string) => (): void => {
     if (move === "") {
@@ -46,6 +59,18 @@ export default function JoinUI(props: IJoinUIProps): JSX.Element {
           <AccountInput placeholder="이메일을 입력해주세요." register={register("email")} />
           <div>
             <p>{errors.email?.message}</p>
+          </div>
+        </S.InputBox>
+        <S.InputBox>
+          <EmailCodeInput
+            onChange={onEmailInputChange}
+            onClick={onEmailButtonClick}
+            isSend={isSend}
+            isVerify={isVerify}
+            code={code}
+          ></EmailCodeInput>
+          <div>
+            <p>{emailError}</p>
           </div>
         </S.InputBox>
         <S.InputBox>

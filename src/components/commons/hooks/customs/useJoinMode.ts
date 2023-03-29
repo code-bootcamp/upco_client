@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction } from "react";
 import { useMutationCreateUser } from "../mutation/useMutattionCreateUser";
 
 interface IData {
@@ -6,12 +7,19 @@ interface IData {
   password: string;
 }
 
-export const useJoinMode = (): {
+export const useJoinMode = (
+  isVerify: boolean,
+  setErrors: Dispatch<SetStateAction<string>>
+): {
   onClickJoin: (data: IData) => Promise<void>;
 } => {
   const [createUser] = useMutationCreateUser();
 
   const onClickJoin = async (data: IData): Promise<void> => {
+    if (!isVerify) {
+      setErrors("이메일 인증이 필요합니다.");
+      return;
+    }
     const result = await createUser({
       variables: {
         createUserInput: {
