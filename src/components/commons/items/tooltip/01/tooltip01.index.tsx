@@ -21,7 +21,7 @@ export default function TooltipUI(): JSX.Element {
         </S.RoomWrapper>
         <S.divideLine></S.divideLine>
         <S.RoomWrapper>
-          <div onClick={onClickMoveToPage("/counsel")}>문의내역</div>
+          <div onClick={onClickMoveToPage("/questionList")}>문의내역</div>
         </S.RoomWrapper>
         <S.divideLine></S.divideLine>
         <S.RoomWrapper>

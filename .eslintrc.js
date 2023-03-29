@@ -18,6 +18,7 @@ module.exports = {
     "@typescript-eslint/no-unused-vars": "off",
     "@typescript-eslint/consistent-type-definitions": "off",
     "@typescript-eslint/array-type": "off",
+    "no-unneeded-ternary": "off",
     "@typescript-eslint/no-misused-promises": [
       2,
       {

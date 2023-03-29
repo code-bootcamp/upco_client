@@ -22,6 +22,11 @@ export type IBlockUser = {
   user: IUser;
 };
 
+export type ICreateNoticeInput = {
+  contents: Scalars['String'];
+  title: Scalars['String'];
+};
+
 export type ICreateQuestionInput = {
   contents: Scalars['String'];
   title: Scalars['String'];
@@ -42,37 +47,36 @@ export type IFindAroundUserInput = {
 
 export type IFindAroundUserOutput = {
   __typename?: 'FindAroundUserOutput';
-  age: Scalars['Int'];
-  createAt: Scalars['DateTime'];
-  deletedAt: Scalars['DateTime'];
+  age?: Maybe<Scalars['Int']>;
+  createAt?: Maybe<Scalars['DateTime']>;
   email: Scalars['String'];
   id: Scalars['String'];
-  image: Scalars['String'];
-  interest: Scalars['String'];
+  image?: Maybe<Scalars['String']>;
+  interest?: Maybe<Scalars['String']>;
   lat: Scalars['String'];
   lng: Scalars['String'];
   nickname: Scalars['String'];
   provider: Scalars['String'];
   reported?: Maybe<Scalars['Int']>;
-  updateAt: Scalars['DateTime'];
+  updateAt?: Maybe<Scalars['DateTime']>;
 };
 
 export type IFriend = {
   __typename?: 'Friend';
-  createAt: Scalars['DateTime'];
-  id: Scalars['String'];
-  isSuccess: Scalars['Boolean'];
-  opponentId: Scalars['String'];
-  user: IUser;
+  id?: Maybe<Scalars['String']>;
+  isSuccess?: Maybe<Scalars['Boolean']>;
+  opponentId?: Maybe<Scalars['String']>;
 };
 
 export type IMutation = {
   __typename?: 'Mutation';
   addFriend: IFriend;
   blockOpponent: IBlockUser;
+  createNotice: INotice;
   createQuestion: IQuestion;
   createUser: IUser;
   deleteFriend: Scalars['Boolean'];
+  deleteQuestion: Scalars['Boolean'];
   deleteUser: Scalars['Boolean'];
   login: Scalars['String'];
   passwordResetMailer: Scalars['String'];
@@ -81,6 +85,7 @@ export type IMutation = {
   saveUserLocation: Scalars['String'];
   unblockOpponent: Scalars['Boolean'];
   updateUser: IUser;
+  updateUserPwd: IUser;
   uploadFile: Scalars['String'];
 };
 
@@ -98,6 +103,11 @@ export type IMutationBlockOpponentArgs = {
 };
 
 
+export type IMutationCreateNoticeArgs = {
+  createNoticeInput: ICreateNoticeInput;
+};
+
+
 export type IMutationCreateQuestionArgs = {
   createQuestionInput: ICreateQuestionInput;
 };
@@ -110,6 +120,11 @@ export type IMutationCreateUserArgs = {
 
 export type IMutationDeleteFriendArgs = {
   opponentId: Scalars['String'];
+};
+
+
+export type IMutationDeleteQuestionArgs = {
+  questionId: Scalars['String'];
 };
 
 
@@ -149,8 +164,20 @@ export type IMutationUpdateUserArgs = {
 };
 
 
+export type IMutationUpdateUserPwdArgs = {
+  password: Scalars['String'];
+};
+
+
 export type IMutationUploadFileArgs = {
   file: Scalars['Upload'];
+};
+
+export type INotice = {
+  __typename?: 'Notice';
+  contents: Scalars['String'];
+  number: Scalars['Int'];
+  title: Scalars['String'];
 };
 
 export type IQuery = {
@@ -160,7 +187,10 @@ export type IQuery = {
   fetchFriends: Array<IFriend>;
   fetchId: IUser;
   fetchLoginUser: IUser;
+  fetchNotices?: Maybe<Array<INotice>>;
+  fetchQuestion: IQuestion;
   fetchQuestions: Array<IQuestion>;
+  fetchUser: IUser;
   findAroundUsers: Array<IFindAroundUserOutput>;
 };
 
@@ -175,8 +205,19 @@ export type IQueryFetchIdArgs = {
 };
 
 
+export type IQueryFetchQuestionArgs = {
+  questionId: Scalars['String'];
+};
+
+
+export type IQueryFetchUserArgs = {
+  id: Scalars['String'];
+};
+
+
 export type IQueryFindAroundUsersArgs = {
   bothLocation: IFindAroundUserInput;
+  interest?: InputMaybe<Scalars['String']>;
 };
 
 export type IQuestion = {
@@ -202,15 +243,14 @@ export type IUpdateUserInput = {
 
 export type IUser = {
   __typename?: 'User';
-  age: Scalars['Int'];
-  createAt: Scalars['DateTime'];
-  deletedAt: Scalars['DateTime'];
+  age?: Maybe<Scalars['Int']>;
+  createAt?: Maybe<Scalars['DateTime']>;
   email: Scalars['String'];
   id: Scalars['String'];
-  image: Scalars['String'];
-  interest: Scalars['String'];
+  image?: Maybe<Scalars['String']>;
+  interest?: Maybe<Scalars['String']>;
   nickname: Scalars['String'];
   provider: Scalars['String'];
   reported?: Maybe<Scalars['Int']>;
-  updateAt: Scalars['DateTime'];
+  updateAt?: Maybe<Scalars['DateTime']>;
 };

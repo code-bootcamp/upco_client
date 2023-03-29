@@ -1,4 +1,4 @@
-import Pagination from "../../../commons/pagination/Pagination.container";
+import Pagination from "../../../commons/paginations/Pagination.container";
 
 export default function NoticeFooter(): JSX.Element {
   return <Pagination />;
