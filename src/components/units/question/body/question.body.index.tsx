@@ -1,9 +1,9 @@
 import ProfileButtonBasic from "../../../commons/buttons/profileButtonBasic";
 import { useCreateQuestion } from "../../../commons/hooks/customs/useCreateQuestion";
 import { useFormCounsel } from "../../../commons/hooks/useForm/useForm.counsel";
-import * as S from "./counsel.body.styles";
+import * as S from "./question.body.styles";
 
-export default function CounselBody(): JSX.Element {
+export default function QuestionBody(): JSX.Element {
   const {
     register,
     handleSubmit,

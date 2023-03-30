@@ -1,5 +1,5 @@
-import CounselUI from "../../../src/components/units/counsel";
+import QuestionUI from "../../../src/components/units/question";
 
-export default function CounselPage(): JSX.Element {
-  return <CounselUI />;
+export default function QuestionPage(): JSX.Element {
+  return <QuestionUI />;
 }
