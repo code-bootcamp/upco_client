@@ -14,6 +14,10 @@ export const Title = styled.h4`
 `;
 
 export const ContentsBox = styled.div`
+  height: 600px;
+`;
+
+export const ContentsList = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -29,6 +33,17 @@ export const ContentsBox = styled.div`
   }
 `;
 
+export const NoneBox = styled.p`
+  height: 600px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: #979797;
+  font-size: 14px;
+  user-select: none;
+`;
+
 export const TextBox = styled.div`
   display: flex;
   flex-direction: row;
@@ -39,10 +54,18 @@ export const ContentsTitle = styled.p`
   color: #191919;
   font-family: "Bold";
   margin-right: 30px;
+  width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 export const Contents = styled.p`
+  max-width: 900px;
   color: #191919;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 export const CreateAt = styled.p`

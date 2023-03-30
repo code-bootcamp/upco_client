@@ -19,6 +19,7 @@ module.exports = {
     "@typescript-eslint/consistent-type-definitions": "off",
     "@typescript-eslint/array-type": "off",
     "no-unneeded-ternary": "off",
+    "react/no-unknown-property": "off",
     "@typescript-eslint/no-misused-promises": [
       2,
       {

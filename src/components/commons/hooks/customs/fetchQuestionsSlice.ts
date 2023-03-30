@@ -3,7 +3,6 @@ import { useQueryFetchQuestions } from "../queries/useQueryFetchQuestions";
 
 export const FetchQuestionsSlice = (): IQuestion[][] | undefined => {
   const { data } = useQueryFetchQuestions();
-  console.log(data, "데이터!");
 
   const fetchQuestions = [];
 
