@@ -32,7 +32,7 @@ export default function MainBody(props: IProps): JSX.Element {
               }}
             >
               <MyMarkerBox>
-                <MyMarker src="/images/marker/myMarker.png"></MyMarker>
+                <MyMarker src="/images/marker/myMarker.png" style={{ zIndex: 5 }}></MyMarker>
               </MyMarkerBox>
             </CustomOverlayMap>
             {props.data?.findAroundUsers.map(
@@ -55,7 +55,7 @@ export default function MainBody(props: IProps): JSX.Element {
                   key={el.id}
                 >
                   <MyMarkerBox>
-                    <MyMarker src="/images/marker/userMarker.png"></MyMarker>
+                    <MyMarker src="/images/marker/userMarker.png" style={{ zIndex: 1 }}></MyMarker>
                   </MyMarkerBox>
                 </CustomOverlayMap>
               )

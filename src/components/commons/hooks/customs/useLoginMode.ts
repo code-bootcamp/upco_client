@@ -23,6 +23,9 @@ export const useLoginMode = (): {
     }
 
     setAccessToken(accessToken);
+
+    localStorage.setItem("accessToken", accessToken); // 임시 사용 보안상 좋지 않으므로! 나중에 지울 예정!
+
     alert("로그인 되었습니다.");
 
     if ("/".includes(router.asPath)) {
