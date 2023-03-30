@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useLoginMode } from "../../../commons/hooks/customs/useLoginMode";
+import { Transition } from "react-transition-group";
 import * as S from "./home.header.styles";
 
 export default function HomeHeader(): JSX.Element {
@@ -29,12 +30,57 @@ export default function HomeHeader(): JSX.Element {
   //   }
   // }, [isNext]);
 
+  const [showInput, setShowInput] = useState(false);
+
   return (
     <S.Wrapper>
       <div>
         <S.Title01>'엎'어지면 '코'닿을 거리에서</S.Title01>
         <S.Title02>만날 수 있는 사람들을</S.Title02>
         <S.Title03>엎코에서 만나보세요!</S.Title03>
+
+        <div>
+          <button onClick={() => setShowInput(!showInput)}>Toggle Input</button>
+          <Transition in={showInput} timeout={500}>
+            {(state) => (
+              <div
+                style={{
+                  position: "relative",
+                  overflow: "hidden",
+                }}
+              >
+                <div
+                  style={{
+                    width: state === "entered" ? "100%" : 0,
+                    height: "2px",
+                    background: "black",
+                    position: "absolute",
+                    left: 0,
+                    top: "50%",
+                    transform: "translateY(-50%)",
+                    transition: "width 0.5s ease-out",
+                  }}
+                />
+                <input
+                  type="text"
+                  placeholder="Enter your name"
+                  style={{
+                    border: "none",
+                    padding: "8px",
+                    width: state === "entered" ? "100%" : 0,
+                    transition: "width 0.5s ease-out",
+                    position: "absolute",
+                    left: 0,
+                    top: "50%",
+                    transform: "translateY(-50%)",
+                    opacity: state === "entered" ? 1 : 0,
+                    height: 100,
+                  }}
+                />
+              </div>
+            )}
+          </Transition>
+        </div>
         <form onSubmit={handleSubmit(onSubmit)}>
           {isNext === 0 ? (
             <>
