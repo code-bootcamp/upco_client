@@ -1,9 +1,5 @@
 import { gql, useMutation } from "@apollo/client";
-import {
-  ICreateQuestionInput,
-  IMutation,
-  IMutationCreateQuestionArgs,
-} from "../../../../commons/types/generated/types";
+import { IMutation, IMutationCreateQuestionArgs } from "../../../../commons/types/generated/types";
 
 const CREATE_QUESTION = gql`
   mutation createQuestion($createQuestionInput: CreateQuestionInput!) {
