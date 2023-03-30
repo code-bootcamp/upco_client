@@ -30,7 +30,8 @@ export const TextWrapper = styled.div`
   width: 50%;
   height: 100%;
   /* background-color: red; */
-  background: rgba(102, 88, 202, 0.9);
+  background-color: #6658ca;
+  background: rgba(102, 88, 202, 0.7);
 
   /* background-color: #fff; */
   /* background: linear-gradient(0deg, #6658ca 0%, rgba(102, 88, 202, 0.67) 100%);   */

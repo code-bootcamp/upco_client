@@ -6,17 +6,20 @@ export const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: calc(100vh - 68px);
+  height: calc(75vh - 68px);
   color: white;
   /* background-color: #6658ca; */
   /* background: linear-gradient(180deg, #6658ca 0%, rgba(102, 88, 202, 0.67) 100%);
    */
-  background: linear-gradient(
+  /* background: linear-gradient(
     0deg,
     #6658ca 0%,
     rgba(31, 0, 255, 0.675156) 99.99%,
     rgba(102, 88, 202, 0.67) 100%
-  );
+  ); */
+  background-color: #fff;
+  background-color: whitesmoke;
+  background-color: #6658ca;
 
   > div {
     display: flex;
