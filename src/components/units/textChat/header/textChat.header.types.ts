@@ -3,6 +3,6 @@ export interface TextChatHeaderProps {
   messages: Array<{ content: string; isSent: boolean; isUserJoinedMessage: boolean }>;
   userId: string;
   userJoinedMessageRef: React.RefObject<HTMLParagraphElement>;
-  joinMessage: string;
-  messageLog: string[];
+  messageLog: any;
+  myId: string;
 }

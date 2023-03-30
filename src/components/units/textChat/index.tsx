@@ -8,7 +8,6 @@ import TextChatHeader from "./header/textChat.header.index";
 import { useQueryFetchLoginUser } from "../../commons/hooks/queries/fetchLoginUser";
 import { useRecoilState } from "recoil";
 import { roomIdState } from "../../commons/stores";
-import axios from "axios";
 
 const Wrapper = styled.div`
   max-width: 100%;
@@ -35,13 +34,11 @@ export default function TextChat(): JSX.Element {
   const [messages, setMessages] = useState<Array<{ contents: string; isSent: boolean }>>([]);
   const [socket, setSocket] = useState<Socket<DefaultEventsMap, DefaultEventsMap> | null>(null);
   const [roomId, setRoomId] = useRecoilState(roomIdState);
-  const [messageLog, setMessageLog] = useState("");
-  const userJoinedMessageRef = useRef<HTMLParagraphElement>(null);
+  const [messageLog, setMessageLog] = useState<Array<{ contents: string; senderId: string }>>([]);
 
-  const [joinMessage, setJoinMessage] = useState("");
   const data = useQueryFetchLoginUser();
   const myId = data?.data?.fetchLoginUser.id;
-  // console.log(socket);
+  console.log(socket);
 
   useEffect(() => {
     const newSocket = io("http://10.34.233.75:4000/", {
@@ -50,17 +47,16 @@ export default function TextChat(): JSX.Element {
     });
 
     newSocket.on("client", (contents) => {
-      setMessages((prevMessages) => [...prevMessages, { content: contents, isSent: false }]);
+      setMessages((prevMessages) => [...prevMessages, { contents, isSent: false }]);
     });
 
     newSocket.on("roomCreateOrJoin", (roomId) => {
       setRoomId(roomId);
     });
-    console.log(roomId);
 
     newSocket.emit("joinRoom", roomId);
 
-    newSocket.on("load messages", (messageLog) => {
+    newSocket.on("load Message", (messageLog) => {
       setMessageLog(messageLog);
     });
 
@@ -74,13 +70,13 @@ export default function TextChat(): JSX.Element {
   const emitData = (contents: string): void => {
     if (socket) {
       setMessages((prevMessages) => [...prevMessages, { content: contents, isSent: true }]);
-      socket.emit("message", { roomId, contents, myId });
+      socket.emit("message", { roomId, contents, senderId: myId });
     }
   };
-
   const onClickVideo = (): void => {
     setIsVideo(true);
   };
+
   return (
     <>
       <Wrapper>
@@ -90,8 +86,7 @@ export default function TextChat(): JSX.Element {
               isVideo={isVideo}
               messages={messages}
               messageLog={messageLog}
-              userJoinedMessageRef={userJoinedMessageRef}
-              joinMessage={joinMessage}
+              myId={myId}
             />
             <TextChatBody emitData={emitData} onClickVideo={onClickVideo} messages={messages} />
           </div>

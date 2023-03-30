@@ -3,7 +3,6 @@ import { useState } from "react";
 import { io } from "socket.io-client";
 import { useQueryFetchLoginUser } from "../../commons/hooks/queries/fetchLoginUser";
 import TooltipUI02 from "../../commons/items/tooltip/02/tooltip02.index";
-import { v4 as uuidv4 } from "uuid";
 import { useRecoilState } from "recoil";
 import { roomIdState } from "../../commons/stores";
 
