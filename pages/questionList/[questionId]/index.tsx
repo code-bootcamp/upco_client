@@ -1,5 +1,5 @@
-import QuestionUI from "../../../src/components/units/question";
+import QuestionDetailUI from "../../../src/components/units/questionDetail";
 
-export default function QuestionPage(): JSX.Element {
-  return <QuestionUI />;
+export default function QuestionDetailPage(): JSX.Element {
+  return <QuestionDetailUI />;
 }

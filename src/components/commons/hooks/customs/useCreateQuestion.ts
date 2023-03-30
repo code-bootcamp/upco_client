@@ -11,7 +11,7 @@ export const useCreateQuestion = (): IUseCreateQuestion => {
 
   const [createQuestion] = useMutationCreateQuestion();
 
-  const onClickCreateQuestion: SubmitHandler<FieldValues> = async (data) => {
+  const onClickCreateQuestion: SubmitHandler<FieldValues> = async (data): Promise<void> => {
     try {
       await createQuestion({
         variables: {
