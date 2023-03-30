@@ -2,7 +2,6 @@ import { useMutationUpdateUser } from "../mutation/useMutationUpdateUser";
 
 interface IData {
   nickname: string;
-  email: string;
   age: number;
   interest: string[];
 }
@@ -17,7 +16,6 @@ export const useUpdateUserMode = (): {
       variables: {
         updateUserInput: {
           nickname: data.nickname,
-          email: data.email,
           age: data.age,
           interest: data.interest,
         },
@@ -26,5 +24,5 @@ export const useUpdateUserMode = (): {
     alert("회원 정보가 수정되었습니다.");
   };
 
-  return { onClickUpdate }; // onClickUpdate 속성의 값으로 함수를 반환합니다.
+  return { onClickUpdate };
 };

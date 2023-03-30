@@ -42,8 +42,6 @@ export default function TextChat(): JSX.Element {
   const data = useQueryFetchLoginUser();
   const myId = data.data.fetchLoginUser.id;
 
-  console.log(messageLog, "111111");
-
   console.log(socket);
 
   useEffect(() => {
@@ -80,6 +78,7 @@ export default function TextChat(): JSX.Element {
       socket.emit("message", { roomId, contents, myId });
     }
   };
+
   const onClickVideo = (): void => {
     setIsVideo(true);
   };

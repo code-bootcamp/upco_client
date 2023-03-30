@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useQueryFetchLoginUser } from "../../../commons/hooks/queries/fetchLoginUser";
+import { useUpdateUserMode } from "../../../commons/hooks/customs/useUpdateUserMode";
 import InterestUI from "../../../commons/items/modal/interest/interest.index";
 import PasswordReset from "../../passwordReset/passwordReset.index";
 import * as S from "./profileEdit.body.styles";
@@ -9,12 +10,21 @@ export default function ProfileEditBody(): JSX.Element {
   const [isOpen, setIsOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [interestList, setInterestList] = useState<string[]>([]);
+  const { onClickUpdate } = useUpdateUserMode();
 
   const openPasswordReset = (): void => {
     setIsOpen((prev) => !prev);
   };
   const openInterestModal = (): void => {
     setIsModalOpen((prev) => !prev);
+  };
+
+  const handleUpdateProfile = async (): Promise<void> => {
+    await onClickUpdate({
+      nickname: data?.fetchLoginUser?.nickname,
+      age: 0,
+      interest: interestList,
+    });
   };
 
   return (
@@ -49,13 +59,14 @@ export default function ProfileEditBody(): JSX.Element {
             <div>
               <S.InterestBox>
                 {interestList.map((interest) => (
-                  <li key={interest}>{interest}</li>
+                  <li key={interest}>{data?.fetchLoginUser.interest}</li>
                 ))}
               </S.InterestBox>
               <S.InterestAddButton onClick={openInterestModal}>추가</S.InterestAddButton>
             </div>
           </S.DefaultBox>
         </S.Section>
+        <S.UpdateBtn onClick={handleUpdateProfile}>수정 완료</S.UpdateBtn>
       </S.Wrapper>
     </>
   );
