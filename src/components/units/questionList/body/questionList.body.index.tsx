@@ -1,15 +1,14 @@
 import { useState } from "react";
 import { getDate } from "../../../../commons/libraries/utils";
-import { FetchQuestionsSlice } from "../../../commons/hooks/customs/fetchQuestionsSlice";
-import { movePageMode } from "../../../commons/hooks/customs/movePageMode";
+import { FetchDataSlice } from "../../../commons/hooks/customs/fetchDataSlice";
+import { useQueryFetchQuestions } from "../../../commons/hooks/queries/useQueryFetchQuestions";
 import Pagination from "../../../commons/paginations/pagination.index";
 import * as S from "./questionList.body.styles";
 
 export default function QuestionListBody(): JSX.Element {
-  const fetchQuestions = FetchQuestionsSlice();
+  const { data } = useQueryFetchQuestions();
+  const fetchQuestions = FetchDataSlice(data?.fetchQuestions)();
   const [page, setPage] = useState(0);
-
-  const { onClickMovePage } = movePageMode();
 
   return (
     <>
@@ -19,7 +18,7 @@ export default function QuestionListBody(): JSX.Element {
           <>
             <S.ContentsBox>
               {fetchQuestions?.[page]?.map((el) => (
-                <S.ContentsList key={el.id} onClick={onClickMovePage(`/questionList/${el.id}`)}>
+                <S.ContentsList key={el.id}>
                   <S.TextBox>
                     <S.ContentsTitle>{el.title}</S.ContentsTitle>
                     <S.Contents>{el.contents}</S.Contents>
