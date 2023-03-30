@@ -2,7 +2,7 @@ import * as S from "./styles";
 import ProfileEditBody from "./body/profileEdit.body.index";
 import ProfileEditHeader from "./header/profileEdit.header.index";
 import Header from "../../commons/headers/mypage/profile.header.index";
-import PasswordResetUI from "../../commons/items/modal/passwordReset/find.index";
+import ProfileEditFooter from "./footer/profileEdit.footer.index";
 
 export default function ProfileEditUI(): JSX.Element {
   return (
@@ -11,6 +11,7 @@ export default function ProfileEditUI(): JSX.Element {
         <Header />
         <ProfileEditHeader />
         <ProfileEditBody />
+        <ProfileEditFooter />
       </S.Wrapper>
     </>
   );
