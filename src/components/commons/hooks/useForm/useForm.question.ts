@@ -1,10 +1,10 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm, UseFormReturn } from "react-hook-form";
-import { CounselSchema } from "../../../../commons/libraries/vaildation/counsel";
+import { QuestionSchema } from "../../../../commons/libraries/vaildation/question";
 
-export const useFormCounsel = (): UseFormReturn => {
+export const useFormQuestion = (): UseFormReturn => {
   const result = useForm({
-    resolver: yupResolver(CounselSchema),
+    resolver: yupResolver(QuestionSchema),
     mode: "onChange",
   });
 

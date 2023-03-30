@@ -5,6 +5,7 @@ import * as S from "./notice.header.styles";
 const menuTitles = [
   { title: "고객센터", page: "/notice" },
   { title: "문의내역", page: "/questionList" },
+  { title: "문의하기", page: `/questionList/question` },
 ];
 
 export default function NoticeHeader(): JSX.Element {

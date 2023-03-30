@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 
 export const movePageMode = (): {
-  onClickMovePage: (mvoe: string) => () => Promise<void>;
+  onClickMovePage: (move: string) => () => Promise<void>;
 } => {
   const router = useRouter();
 

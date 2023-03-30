@@ -9,6 +9,7 @@ export const useCreateQuestion = (): IUseCreateQuestion => {
   const [createQuestion] = useMutationCreateQuestion();
 
   const onClickCreateQuestion: SubmitHandler<FieldValues> = async (data) => {
+    console.log(data);
     try {
       const result = await createQuestion({
         variables: {
