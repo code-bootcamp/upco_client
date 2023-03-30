@@ -82,3 +82,11 @@ export const InterestAddButton = styled.button`
   transition: all 0.3s ease-in-out;
   white-space: nowrap;
 `;
+export const UpdateBtn = styled.button`
+  width: 120px;
+  height: 40px;
+  font-size: 14px;
+  background-color: #6658ca;
+  color: #fff;
+  margin-top: 40px;
+`;
