@@ -17,9 +17,13 @@ export type Scalars = {
 export type IBlockUser = {
   __typename?: 'BlockUser';
   blockUserId?: Maybe<Scalars['String']>;
-  id: Scalars['String'];
+  id?: Maybe<Scalars['String']>;
   reportedId: Scalars['String'];
   user: IUser;
+};
+
+export type ICreateInterestInput = {
+  name: Scalars['String'];
 };
 
 export type ICreateNoticeInput = {
@@ -45,27 +49,22 @@ export type IFindAroundUserInput = {
   lng2: Scalars['Float'];
 };
 
-export type IFindAroundUserOutput = {
-  __typename?: 'FindAroundUserOutput';
-  age?: Maybe<Scalars['Int']>;
-  createAt?: Maybe<Scalars['DateTime']>;
-  email: Scalars['String'];
-  id: Scalars['String'];
-  image?: Maybe<Scalars['String']>;
-  interest?: Maybe<Scalars['String']>;
-  lat: Scalars['String'];
-  lng: Scalars['String'];
-  nickname: Scalars['String'];
-  provider: Scalars['String'];
-  reported?: Maybe<Scalars['Int']>;
-  updateAt?: Maybe<Scalars['DateTime']>;
-};
-
 export type IFriend = {
   __typename?: 'Friend';
   id?: Maybe<Scalars['String']>;
   isSuccess?: Maybe<Scalars['Boolean']>;
   opponentId?: Maybe<Scalars['String']>;
+};
+
+export type IInterest = {
+  __typename?: 'Interest';
+  id?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+};
+
+export type IInterestInput = {
+  id?: InputMaybe<Scalars['String']>;
+  name: Scalars['String'];
 };
 
 export type IMutation = {
@@ -75,18 +74,22 @@ export type IMutation = {
   createNotice: INotice;
   createQuestion: IQuestion;
   createUser: IUser;
+  createUserInterest: IInterest;
   deleteFriend: Scalars['Boolean'];
   deleteQuestion: Scalars['Boolean'];
   deleteUser: Scalars['Boolean'];
   login: Scalars['String'];
+  logout: Scalars['String'];
   passwordResetMailer: Scalars['String'];
   reportOpponent: IUser;
   restoreAccessToken: Scalars['String'];
   saveUserLocation: Scalars['String'];
-  unblockOpponent: Scalars['Boolean'];
+  sendMailForVerification: Scalars['String'];
+  unblockOpponent: IBlockUser;
   updateUser: IUser;
   updateUserPwd: IUser;
   uploadFile: Scalars['String'];
+  verifyEmail: Scalars['Boolean'];
 };
 
 
@@ -118,6 +121,11 @@ export type IMutationCreateUserArgs = {
 };
 
 
+export type IMutationCreateUserInterestArgs = {
+  createInterestInput: ICreateInterestInput;
+};
+
+
 export type IMutationDeleteFriendArgs = {
   opponentId: Scalars['String'];
 };
@@ -146,11 +154,17 @@ export type IMutationPasswordResetMailerArgs = {
 
 export type IMutationReportOpponentArgs = {
   reportedId: Scalars['String'];
+  userId: Scalars['String'];
 };
 
 
 export type IMutationSaveUserLocationArgs = {
   location: ISaveUserLocationInput;
+};
+
+
+export type IMutationSendMailForVerificationArgs = {
+  email: Scalars['String'];
 };
 
 
@@ -173,6 +187,12 @@ export type IMutationUploadFileArgs = {
   file: Scalars['Upload'];
 };
 
+
+export type IMutationVerifyEmailArgs = {
+  code: Scalars['String'];
+  email: Scalars['String'];
+};
+
 export type INotice = {
   __typename?: 'Notice';
   contents: Scalars['String'];
@@ -186,12 +206,14 @@ export type IQuery = {
   fetchBlockOneOpponent: IBlockUser;
   fetchFriends: Array<IFriend>;
   fetchId: IUser;
+  fetchInterests: Array<IInterest>;
   fetchLoginUser: IUser;
   fetchNotices?: Maybe<Array<INotice>>;
+  fetchOneByInterest: IInterest;
   fetchQuestion: IQuestion;
   fetchQuestions: Array<IQuestion>;
   fetchUser: IUser;
-  findAroundUsers: Array<IFindAroundUserOutput>;
+  findAroundUsers: Array<IUserWithLocation>;
 };
 
 
@@ -202,6 +224,11 @@ export type IQueryFetchBlockOneOpponentArgs = {
 
 export type IQueryFetchIdArgs = {
   email: Scalars['String'];
+};
+
+
+export type IQueryFetchOneByInterestArgs = {
+  interestId: Scalars['String'];
 };
 
 
@@ -236,9 +263,8 @@ export type ISaveUserLocationInput = {
 export type IUpdateUserInput = {
   age?: InputMaybe<Scalars['Int']>;
   image?: InputMaybe<Scalars['String']>;
-  interest?: InputMaybe<Scalars['String']>;
+  interests?: InputMaybe<IInterestInput>;
   nickname?: InputMaybe<Scalars['String']>;
-  reported?: InputMaybe<Scalars['Int']>;
 };
 
 export type IUser = {
@@ -246,9 +272,25 @@ export type IUser = {
   age?: Maybe<Scalars['Int']>;
   createAt?: Maybe<Scalars['DateTime']>;
   email: Scalars['String'];
-  id: Scalars['String'];
+  id?: Maybe<Scalars['String']>;
   image?: Maybe<Scalars['String']>;
-  interest?: Maybe<Scalars['String']>;
+  interests: IInterest;
+  nickname: Scalars['String'];
+  provider: Scalars['String'];
+  reported?: Maybe<Scalars['Int']>;
+  updateAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type IUserWithLocation = {
+  __typename?: 'UserWithLocation';
+  age?: Maybe<Scalars['Int']>;
+  createAt?: Maybe<Scalars['DateTime']>;
+  email: Scalars['String'];
+  id?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
+  interests: IInterest;
+  lat: Scalars['String'];
+  lng: Scalars['String'];
   nickname: Scalars['String'];
   provider: Scalars['String'];
   reported?: Maybe<Scalars['Int']>;
