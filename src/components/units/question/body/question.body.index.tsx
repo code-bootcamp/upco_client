@@ -1,5 +1,7 @@
+import { wrapFormAsync } from "../../../../commons/libraries/asyncFunc";
 import ProfileButtonBasic from "../../../commons/buttons/profileButtonBasic";
 import { useCreateQuestion } from "../../../commons/hooks/customs/useCreateQuestion";
+import { useQueryFetchLoginUser } from "../../../commons/hooks/queries/fetchLoginUser";
 import { useFormQuestion } from "../../../commons/hooks/useForm/useForm.question";
 import * as S from "./question.body.styles";
 
@@ -10,6 +12,8 @@ export default function QuestionBody(): JSX.Element {
     formState: { errors },
   } = useFormQuestion();
 
+  const { data } = useQueryFetchLoginUser();
+
   const { onClickCreateQuestion } = useCreateQuestion();
 
   return (
@@ -19,7 +23,7 @@ export default function QuestionBody(): JSX.Element {
           <li>
             <S.LabelBox>
               <S.Label>이메일</S.Label>
-              <S.CounselEmail>eggmun98@gmail.com</S.CounselEmail>
+              <S.CounselEmail>{data?.fetchLoginUser.email}</S.CounselEmail>
             </S.LabelBox>
           </li>
           <li>
@@ -28,7 +32,7 @@ export default function QuestionBody(): JSX.Element {
               <S.CounselTitle type="text" {...register("title")} />
             </S.LabelBox>
             <S.ErrorMessageBox>
-              <S.ErrorMessage>{errors.title?.message}1</S.ErrorMessage>
+              <S.ErrorMessage>{errors.title?.message}</S.ErrorMessage>
             </S.ErrorMessageBox>
           </li>
           <li>
@@ -36,11 +40,13 @@ export default function QuestionBody(): JSX.Element {
               <S.Label>문의 내용</S.Label>
               <S.CounselContents {...register("contents")} />
             </S.LabelBox>
-            <S.ErrorMessage>{errors.contents?.message}1</S.ErrorMessage>
+            <S.ErrorMessage>{errors.contents?.message}</S.ErrorMessage>
           </li>
         </S.BodyRow>
+        <S.ButtonBox>
+          <ProfileButtonBasic title="문의하기" />
+        </S.ButtonBox>
       </S.Wrapper>
-      <ProfileButtonBasic title="문의하기" />
     </>
   );
 }

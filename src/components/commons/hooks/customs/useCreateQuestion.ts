@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import { useMutationCreateQuestion } from "../mutation/useMutationCreateQuestion";
 
@@ -6,12 +7,13 @@ interface IUseCreateQuestion {
 }
 
 export const useCreateQuestion = (): IUseCreateQuestion => {
+  const router = useRouter();
+
   const [createQuestion] = useMutationCreateQuestion();
 
   const onClickCreateQuestion: SubmitHandler<FieldValues> = async (data) => {
-    console.log(data);
     try {
-      const result = await createQuestion({
+      await createQuestion({
         variables: {
           createQuestionInput: {
             title: data.title,
@@ -19,7 +21,7 @@ export const useCreateQuestion = (): IUseCreateQuestion => {
           },
         },
       });
-      console.log(result);
+      void router.push("/questionList");
     } catch (error) {
       alert(error);
     }

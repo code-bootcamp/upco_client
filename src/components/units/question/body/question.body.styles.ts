@@ -60,7 +60,13 @@ export const ErrorMessageBox = styled.div`
 
 export const ErrorMessage = styled.p`
   color: #de6449;
-  margin-top: 10px;
+  margin-top: 5px;
   margin-left: 92px;
   font-size: 10px;
+`;
+
+export const ButtonBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 `;
