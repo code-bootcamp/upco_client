@@ -10,19 +10,19 @@ export default function NoticeBody(): JSX.Element {
   const { data } = useQueryFetchNotices();
   console.log("notice data", data);
 
-  const fetchQuestions = FetchDataSlice(data?.fetchNotices)();
-  console.log("ggg", fetchQuestions);
+  const result = FetchDataSlice(data?.fetchNotices ?? "")();
+
   const [page, setPage] = useState(0);
 
   return (
     <>
       <S.Wrapper>
-        <S.Title>공지 사항</S.Title>
-        {fetchQuestions && fetchQuestions?.length > 0 ? (
+        <S.Title>공지사항</S.Title>
+        {result && result?.length > 0 ? (
           <>
             <S.ContentsBox>
-              {fetchQuestions?.[page]?.map((el) => (
-                <S.ContentsList key={uuidv4}>
+              {result?.[page]?.map((el: { number: number; title: string; contents: string }) => (
+                <S.ContentsList key={el.number}>
                   <S.TextBox>
                     <S.ContentsTitle>{el.title}</S.ContentsTitle>
                     <S.Contents>{el.contents}</S.Contents>
@@ -31,7 +31,7 @@ export default function NoticeBody(): JSX.Element {
                 </S.ContentsList>
               ))}
             </S.ContentsBox>
-            <Pagination data={fetchQuestions} setPage={setPage} />
+            <Pagination data={result} setPage={setPage} />
           </>
         ) : (
           <S.NoneBox>공지사항이 없습니다.</S.NoneBox>

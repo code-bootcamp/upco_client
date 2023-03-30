@@ -5,21 +5,9 @@ import { useGeolocationMode } from "../../commons/hooks/customs/useGeolocationMo
 import { useLocationMode } from "../../commons/hooks/customs/useLocationMode";
 import { useMapCreationMode } from "../../commons/hooks/customs/useMapCreationMode";
 import { useQueryFetchLoginUser } from "../../commons/hooks/queries/fetchLoginUser";
+import { FIND_AROUND_USERS } from "../../commons/hooks/queries/useQueryFindAroundUsers";
 import MainBody from "./body/main.body.index";
 import MainFooter from "./footer/main.footer.index";
-
-const FIND_AROUND_USERS = gql`
-  query findAroundUsers($bothLocation: FindAroundUserInput!) {
-    findAroundUsers(bothLocation: $bothLocation) {
-      id
-      lat
-      lng
-      age
-      nickname
-      image
-    }
-  }
-`;
 
 export default function MainPage(): JSX.Element {
   const [location, setLocation] = useState<{
@@ -29,10 +17,6 @@ export default function MainPage(): JSX.Element {
   const [level, setLevel] = useState<number>();
   const { data: datas } = useQueryFetchLoginUser();
 
-  console.log("로그인 데이터", datas);
-
-  // console.log(location, "영역좌표");
-
   const { isOpen, mapCreation } = useMapCreationMode();
   const { position, geolocationFn } = useGeolocationMode();
   const { useLocation } = useLocationMode();
@@ -41,14 +25,6 @@ export default function MainPage(): JSX.Element {
     sw: location.sw.replace(/\(|\)/g, "").split(", "),
     ne: location.ne.replace(/\(|\)/g, "").split(", "),
   });
-  console.log(
-    "aaa",
-    Number(location.sw.replace(/\(|\)/g, "").split(", ")[0]),
-    Number(location.sw.replace(/\(|\)/g, "").split(", ")[1]),
-    Number(location.ne.replace(/\(|\)/g, "").split(", ")[0]),
-    Number(location.ne.replace(/\(|\)/g, "").split(", ")[1])
-  );
-  // console.log("bbb", locations);
 
   const { data } = useQuery(FIND_AROUND_USERS, {
     variables: {
@@ -69,6 +45,7 @@ export default function MainPage(): JSX.Element {
         sw: map.getBounds().getSouthWest().toString(),
         ne: map.getBounds().getNorthEast().toString(),
       });
+      console.log(map);
     }, 500),
     []
   );
