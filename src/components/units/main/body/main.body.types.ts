@@ -1,16 +1,16 @@
 import { SetStateAction } from "react";
 
 interface IData {
-  findAroundUsers: {
-    lat: number;
-    lng: number;
-    id: string;
-  };
+  id: string;
+  lat: number;
+  lng: number;
 }
 
 export interface IProps {
-  data: IData[];
-  debouncedHandler: () => void;
+  data: {
+    findAroundUsers: IData[];
+  };
+  debouncedHandler: (map: any) => void;
   location: { sw: string; ne: string } | undefined;
   position: GeolocationPosition | null;
   setLevel: React.Dispatch<React.SetStateAction<number | undefined>>;

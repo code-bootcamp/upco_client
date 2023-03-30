@@ -1,13 +1,15 @@
+import { maybe } from "@apollo/client/utilities";
+import { Maybe } from "yup";
 import { INotice, IQuestion } from "../../../../commons/types/generated/types";
 
-interface IFetchQuestionsSlice {
-  data: (IQuestion | INotice)[];
+interface IFetchDataSlice {
   length: number;
   slice: any;
+  fetchNotices?: Maybe<INotice[]> | undefined;
 }
 
-export const FetchDataSlice = (data: IFetchQuestionsSlice) => () => {
-  const result: (IQuestion | INotice)[][] = [];
+export const FetchDataSlice = (data: IFetchDataSlice) => () => {
+  const result = [];
 
   if (data === undefined) {
     return;
