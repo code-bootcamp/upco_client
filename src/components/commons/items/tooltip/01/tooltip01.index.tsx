@@ -2,6 +2,7 @@ import * as S from "./tooltip01.styles";
 import { BsGear } from "react-icons/bs";
 import { RxExit } from "react-icons/rx";
 import { useRouter } from "next/router";
+import { RiCustomerServiceLine } from "react-icons/ri";
 
 export default function TooltipUI(): JSX.Element {
   const router = useRouter();
@@ -17,11 +18,8 @@ export default function TooltipUI(): JSX.Element {
         </S.RoomWrapper>
         <S.divideLine></S.divideLine>
         <S.RoomWrapper>
+          <RiCustomerServiceLine></RiCustomerServiceLine>
           <div onClick={onClickMoveToPage("/notice")}>고객센터</div>
-        </S.RoomWrapper>
-        <S.divideLine></S.divideLine>
-        <S.RoomWrapper>
-          <div onClick={onClickMoveToPage("/questionList")}>문의내역</div>
         </S.RoomWrapper>
         <S.divideLine></S.divideLine>
         <S.RoomWrapper>
