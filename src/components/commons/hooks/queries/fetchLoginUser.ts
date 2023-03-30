@@ -9,7 +9,6 @@ const FETCH_LOGIN_USER = gql`
       age
       reported
       createAt
-      interest
     }
   }
 `;

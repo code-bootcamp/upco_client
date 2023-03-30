@@ -40,26 +40,25 @@ export default function TextChat(): JSX.Element {
 
   const [joinMessage, setJoinMessage] = useState("");
   const data = useQueryFetchLoginUser();
-  const myId = data.data.fetchLoginUser.id;
-
-  console.log(socket);
+  const myId = data?.data?.fetchLoginUser.id;
+  // console.log(socket);
 
   useEffect(() => {
-    const newSocket = io("http://10.34.233.161:4000/", {
+    const newSocket = io("http://10.34.233.75:4000/", {
       path: "/socket.io",
       transports: ["websocket"],
     });
 
-    newSocket.on("client", (contents, result) => {
+    newSocket.on("client", (contents) => {
       setMessages((prevMessages) => [...prevMessages, { content: contents, isSent: false }]);
-      console.log(result, "111");
     });
 
     newSocket.on("roomCreateOrJoin", (roomId) => {
       setRoomId(roomId);
     });
+    console.log(roomId);
 
-    newSocket.emit("join room", roomId);
+    newSocket.emit("joinRoom", roomId);
 
     newSocket.on("load messages", (messageLog) => {
       setMessageLog(messageLog);
@@ -70,7 +69,7 @@ export default function TextChat(): JSX.Element {
     return () => {
       newSocket.disconnect();
     };
-  }, []);
+  }, [roomId]);
 
   const emitData = (contents: string): void => {
     if (socket) {
