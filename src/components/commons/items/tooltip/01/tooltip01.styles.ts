@@ -24,13 +24,18 @@ export const WrapperPoint = styled.div`
 export const RoomWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  /* justify-content: center;  */
   align-items: center;
   width: 100%;
   height: 33%;
+  padding-left: 10px;
 
   div {
     margin-left: 5px;
+    color: #979797;
+    :hover {
+      color: #6658ca;
+    }
   }
 
   :hover {

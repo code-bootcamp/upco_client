@@ -24,6 +24,8 @@ export default function LayoutHeader(): JSX.Element {
       setIsOpen((prev) => !prev);
     } else if (open === "join") {
       setIsJoin((prev) => !prev);
+    } else {
+      setIsTooltip((prev) => !prev);
     }
   };
 
@@ -61,7 +63,6 @@ export default function LayoutHeader(): JSX.Element {
               <S.LoginButton onClick={onClickOpen("login")}>로그인</S.LoginButton>
             </div>
           )}
-          <TooltipUI />
         </div>
       </S.Wrapper>
     </>
