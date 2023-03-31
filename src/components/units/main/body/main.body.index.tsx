@@ -21,7 +21,7 @@ export default function MainBody(props: IProps): JSX.Element {
           onZoomChanged={(map) => {
             props.setLevel(map.getLevel());
           }}
-          onBoundsChanged={(map) => props.debouncedHandler(map)}
+          onBoundsChanged={(map) => props.locationSaveFn(map)}
         >
           <ZoomControl />
           <MarkerClusterer averageCenter={true} minLevel={4} minClusterSize={1}>
