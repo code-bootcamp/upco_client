@@ -1,3 +1,4 @@
+import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 
 const activeColor = "#6658ca";
@@ -10,6 +11,14 @@ export const Wrapper = styled.div`
   width: 300px;
   height: 100vh-80px;
   border-left: 1px solid #e2e2e2;
+  ${css`
+    @media (max-width: 488px) {
+      opacity: 0;
+      z-index: 0;
+      width: 0px;
+      height: 0px;
+    }
+  `}
 `;
 
 export const ChatFooterTitle = styled.div`
