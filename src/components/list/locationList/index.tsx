@@ -30,7 +30,6 @@ const locationList: LocationData[] = [
 
 export default function LocationList(props): JSX.Element {
   const { onClickAddFriend } = useAddFriend();
-  console.log("푸터 데이터", props.data);
 
   return (
     <>
