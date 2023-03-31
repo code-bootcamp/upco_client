@@ -90,7 +90,7 @@ export default function FollowerList(): JSX.Element {
   // console.log(roomId);
   const onClickChat = (e) => {
     const anotherId = e.currentTarget.id;
-    const newSocket = io("http://10.34.233.75:4000/", {
+    const newSocket = io("http://10.34.233.50:4000/", {
       path: "/socket.io",
       transports: ["websocket"],
     });

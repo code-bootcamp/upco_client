@@ -3,22 +3,36 @@ import * as S from "./textChat.header.styles";
 import { TextChatHeaderProps } from "./textChat.header.types";
 
 export default function TextChatHeader(props: TextChatHeaderProps): JSX.Element {
-  const [messageLog, setMessageLog] = useState(props.messageLog);
+  const [messageList, setMessageList] = useState<
+    Array<{ contents: string; senderId: string; isSent: boolean }>
+  >([]);
 
   useEffect(() => {
-    setMessageLog(props.messageLog);
-  }, [props.messageLog]);
+    setMessageList(
+      props.messageLog
+        .map((msg) => ({
+          contents: msg.contents,
+          senderId: msg.senderId,
+          isSent: msg.senderId === props.myId,
+        }))
+        .concat(
+          props.messages.map((msg) => ({
+            contents: msg.content,
+            isSent: msg.isSent,
+          }))
+        )
+    );
+  }, [props.messageLog, props.messages, props.myId]);
 
-  const isNoMessage = messageLog.length === 0;
+  const isNoMessage = messageList.length === 0;
 
   return (
     <S.Wrapper>
       {isNoMessage && <div className="noMessage">메시지가 없습니다.</div>}
       {!isNoMessage &&
-        messageLog.map((msg, index) => (
-          <div key={index} className={msg.senderId === props.myId ? "sentMessage" : ""}>
-            {msg.senderId !== props.myId && <p>{msg.contents}</p>}
-            {msg.senderId === props.myId && <p>{msg.contents}</p>}
+        messageList.map((msg, index) => (
+          <div key={index} className={msg.isSent ? "sentMessage" : "receivedMessage"}>
+            <p>{msg.contents}</p>
           </div>
         ))}
     </S.Wrapper>

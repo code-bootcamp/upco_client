@@ -39,13 +39,13 @@ export default function TextChat(): JSX.Element {
   const data = useQueryFetchLoginUser();
   const myId = data?.data?.fetchLoginUser.id;
   console.log(socket);
-
+  console.log("메시지로그:", messageLog);
+  console.log("메시지", messages);
   useEffect(() => {
-    const newSocket = io("http://10.34.233.75:4000/", {
+    const newSocket = io("http://10.34.233.50:4000/", {
       path: "/socket.io",
       transports: ["websocket"],
     });
-
     newSocket.on("client", (contents) => {
       setMessages((prevMessages) => [...prevMessages, { contents, isSent: false }]);
     });
@@ -64,15 +64,17 @@ export default function TextChat(): JSX.Element {
 
     return () => {
       newSocket.disconnect();
+      setMessages([]);
     };
-  }, [roomId]);
+  }, [roomId, setMessages]);
 
   const emitData = (contents: string): void => {
     if (socket) {
-      setMessages((prevMessages) => [...prevMessages, { content: contents, isSent: true }]);
+      setMessages((prevMessages) => [...prevMessages, { contents, isSent: true }]);
       socket.emit("message", { roomId, contents, senderId: myId });
     }
   };
+
   const onClickVideo = (): void => {
     setIsVideo(true);
   };
