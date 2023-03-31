@@ -1,3 +1,4 @@
+import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 
 export const LocationWrapper = styled.div`
@@ -14,6 +15,14 @@ export const LocationWrapper = styled.div`
       display: block;
     }
   }
+  ${css`
+    @media (max-width: 488px) {
+      opacity: 0;
+      z-index: 0;
+      width: 0px;
+      height: 0px;
+    }
+  `}
 `;
 
 export const ImageSection = styled.img`
