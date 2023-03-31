@@ -106,31 +106,3 @@ export const MessageIcon = styled(TbMessageCircle2)`
   transform: scale(1.2);
   stroke-width: 1.2;
 `;
-
-export const LoginBox = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  width: 50px;
-  height: 35px;
-  padding: 2px;
-  border-radius: 50px;
-  cursor: pointer;
-`;
-
-export const LoginButton = styled.button`
-  width: 70px;
-  height: 35px;
-  padding: 2px;
-  border: 1px solid #979797;
-  background-color: #fff;
-  color: #6658ca;
-  border-radius: 30px;
-  margin-left: 10px;
-
-  :hover {
-    background-color: #6658ca;
-    color: white;
-  }
-`;

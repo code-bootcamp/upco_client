@@ -1,4 +1,6 @@
+import { Dispatch, SetStateAction } from "react";
+
 export interface IJoinUIProps {
-  onClickClose: () => void;
-  onClickMoved: () => void;
+  setIsJoin: Dispatch<SetStateAction<boolean>>;
+  setIsOpen: Dispatch<SetStateAction<boolean>>;
 }
