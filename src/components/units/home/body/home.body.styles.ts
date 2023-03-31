@@ -55,6 +55,7 @@ export const ButtonBox = styled.div`
     margin-top: 10px;
     background-color: transparent;
     transition: all 0.3s ease-in-out;
+    cursor: pointer;
 
     :hover {
       border: 2px solid #6658ca;

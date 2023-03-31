@@ -1,6 +1,10 @@
 import * as S from "./home.body.styles";
 
-export default function HomeBody(): JSX.Element {
+interface IHomeBodyProps {
+  onClickOpen: (open: string) => () => void;
+}
+
+export default function HomeBody(props: IHomeBodyProps): JSX.Element {
   return (
     <>
       <S.Wrapper>
@@ -13,7 +17,7 @@ export default function HomeBody(): JSX.Element {
             <S.Logo src="/images/layout/logo01.svg" />
           </S.Title>
           <S.ButtonBox>
-            <button>시작하기</button>
+            <button onClick={props.onClickOpen("login")}>시작하기</button>
           </S.ButtonBox>
         </div>
       </S.Wrapper>

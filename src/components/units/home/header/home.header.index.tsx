@@ -1,7 +1,11 @@
 import * as S from "./home.header.styles";
 import Link from "next/link";
 
-export default function HomeHeader(): JSX.Element {
+interface IHomeHeaderProps {
+  onClickOpen: (open: string) => () => void;
+}
+
+export default function HomeHeader(props: IHomeHeaderProps): JSX.Element {
   return (
     <>
       <S.Wrapper>
@@ -10,7 +14,7 @@ export default function HomeHeader(): JSX.Element {
             <img src="/images/layout/logo01.svg" />
           </a>
         </Link>
-        <button>회원가입</button>
+        <button onClick={props.onClickOpen("join")}>회원가입</button>
       </S.Wrapper>
     </>
   );

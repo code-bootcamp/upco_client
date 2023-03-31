@@ -1,4 +1,3 @@
-import { useMutation, gql } from "@apollo/client";
 import { useEmailCode } from "../../../hooks/customs/useEmailCode";
 import { useJoinMode } from "../../../hooks/customs/useJoinMode";
 import { useFormJoin } from "../../../hooks/useForm/useForm.join";
@@ -6,13 +5,6 @@ import AccountInput from "../../inputs/account/account.input.index";
 import EmailCodeInput from "../../inputs/email/email.input.index";
 import * as S from "./join.styles";
 import { IJoinUIProps } from "./join.types";
-
-interface IData {
-  name: string;
-  email: string;
-  password: string;
-  passwordCheck: string;
-}
 
 export default function JoinUI(props: IJoinUIProps): JSX.Element {
   const {
