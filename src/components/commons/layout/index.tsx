@@ -5,7 +5,7 @@ interface ILayoutProps {
   children: JSX.Element;
 }
 
-const HIDDEN_LAYOUT = ["/passwordReset"];
+const HIDDEN_LAYOUT = ["/passwordReset", "/"];
 
 export default function Layout(props: ILayoutProps): JSX.Element {
   const router = useRouter();

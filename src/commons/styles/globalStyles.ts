@@ -34,4 +34,14 @@ export const globalStyles = css`
     font-family: "MainTitle02";
     src: url(/fonts/Batang_Bold.woff);
   }
+
+  @font-face {
+    font-family: "Jalnan";
+    src: url(/fonts/JalnanOTF.otf);
+  }
+
+  @font-face {
+    font-family: "Cafe24";
+    src: url(/fonts/Cafe24SsurroundAir.ttf);
+  }
 `;

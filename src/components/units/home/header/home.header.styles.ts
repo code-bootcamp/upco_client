@@ -1,111 +1,32 @@
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  position: fixed;
   width: 100%;
-  height: calc(75vh - 68px);
-  color: white;
-  /* background-color: #6658ca; */
-  /* background: linear-gradient(180deg, #6658ca 0%, rgba(102, 88, 202, 0.67) 100%);
-   */
-  /* background: linear-gradient(
-    0deg,
-    #6658ca 0%,
-    rgba(31, 0, 255, 0.675156) 99.99%,
-    rgba(102, 88, 202, 0.67) 100%
-  ); */
-  background-color: #fff;
-  background-color: whitesmoke;
-  background-color: #6658ca;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 50px;
+  background-color: transparent;
+  height: 68px;
 
-  > div {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 40vw;
-    height: 40vh;
-    /* background-color: red;  */
-
-    > form {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-    }
+  a {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    height: 24px;
   }
-`;
 
-export const Title01Box = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+  img {
+    height: 24px;
+  }
 
-  width: 100%;
-  /* background-color: blue;  */
-`;
-
-export const Title01 = styled.h1`
-  font-size: 50px;
-
-  font-weight: 100;
-`;
-
-export const Title02 = styled.h2`
-  font-size: 40px;
-
-  margin-top: 40px;
-`;
-
-export const Title03 = styled.h3`
-  font-size: 30px;
-
-  margin-top: 30px;
-  margin-bottom: 30px;
-`;
-
-export const Input01 = styled.input`
-  width: 500px;
-  height: 50px;
-  margin-right: 15px;
-  outline: white;
-  padding: 10px;
-`;
-
-export const Input02 = styled.input`
-  width: 500px;
-  height: 50px;
-  margin-right: 15px;
-  outline: white;
-  padding: 10px;
-`;
-
-export const Button01 = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  width: 89px;
-  height: 68px;
-  border-radius: 50%;
-  background-color: #ff6464;
-  cursor: pointer;
-  user-select: none;
-  color: white;
-`;
-
-export const Button02 = styled.button`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  width: 89px;
-  height: 68px;
-  border-radius: 50%;
-  background-color: #ff6464;
-  cursor: pointer;
-  user-select: none;
-  color: white;
+  > button {
+    background-color: #6658ca;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+  }
 `;
