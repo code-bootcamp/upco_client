@@ -23,3 +23,8 @@ export const isOpenState = atom({
   key: "isOpenState",
   default: false,
 });
+
+export const fileUrl = atom({
+  key: "fileUrl",
+  default: "",
+});

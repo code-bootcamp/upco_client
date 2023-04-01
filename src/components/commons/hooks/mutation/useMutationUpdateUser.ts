@@ -7,7 +7,9 @@ const UPDATE_USER = gql`
       nickname
       email
       age
-      interest
+      interests {
+        name
+      }
       image
     }
   }

@@ -3,7 +3,7 @@ import { useMutationUpdateUser } from "../mutation/useMutationUpdateUser";
 interface IData {
   nickname: string;
   age: number;
-  interest: string[];
+  interests: string[];
 }
 
 export const useUpdateUserMode = (): {
@@ -17,7 +17,7 @@ export const useUpdateUserMode = (): {
         updateUserInput: {
           nickname: data.nickname,
           age: data.age,
-          interest: data.interest,
+          interests: data.interests,
         },
       },
     });
