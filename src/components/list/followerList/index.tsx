@@ -88,6 +88,7 @@ export default function FollowerList(): JSX.Element {
 
   const myId = data.data.fetchLoginUser.id;
   // console.log(roomId);
+
   const onClickChat = (e) => {
     const anotherId = e.currentTarget.id;
     const newSocket = io("http://10.34.233.50:4000/", {

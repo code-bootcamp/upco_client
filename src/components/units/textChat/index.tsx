@@ -41,6 +41,7 @@ export default function TextChat(): JSX.Element {
   console.log(socket);
   console.log("메시지로그:", messageLog);
   console.log("메시지", messages);
+
   useEffect(() => {
     const newSocket = io("http://10.34.233.50:4000/", {
       path: "/socket.io",
@@ -53,7 +54,7 @@ export default function TextChat(): JSX.Element {
     newSocket.on("roomCreateOrJoin", (roomId) => {
       setRoomId(roomId);
     });
-
+    console.log(roomId);
     newSocket.emit("joinRoom", roomId);
 
     newSocket.on("load Message", (messageLog) => {
@@ -71,7 +72,7 @@ export default function TextChat(): JSX.Element {
   const emitData = (contents: string): void => {
     if (socket) {
       setMessages((prevMessages) => [...prevMessages, { contents, isSent: true }]);
-      socket.emit("message", { roomId, contents, senderId: myId });
+      socket.emit("message", { roomId, contents, myId });
     }
   };
 
