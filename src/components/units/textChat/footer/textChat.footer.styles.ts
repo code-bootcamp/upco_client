@@ -9,6 +9,10 @@ export const Wrapper = styled.div`
   align-items: center;
   width: 300px;
   height: 100%;
+
+  @media (max-width: 767px) {
+    display: ${(props) => (props.isOpen ? "block" : "none")};
+  }
 `;
 
 export const ChatFooterTitle = styled.div`
