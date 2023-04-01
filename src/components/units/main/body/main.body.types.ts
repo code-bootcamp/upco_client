@@ -14,10 +14,4 @@ export interface IProps {
   location: { sw: string; ne: string } | undefined;
   position: GeolocationPosition | null;
   setLevel: React.Dispatch<React.SetStateAction<number | undefined>>;
-  setLocation: React.Dispatch<
-    SetStateAction<{
-      sw: string;
-      ne: string;
-    }>
-  >;
 }
