@@ -52,8 +52,6 @@ export default function InterestUI(props: InterestUIProps): JSX.Element {
     setIsOpen((prev) => !prev);
   };
 
-  const interestBox = [];
-
   const onClickPush = (el: string) => () => {
     const index = selectedInterests.indexOf(el);
     if (index === -1) {
@@ -62,6 +60,7 @@ export default function InterestUI(props: InterestUIProps): JSX.Element {
       setSelectedInterests((prev) => prev.filter((item) => item !== el));
     }
   };
+
   const onClickComplete = (): void => {
     props.setInterestList(selectedInterests);
     props.setIsModalOpen(false);

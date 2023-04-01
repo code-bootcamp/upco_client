@@ -9,6 +9,9 @@ const FETCH_LOGIN_USER = gql`
       email
       age
       reported
+      interests {
+        name
+      }
       createAt
     }
   }

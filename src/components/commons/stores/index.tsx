@@ -23,3 +23,10 @@ export const isOpenState = atom({
   key: "isOpenState",
   default: false,
 });
+export const locationState = atom({
+  key: "locationState",
+  default: {
+    sw: "",
+    ne: "",
+  },
+});
