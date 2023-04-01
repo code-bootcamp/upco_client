@@ -10,6 +10,8 @@ export default function ProfileEditBody(): JSX.Element {
   const [isOpen, setIsOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [interestList, setInterestList] = useState<string[]>([]);
+  const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
+
   const { onClickUpdate } = useUpdateUserMode();
 
   const openPasswordReset = (): void => {
@@ -22,15 +24,19 @@ export default function ProfileEditBody(): JSX.Element {
   const handleUpdateProfile = async (): Promise<void> => {
     await onClickUpdate({
       nickname: data?.fetchLoginUser?.nickname,
-      age: 0,
-      interest: interestList,
+      age: data?.fetchLoginUser?.age,
+      interests: [...interestList],
     });
   };
-
+  console.log(data?.fetchLoginUser.interests);
   return (
     <>
       {isModalOpen && (
-        <InterestUI setInterestList={setInterestList} setIsModalOpen={setIsModalOpen} />
+        <InterestUI
+          setInterestList={setInterestList}
+          setIsModalOpen={setIsModalOpen}
+          selectedInterests={selectedInterests}
+        />
       )}
       {isOpen && <PasswordReset setIsOpen={setIsOpen}></PasswordReset>}
       <S.Wrapper>
@@ -58,8 +64,8 @@ export default function ProfileEditBody(): JSX.Element {
           <S.DefaultBox>
             <div>
               <S.InterestBox>
-                {interestList.map((interest) => (
-                  <li key={interest}>{data?.fetchLoginUser.interest}</li>
+                {data?.fetchLoginUser.interests.map((interests) => (
+                  <li key={interests.id}>{interests.name}</li>
                 ))}
               </S.InterestBox>
               <S.InterestAddButton onClick={openInterestModal}>추가</S.InterestAddButton>
