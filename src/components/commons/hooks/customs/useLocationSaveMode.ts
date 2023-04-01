@@ -1,27 +1,16 @@
-import { useQuery } from "@apollo/client";
 import { debounce } from "lodash";
-import { useCallback, useEffect, useState } from "react";
-import { FIND_AROUND_USERS } from "../queries/useQueryFindAroundUsers";
+import { useCallback } from "react";
+import { useRecoilState } from "recoil";
+import { locationState } from "../../stores";
+import { useQueryFindAroundUsers } from "../queries/useQueryFindAroundUsers";
 
-export const useLocationSaveMode = () => {
-  const [location, setLocation] = useState<{
-    sw: string;
-    ne: string;
-  }>({
-    sw: "",
-    ne: "",
-  });
+export const useLocationSaveMode = (): {
+  locationSaveFn: (map: any) => void;
+  result: typeof result;
+} => {
+  const [_, setLocation] = useRecoilState(locationState);
 
-  const result = useQuery(FIND_AROUND_USERS, {
-    variables: {
-      bothLocation: {
-        lat1: Number(location.sw.replace(/\(|\)/g, "").split(", ")[0]),
-        lng1: Number(location.sw.replace(/\(|\)/g, "").split(", ")[1]),
-        lat2: Number(location.ne.replace(/\(|\)/g, "").split(", ")[0]),
-        lng2: Number(location.ne.replace(/\(|\)/g, "").split(", ")[1]),
-      },
-    },
-  });
+  const result = useQueryFindAroundUsers();
 
   const locationSaveFn = useCallback(
     debounce((map) => {
@@ -35,8 +24,6 @@ export const useLocationSaveMode = () => {
 
   return {
     locationSaveFn,
-    location,
-    setLocation,
     result,
   };
 };
