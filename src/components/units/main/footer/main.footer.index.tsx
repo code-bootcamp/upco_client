@@ -27,11 +27,11 @@ export default function MainFooter(props): JSX.Element {
 
   return (
     <S.Wrapper isOpen={isOpen}>
-      {typeof window !== "undefined" && window.innerHeight <= 767 && (
+      {/* {typeof window !== "undefined" && window.innerHeight <= 767 && (
         <S.UserBox>
           <S.UserIcon></S.UserIcon>
         </S.UserBox>
-      )}
+      )} */}
       <div style={{ display: "flex", justifyContent: "column" }}>
         <S.ChatFooterTitle>
           <S.ChatTitle selected={selectedComponent === "location"} onClick={handleChatClick}>

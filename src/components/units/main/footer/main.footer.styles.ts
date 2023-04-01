@@ -13,6 +13,7 @@ export const Wrapper = styled.div`
   border-left: 1px solid #e2e2e2;
 
   @media (max-width: 767px) {
+    width: 200px;
     display: ${(props) => (props.isOpen ? "block" : "none")};
     z-index: 20;
   }
