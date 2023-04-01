@@ -5,38 +5,66 @@ import { useQueryFetchLoginUser } from "../../commons/hooks/queries/fetchLoginUs
 import TooltipUI02 from "../../commons/items/tooltip/02/tooltip02.index";
 import { useRecoilState } from "recoil";
 import { roomIdState } from "../../commons/stores";
+import { useQueryFetchFriends } from "../../commons/hooks/queries/useQueryFetchFriends";
+import { BiUser } from "react-icons/bi";
 
 const FollowerWrapper = styled.div`
   display: flex;
-  flex-direction: column;
-  padding: 20px 0px 20px 18px;
+  flex-direction: row;
+  align-items: center;
+  padding: 20px;
   width: 300px;
+
   @media (max-width: 767px) {
     width: 200px;
-    padding: 15px 0px 15px 13px;
+    padding: 15px;
   }
 `;
-const NickNameSection = styled.div`
-  font-weight: bold;
+const NickNameSection = styled.h4`
+  font-family: "Bold";
+  font-size: 16px;
 `;
-const ImageSection = styled.img`
+
+const ImageBox = styled.div`
   width: 50px;
   height: 50px;
-  margin-right: 20px;
+  background-color: transparent;
+  margin-right: 10px;
+
   @media (max-width: 767px) {
     width: 25px;
     height: 25px;
     margin-right: 12px;
   }
 `;
+
+const ImageSection = styled.img`
+  width: 100%;
+  height: 100%;
+`;
+
+const UserIcon = styled(BiUser)`
+  width: 100%;
+  height: 100%;
+  color: #d2d2d2;
+  border-radius: 50px;
+`;
+
 const ChatSection = styled.div`
+  padding-right: 7px;
+  margin-top: 2px;
   color: #b1b1b1;
-  font-size: 14px;
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
   @media (max-width: 767px) {
     font-size: 12px;
   }
 `;
 const FollowerListRow = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: row;
 `;
@@ -68,6 +96,26 @@ const ToolTipOpen = styled.div`
   }
 `;
 
+const DottedIcon = styled.ul`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+  justify-self: flex-end;
+  align-self: flex-start;
+
+  > li {
+    width: 3px;
+    height: 3px;
+    background-color: #979797;
+    border-radius: 3px;
+
+    :not(:first-of-type) {
+      margin-left: 2px;
+    }
+  }
+`;
+
 interface ChatData {
   _id: string;
   name: string;
@@ -75,36 +123,18 @@ interface ChatData {
   chat: string;
 }
 
-const chatData: ChatData[] = [
-  {
-    _id: "14792c39-3340-4d69-93cf-fbb0dd433910",
-    name: "이진호",
-    images: "/images/textChat/emoji.webp",
-    chat: "안녕하세요!",
-  },
-  {
-    _id: "04df9e3b-cc46-4b51-96a0-f70e9bbe3037",
-    name: "문성진",
-    images: "/images/textChat/faceChat.webp",
-    chat: "반갑습니다!ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ",
-  },
-  {
-    _id: "3",
-    name: "최현규",
-    images: "/images/textChat/image.webp",
-    chat: "안녕하세요! 반갑습니다!!ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ",
-  },
-];
-
 export default function FollowerList(): JSX.Element {
   const [roomId, setRoomId] = useRecoilState(roomIdState);
   const [socket, setSocket] = useState();
-  const data = useQueryFetchLoginUser();
-  const chatCut = (str: string, n: number): string => {
-    return str.length > n ? str.substr(0, n - 1) + "..." : str;
-  };
+  const { data } = useQueryFetchLoginUser();
+  const { data: friendsData } = useQueryFetchFriends();
+  console.log(friendsData, "냐하하");
 
-  const myId = data.data.fetchLoginUser.id;
+  // const chatCut = (str: string, n: number): string => {
+  //   return str.length > n ? str.substr(0, n - 1) + "..." : str;
+  // };
+
+  const myId = data?.fetchLoginUser.id;
   // console.log(roomId);
 
   const onClickChat = (e) => {
@@ -122,19 +152,32 @@ export default function FollowerList(): JSX.Element {
 
   return (
     <>
-      {chatData.map((el) => (
+      {friendsData?.fetchFriends.map((el) => (
         <>
-          <FollowerWrapper key={el._id} id={el._id} onClick={onClickChat}>
+          <FollowerWrapper key={el.id} id={el.id} onClick={onClickChat}>
             <FollowerListRow>
-              <ImageSection src={el.images} />
+              {el.image ? (
+                <ImageBox>
+                  <ImageSection src={el.image} />
+                </ImageBox>
+              ) : (
+                <ImageBox>
+                  <UserIcon />
+                </ImageBox>
+              )}
               <FollowerListColumn>
-                <NickNameSection>{el.name}</NickNameSection>
-                <ChatSection>{chatCut(el.chat, 11)}</ChatSection>
+                <NickNameSection>{el.nickname}</NickNameSection>
+                <ChatSection>안녕하세요안녕하세여안녕하세요안녕하세여</ChatSection>
               </FollowerListColumn>
-              <ToolTipOpen>
+              {/* <ToolTipOpen>
                 <div>. . .</div>
                 <TooltipUI02></TooltipUI02>
-              </ToolTipOpen>
+              </ToolTipOpen> */}
+              <DottedIcon>
+                <li></li>
+                <li></li>
+                <li></li>
+              </DottedIcon>
             </FollowerListRow>
           </FollowerWrapper>
           <DivideLine />
