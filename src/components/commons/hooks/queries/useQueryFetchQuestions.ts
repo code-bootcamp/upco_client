@@ -13,7 +13,12 @@ const FETCH_QUESTIONS = gql`
 `;
 
 export const useQueryFetchQuestions = (): typeof result => {
-  const result = useQuery<Pick<IQuery, "fetchQuestions">, IQueryFetchQuestionArgs>(FETCH_QUESTIONS);
+  const result = useQuery<Pick<IQuery, "fetchQuestions">, IQueryFetchQuestionArgs>(
+    FETCH_QUESTIONS,
+    {
+      fetchPolicy: "no-cache",
+    }
+  );
 
   return result;
 };

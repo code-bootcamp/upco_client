@@ -12,7 +12,9 @@ const FETCH_NOTICES = gql`
 `;
 
 export const useQueryFetchNotices = (): typeof result => {
-  const result = useQuery<Pick<IQuery, "fetchNotices">, INotice>(FETCH_NOTICES);
+  const result = useQuery<Pick<IQuery, "fetchNotices">, INotice>(FETCH_NOTICES, {
+    fetchPolicy: "no-cache",
+  });
 
   return result;
 };
