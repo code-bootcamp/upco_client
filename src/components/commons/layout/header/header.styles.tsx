@@ -28,6 +28,9 @@ export const Wrapper = styled.div`
     align-items: center;
     justify-content: space-between;
   }
+  @media (max-width: 767px) {
+    padding: 0 25px;
+  }
 `;
 
 export const Logo = styled.img`
