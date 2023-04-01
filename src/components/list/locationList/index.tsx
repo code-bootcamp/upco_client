@@ -1,10 +1,10 @@
 import { AiOutlineMessage, AiOutlineUserAdd } from "react-icons/ai";
 import { RiAlarmWarningLine } from "react-icons/ri";
-import { useAddFriend } from "../../commons/hooks/customs/useAddFriend";
+import { useOnClickCreateFriendRequest } from "../../commons/hooks/customs/useOnClickCreateFriendRequest";
 import * as S from "./styles";
 
 export default function LocationList(props): JSX.Element {
-  const { onClickAddFriend } = useAddFriend();
+  const { onClickCreateFriendRequest } = useOnClickCreateFriendRequest();
 
   return (
     <>
@@ -30,7 +30,7 @@ export default function LocationList(props): JSX.Element {
                 <AiOutlineMessage />
                 <S.HoverTitle>채팅하기</S.HoverTitle>
               </S.HoverButton>
-              <S.HoverButton onClick={onClickAddFriend}>
+              <S.HoverButton onClick={onClickCreateFriendRequest(el.id)}>
                 <AiOutlineUserAdd />
                 <S.HoverTitle>친구추가</S.HoverTitle>
               </S.HoverButton>

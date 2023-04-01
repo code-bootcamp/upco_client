@@ -14,16 +14,11 @@ export type Scalars = {
   Upload: any;
 };
 
-export type IBlockUser = {
-  __typename?: 'BlockUser';
-  blockUserId?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['String']>;
-  reportedId: Scalars['String'];
-  user: IUser;
-};
-
-export type ICreateInterestInput = {
-  name: Scalars['String'];
+export type IBlock = {
+  __typename?: 'Block';
+  blocked_user: IUser;
+  blocker: IUser;
+  id: Scalars['String'];
 };
 
 export type ICreateNoticeInput = {
@@ -51,41 +46,38 @@ export type IFindAroundUserInput = {
 
 export type IFriend = {
   __typename?: 'Friend';
-  id?: Maybe<Scalars['String']>;
-  isSuccess?: Maybe<Scalars['Boolean']>;
-  opponentId?: Maybe<Scalars['String']>;
+  id: Scalars['String'];
+  receiver: IUser;
+  sender: IUser;
+  status: Scalars['Boolean'];
 };
 
 export type IInterest = {
   __typename?: 'Interest';
-  id?: Maybe<Scalars['String']>;
+  id: Scalars['String'];
   name: Scalars['String'];
-};
-
-export type IInterestInput = {
-  id?: InputMaybe<Scalars['String']>;
-  name: Scalars['String'];
+  user?: Maybe<Array<IUser>>;
 };
 
 export type IMutation = {
   __typename?: 'Mutation';
-  addFriend: IFriend;
-  blockOpponent: IBlockUser;
+  acceptFriendRequest: Array<IFriend>;
+  blockUser: IBlock;
+  createDefaultInterests: Scalars['String'];
+  createFriendRequest: IFriend;
   createNotice: INotice;
   createQuestion: IQuestion;
   createUser: IUser;
-  createUserInterest: IInterest;
   deleteFriend: Scalars['Boolean'];
   deleteQuestion: Scalars['Boolean'];
   deleteUser: Scalars['Boolean'];
   login: Scalars['String'];
   logout: Scalars['String'];
-  passwordResetMailer: Scalars['String'];
-  reportOpponent: IUser;
+  rejectFriendRequest: Scalars['Boolean'];
   restoreAccessToken: Scalars['String'];
   saveUserLocation: Scalars['String'];
   sendMailForVerification: Scalars['String'];
-  unblockOpponent: IBlockUser;
+  unblockUser: IBlock;
   updateUser: IUser;
   updateUserPwd: IUser;
   uploadFile: Scalars['String'];
@@ -93,16 +85,18 @@ export type IMutation = {
 };
 
 
-export type IMutationAddFriendArgs = {
-  isSuccess: Scalars['Boolean'];
-  opponentId: Scalars['String'];
-  userId: Scalars['String'];
+export type IMutationAcceptFriendRequestArgs = {
+  requestId: Scalars['String'];
 };
 
 
-export type IMutationBlockOpponentArgs = {
-  blockUserId: Scalars['String'];
-  userId: Scalars['String'];
+export type IMutationBlockUserArgs = {
+  blockedUserId: Scalars['String'];
+};
+
+
+export type IMutationCreateFriendRequestArgs = {
+  receiverId: Scalars['String'];
 };
 
 
@@ -121,13 +115,8 @@ export type IMutationCreateUserArgs = {
 };
 
 
-export type IMutationCreateUserInterestArgs = {
-  createInterestInput: ICreateInterestInput;
-};
-
-
 export type IMutationDeleteFriendArgs = {
-  opponentId: Scalars['String'];
+  friendId: Scalars['String'];
 };
 
 
@@ -147,14 +136,8 @@ export type IMutationLoginArgs = {
 };
 
 
-export type IMutationPasswordResetMailerArgs = {
-  email: Scalars['String'];
-};
-
-
-export type IMutationReportOpponentArgs = {
-  reportedId: Scalars['String'];
-  userId: Scalars['String'];
+export type IMutationRejectFriendRequestArgs = {
+  requestId: Scalars['String'];
 };
 
 
@@ -168,8 +151,8 @@ export type IMutationSendMailForVerificationArgs = {
 };
 
 
-export type IMutationUnblockOpponentArgs = {
-  blockUserId: Scalars['String'];
+export type IMutationUnblockUserArgs = {
+  blockId: Scalars['String'];
 };
 
 
@@ -202,33 +185,15 @@ export type INotice = {
 
 export type IQuery = {
   __typename?: 'Query';
-  fetchBlockAllOpponent: Array<IBlockUser>;
-  fetchBlockOneOpponent: IBlockUser;
-  fetchFriends: Array<IFriend>;
-  fetchId: IUser;
-  fetchInterests: Array<IInterest>;
+  fetchBlockUsers: Array<IBlock>;
+  fetchFirends: Array<IFriend>;
+  fetchFriendRequests: Array<IFriend>;
   fetchLoginUser: IUser;
   fetchNotices?: Maybe<Array<INotice>>;
-  fetchOneByInterest: IInterest;
   fetchQuestion: IQuestion;
   fetchQuestions: Array<IQuestion>;
   fetchUser: IUser;
   findAroundUsers: Array<IUserWithLocation>;
-};
-
-
-export type IQueryFetchBlockOneOpponentArgs = {
-  blockUserId: Scalars['String'];
-};
-
-
-export type IQueryFetchIdArgs = {
-  email: Scalars['String'];
-};
-
-
-export type IQueryFetchOneByInterestArgs = {
-  interestId: Scalars['String'];
 };
 
 
@@ -263,7 +228,7 @@ export type ISaveUserLocationInput = {
 export type IUpdateUserInput = {
   age?: InputMaybe<Scalars['Int']>;
   image?: InputMaybe<Scalars['String']>;
-  interests?: InputMaybe<IInterestInput>;
+  interests?: InputMaybe<Array<Scalars['String']>>;
   nickname?: InputMaybe<Scalars['String']>;
 };
 
@@ -272,9 +237,9 @@ export type IUser = {
   age?: Maybe<Scalars['Int']>;
   createAt?: Maybe<Scalars['DateTime']>;
   email: Scalars['String'];
-  id?: Maybe<Scalars['String']>;
+  id: Scalars['String'];
   image?: Maybe<Scalars['String']>;
-  interests: IInterest;
+  interests?: Maybe<Array<IInterest>>;
   nickname: Scalars['String'];
   provider: Scalars['String'];
   reported?: Maybe<Scalars['Int']>;
@@ -286,9 +251,9 @@ export type IUserWithLocation = {
   age?: Maybe<Scalars['Int']>;
   createAt?: Maybe<Scalars['DateTime']>;
   email: Scalars['String'];
-  id?: Maybe<Scalars['String']>;
+  id: Scalars['String'];
   image?: Maybe<Scalars['String']>;
-  interests: IInterest;
+  interests?: Maybe<Array<IInterest>>;
   lat: Scalars['String'];
   lng: Scalars['String'];
   nickname: Scalars['String'];
