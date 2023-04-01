@@ -11,6 +11,10 @@ const FollowerWrapper = styled.div`
   flex-direction: column;
   padding: 20px 0px 20px 18px;
   width: 300px;
+  @media (max-width: 767px) {
+    width: 200px;
+    padding: 15px 0px 15px 13px;
+  }
 `;
 const NickNameSection = styled.div`
   font-weight: bold;
@@ -19,10 +23,18 @@ const ImageSection = styled.img`
   width: 50px;
   height: 50px;
   margin-right: 20px;
+  @media (max-width: 767px) {
+    width: 25px;
+    height: 25px;
+    margin-right: 12px;
+  }
 `;
 const ChatSection = styled.div`
   color: #b1b1b1;
   font-size: 14px;
+  @media (max-width: 767px) {
+    font-size: 12px;
+  }
 `;
 const FollowerListRow = styled.div`
   display: flex;
@@ -47,6 +59,12 @@ const ToolTipOpen = styled.div`
   margin-right: 10px;
   > div {
     font-size: 20px;
+  }
+  @media (max-width: 767px) {
+    margin-right: 5px;
+    > div {
+      font-size: 14px;
+    }
   }
 `;
 

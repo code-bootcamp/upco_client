@@ -21,6 +21,9 @@ export const ChatFooterTitle = styled.div`
   flex-direction: row;
   align-items: flex-end;
   font-size: 18px;
+  @media (max-width: 767px) {
+    font-size: 15px;
+  }
 `;
 
 const Title = styled.div<{ selected: boolean }>`
@@ -32,6 +35,10 @@ const Title = styled.div<{ selected: boolean }>`
 
 export const ChatTitle = styled(Title)`
   margin-right: 30px;
+  @media (max-width: 767px) {
+    margin-left: 50px;
+    margin-right: 20px;
+  }
 `;
 
 export const FollowerTitle = styled(Title)``;
@@ -45,6 +52,9 @@ export const FollowList = styled.div`
   color: #979797;
   cursor: pointer;
   padding: 10px 0;
+  @media (max-width: 767px) {
+    font-size: 15px;
+  }
 `;
 
 export const DivideLine = styled.div`

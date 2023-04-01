@@ -21,6 +21,9 @@ export default function LocationList(props): JSX.Element {
             </S.LocationListRow>
             <S.InterestBox>
               {/* <S.InterestSection key={idx}>{interest}</S.InterestSection>  */}
+              <S.InterestSection>축구</S.InterestSection>
+              <S.InterestSection>축구</S.InterestSection>
+              <S.InterestSection>축구</S.InterestSection>
             </S.InterestBox>
             <S.ButtonWrapper>
               <S.HoverButton>

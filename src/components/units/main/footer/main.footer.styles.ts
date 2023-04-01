@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { BiUser } from "react-icons/bi";
 
 const activeColor = "#6658ca";
 const inactiveColor = "#979797";
@@ -23,6 +24,9 @@ export const ChatFooterTitle = styled.div`
   flex-direction: row;
   align-items: flex-end;
   font-size: 18px;
+  @media (max-width: 767px) {
+    font-size: 15px;
+  }
 `;
 
 const Title = styled.div<{ selected: boolean }>`
@@ -34,6 +38,11 @@ const Title = styled.div<{ selected: boolean }>`
 
 export const ChatTitle = styled(Title)`
   margin-right: 30px;
+
+  @media (max-width: 767px) {
+    margin-left: 35px;
+    margin-right: 20px;
+  }
 `;
 
 export const FollowerTitle = styled(Title)``;
@@ -47,9 +56,32 @@ export const FollowList = styled.div`
   color: #979797;
   cursor: pointer;
   padding: 10px 0;
+  @media (max-width: 767px) {
+    font-size: 15px;
+  }
 `;
 
 export const DivideLine = styled.div`
   border-bottom: 1px solid #d9d9d9;
   width: 100%;
+`;
+
+export const UserBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 35px;
+  height: 35px;
+  background-color: #fff;
+  padding: 2px;
+  border-radius: 50px;
+  cursor: pointer;
+  border-bottom: 1px solid #979797;
+`;
+
+export const UserIcon = styled(BiUser)`
+  width: 100%;
+  height: 100%;
+  color: #d2d2d2;
 `;
