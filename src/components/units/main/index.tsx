@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useGeolocationMode } from "../../commons/hooks/customs/useGeolocationMode";
 import { useLocationMode } from "../../commons/hooks/customs/useLocationMode";
-import { useLocationSaveMode } from "../../commons/hooks/customs/useLocationSavemode";
+import { useLocationSaveMode } from "../../commons/hooks/customs/useLocationSaveMode";
 import { useMapCreationMode } from "../../commons/hooks/customs/useMapCreationMode";
 import MainBody from "./body/main.body.index";
 import MainFooter from "./footer/main.footer.index";

@@ -1,9 +1,12 @@
+import { debounce } from "lodash";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useRecoilState } from "recoil";
 import { movePageMode } from "../../hooks/customs/movePageMode";
 import { useQueryFetchLoginUser } from "../../hooks/queries/fetchLoginUser";
 import TooltipUI from "../../items/tooltip/01/tooltip01.index";
+import { isOpenState } from "../../stores";
 import * as S from "./header.styles";
 
 export default function LayoutHeader(): JSX.Element {
@@ -11,9 +14,26 @@ export default function LayoutHeader(): JSX.Element {
   const [isTooltip, setIsTooltip] = useState(false);
   const { data } = useQueryFetchLoginUser();
   const { onClickMovePage } = movePageMode();
+  const [windowSize, setWindowSize] = useState("");
+  const [isOpen, setIsOpen] = useRecoilState(isOpenState);
 
   const onClickOpen = (): void => {
     setIsTooltip((prev) => !prev);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", windowSizeSave);
+    return () => {
+      window.removeEventListener("resize", windowSizeSave);
+    };
+  }, []);
+
+  const windowSizeSave = debounce(() => {
+    setWindowSize(window.innerWidth);
+  }, 500);
+
+  const onClickIsOpen = () => {
+    setIsOpen((prev) => !prev);
   };
 
   return (
@@ -36,10 +56,16 @@ export default function LayoutHeader(): JSX.Element {
             </Link>
           </S.MenuBox>
 
-          <S.UserBox style={{ position: "relative" }}>
-            {isTooltip && <TooltipUI />}
-            <S.UserIcon onClick={onClickOpen} />
-          </S.UserBox>
+          {typeof window !== "undefined" && windowSize >= 767 ? (
+            <S.UserBox style={{ position: "relative" }}>
+              {isTooltip && <TooltipUI />}
+              <S.UserIcon onClick={onClickOpen} />
+            </S.UserBox>
+          ) : (
+            <S.UserBox style={{ position: "relative" }}>
+              <S.UserIcon02 onClick={onClickIsOpen} />
+            </S.UserBox>
+          )}
         </div>
       </S.Wrapper>
     </>

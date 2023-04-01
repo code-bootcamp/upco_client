@@ -2,31 +2,6 @@ import { AiOutlineMessage, AiOutlineUserAdd } from "react-icons/ai";
 import { RiAlarmWarningLine } from "react-icons/ri";
 import { useAddFriend } from "../../commons/hooks/customs/useAddFriend";
 import * as S from "./styles";
-import { LocationData } from "./types";
-
-const locationList: LocationData[] = [
-  {
-    _id: "1",
-    name: "이진호",
-    images: "/images/textChat/photo.png",
-    age: "20대 후반",
-    interest: ["축구", "수영", "수영", "수영ㅁㅁㅁㅁ"],
-  },
-  {
-    _id: "2",
-    name: "문성진",
-    images: "/images/textChat/faceChat.webp",
-    age: "20대 중반",
-    interest: ["축구", "농구"],
-  },
-  {
-    _id: "3",
-    name: "최현규",
-    images: "/images/textChat/image.webp",
-    age: "20대 중반",
-    interest: ["축구"],
-  },
-];
 
 export default function LocationList(props): JSX.Element {
   const { onClickAddFriend } = useAddFriend();
@@ -45,9 +20,7 @@ export default function LocationList(props): JSX.Element {
               <S.AgeSection>{el.age}</S.AgeSection>
             </S.LocationListRow>
             <S.InterestBox>
-              {/* {locationList.map((interest, idx) => (
-                <S.InterestSection key={idx}>{interest}</S.InterestSection>
-              ))} */}
+              {/* <S.InterestSection key={idx}>{interest}</S.InterestSection>  */}
             </S.InterestBox>
             <S.ButtonWrapper>
               <S.HoverButton>

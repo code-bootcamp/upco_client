@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import { TbMessageCircle2 } from "react-icons/tb";
 import { BsMap } from "react-icons/bs";
 import { BiUser } from "react-icons/bi";
+import { AiOutlineMenu } from "react-icons/ai";
 
 export const colors = {
   menuColor: "#979797",
@@ -48,6 +49,12 @@ export const UserBox = styled.div`
 `;
 
 export const UserIcon = styled(BiUser)`
+  width: 100%;
+  height: 100%;
+  color: #d2d2d2;
+`;
+
+export const UserIcon02 = styled(AiOutlineMenu)`
   width: 100%;
   height: 100%;
   color: #d2d2d2;

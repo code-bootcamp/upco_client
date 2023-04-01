@@ -33,6 +33,13 @@ export const MabBox = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  ${css`
+    @media (max-width: 767px) {
+      width: 100%;
+      height: 100vh;
+      z-index: 10;
+    }
+  `}
 `;
 
 export const MabWeb = styled(Map)`
@@ -40,10 +47,10 @@ export const MabWeb = styled(Map)`
   height: calc(100vh - 68px);
 
   ${css`
-    @media (max-width: 468px) {
+    @media (max-width: 767px) {
       width: 100%;
       height: 100vh;
-      z-index: 1;
+      z-index: 10;
     }
   `}
 `;

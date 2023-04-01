@@ -5,7 +5,7 @@ export const LocationWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 100%;
+  width: 300px;
   position: relative;
   background-color: transparent;
   transition: background-color 0.2s ease-in-out;
@@ -15,14 +15,6 @@ export const LocationWrapper = styled.div`
       display: block;
     }
   }
-  ${css`
-    @media (max-width: 488px) {
-      opacity: 0;
-      z-index: 0;
-      width: 0px;
-      height: 0px;
-    }
-  `}
 `;
 
 export const ImageSection = styled.img`
