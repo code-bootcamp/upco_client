@@ -186,8 +186,8 @@ export type INotice = {
 export type IQuery = {
   __typename?: 'Query';
   fetchBlockUsers: Array<IBlock>;
-  fetchFirends: Array<IFriend>;
   fetchFriendRequests: Array<IFriend>;
+  fetchFriends: Array<IUser>;
   fetchLoginUser: IUser;
   fetchNotices?: Maybe<Array<INotice>>;
   fetchQuestion: IQuestion;

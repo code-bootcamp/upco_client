@@ -86,3 +86,67 @@ export const UserIcon = styled(BiUser)`
   height: 100%;
   color: #d2d2d2;
 `;
+
+export const FriendRequestListBox = styled.div`
+  width: 100%;
+  height: 300px;
+  border-bottom: 1px solid #e2e2e2;
+  background-color: #fff;
+`;
+
+export const FriendRequestList = styled.ul`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  :hover {
+    background-color: #f8f8f8;
+  }
+
+  > li {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 20px;
+
+    > p {
+      width: 100px;
+      font-size: 16px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      user-select: none;
+    }
+
+    > button {
+      padding: 3px;
+      margin-left: 10px;
+      background-color: transparent;
+      color: #979797;
+      font-size: 14px;
+      cursor: pointer;
+      white-space: nowrap;
+      user-select: none;
+      transition: all 0.3s ease-in-out;
+
+      :first-of-type {
+        color: #6658ca;
+      }
+    }
+  }
+`;
+
+export const Imgbox = styled.div`
+  width: 30px;
+  height: 30px;
+  border: 2px solid #d2d2d2;
+  border-radius: 40px;
+  background-color: transparent;
+  margin-right: 10px;
+
+  > img {
+    width: 100%;
+    height: 100%;
+  }
+`;
