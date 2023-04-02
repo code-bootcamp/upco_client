@@ -1,39 +1,38 @@
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
-  width: 80px;
-  height: 50px;
   position: absolute;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  top: 30px;
+  right: 10px;
   background-color: #fff;
-  border: 1px solid #e2e2e2;
-  margin-bottom: 10px;
-`;
+  z-index: 1;
 
-export const RoomWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 50%;
+  > li {
+    border: 1px solid #e2e2e2;
+    padding: 2px 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
 
-  div {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    margin-left: 5px;
-    font-size: 14px;
+    :hover {
+      background-color: #6658ca;
+      border: 1px solid #6658ca;
+
+      button {
+        color: #fff;
+      }
+    }
+
+    :last-of-type {
+      width: 100%;
+      border-top: none;
+    }
+    > button {
+      background-color: transparent;
+      font-size: 14px;
+      color: #979797;
+      cursor: pointer;
+    }
   }
-
-  :hover {
-    color: #6658ca;
-  }
-`;
-
-export const divideLine = styled.div`
-  border-bottom: 1px solid #e2e2e2;
 `;

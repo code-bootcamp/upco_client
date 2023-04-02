@@ -104,7 +104,7 @@ export const followList = styled.div`
   color: #191919;
 
   > h4 {
-    font-size: 12px;
+    font-size: 14px;
     color: #979797;
   }
 `;
