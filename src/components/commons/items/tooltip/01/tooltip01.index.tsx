@@ -3,11 +3,21 @@ import { BsGear } from "react-icons/bs";
 import { RxExit } from "react-icons/rx";
 import { useRouter } from "next/router";
 import { RiCustomerServiceLine } from "react-icons/ri";
+import { useMutationLogout } from "../../../hooks/mutation/useMutationLogout";
 
 export default function TooltipUI(): JSX.Element {
   const router = useRouter();
+
+  const [logout] = useMutationLogout();
+
   const onClickMoveToPage = (path: string) => async () => {
     await router.push(path);
+  };
+
+  const onClickLogout = async (): Promise<void> => {
+    await logout();
+    alert("로그아웃 되었습니다.");
+    void router.push("/");
   };
   return (
     <>
@@ -24,7 +34,7 @@ export default function TooltipUI(): JSX.Element {
         <S.divideLine></S.divideLine>
         <S.RoomWrapper>
           <RxExit></RxExit>
-          <div>로그아웃</div>
+          <div onClick={onClickLogout}>로그아웃</div>
         </S.RoomWrapper>
       </S.Wrapper>
     </>
