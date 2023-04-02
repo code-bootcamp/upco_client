@@ -4,9 +4,8 @@ import FollowerList from "../../../list/followerList";
 import LocationList from "../../../list/locationList";
 import { isOpenState } from "../../../commons/stores";
 import { useRecoilState } from "recoil";
-import { IProps } from "./main.footer.types";
 
-export default function MainFooter(props: IProps): JSX.Element {
+export default function MainFooter(props): JSX.Element {
   const [isOpen] = useRecoilState(isOpenState);
 
   const [selectedComponent, setSelectedComponent] = useState("location");
