@@ -18,6 +18,8 @@ const FETCH_LOGIN_USER = gql`
 `;
 
 export const useQueryFetchLoginUser = (): typeof result => {
-  const result = useQuery<Pick<IQuery, "fetchLoginUser">, IQueryFetchUserArgs>(FETCH_LOGIN_USER);
+  const result = useQuery<Pick<IQuery, "fetchLoginUser">, IQueryFetchUserArgs>(FETCH_LOGIN_USER, {
+    fetchPolicy: "no-cache",
+  });
   return result;
 };

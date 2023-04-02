@@ -116,29 +116,21 @@ const DottedIcon = styled.ul`
   }
 `;
 
-interface ChatData {
-  _id: string;
-  name: string;
-  images: string;
-  chat: string;
-}
-
 export default function FollowerList(): JSX.Element {
   const [roomId, setRoomId] = useRecoilState(roomIdState);
   const [socket, setSocket] = useState();
   const { data } = useQueryFetchLoginUser();
   const { data: friendsData } = useQueryFetchFriends();
 
-  // const chatCut = (str: string, n: number): string => {
-  //   return str.length > n ? str.substr(0, n - 1) + "..." : str;
-  // };
-
   const myId = data?.fetchLoginUser.id;
-  // console.log(roomId);
+  console.log(roomId);
 
   const onClickChat = (e) => {
     const anotherId = e.currentTarget.id;
-    const newSocket = io("http://10.34.233.50:4000/", {
+    const existingData = localStorage.getItem("anotherIds");
+    const newData = { anotherId };
+
+    const newSocket = io("http://10.34.232.105:4000/", {
       path: "/socket.io",
       transports: ["websocket"],
     });
@@ -147,6 +139,16 @@ export default function FollowerList(): JSX.Element {
       setRoomId(roomId);
     });
     setSocket(newSocket);
+
+    if (existingData) {
+      const parsedData = JSON.parse(existingData);
+      if (!parsedData.some((data) => data.anotherId === anotherId)) {
+        parsedData.push(newData);
+        localStorage.setItem("anotherIds", JSON.stringify(parsedData));
+      }
+    } else {
+      localStorage.setItem("anotherIds", JSON.stringify([newData]));
+    }
   };
 
   return (

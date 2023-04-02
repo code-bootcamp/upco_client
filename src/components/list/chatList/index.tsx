@@ -1,4 +1,8 @@
 import styled from "@emotion/styled";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useQueryFetchLoginUser } from "../../commons/hooks/queries/fetchLoginUser";
+import { useQueryFetchUser } from "../../commons/hooks/queries/useQueryFetchUser";
 
 const ChatWrapper = styled.div`
   display: flex;
@@ -44,55 +48,53 @@ const DivideLine = styled.div`
   width: 100%;
 `;
 
-interface ChatData {
-  _id: string;
-  name: string;
-  images: string;
-  chat: string;
-}
-
-const chatData: ChatData[] = [
-  {
-    _id: "1",
-    name: "이진호",
-    images: "/images/textChat/emoji.webp",
-    chat: "안녕하세요!",
-  },
-  {
-    _id: "2",
-    name: "문성진",
-    images: "/images/textChat/faceChat.webp",
-    chat: "반갑습니다!ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ",
-  },
-  {
-    _id: "3",
-    name: "최현규",
-    images: "/images/textChat/image.webp",
-    chat: "안녕하세요! 반갑습니다!!ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ",
-  },
-];
+const Btn = styled.button``;
 
 export default function ChatList(): JSX.Element {
-  const chatCut = (str: string, n: number): string => {
-    return str.length > n ? str.substr(0, n - 1) + "..." : str;
-  };
+  const [chatRooms, setChatRooms] = useState([]);
+  const data = useQueryFetchLoginUser();
+  // console.log(data);
+  // const anotherIds = JSON.parse(localStorage.getItem("anotherIds"));
+  // console.log(anotherIds);
+  // const result = useQueryFetchUser();
+  // console.log(result);
+  // useEffect(() => {
+  //   if (result.data?.fetchUser) {
+  //     const rooms = result.data.fetchUser.map((user) => ({
+  //       id: user.id,
+  //       name: user.nickname,
+  //       imageUrl: user.profileImageUrl,
+  //       preview: "",
+  //     }));
+  //     setChatRooms(chatRooms);
+  //   }
+  // }, [result.data]);
+  // console.log(chatRooms);
+  // useEffect(() => {
+  //   const fetchChatRooms = async (): Promise<void> => {
+  //     const result = await axios.get(
+  //       `http://10.34.232.105:4000/chatRoomList/${data.data?.fetchLoginUser.id}`
+  //     );
+  //     console.log(result, "ㅁㅁ");
+  //   };
+  //   fetchChatRooms();
+  // }, []);
+  // console.log(data.data?.fetchLoginUser.id);
   return (
     <>
       <DivideLine />
-      {chatData.map((el) => (
-        <>
-          <ChatWrapper key={el._id} id={el._id}>
-            <ChatListRow>
-              <ImageSection src={el.images} />
-              <ChatListColumn>
-                <NickNameSection>{el.name}</NickNameSection>
-                <ChatSection>{chatCut(el.chat, 11)}</ChatSection>
-              </ChatListColumn>
-            </ChatListRow>
-          </ChatWrapper>
-          <DivideLine />
-        </>
-      ))}
+      <ChatWrapper>
+        {chatRooms.map((room) => (
+          <ChatListRow key={room.id}>
+            <ImageSection />
+            <ChatListColumn>
+              <NickNameSection>{room.nickname}</NickNameSection>
+              <ChatSection></ChatSection>
+            </ChatListColumn>
+          </ChatListRow>
+        ))}
+      </ChatWrapper>
+      <DivideLine />
     </>
   );
 }
