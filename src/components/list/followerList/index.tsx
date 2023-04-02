@@ -128,7 +128,6 @@ export default function FollowerList(): JSX.Element {
   const [socket, setSocket] = useState();
   const { data } = useQueryFetchLoginUser();
   const { data: friendsData } = useQueryFetchFriends();
-  console.log(friendsData, "냐하하");
 
   // const chatCut = (str: string, n: number): string => {
   //   return str.length > n ? str.substr(0, n - 1) + "..." : str;

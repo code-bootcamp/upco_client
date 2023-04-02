@@ -6,9 +6,7 @@ import {
 
 const ACCEPT_FRIEND_REQUEST = gql`
   mutation acceptFriendRequest($requestId: String!) {
-    acceptFriendRequest(requestId: $requestId) {
-      id
-    }
+    acceptFriendRequest(requestId: $requestId)
   }
 `;
 

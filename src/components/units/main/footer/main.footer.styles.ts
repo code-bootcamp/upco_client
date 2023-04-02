@@ -93,7 +93,7 @@ export const UserIcon = styled(BiUser)`
 
 export const FriendRequestListBox = styled.div`
   width: 100%;
-  height: 300px;
+  max-height: 250px;
   border-bottom: 1px solid #e2e2e2;
   background-color: #fff;
 `;
