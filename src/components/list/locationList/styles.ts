@@ -1,6 +1,13 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 
+export const Wrapper = styled.div`
+  @media (max-width: 767px) {
+    display: flex;
+    flex-direction: row;
+  }
+`;
+
 export const LocationWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -9,6 +16,7 @@ export const LocationWrapper = styled.div`
   position: relative;
   background-color: transparent;
   transition: background-color 0.2s ease-in-out;
+
   &:hover {
     background-color: rgba(0, 0, 0, 0.7);
     button {
@@ -16,7 +24,10 @@ export const LocationWrapper = styled.div`
     }
   }
   @media (max-width: 767px) {
-    width: 200px;
+    width: 300px;
+    display: flex;
+    flex-direction: row;
+    border: 1px solid #979797;
   }
 `;
 
@@ -30,7 +41,11 @@ export const ImageSection = styled.img`
   border-radius: 6px;
   @media (max-width: 767px) {
     height: 100px;
+    width: 100px;
     margin: 10px 10px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 `;
 
@@ -99,11 +114,19 @@ export const InterestBox = styled.div`
 export const LocationListColumn = styled.div`
   display: flex;
   flex-direction: column;
+  @media (max-width: 767px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 `;
 
 export const DivideLine = styled.div`
   border-bottom: 1px solid #d9d9d9;
   width: 100%;
+  @media (max-width: 767px) {
+    display: none;
+  }
 `;
 
 export const ButtonWrapper = styled.div`

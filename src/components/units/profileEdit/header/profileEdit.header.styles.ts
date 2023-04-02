@@ -10,6 +10,12 @@ export const Wrapper = styled.div`
   margin-top: 50px;
   padding: 20px;
   border: 1px solid #d3d3d3;
+
+  @media (max-width: 767px) {
+    display: flex;
+    flex-direction: column;
+    height: 320px;
+  }
 `;
 
 export const ProfileLeft = styled.div`
@@ -21,6 +27,34 @@ export const ProfileLeft = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+  }
+  @media (max-width: 767px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+`;
+
+export const UserIconBox = styled.div`
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+  background-color: #d1d1d1;
+  margin-right: 30px;
+
+  > img {
+    border-radius: 50px;
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (max-width: 767px) {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-right: 0px;
+    width: 70px;
+    height: 70px;
   }
 `;
 
@@ -64,7 +98,12 @@ export const ProfileRight = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: flex-end;
+  @media (max-width: 767px) {
+    align-items: flex-start;
+    margin-bottom: 10px;
+    height: 20%;
+    text-align: left;
+  }
 `;
 
 export const Quit = styled.button`
@@ -77,9 +116,16 @@ export const Quit = styled.button`
   :hover {
     color: #191919;
   }
+  @media (max-width: 767px) {
+    font-size: 10px;
+  }
 `;
 
 export const CreateId = styled.p`
   font-size: 14px;
   color: #a6a6a6;
+  @media (max-width: 767px) {
+    font-size: 10px;
+    text-align: left;
+  }
 `;

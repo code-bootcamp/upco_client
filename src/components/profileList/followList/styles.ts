@@ -17,6 +17,9 @@ export const Wrapper = styled.ul`
     border-radius: 6px;
     padding: 10px 15px;
     margin-bottom: calc(4% / 3);
+    @media (max-width: 1023px) {
+      width: 49%;
+    }
     @media (max-width: 767px) {
       width: 100%;
     }
