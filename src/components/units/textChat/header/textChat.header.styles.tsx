@@ -42,4 +42,8 @@ export const Wrapper = styled.div`
     border-radius: 5px;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
   }
+
+  @media (max-width: 767px) {
+    /* height: calc(100% - 54px - 64px);  */
+  }
 `;

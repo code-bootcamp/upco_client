@@ -1,3 +1,4 @@
+import styled from "@emotion/styled";
 import { useState } from "react";
 import { useRecoilState } from "recoil";
 import { useGeolocationMode } from "../../commons/hooks/customs/useGeolocationMode";
@@ -26,8 +27,17 @@ export default function MainPage(): JSX.Element {
   mapCreation();
   useLocation();
 
+  const Wrapper = styled.div`
+    display: flex;
+    flex-direction: row;
+    @media (max-width: 767px) {
+      display: flex;
+      flex-direction: column;
+    }
+  `;
+
   return (
-    <div style={{ display: "flex", flexDirection: "row" }}>
+    <Wrapper>
       {isOpen && (
         <MainBody
           locationSaveFn={locationSaveFn}
@@ -38,6 +48,6 @@ export default function MainPage(): JSX.Element {
         ></MainBody>
       )}
       <MainFooter data={data} />
-    </div>
+    </Wrapper>
   );
 }

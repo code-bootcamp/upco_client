@@ -13,8 +13,19 @@ export const Wrapper = styled.div<IWrapperProps>`
   flex-direction: column;
   align-items: center;
   width: 300px;
-  height: 100vh-80px;
+  height: 100vh - 80px;
   border-left: 1px solid #e2e2e2;
+
+  > div {
+    @media (max-width: 767px) {
+      /* display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center; */
+      width: 100vh;
+      /* border-bottom: 1px solid #979797;  */
+    }
+  }
 
   @media (max-width: 767px) {
     width: 200px;
@@ -31,6 +42,8 @@ export const ChatFooterTitle = styled.div`
   font-size: 18px;
   @media (max-width: 767px) {
     font-size: 15px;
+    display: flex;
+    flex-direction: row;
   }
 `;
 
@@ -69,6 +82,9 @@ export const FollowList = styled.div`
 export const DivideLine = styled.div`
   border-bottom: 1px solid #d9d9d9;
   width: 100%;
+  @media (max-width: 767px) {
+    display: none;
+  }
 `;
 
 export const UserBox = styled.div`

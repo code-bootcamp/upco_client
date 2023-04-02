@@ -33,24 +33,21 @@ export const MabBox = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  ${css`
-    @media (max-width: 767px) {
-      width: 100%;
-      height: 100vh;
-      z-index: 10;
-    }
-  `}
+
+  @media (max-width: 767px) {
+    width: 100%;
+    height: calc(100vh - 64px - 54px);
+    z-index: 10;
+  }
 `;
 
 export const MabWeb = styled(Map)`
   width: calc(100% - 300px);
   height: calc(100vh - 68px);
 
-  ${css`
-    @media (max-width: 767px) {
-      width: 100%;
-      height: 100vh;
-      z-index: 10;
-    }
-  `}
+  @media (max-width: 767px) {
+    width: 100%;
+    z-index: 10;
+    height: calc(100vh - 64px - 54px);
+  }
 `;

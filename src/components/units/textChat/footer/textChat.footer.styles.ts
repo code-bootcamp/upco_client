@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   width: 300px;
-  height: 100%;
+  /* height: 100vh; */
 
   @media (max-width: 767px) {
     display: ${(props) => (props.isOpen ? "block" : "none")};

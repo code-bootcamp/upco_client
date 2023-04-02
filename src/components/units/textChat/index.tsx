@@ -11,10 +11,14 @@ import { roomIdState } from "../../commons/stores";
 
 const Wrapper = styled.div`
   max-width: 100%;
-  height: calc(100vh - 68px);
+  height: calc(100vh - 64px);
   margin: 0 auto;
   display: flex;
   flex-direction: row;
+  @media (max-width: 767px) {
+    height: calc(100vh - 54px - 64px);
+    border-bottom: 1px solid #e2e2e2;
+  }
 `;
 
 const LeftContents = styled.div`
