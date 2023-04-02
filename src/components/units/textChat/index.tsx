@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import io, { Socket } from "socket.io-client";
 import VideoChat from "../videoChat";
 import TextChatBody from "./body/textChat.body.index";
@@ -39,11 +39,8 @@ export default function TextChat(): JSX.Element {
   const data = useQueryFetchLoginUser();
   const myId = data?.data?.fetchLoginUser.id;
   console.log(socket);
-  console.log("메시지로그:", messageLog);
-  console.log("메시지", messages);
-
   useEffect(() => {
-    const newSocket = io("http://10.34.233.50:4000/", {
+    const newSocket = io("http://10.34.232.105:4000/", {
       path: "/socket.io",
       transports: ["websocket"],
     });
@@ -67,7 +64,7 @@ export default function TextChat(): JSX.Element {
       newSocket.disconnect();
       setMessages([]);
     };
-  }, [roomId, setMessages]);
+  }, [roomId, setMessages, setMessageLog]);
 
   const emitData = (contents: string): void => {
     if (socket) {

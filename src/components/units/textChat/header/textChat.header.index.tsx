@@ -32,12 +32,12 @@ export default function TextChatHeader(props: TextChatHeaderProps): JSX.Element 
       window.removeEventListener("resize", updateHeight);
     };
   }, []);
-
-  const isNoMessage = props.messageLog.length === 0;
+  const isNoMessageLog = props.messageLog.length === 0;
+  const isNoMessage = props.messages.length === 0;
 
   return (
     <S.Wrapper>
-      {isNoMessage && <div className="noMessage">메시지가 없습니다.</div>}
+      {isNoMessage && isNoMessageLog && <div className="noMessage">메시지가 없습니다.</div>}
       {!isNoMessage &&
         props.messageLog.map((msg, index) => (
           <div
