@@ -38,20 +38,23 @@ export default function MainFooter(props): JSX.Element {
           <S.UserIcon></S.UserIcon>
         </S.UserBox>
       )} */}
+      <S.SubWrapper>
+        <S.ChatFooterTitle>
+          <S.ChatTitle selected={selectedComponent === "location"} onClick={handleChatClick}>
+            내 주변
+          </S.ChatTitle>
+          <S.FollowerTitle
+            selected={selectedComponent === "follower"}
+            onClick={handleFollowerClick}
+          >
+            친구 목록
+          </S.FollowerTitle>
+        </S.ChatFooterTitle>
 
-      <S.ChatFooterTitle>
-        <S.ChatTitle selected={selectedComponent === "location"} onClick={handleChatClick}>
-          내 주변
-        </S.ChatTitle>
-        <S.FollowerTitle selected={selectedComponent === "follower"} onClick={handleFollowerClick}>
-          친구 목록
-        </S.FollowerTitle>
-      </S.ChatFooterTitle>
-
-      <S.DivideLine />
-      {data?.fetchFriendRequests.length !== 0 && (
-        <S.FollowList onClick={followerOpen}>친구 요청</S.FollowList>
-      )}
+        {data?.fetchFriendRequests.length !== 0 && (
+          <S.FollowList onClick={followerOpen}>친구 요청</S.FollowList>
+        )}
+      </S.SubWrapper>
       <S.DivideLine />
       {isFollower && (
         <S.FriendRequestListBox>
@@ -71,6 +74,7 @@ export default function MainFooter(props): JSX.Element {
           ))}
         </S.FriendRequestListBox>
       )}
+
       {selectedComponent === "location" ? (
         <LocationList data={props.data} />
       ) : selectedComponent === "follower" ? (

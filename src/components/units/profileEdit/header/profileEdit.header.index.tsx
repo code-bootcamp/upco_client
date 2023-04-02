@@ -25,8 +25,10 @@ export default function ProfileEditHeader(): JSX.Element {
     <>
       <S.Wrapper>
         <S.ProfileLeft>
-          <S.UserIcon></S.UserIcon>
-          <img src={`https://storage.googleapis.com/${imageUrl}`}></img>
+          <S.UserIconBox>
+            <S.UserIcon></S.UserIcon>
+          </S.UserIconBox>
+          {/* <img src={`https://storage.googleapis.com/${imageUrl}`}></img>  */}
           <div>
             <S.Name>{data?.data?.fetchLoginUser.nickname}</S.Name>
             <S.EditImage onClick={onClickImage}>이미지 수정</S.EditImage>
@@ -35,9 +37,7 @@ export default function ProfileEditHeader(): JSX.Element {
         </S.ProfileLeft>
         <S.ProfileRight>
           <S.Quit>회원탈퇴</S.Quit>
-          <S.CreateId>
-            계정 생성 일자: {data?.data?.fetchLoginUser.createAt.slice(0, 10)}
-          </S.CreateId>
+          <S.CreateId>계정 생성일: {data?.data?.fetchLoginUser.createAt.slice(0, 10)}</S.CreateId>
         </S.ProfileRight>
       </S.Wrapper>
     </>

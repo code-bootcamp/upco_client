@@ -18,32 +18,38 @@ export const Wrapper = styled.div<IWrapperProps>`
 
   > div {
     @media (max-width: 767px) {
-      /* display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center; */
-      width: 100vh;
-      /* border-bottom: 1px solid #979797;  */
     }
   }
 
   @media (max-width: 767px) {
-    width: 200px;
+    width: 100%;
+    padding: 0 1px;
     display: ${(props) => (props.isOpen ? "block" : "none")};
     z-index: 20;
   }
 `;
 
+export const SubWrapper = styled.div`
+  @media (max-width: 767px) {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+`;
+
 export const ChatFooterTitle = styled.div`
+  width: 300px;
+  /* background-color: red;  */
+  border-bottom: 1px solid #e2e2e2;
   padding: 20px 0;
   display: flex;
   flex-direction: row;
-  align-items: flex-end;
+  justify-content: center;
   font-size: 18px;
   @media (max-width: 767px) {
+    padding: 10px 20px;
+    width: 100vh;
     font-size: 15px;
-    display: flex;
-    flex-direction: row;
   }
 `;
 

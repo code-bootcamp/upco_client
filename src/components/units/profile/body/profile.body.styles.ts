@@ -11,8 +11,10 @@ export const Wrapper = styled.div`
   margin-top: 50px;
   padding: 20px;
   border: 1px solid #d3d3d3;
-
   @media (max-width: 767px) {
+    height: 320px;
+    display: flex;
+    flex-direction: column;
   }
 `;
 
@@ -30,7 +32,13 @@ export const ProfileLeft = styled.div`
       flex-direction: row;
       flex-wrap: wrap;
       align-items: center;
+      justify-content: center;
+      margin-top: 10px;
     }
+  }
+  @media (max-width: 767px) {
+    display: flex;
+    flex-direction: column;
   }
 `;
 
@@ -48,8 +56,12 @@ export const UserIconBox = styled.div`
   }
 
   @media (max-width: 767px) {
-    width: 50px;
-    height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-right: 0px;
+    width: 70px;
+    height: 70px;
   }
 `;
 
@@ -102,6 +114,9 @@ export const ProfileRight = styled.div`
       font-size: 14px;
       text-decoration: underline;
       transition: all 0.3s ease-in-out;
+      @media (max-width: 767px) {
+        justify-content: flex-end;
+      }
 
       :hover {
         color: #191919;
@@ -112,6 +127,9 @@ export const ProfileRight = styled.div`
   @media (max-width: 767px) {
     p {
       font-size: 10px;
+      @media (max-width: 767px) {
+        margin-top: 10px;
+      }
     }
   }
 `;
