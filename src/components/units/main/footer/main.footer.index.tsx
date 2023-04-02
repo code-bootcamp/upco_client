@@ -53,7 +53,9 @@ export default function MainFooter(props): JSX.Element {
       </div>
 
       <S.DivideLine />
-      <S.FollowList onClick={followerOpen}>친구 요청</S.FollowList>
+      {data?.fetchFriendRequests.length !== 0 && (
+        <S.FollowList onClick={followerOpen}>친구 요청</S.FollowList>
+      )}
       <S.DivideLine />
       {isFollower && (
         <S.FriendRequestListBox>
