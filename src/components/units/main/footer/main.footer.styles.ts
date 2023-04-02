@@ -1,10 +1,14 @@
-import styled from "@emotion/styled";
+import styled, { CSSObject } from "@emotion/styled";
 import { BiUser } from "react-icons/bi";
 
 const activeColor = "#6658ca";
 const inactiveColor = "#979797";
 
-export const Wrapper = styled.div`
+interface IWrapperProps {
+  isOpen?: boolean;
+}
+
+export const Wrapper = styled.div<IWrapperProps>`
   display: flex;
   flex-direction: column;
   align-items: center;

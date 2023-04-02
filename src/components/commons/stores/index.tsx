@@ -19,7 +19,7 @@ export const roomIdState = atom({
   default: "",
 });
 
-export const isOpenState = atom({
+export const isOpenState = atom<boolean>({
   key: "isOpenState",
   default: false,
 });

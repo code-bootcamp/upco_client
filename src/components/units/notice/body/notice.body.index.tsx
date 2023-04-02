@@ -1,10 +1,8 @@
 import { useState } from "react";
-import { getDate } from "../../../../commons/libraries/utils";
 import { FetchDataSlice } from "../../../commons/hooks/customs/fetchDataSlice";
 import { useQueryFetchNotices } from "../../../commons/hooks/queries/useQueryFetchNotices";
 import Pagination from "../../../commons/paginations/pagination.index";
 import * as S from "./notice.body.styles";
-import { v4 as uuidv4 } from "uuid";
 
 export default function NoticeBody(): JSX.Element {
   const { data } = useQueryFetchNotices();

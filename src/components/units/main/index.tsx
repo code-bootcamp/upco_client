@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useRecoilState } from "recoil";
 import { useGeolocationMode } from "../../commons/hooks/customs/useGeolocationMode";
-// import { useGeolocationMode } from "../../commons/hooks/customs/useGeolocationMode";
 import { useLocationInitialMode } from "../../commons/hooks/customs/useLocationInitialMode";
 import { useLocationMode } from "../../commons/hooks/customs/useLocationMode";
 import { useLocationSaveMode } from "../../commons/hooks/customs/useLocationSaveMode";
