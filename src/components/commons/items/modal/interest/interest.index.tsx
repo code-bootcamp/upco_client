@@ -4,6 +4,7 @@ import * as S from "./interest.styles";
 interface InterestUIProps {
   setIsModalOpen: (value: boolean) => void;
   setInterestList: (value: string[]) => void;
+  selectedInterests: string[];
 }
 
 const interestMeeting = [

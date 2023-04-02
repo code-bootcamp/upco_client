@@ -4,6 +4,7 @@ import { useUpdateUserMode } from "../../../commons/hooks/customs/useUpdateUserM
 import InterestUI from "../../../commons/items/modal/interest/interest.index";
 import PasswordReset from "../../passwordReset/passwordReset.index";
 import * as S from "./profileEdit.body.styles";
+import SelectedAgeInput from "../../../commons/items/selected/age.index";
 
 export default function ProfileEditBody(): JSX.Element {
   const { data } = useQueryFetchLoginUser();
@@ -11,9 +12,9 @@ export default function ProfileEditBody(): JSX.Element {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [interestList, setInterestList] = useState<string[]>([]);
   const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
+  const [selectedAge, setSelectedAge] = useState<number>(data?.fetchLoginUser?.age ?? 2023);
 
   const { onClickUpdate } = useUpdateUserMode();
-
   const openPasswordReset = (): void => {
     setIsOpen((prev) => !prev);
   };
@@ -24,11 +25,12 @@ export default function ProfileEditBody(): JSX.Element {
   const handleUpdateProfile = async (): Promise<void> => {
     await onClickUpdate({
       nickname: data?.fetchLoginUser?.nickname,
-      age: data?.fetchLoginUser?.age,
+      age: 2023 - selectedAge,
       interests: [...interestList],
     });
   };
   console.log(data?.fetchLoginUser.interests);
+
   return (
     <>
       {isModalOpen && (
@@ -52,6 +54,10 @@ export default function ProfileEditBody(): JSX.Element {
           </S.DefaultBox>
         </S.Section>
         <S.Section>
+          <S.SectionTitle>출생년도</S.SectionTitle>
+          <SelectedAgeInput selectedAge={selectedAge} setSelectedAge={setSelectedAge} />
+        </S.Section>
+        <S.Section>
           <S.SectionTitle>비밀번호</S.SectionTitle>
           <S.DefaultBox>
             <div>
@@ -64,7 +70,7 @@ export default function ProfileEditBody(): JSX.Element {
           <S.DefaultBox>
             <div>
               <S.InterestBox>
-                {data?.fetchLoginUser.interests.map((interests) => (
+                {data?.fetchLoginUser?.interests?.map((interests) => (
                   <li key={interests.id}>{interests.name}</li>
                 ))}
               </S.InterestBox>

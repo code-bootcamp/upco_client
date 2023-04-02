@@ -1,7 +1,10 @@
 import Link from "next/link";
+import { useQueryFetchLoginUser } from "../../../commons/hooks/queries/fetchLoginUser";
 import * as S from "./profile.body.styles";
 
 export default function ProfileBody(): JSX.Element {
+  const { data } = useQueryFetchLoginUser();
+
   return (
     <>
       <S.Wrapper>
@@ -12,23 +15,15 @@ export default function ProfileBody(): JSX.Element {
           </S.UserIconBox>
           <ul>
             <li>
-              <S.Name>문성진</S.Name>
-              <S.Age>20대중반</S.Age>
+              <S.Name>{data?.fetchLoginUser?.nickname}</S.Name>
+              <S.Age>{data?.fetchLoginUser?.age}</S.Age>
             </li>
             <li>
-              <S.Email>eggmun98@naver.com</S.Email>
+              <S.Email>{data?.fetchLoginUser?.email}</S.Email>
             </li>
-            <li>
-              <S.Interest>축구</S.Interest>
-              <S.Interest>축구</S.Interest>
-              <S.Interest>축구</S.Interest>
-              <S.Interest>축구</S.Interest>
-              <S.Interest>축구</S.Interest>
-              <S.Interest>축구</S.Interest>
-              <S.Interest>축구</S.Interest>
-              <S.Interest>축구</S.Interest>
-              <S.Interest>축구</S.Interest>
-            </li>
+            {data?.fetchLoginUser?.interests?.map((interests) => (
+              <li key={interests.id}>{interests.name}</li>
+            ))}
           </ul>
         </S.ProfileLeft>
         <S.ProfileRight>
