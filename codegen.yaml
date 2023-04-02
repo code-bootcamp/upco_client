@@ -1,4 +1,4 @@
-schema: https://api.upco.space/main
+schema: http://34.64.115.73/main
 generates:
   ./src/commons/types/generated/types.ts:
     plugins:
