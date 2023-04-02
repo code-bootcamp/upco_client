@@ -61,7 +61,7 @@ export type IInterest = {
 
 export type IMutation = {
   __typename?: 'Mutation';
-  acceptFriendRequest: Array<IFriend>;
+  acceptFriendRequest: Scalars['Boolean'];
   blockUser: IBlock;
   createDefaultInterests: Scalars['String'];
   createFriendRequest: IFriend;
