@@ -13,7 +13,7 @@ export const Wrapper = styled.div`
   background-color: #ffffff;
   position: relative;
   width: 100%;
-  height: 68px;
+  height: 64px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -28,19 +28,11 @@ export const Wrapper = styled.div`
     align-items: center;
     justify-content: space-between;
   }
-  @media (max-width: 767px) {
-    padding: 0 25px;
-    height: 54px;
-  }
 `;
 
 export const Logo = styled.img`
   height: 24px;
   cursor: pointer;
-
-  @media (max-width: 767px) {
-    height: 20px;
-  }
 `;
 
 export const UserBox = styled.div`

@@ -17,6 +17,9 @@ export const Wrapper = styled.ul`
     border-radius: 6px;
     padding: 10px 15px;
     margin-bottom: calc(4% / 3);
+    @media (max-width: 767px) {
+      width: 100%;
+    }
   }
 `;
 
@@ -40,6 +43,9 @@ export const ImgBox = styled.div`
 export const Name = styled.p`
   font-size: 16px;
   color: #191919;
+  @media (max-width: 767px) {
+    font-size: 14px;
+  }
 `;
 
 export const DeleteFollow = styled.button`
@@ -54,6 +60,9 @@ export const DeleteFollow = styled.button`
 
   :hover {
     color: #6658ca;
+  }
+  @media (max-width: 767px) {
+    font-size: 12px;
   }
 `;
 
@@ -72,5 +81,8 @@ export const BlockList = styled.div`
   color: #191919;
   > h4 {
     font-size: 14px;
+    @media (max-width: 767px) {
+      font-size: 12px;
+    }
   }
 `;

@@ -6,6 +6,9 @@ import ProfileHeader from "./header/profile.header.index";
 const Wrapper = styled.div`
   max-width: 1200px;
   margin: 0 auto;
+  @media (max-width: 767px) {
+    padding: 50px;
+  }
 `;
 
 export default function ProfileUI(): JSX.Element {

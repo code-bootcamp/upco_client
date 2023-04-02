@@ -17,6 +17,11 @@ export const Wrapper = styled.div`
     align-items: center;
     background-color: rgba(0, 0, 0, 0.6);
   }
+  @media (max-width: 767px) {
+    > div {
+      padding: 50px;
+    }
+  }
 `;
 
 export const Title = styled.span`
@@ -36,6 +41,17 @@ export const Title = styled.span`
       margin-left: 10px;
     }
   }
+  @media (max-width: 767px) {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    font-size: 15px;
+    > h4 {
+      font-size: 30px;
+    }
+  }
 `;
 
 export const Logo = styled.img`
@@ -43,6 +59,9 @@ export const Logo = styled.img`
   margin-left: 15px;
   user-select: none;
   margin-bottom: 10px;
+  @media (max-width: 767px) {
+    height: 30px;
+  }
 `;
 
 export const ButtonBox = styled.div`

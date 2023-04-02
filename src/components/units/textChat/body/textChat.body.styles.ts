@@ -4,6 +4,9 @@ export const Wrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  @media (max-width: 767px) {
+    /* height: calc(100% - 54px - 64px);  */
+  }
 `;
 
 export const SendContents = styled.textarea`

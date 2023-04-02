@@ -38,19 +38,15 @@ export default function MainFooter(props): JSX.Element {
           <S.UserIcon></S.UserIcon>
         </S.UserBox>
       )} */}
-      <div style={{ display: "flex", justifyContent: "column" }}>
-        <S.ChatFooterTitle>
-          <S.ChatTitle selected={selectedComponent === "location"} onClick={handleChatClick}>
-            내 주변
-          </S.ChatTitle>
-          <S.FollowerTitle
-            selected={selectedComponent === "follower"}
-            onClick={handleFollowerClick}
-          >
-            친구 목록
-          </S.FollowerTitle>
-        </S.ChatFooterTitle>
-      </div>
+
+      <S.ChatFooterTitle>
+        <S.ChatTitle selected={selectedComponent === "location"} onClick={handleChatClick}>
+          내 주변
+        </S.ChatTitle>
+        <S.FollowerTitle selected={selectedComponent === "follower"} onClick={handleFollowerClick}>
+          친구 목록
+        </S.FollowerTitle>
+      </S.ChatFooterTitle>
 
       <S.DivideLine />
       {data?.fetchFriendRequests.length !== 0 && (
