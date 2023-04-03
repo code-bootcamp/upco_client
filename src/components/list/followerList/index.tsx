@@ -24,7 +24,7 @@ export default function FollowerList(): JSX.Element {
     const existingData = localStorage.getItem("anotherIds");
     const newData = { anotherId };
 
-    const newSocket = io("http://10.34.232.105:4000/", {
+    const newSocket = io("http://10.34.233.130:4000/", {
       path: "/socket.io",
       transports: ["websocket"],
     });

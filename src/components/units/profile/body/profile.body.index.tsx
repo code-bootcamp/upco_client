@@ -16,7 +16,7 @@ export default function ProfileBody(): JSX.Element {
           <ul>
             <li>
               <S.Name>{data?.fetchLoginUser?.nickname}</S.Name>
-              <S.Age>{data?.fetchLoginUser?.age}</S.Age>
+              <S.Age>{data?.fetchLoginUser?.age}세</S.Age>
             </li>
             <li>
               <S.Email>{data?.fetchLoginUser?.email}</S.Email>

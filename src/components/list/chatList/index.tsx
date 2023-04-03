@@ -70,16 +70,16 @@ export default function ChatList(): JSX.Element {
   //   }
   // }, [result.data]);
   // console.log(chatRooms);
-  // useEffect(() => {
-  //   const fetchChatRooms = async (): Promise<void> => {
-  //     const result = await axios.get(
-  //       `http://10.34.232.105:4000/chatRoomList/${data.data?.fetchLoginUser.id}`
-  //     );
-  //     console.log(result, "ㅁㅁ");
-  //   };
-  //   fetchChatRooms();
-  // }, []);
-  // console.log(data.data?.fetchLoginUser.id);
+  useEffect(() => {
+    const fetchChatRooms = async (): Promise<void> => {
+      const result = await axios.get(
+        `http://10.34.232.105:4000/chatRoomList/${data.data?.fetchLoginUser.id}`
+      );
+      console.log(result, "ㅁㅁ");
+    };
+    fetchChatRooms();
+  }, []);
+  console.log(data.data?.fetchLoginUser.id);
   return (
     <>
       <DivideLine />
