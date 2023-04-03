@@ -24,6 +24,7 @@ export const Wrapper = styled.div<IWrapperProps>`
   @media (max-width: 767px) {
     width: 100%;
     padding: 0 1px;
+    height: 200px;
     display: ${(props) => (props.isOpen ? "block" : "none")};
     z-index: 20;
   }
@@ -34,13 +35,12 @@ export const SubWrapper = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: center;
+    border-bottom: 1px solid #e2e2e2;
   }
 `;
 
 export const ChatFooterTitle = styled.div`
   width: 300px;
-  /* background-color: red;  */
-  border-bottom: 1px solid #e2e2e2;
   padding: 20px 0;
   display: flex;
   flex-direction: row;

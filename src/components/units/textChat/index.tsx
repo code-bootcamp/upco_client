@@ -7,7 +7,7 @@ import TextChatFooter from "./footer/textChat.footer.index";
 import TextChatHeader from "./header/textChat.header.index";
 import { useQueryFetchLoginUser } from "../../commons/hooks/queries/fetchLoginUser";
 import { useRecoilState } from "recoil";
-import { roomIdState } from "../../commons/stores";
+import { isOpenState, roomIdState } from "../../commons/stores";
 
 const Wrapper = styled.div`
   max-width: 100%;
@@ -31,6 +31,9 @@ const LeftContents = styled.div`
     display: flex;
     flex-direction: column;
   }
+  @media (max-width: 767px) {
+    display: ${(props) => (props.isOpen ? "none" : "")};
+  }
 `;
 
 export default function TextChat(): JSX.Element {
@@ -39,12 +42,13 @@ export default function TextChat(): JSX.Element {
   const [socket, setSocket] = useState<Socket<DefaultEventsMap, DefaultEventsMap> | null>(null);
   const [roomId, setRoomId] = useRecoilState(roomIdState);
   const [messageLog, setMessageLog] = useState<Array<{ contents: string; senderId: string }>>([]);
+  const [isOpen, setIsOpen] = useRecoilState(isOpenState);
 
   const data = useQueryFetchLoginUser();
   const myId = data?.data?.fetchLoginUser.id;
   console.log(socket);
   useEffect(() => {
-    const newSocket = io("http://10.34.232.105:4000/", {
+    const newSocket = io("http://10.34.233.130:4000/", {
       path: "/socket.io",
       transports: ["websocket"],
     });
@@ -84,7 +88,7 @@ export default function TextChat(): JSX.Element {
   return (
     <>
       <Wrapper>
-        <LeftContents>
+        <LeftContents isOpen={isOpen}>
           <div>
             <TextChatHeader
               isVideo={isVideo}
@@ -92,7 +96,9 @@ export default function TextChat(): JSX.Element {
               messageLog={messageLog}
               myId={myId}
             />
-            <TextChatBody emitData={emitData} onClickVideo={onClickVideo} messages={messages} />
+            {roomId && (
+              <TextChatBody emitData={emitData} onClickVideo={onClickVideo} messages={messages} />
+            )}
           </div>
           {isVideo && <VideoChat />}
         </LeftContents>

@@ -12,6 +12,7 @@ export const Wrapper = styled.div`
 
   @media (max-width: 767px) {
     display: ${(props) => (props.isOpen ? "block" : "none")};
+    width: 100%;
   }
 `;
 
@@ -23,6 +24,9 @@ export const ChatFooterTitle = styled.div`
   font-size: 18px;
   @media (max-width: 767px) {
     font-size: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
   }
 `;
 
@@ -36,12 +40,14 @@ const Title = styled.div<{ selected: boolean }>`
 export const ChatTitle = styled(Title)`
   margin-right: 30px;
   @media (max-width: 767px) {
-    margin-left: 50px;
-    margin-right: 20px;
   }
 `;
 
-export const FollowerTitle = styled(Title)``;
+export const FollowerTitle = styled(Title)`
+  @media (max-width: 767px) {
+    /* margin-left: 15px; */
+  }
+`;
 
 export const FollowList = styled.div`
   display: flex;

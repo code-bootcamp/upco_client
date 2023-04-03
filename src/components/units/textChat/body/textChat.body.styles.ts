@@ -5,7 +5,6 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   @media (max-width: 767px) {
-    /* height: calc(100% - 54px - 64px);  */
   }
 `;
 

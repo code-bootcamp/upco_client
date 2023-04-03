@@ -44,6 +44,5 @@ export const Wrapper = styled.div`
   }
 
   @media (max-width: 767px) {
-    /* height: calc(100% - 54px - 64px);  */
   }
 `;
