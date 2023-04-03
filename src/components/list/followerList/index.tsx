@@ -3,27 +3,18 @@ import { io } from "socket.io-client";
 import { useQueryFetchLoginUser } from "../../commons/hooks/queries/fetchLoginUser";
 import TooltipUI02 from "../../commons/items/tooltip/02/tooltip02.index";
 import { useRecoilState } from "recoil";
-import { isCloseState, roomIdState } from "../../commons/stores";
+import { roomIdState } from "../../commons/stores";
 import { useQueryFetchFriends } from "../../commons/hooks/queries/useQueryFetchFriends";
 import * as S from "./styles";
-import { useRouter } from "next/router";
-
-const CHECKOUT_PAGE = ["/main"];
 
 export default function FollowerList(): JSX.Element {
   const [roomId, setRoomId] = useRecoilState(roomIdState);
   const [socket, setSocket] = useState();
-  const [isClose, setIsClose] = useRecoilState(isCloseState);
-
   const { data } = useQueryFetchLoginUser();
   const { data: friendsData } = useQueryFetchFriends();
   const [isOpenToolTip, setIsOpenToolTip] = useState<boolean[]>(
     friendsData?.fetchFriends.map(() => false) ?? []
   );
-
-  const router = useRouter();
-  const mPage = CHECKOUT_PAGE.includes(router.asPath);
-  console.log(mPage, "MPage@@@");
 
   const myId = data?.fetchLoginUser.id;
   console.log(roomId);
@@ -98,45 +89,6 @@ export default function FollowerList(): JSX.Element {
       ) : (
         <S.NoneText>친구목록이 비어있습니다.</S.NoneText>
       )}
-      <S.Wrapper mPage={mPage}>
-        <S.FollowerWrapper onClick={onClickChat} mPage={mPage}>
-          <S.FollowerListRow>
-            <S.ImageBox>
-              <S.UserIcon />
-            </S.ImageBox>
-
-            <S.FollowerListColumn>
-              <S.NickNameSection>문성진</S.NickNameSection>
-              <S.ChatSection>안녕하세요안녕하세여안녕하세요안녕하세여</S.ChatSection>
-            </S.FollowerListColumn>
-            <S.DottedIcon onClick={onClickOpenTooltip("")}>
-              <li></li>
-              <li></li>
-              <li></li>
-            </S.DottedIcon>
-          </S.FollowerListRow>
-        </S.FollowerWrapper>
-        <S.DivideLine />
-
-        <S.FollowerWrapper onClick={onClickChat} mPage={mPage}>
-          <S.FollowerListRow>
-            <S.ImageBox>
-              <S.UserIcon />
-            </S.ImageBox>
-
-            <S.FollowerListColumn>
-              <S.NickNameSection>문성진</S.NickNameSection>
-              <S.ChatSection>안녕하세요안녕하세여안녕하세요안녕하세여</S.ChatSection>
-            </S.FollowerListColumn>
-            <S.DottedIcon onClick={onClickOpenTooltip("")}>
-              <li></li>
-              <li></li>
-              <li></li>
-            </S.DottedIcon>
-          </S.FollowerListRow>
-        </S.FollowerWrapper>
-        <S.DivideLine />
-      </S.Wrapper>
     </>
   );
 }
