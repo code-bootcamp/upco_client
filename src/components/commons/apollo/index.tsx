@@ -56,8 +56,7 @@ export default function ApolloSetting(props: IApolloSettingProps): JSX.Element {
   // });
 
   const uploadLink = createUploadLink({
-    uri: "http://34.64.115.73/main",
-    // uri: "https://api.upco.space/main",
+    uri: "https://api.upco.space/main/graphql",
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },
