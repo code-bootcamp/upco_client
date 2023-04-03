@@ -1,5 +1,5 @@
 import * as S from "./main.footer.styles";
-import { useState } from "react";
+import React, { useState } from "react";
 import FollowerList from "../../../list/followerList";
 import LocationList from "../../../list/locationList";
 import { isOpenState } from "../../../commons/stores";
@@ -77,10 +77,8 @@ export default function MainFooter(props): JSX.Element {
 
       {selectedComponent === "location" ? (
         <LocationList data={props.data} />
-      ) : selectedComponent === "follower" ? (
-        <FollowerList />
       ) : (
-        <LocationList />
+        selectedComponent === "follower" && <FollowerList />
       )}
     </S.Wrapper>
   );

@@ -21,6 +21,7 @@ export const Wrapper = styled.div`
   padding: 0 50px;
   z-index: 9;
   box-shadow: 0px 1px 0px 1px #e2e2e2;
+  border-top: 1px solid #e2e2e2;
   > div {
     width: 100%;
     display: flex;
