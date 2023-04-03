@@ -7,7 +7,6 @@ export default function TextChatHeader(props: TextChatHeaderProps): JSX.Element 
   const [height, setHeight] = useState<number>(0);
 
   const wrapperRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     setMessages(
       props.messages.map((msg) => ({
@@ -15,8 +14,8 @@ export default function TextChatHeader(props: TextChatHeaderProps): JSX.Element 
         isSent: msg.isSent,
       }))
     );
-  }, [props.messages, props.roomId]);
-
+  }, [props.messages, props.roomId, props.messageLog]);
+  console.log(props.myId);
   useEffect(() => {
     const updateHeight = (): void => {
       if (wrapperRef.current) {
@@ -33,7 +32,9 @@ export default function TextChatHeader(props: TextChatHeaderProps): JSX.Element 
   }, []);
   const isNoMessageLog = props.messageLog.length === 0;
   const isNoMessage = props.messages.length === 0;
-
+  console.log(messages);
+  console.log(props.myId);
+  console.log(props.messageLog);
   return (
     <S.Wrapper>
       {isNoMessage && isNoMessageLog && <div className="noMessage">메시지가 없습니다.</div>}
@@ -47,7 +48,10 @@ export default function TextChatHeader(props: TextChatHeaderProps): JSX.Element 
           </div>
         ))}
       {messages.map((msg, index) => (
-        <div key={index} className={msg.isSent ? "sentMessage" : "receivedMessage"}>
+        <div
+          key={index}
+          className={index === 0 ? "firstMessage" : msg.isSent ? "sentMessage" : "receivedMessage"}
+        >
           <p>{msg.contents}</p>
         </div>
       ))}

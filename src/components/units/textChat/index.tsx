@@ -43,10 +43,10 @@ export default function TextChat(): JSX.Element {
   const [roomId, setRoomId] = useRecoilState(roomIdState);
   const [messageLog, setMessageLog] = useState<Array<{ contents: string; senderId: string }>>([]);
   const [isOpen, setIsOpen] = useRecoilState(isOpenState);
-
   const data = useQueryFetchLoginUser();
   const myId = data?.data?.fetchLoginUser.id;
   console.log(socket);
+  console.log(roomId);
   useEffect(() => {
     const newSocket = io("http://10.34.233.130:4000/", {
       path: "/socket.io",
@@ -59,13 +59,16 @@ export default function TextChat(): JSX.Element {
     newSocket.on("roomCreateOrJoin", (roomId) => {
       setRoomId(roomId);
     });
-    console.log(roomId);
-    newSocket.emit("joinRoom", roomId);
 
     newSocket.on("load Message", (messageLog) => {
       setMessageLog(messageLog);
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        { contents: "채팅방에 입장하셨습니다", isSent: false },
+      ]);
     });
 
+    newSocket.emit("joinRoom", roomId);
     setSocket(newSocket);
 
     return () => {
@@ -80,7 +83,6 @@ export default function TextChat(): JSX.Element {
       socket.emit("message", { roomId, contents, myId });
     }
   };
-
   const onClickVideo = (): void => {
     setIsVideo(true);
   };
