@@ -7,7 +7,7 @@ interface InterestUIProps {
   selectedInterests: string[];
 }
 
-const interestMeeting = [
+export const interestMeeting = [
   "INTJ",
   "INTP",
   "INFJ",
