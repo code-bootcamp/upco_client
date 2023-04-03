@@ -1,32 +1,46 @@
 import * as S from "./main.footer.styles";
-import { useState } from "react";
+import React, { useState } from "react";
 import FollowerList from "../../../list/followerList";
 import LocationList from "../../../list/locationList";
-import { isOpenState } from "../../../commons/stores";
+import { isCloseState, isOpenState } from "../../../commons/stores";
 import { useRecoilState } from "recoil";
 import { useQueryFetchFriendRequests } from "../../../commons/hooks/queries/useQueryFetchFriendRequests";
 import { useOnClickAcceptFriendRequest } from "../../../commons/hooks/customs/useOnClickAcceptFriendRequest";
 import { useOnClickRejectFriendRequest } from "../../../commons/hooks/customs/useOnClickRejectFriendRequest";
+import { useRouter } from "next/router";
+
+const CHECKOUT_PAGE = ["/main"];
 
 export default function MainFooter(props): JSX.Element {
   const { data } = useQueryFetchFriendRequests();
   const [isOpen] = useRecoilState(isOpenState);
+  const [isClose, setIsClose] = useRecoilState(isCloseState);
+
   const { onClickAcceptFriendRequest } = useOnClickAcceptFriendRequest();
   const { onClickRejectFriendRequest } = useOnClickRejectFriendRequest();
 
   const [selectedComponent, setSelectedComponent] = useState("location");
   const [isFollower, setIsFollower] = useState(false);
 
+  const router = useRouter();
+  const checkoutPage = CHECKOUT_PAGE.includes(router.asPath);
+
   const handleChatClick = (): void => {
     setSelectedComponent("location");
+    setIsClose(false);
   };
 
   const handleFollowerClick = (): void => {
     setSelectedComponent("follower");
+    setIsClose(false);
   };
 
   const followerOpen = (): void => {
     setIsFollower((prev) => !prev);
+
+    if (window.innerWidth <= 767) {
+      setIsClose(true);
+    }
   };
 
   console.log(data);
@@ -52,7 +66,9 @@ export default function MainFooter(props): JSX.Element {
         </S.ChatFooterTitle>
 
         {data?.fetchFriendRequests.length !== 0 && (
-          <S.FollowList onClick={followerOpen}>친구 요청</S.FollowList>
+          <S.FollowList onClick={followerOpen} isOpen={isOpen}>
+            친구 요청
+          </S.FollowList>
         )}
       </S.SubWrapper>
       <S.DivideLine />
@@ -77,10 +93,8 @@ export default function MainFooter(props): JSX.Element {
 
       {selectedComponent === "location" ? (
         <LocationList data={props.data} />
-      ) : selectedComponent === "follower" ? (
-        <FollowerList />
       ) : (
-        <LocationList />
+        selectedComponent === "follower" && <FollowerList />
       )}
     </S.Wrapper>
   );

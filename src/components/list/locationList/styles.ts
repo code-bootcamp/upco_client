@@ -24,10 +24,12 @@ export const LocationWrapper = styled.div`
     }
   }
   @media (max-width: 767px) {
-    width: 300px;
+    width: 320px;
+    height: 158px;
     display: flex;
     flex-direction: row;
-    border: 1px solid #979797;
+    border-right: 1px solid #e2e2e2;
+    margin: 0px;
   }
 `;
 
@@ -40,12 +42,12 @@ export const ImageSection = styled.img`
   z-index: -1;
   border-radius: 6px;
   @media (max-width: 767px) {
-    height: 100px;
-    width: 100px;
-    margin: 10px 10px 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    height: 130px;
+    width: 130px;
+    margin: 14px 0 0 0px;
+    /* margin-top: 7px;  */
+    /* margin-bottom: 7px; */
+    object-fit: cover;
   }
 `;
 
@@ -53,6 +55,11 @@ export const ImageColumn = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
+  @media (max-width: 767px) {
+    height: 158px;
+    width: 158px;
+    /* background-color: blue; */
+  }
 `;
 
 export const NickNameSection = styled.div`
@@ -68,6 +75,9 @@ export const AgeSection = styled.div`
   color: #979797;
   z-index: -1;
   font-size: 14px;
+  @media (max-width: 767px) {
+    font-size: 12px;
+  }
 `;
 
 export const InterestSection = styled.div`
@@ -85,10 +95,10 @@ export const InterestSection = styled.div`
   font-size: 14px;
 
   @media (max-width: 767px) {
-    padding: 2px 15px;
+    margin: 1px;
+    padding: 1px 10px;
     height: 20px;
-    margin: 6px 5px 0px 0px;
-    font-size: 12px;
+    font-size: 8px;
   }
 `;
 
@@ -107,7 +117,7 @@ export const InterestBox = styled.div`
   flex-wrap: wrap;
   margin-bottom: 20px;
   @media (max-width: 767px) {
-    margin-bottom: 15px;
+    margin: 0 10px;
   }
 `;
 
@@ -117,7 +127,6 @@ export const LocationListColumn = styled.div`
   @media (max-width: 767px) {
     display: flex;
     flex-direction: column;
-    justify-content: center;
   }
 `;
 
