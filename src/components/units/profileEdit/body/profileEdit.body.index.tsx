@@ -25,7 +25,7 @@ export default function ProfileEditBody(): JSX.Element {
   const handleUpdateProfile = async (): Promise<void> => {
     await onClickUpdate({
       nickname: data?.fetchLoginUser?.nickname,
-      age: 2023 - selectedAge,
+      age: 2023 - selectedAge + 1,
       interests: [...interestList],
     });
   };
@@ -54,8 +54,10 @@ export default function ProfileEditBody(): JSX.Element {
           </S.DefaultBox>
         </S.Section>
         <S.Section>
-          <S.SectionTitle>출생년도</S.SectionTitle>
-          <SelectedAgeInput selectedAge={selectedAge} setSelectedAge={setSelectedAge} />
+          <S.DefaultBox>
+            <S.SectionTitle>출생년도</S.SectionTitle>
+            <SelectedAgeInput selectedAge={selectedAge} setSelectedAge={setSelectedAge} />
+          </S.DefaultBox>
         </S.Section>
         <S.Section>
           <S.SectionTitle>비밀번호</S.SectionTitle>

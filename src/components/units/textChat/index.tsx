@@ -44,7 +44,7 @@ export default function TextChat(): JSX.Element {
   const myId = data?.data?.fetchLoginUser.id;
   console.log(socket);
   useEffect(() => {
-    const newSocket = io("http://10.34.232.105:4000/", {
+    const newSocket = io("http://10.34.233.130:4000/", {
       path: "/socket.io",
       transports: ["websocket"],
     });
@@ -92,7 +92,9 @@ export default function TextChat(): JSX.Element {
               messageLog={messageLog}
               myId={myId}
             />
-            <TextChatBody emitData={emitData} onClickVideo={onClickVideo} messages={messages} />
+            {roomId && (
+              <TextChatBody emitData={emitData} onClickVideo={onClickVideo} messages={messages} />
+            )}
           </div>
           {isVideo && <VideoChat />}
         </LeftContents>

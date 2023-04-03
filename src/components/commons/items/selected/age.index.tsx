@@ -8,7 +8,7 @@ export default function SelectedAgeInput(props: ISelectedAgeInputProps): JSX.Ele
     props.setSelectedAge(parseInt(event.target.value));
   };
 
-  const yearRange = Array.from({ length: 123 }, (_, i) => 2022 - i);
+  const yearRange = Array.from({ length: 80 }, (_, i) => 2023 - i);
   const options = yearRange.map((year) => (
     <option key={year} value={year}>
       {year}
@@ -16,7 +16,11 @@ export default function SelectedAgeInput(props: ISelectedAgeInputProps): JSX.Ele
   ));
 
   return (
-    <select value={props.selectedAge} onChange={handleAgeChange}>
+    <select
+      value={props.selectedAge}
+      onChange={handleAgeChange}
+      style={{ backgroundColor: "#fff", border: "1px solid #999", marginLeft: "15px" }}
+    >
       {options}
     </select>
   );
