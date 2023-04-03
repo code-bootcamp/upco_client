@@ -28,7 +28,7 @@ export default function ProfileEditHeader(): JSX.Element {
           <S.UserIconBox>
             <S.UserIcon></S.UserIcon>
           </S.UserIconBox>
-          {/* <img src={`https://storage.googleapis.com/${imageUrl}`}></img>  */}
+          {/* <img src={` https://storage.cloud.google.com/upco-bucket/${imageUrl}`}></img>  */}
           <div>
             <S.Name>{data?.data?.fetchLoginUser.nickname}</S.Name>
             <S.EditImage onClick={onClickImage}>이미지 수정</S.EditImage>

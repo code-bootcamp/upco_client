@@ -98,6 +98,8 @@ export const CancelBtn = styled.button`
   color: #fff;
   margin-top: 40px;
   margin-right: 20px;
+  cursor: pointer;
+  user-select: none;
 `;
 
 export const UpdateBtn = styled.button`
@@ -107,4 +109,6 @@ export const UpdateBtn = styled.button`
   background-color: #6658ca;
   color: #fff;
   margin-top: 40px;
+  cursor: pointer;
+  user-select: none;
 `;
