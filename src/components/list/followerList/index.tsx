@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { io } from "socket.io-client";
+import { MouseEventHandler, useState } from "react";
+import { io, Socket } from "socket.io-client";
 import { useQueryFetchLoginUser } from "../../commons/hooks/queries/fetchLoginUser";
 import TooltipUI02 from "../../commons/items/tooltip/02/tooltip02.index";
 import { useRecoilState } from "recoil";
@@ -9,7 +9,7 @@ import * as S from "./styles";
 
 export default function FollowerList(): JSX.Element {
   const [roomId, setRoomId] = useRecoilState(roomIdState);
-  const [socket, setSocket] = useState();
+  const [socket, setSocket] = useState<Socket<DefaultEventsMap, DefaultEventsMap> | null>(null);
   const { data } = useQueryFetchLoginUser();
   const { data: friendsData } = useQueryFetchFriends();
   const [isOpenToolTip, setIsOpenToolTip] = useState<boolean[]>(
@@ -19,7 +19,7 @@ export default function FollowerList(): JSX.Element {
   const myId = data?.fetchLoginUser.id;
   console.log(roomId);
 
-  const onClickChat = (e) => {
+  const onClickChat = (e: MouseEventHandler<HTMLDivElement>): void => {
     const anotherId = e.currentTarget.id;
     const existingData = localStorage.getItem("anotherIds");
     const newData = { anotherId };

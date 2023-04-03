@@ -5,8 +5,15 @@ import InterestUI from "../../../commons/items/modal/interest/interest.index";
 import PasswordReset from "../../passwordReset/passwordReset.index";
 import * as S from "./profileEdit.body.styles";
 import SelectedAgeInput from "../../../commons/items/selected/age.index";
+import { useRouter } from "next/router";
+
+interface Interest {
+  id: string;
+  name: string;
+}
 
 export default function ProfileEditBody(): JSX.Element {
+  const router = useRouter();
   const { data } = useQueryFetchLoginUser();
   const [isOpen, setIsOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -30,6 +37,10 @@ export default function ProfileEditBody(): JSX.Element {
     });
   };
   console.log(data?.fetchLoginUser.interests);
+
+  const onClickCancel = async (): Promise<void> => {
+    await router.push("/profile");
+  };
 
   return (
     <>
@@ -72,7 +83,7 @@ export default function ProfileEditBody(): JSX.Element {
           <S.DefaultBox>
             <div>
               <S.InterestBox>
-                {data?.fetchLoginUser?.interests?.map((interests) => (
+                {data?.fetchLoginUser?.interests?.map((interests: Interest) => (
                   <li key={interests.id}>{interests.name}</li>
                 ))}
               </S.InterestBox>
@@ -80,7 +91,11 @@ export default function ProfileEditBody(): JSX.Element {
             </div>
           </S.DefaultBox>
         </S.Section>
-        <S.UpdateBtn onClick={handleUpdateProfile}>수정 완료</S.UpdateBtn>
+        <S.BtnSection>
+          <S.CancelBtn onClick={onClickCancel}>취소</S.CancelBtn>
+
+          <S.UpdateBtn onClick={handleUpdateProfile}>수정 완료</S.UpdateBtn>
+        </S.BtnSection>
       </S.Wrapper>
     </>
   );

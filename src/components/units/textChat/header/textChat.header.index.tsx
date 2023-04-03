@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import InfiniteScroll from "react-infinite-scroller";
 import * as S from "./textChat.header.styles";
 import { TextChatHeaderProps } from "./textChat.header.types";
 
@@ -16,10 +15,10 @@ export default function TextChatHeader(props: TextChatHeaderProps): JSX.Element 
         isSent: msg.isSent,
       }))
     );
-  }, [props.messages]);
+  }, [props.messages, props.roomId]);
 
   useEffect(() => {
-    const updateHeight = () => {
+    const updateHeight = (): void => {
       if (wrapperRef.current) {
         setHeight(wrapperRef.current.offsetHeight);
       }
@@ -39,7 +38,7 @@ export default function TextChatHeader(props: TextChatHeaderProps): JSX.Element 
     <S.Wrapper>
       {isNoMessage && isNoMessageLog && <div className="noMessage">메시지가 없습니다.</div>}
       {!isNoMessage &&
-        props.messageLog.map((msg, index) => (
+        props.messageLog.map((msg: { senderId: string; contents: string }, index: number) => (
           <div
             key={index}
             className={msg.senderId === props.myId ? "sentMessage" : "receivedMessage"}
