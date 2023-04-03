@@ -52,7 +52,9 @@ const Btn = styled.button``;
 
 export default function ChatList(): JSX.Element {
   const [chatRooms, setChatRooms] = useState([]);
+  const [chatData, setChatData] = useState([]);
   const data = useQueryFetchLoginUser();
+  const userData = useQueryFetchUser();
   // console.log(data);
   // const anotherIds = JSON.parse(localStorage.getItem("anotherIds"));
   // console.log(anotherIds);
@@ -74,26 +76,43 @@ export default function ChatList(): JSX.Element {
     const fetchChatRooms = async (): Promise<void> => {
       try {
         const result = await axios.get(
-          `http://10.34.232.105:4000/chatRoomList/${data.data?.fetchLoginUser.id}`
+          `http://10.34.233.130:4000/chatRoomList/${data.data?.fetchLoginUser.id}`
         );
-        console.log(result, "ㅁㅁ");
+
+        const latestMessages = result.data.data.reduce((acc, cur) => {
+          if (!acc[cur.receiverId]) {
+            acc[cur.receiverId] = [];
+          }
+          acc[cur.receiverId].push(cur);
+
+          return acc;
+        }, {});
+
+        const latestMessagesArray = Object.values(latestMessages).map((group) => {
+          return group.reduce((acc, cur) => {
+            if (acc.createdAt < cur.createdAt) {
+              return cur;
+            }
+            return acc;
+          });
+        });
+        setChatData(latestMessagesArray);
       } catch (error) {
         console.error(error);
       }
     };
     fetchChatRooms().catch(() => {});
   }, []);
-
-  console.log(data.data?.fetchLoginUser.id);
   return (
     <>
       <DivideLine />
       <ChatWrapper>
-        {chatRooms.map((room) => (
+        {chatData.map((room) => (
           <ChatListRow key={room.id}>
             <ImageSection />
+
             <ChatListColumn>
-              <NickNameSection>{room.nickname}</NickNameSection>
+              <NickNameSection>{room.receiverId}</NickNameSection>
               <ChatSection></ChatSection>
             </ChatListColumn>
           </ChatListRow>

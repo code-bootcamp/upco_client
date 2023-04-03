@@ -31,7 +31,11 @@ export const Wrapper = styled.div`
     border-radius: 5px;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
   }
-
+  > div.firstMessage {
+    align-self: center;
+    color: #999;
+    margin: 20px 0px;
+  }
   > div.receivedMessage {
     align-self: flex-start;
     max-width: 60%;

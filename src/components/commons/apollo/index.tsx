@@ -59,6 +59,7 @@ export default function ApolloSetting(props: IApolloSettingProps): JSX.Element {
     uri: "http://api.upco.space/main/graphql",
     headers: {
       Authorization: `Bearer ${accessToken}`,
+      X_Apollo_Operation_Name: "post",
     },
     credentials: "omit",
   });

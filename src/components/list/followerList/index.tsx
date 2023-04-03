@@ -17,12 +17,9 @@ export default function FollowerList(): JSX.Element {
   );
 
   const myId = data?.fetchLoginUser.id;
-  console.log(roomId);
 
   const onClickChat = (e: MouseEventHandler<HTMLDivElement>): void => {
     const anotherId = e.currentTarget.id;
-    const existingData = localStorage.getItem("anotherIds");
-    const newData = { anotherId };
 
     const newSocket = io("http://10.34.233.130:4000/", {
       path: "/socket.io",
@@ -33,16 +30,7 @@ export default function FollowerList(): JSX.Element {
       setRoomId(roomId);
     });
     setSocket(newSocket);
-
-    if (existingData) {
-      const parsedData = JSON.parse(existingData);
-      if (!parsedData.some((data) => data.anotherId === anotherId)) {
-        parsedData.push(newData);
-        localStorage.setItem("anotherIds", JSON.stringify(parsedData));
-      }
-    } else {
-      localStorage.setItem("anotherIds", JSON.stringify([newData]));
-    }
+    setRoomId("");
   };
 
   const onClickOpenTooltip = (index: number) => () => {
@@ -52,6 +40,7 @@ export default function FollowerList(): JSX.Element {
       return newPrev;
     });
   };
+
   console.log(friendsData?.fetchFriends);
   return (
     <>
