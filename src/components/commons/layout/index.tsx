@@ -34,9 +34,9 @@ export default function Layout(props: ILayoutProps): JSX.Element {
     }
   });
 
-  const windowSizeSave = debounce(() => {
+  const windowSizeSave = () => {
     setWindowSize(window.innerWidth);
-  }, 500);
+  };
 
   return (
     <>

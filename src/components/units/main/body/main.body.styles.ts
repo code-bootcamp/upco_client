@@ -44,7 +44,7 @@ export const MabBox = styled.div`
 
 export const MabWeb = styled(Map)`
   width: calc(100% - 300px);
-  height: calc(100vh - 68px);
+  height: calc(100vh - 68px - 15px);
 
   @media (max-width: 767px) {
     width: 100%;
