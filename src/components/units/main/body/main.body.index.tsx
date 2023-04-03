@@ -1,10 +1,21 @@
+import styled from "@emotion/styled";
 import { CustomOverlayMap, MarkerClusterer, ZoomControl } from "react-kakao-maps-sdk";
 import { BeatLoader } from "react-spinners";
 import { useRecoilState } from "recoil";
 import FilterlingUI from "../../../commons/items/filterling/filterling.index";
 import { isOpenState } from "../../../commons/stores";
+import MainSideBar from "../sidebar/main.sidebar.index";
 import { MabWeb, MabBox, MyMarker, MyMarkerBox } from "./main.body.styles";
 import { IProps } from "./main.body.types";
+
+const SubWrapper = styled.div`
+  display: row;
+  flex-direction: row;
+  @media (max-width: 767px) {
+    display: flex;
+    flex-direction: row;
+  }
+`;
 
 export default function MainBody(props: IProps): JSX.Element {
   const [isOpen] = useRecoilState(isOpenState);
@@ -12,7 +23,7 @@ export default function MainBody(props: IProps): JSX.Element {
   return (
     <>
       {props.position === null ? (
-        <MabBox isOpen={isOpen}>
+        <MabBox>
           <BeatLoader color="#6658ca" />
         </MabBox>
       ) : (
@@ -24,7 +35,7 @@ export default function MainBody(props: IProps): JSX.Element {
               lng: props.position?.coords.longitude ?? 127.795841,
             }}
             maxLevel={12}
-            level={3}
+            level={9}
             onZoomChanged={(map) => {
               props.setLevel(map.getLevel());
             }}
