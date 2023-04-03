@@ -72,13 +72,18 @@ export default function ChatList(): JSX.Element {
   // console.log(chatRooms);
   useEffect(() => {
     const fetchChatRooms = async (): Promise<void> => {
-      const result = await axios.get(
-        `http://10.34.232.105:4000/chatRoomList/${data.data?.fetchLoginUser.id}`
-      );
-      console.log(result, "ㅁㅁ");
+      try {
+        const result = await axios.get(
+          `http://10.34.232.105:4000/chatRoomList/${data.data?.fetchLoginUser.id}`
+        );
+        console.log(result, "ㅁㅁ");
+      } catch (error) {
+        console.error(error);
+      }
     };
-    fetchChatRooms();
+    fetchChatRooms().catch(() => {});
   }, []);
+
   console.log(data.data?.fetchLoginUser.id);
   return (
     <>

@@ -82,6 +82,24 @@ export const InterestAddButton = styled.button`
   transition: all 0.3s ease-in-out;
   white-space: nowrap;
 `;
+
+export const BtnSection = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+`;
+
+export const CancelBtn = styled.button`
+  width: 120px;
+  height: 40px;
+  font-size: 14px;
+  background-color: #979797;
+  color: #fff;
+  margin-top: 40px;
+  margin-right: 20px;
+`;
+
 export const UpdateBtn = styled.button`
   width: 120px;
   height: 40px;

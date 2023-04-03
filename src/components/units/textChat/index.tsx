@@ -91,6 +91,7 @@ export default function TextChat(): JSX.Element {
               messages={messages}
               messageLog={messageLog}
               myId={myId}
+              roomId={roomId}
             />
             {roomId && (
               <TextChatBody emitData={emitData} onClickVideo={onClickVideo} messages={messages} />
