@@ -1,6 +1,17 @@
 import styled from "@emotion/styled";
 import { BiUser } from "react-icons/bi";
 
+export const Wrapper = styled.div`
+  width: 100%;
+  /* background-color: blue; */
+  /* display: flex; */
+
+  @media (max-width: 767px) {
+    display: flex;
+    flex-direction: ${(props) => (props.mPage ? "row" : "column")};
+  }
+`;
+
 export const FollowerWrapper = styled.div`
   position: relative;
   display: flex;
@@ -8,10 +19,12 @@ export const FollowerWrapper = styled.div`
   align-items: center;
   padding: 20px;
   width: 300px;
+  background-color: ${(props) => (props.mPage ? "red" : "blue")};
 
   @media (max-width: 767px) {
-    width: 200px;
+    width: 100%;
     padding: 15px;
+    /* background-color: red; */
   }
 `;
 export const NickNameSection = styled.h4`
@@ -61,6 +74,9 @@ export const FollowerListRow = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
+  @media (max-width: 767px) {
+    justify-content: space-around;
+  }
 `;
 export const FollowerListColumn = styled.div`
   width: 70%;

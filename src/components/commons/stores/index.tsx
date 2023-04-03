@@ -24,6 +24,11 @@ export const isOpenState = atom<boolean>({
   default: false,
 });
 
+export const isCloseState = atom<boolean>({
+  key: "isCloseState",
+  default: false,
+});
+
 export const locationState = atom({
   key: "locationState",
   default: {

@@ -36,6 +36,34 @@ export const SubWrapper = styled.div`
     flex-direction: row;
     justify-content: center;
     border-bottom: 1px solid #e2e2e2;
+    padding-left: 30%;
+  }
+  @media (max-width: 500px) {
+    padding-left: 20%;
+  }
+  @media (max-width: 460px) {
+    padding-left: 17%;
+  }
+  @media (max-width: 440px) {
+    padding-left: 15%;
+  }
+  @media (max-width: 432px) {
+    padding-left: 12%;
+  }
+  @media (max-width: 420px) {
+    padding-left: 10%;
+  }
+  @media (max-width: 410px) {
+    padding-left: 8%;
+  }
+  @media (max-width: 400px) {
+    padding-left: 6%;
+  }
+  @media (max-width: 390px) {
+    padding-left: 4%;
+  }
+  @media (max-width: 380px) {
+    padding-left: 2%;
   }
 `;
 
@@ -48,7 +76,6 @@ export const ChatFooterTitle = styled.div`
   font-size: 18px;
   @media (max-width: 767px) {
     padding: 10px 20px;
-    width: 100vh;
     font-size: 15px;
   }
 `;
@@ -64,8 +91,6 @@ export const ChatTitle = styled(Title)`
   margin-right: 30px;
 
   @media (max-width: 767px) {
-    margin-left: 35px;
-    margin-right: 20px;
   }
 `;
 
@@ -80,8 +105,13 @@ export const FollowList = styled.div`
   color: #979797;
   cursor: pointer;
   padding: 10px 0;
+  border-top: 1px solid #e2e2e2;
   @media (max-width: 767px) {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
     font-size: 15px;
+    border: none;
   }
 `;
 
