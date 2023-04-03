@@ -25,7 +25,8 @@ export const Wrapper = styled.div<IWrapperProps>`
     width: 100%;
     padding: 0 1px;
     height: 200px;
-    display: ${(props) => (props.isOpen ? "block" : "none")};
+    /* display: ${(props) => (props.isOpen ? "block" : "none")};  */
+    display: block;
     z-index: 20;
   }
 `;
