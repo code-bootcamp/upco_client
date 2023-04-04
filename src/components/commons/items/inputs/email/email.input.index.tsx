@@ -3,7 +3,7 @@ import { IEmailCodeInputProps } from "./email.input.types";
 
 export default function EmailCodeInput(props: IEmailCodeInputProps): JSX.Element {
   return (
-    <>
+    <S.Wrapper>
       <S.Input
         onChange={props.onChange}
         placeholder={props.isSend ? "코드를 입력해주세요" : "이메일을 인증해주세요"}
@@ -12,9 +12,9 @@ export default function EmailCodeInput(props: IEmailCodeInputProps): JSX.Element
       />
       {!props.isVerify && (
         <S.Button onClick={props.onClick} type="button">
-          {props.isSend ? "코드 확인" : "이메일 인증"}
+          {props.isSend ? `코드\n확인` : "이메일\n인증"}
         </S.Button>
       )}
-    </>
+    </S.Wrapper>
   );
 }

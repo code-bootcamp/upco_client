@@ -28,7 +28,6 @@ export const MabBox = styled.div`
   position: relative;
   width: calc(100% - 300px);
   height: calc(100vh - 68px);
-  background-color: #e2e2e2;
   color: #fff;
   display: flex;
   flex-direction: row;
@@ -37,7 +36,6 @@ export const MabBox = styled.div`
 
   @media (max-width: 767px) {
     width: 100%;
-    z-index: 10;
     height: calc(100vh - 263px - 56px);
   }
 `;
@@ -47,9 +45,8 @@ export const MabWeb = styled(Map)`
   height: 100%;
 
   @media (max-width: 767px) {
-    width: 100%;
-    z-index: 10;
     /* height: calc(100vh - 64px - 54px); */
+    width: 100%;
     height: calc(100vh - 263px - 56px);
   }
 `;

@@ -36,3 +36,8 @@ export const locationState = atom({
     ne: "",
   },
 });
+
+export const interestFilter = atom({
+  key: "interestFilter",
+  default: "",
+});

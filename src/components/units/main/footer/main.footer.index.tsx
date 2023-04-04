@@ -12,12 +12,12 @@ import { useRouter } from "next/router";
 const CHECKOUT_PAGE = ["/main"];
 
 export default function MainFooter(props): JSX.Element {
-  const { data } = useQueryFetchFriendRequests();
+  // const { data } = useQueryFetchFriendRequests();
   const [isOpen] = useRecoilState(isOpenState);
   const [isClose, setIsClose] = useRecoilState(isCloseState);
 
-  const { onClickAcceptFriendRequest } = useOnClickAcceptFriendRequest();
-  const { onClickRejectFriendRequest } = useOnClickRejectFriendRequest();
+  // const { onClickAcceptFriendRequest } = useOnClickAcceptFriendRequest();
+  // const { onClickRejectFriendRequest } = useOnClickRejectFriendRequest();
 
   const [selectedComponent, setSelectedComponent] = useState("location");
   const [isFollower, setIsFollower] = useState(false);
@@ -43,7 +43,7 @@ export default function MainFooter(props): JSX.Element {
     }
   };
 
-  console.log(data);
+  // console.log(data);
 
   return (
     <S.Wrapper isOpen={isOpen}>
@@ -65,16 +65,16 @@ export default function MainFooter(props): JSX.Element {
           </S.FollowerTitle>
         </S.ChatFooterTitle>
 
-        {data?.fetchFriendRequests.length !== 0 && (
+        {/* {data?.fetchFriendRequests.length !== 0 && (
           <S.FollowList onClick={followerOpen} isOpen={isOpen}>
             친구 요청
           </S.FollowList>
-        )}
+        )} */}
       </S.SubWrapper>
       <S.DivideLine />
       {isFollower && (
         <S.FriendRequestListBox>
-          {data?.fetchFriendRequests.map((el) => (
+          {/* {data?.fetchFriendRequests.map((el) => (
             <S.FriendRequestList key={el.id} id={el.id}>
               <li>
                 <S.Imgbox>
@@ -87,7 +87,7 @@ export default function MainFooter(props): JSX.Element {
                 <button onClick={onClickRejectFriendRequest(el.id)}>거절</button>
               </li>
             </S.FriendRequestList>
-          ))}
+          ))} */}
         </S.FriendRequestListBox>
       )}
 

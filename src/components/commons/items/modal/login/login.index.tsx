@@ -50,7 +50,7 @@ export default function LoginUI(props: ILoginUIProps): JSX.Element {
         <S.Background onClick={onClickClose("")} />
         <S.Wrapper onSubmit={handleSubmit(onSubmit)}>
           <S.Close onClick={onClickClose("")} />
-          <img src="/images/layout/logo01.svg" />
+          <img src="/images/layout/logo.svg" />
           <S.InputBox>
             <AccountInput placeholder="이메일을 입력해주세요." register={register("email")} />
             <div>
@@ -81,10 +81,14 @@ export default function LoginUI(props: ILoginUIProps): JSX.Element {
           </S.DivideLineBox>
           <S.IconBox>
             <li>
-              <img src="/images/social/google.svg" />
+              <a href="https://api.upco.space/main/login/google">
+                <img src="/images/social/google.svg" />
+              </a>
             </li>
             <li>
-              <img src="/images/social/kakao.svg" />
+              <a href="https://api.upco.space/main/login/google">
+                <img src="/images/social/kakao.svg" />
+              </a>
             </li>
           </S.IconBox>
         </S.Wrapper>

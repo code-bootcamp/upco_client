@@ -3,18 +3,21 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
+import MainSideBar from "../../../units/main/sidebar/main.sidebar.index";
 import { movePageMode } from "../../hooks/customs/movePageMode";
 import { useQueryFetchLoginUser } from "../../hooks/queries/fetchLoginUser";
 import TooltipUI from "../../items/tooltip/01/tooltip01.index";
 import { isOpenState } from "../../stores";
 import * as S from "./header.styles";
 
+const MAIN_PAGE = ["/main"];
+
 export default function LayoutHeader(): JSX.Element {
   const router = useRouter();
   const [isTooltip, setIsTooltip] = useState(false);
   const { data } = useQueryFetchLoginUser();
   const { onClickMovePage } = movePageMode();
-  const [windowSize, setWindowSize] = useState(1000);
+  const [windowSize, setWindowSize] = useState("");
   const [isOpen, setIsOpen] = useRecoilState(isOpenState);
 
   const onClickOpen = (): void => {
@@ -28,16 +31,19 @@ export default function LayoutHeader(): JSX.Element {
     };
   }, []);
 
-  const windowSizeSave = debounce(() => {
+  const windowSizeSave = () => {
     setWindowSize(window.innerWidth);
-  }, 500);
+  };
 
   const onClickIsOpen = () => {
     setIsOpen((prev) => !prev);
   };
 
+  const mainPage = MAIN_PAGE.includes(router.asPath);
+
   return (
     <>
+      {isOpen && mainPage && <MainSideBar onClickIsOpen={onClickIsOpen} />}
       <S.Wrapper>
         <div>
           <S.Logo src="/images/layout/logo.svg" onClick={onClickMovePage("/main")} />

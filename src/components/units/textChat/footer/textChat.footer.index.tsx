@@ -26,9 +26,9 @@ export default function TextChatFooter(): JSX.Element {
   return (
     <S.Wrapper isOpen={isOpen}>
       <S.ChatFooterTitle>
-        <S.ChatTitle selected={selectedComponent === "chat"} onClick={handleChatClick}>
+        {/* <S.ChatTitle selected={selectedComponent === "chat"} onClick={handleChatClick}>
           채팅
-        </S.ChatTitle>
+        </S.ChatTitle> */}
         <S.FollowerTitle selected={selectedComponent === "follower"} onClick={handleFollowerClick}>
           친구 목록
         </S.FollowerTitle>
