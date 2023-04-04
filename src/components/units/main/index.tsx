@@ -5,6 +5,7 @@ import { useLocationInitialMode } from "../../commons/hooks/customs/useLocationI
 import { useLocationSaveMode } from "../../commons/hooks/customs/useLocationSaveMode";
 import { useMapCreationMode } from "../../commons/hooks/customs/useMapCreationMode";
 import { useMutationLocation } from "../../commons/hooks/mutation/useMutationLocation";
+import { useQueryFindAroundUsers } from "../../commons/hooks/queries/useQueryFindAroundUsers";
 import { locationState } from "../../commons/stores";
 import MainBody from "./body/main.body.index";
 
@@ -14,14 +15,14 @@ export default function MainPage(): JSX.Element {
   const { isOpen, mapCreation } = useMapCreationMode();
   const { position, geolocationFn } = useGeolocationMode();
   const [locations] = useMutationLocation();
-  const { locationSaveFn, result } = useLocationSaveMode();
+  const { locationSaveFn } = useLocationSaveMode();
   const { useLocationInitialSave } = useLocationInitialMode();
+  const result = useQueryFindAroundUsers();
   const data = result.data;
   console.log("상대방 위치", data);
   useLocationInitialSave();
   geolocationFn();
   mapCreation();
-  console.log("리렌더링 되는중");
   const useLocation = (): void => {
     console.log(" 현재 위치를 보냈음", position);
     useEffect(() => {

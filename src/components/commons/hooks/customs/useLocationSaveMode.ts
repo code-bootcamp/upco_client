@@ -6,7 +6,6 @@ import { useQueryFindAroundUsers } from "../queries/useQueryFindAroundUsers";
 
 export const useLocationSaveMode = (): {
   locationSaveFn: (map: any) => void;
-  result: typeof result;
 } => {
   const [_, setLocation] = useRecoilState(locationState);
 
@@ -24,6 +23,5 @@ export const useLocationSaveMode = (): {
 
   return {
     locationSaveFn,
-    result,
   };
 };
