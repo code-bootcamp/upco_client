@@ -1,7 +1,15 @@
 import styled from "@emotion/styled";
 
+export const Wrapper = styled.span`
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-items: space-between;
+  height: 50px;
+`;
+
 export const Input = styled.input`
-  width: 100%;
+  flex: 1;
   outline: none;
   border: 1px solid #ccc;
   border-radius: 50px;
@@ -9,7 +17,7 @@ export const Input = styled.input`
   height: 50px;
   line-height: 50px;
   padding: 0 20px;
-
+  margin-right: 10px;
   ::placeholder {
     color: #ccc;
     font-size: 12px;
@@ -23,15 +31,15 @@ export const Input = styled.input`
 `;
 
 export const Button = styled.button`
-  position: absolute;
+  position: relative;
   background-color: #6658ca;
-  border-radius: 4px;
+  border-radius: 99px;
   color: #ffffff;
-  top: 8.5px;
-  right: 16px;
-  font-size: 12px;
+  font-size: 10px;
+  width: 50px;
   padding: 8px;
   cursor: pointer;
+  white-space: pre-line;
 
   :hover {
     background-color: #5346ad;
