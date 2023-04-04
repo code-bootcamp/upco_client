@@ -22,12 +22,6 @@ export default function ApolloSetting(props: IApolloSettingProps): JSX.Element {
   const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
   const refresh = useRecoilValueLoadable(restoreAccessTokenLoadable);
 
-  // 임시 로컬 방식 로그인
-  useEffect(() => {
-    const result = localStorage.getItem("accessToken");
-    setAccessToken(result ?? "");
-  }, []);
-
   useEffect(() => {
     void refresh.toPromise().then((newAccessToken) => {
       setAccessToken(newAccessToken ?? "");

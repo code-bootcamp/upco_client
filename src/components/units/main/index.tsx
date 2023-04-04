@@ -1,15 +1,12 @@
-import styled from "@emotion/styled";
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { useGeolocationMode } from "../../commons/hooks/customs/useGeolocationMode";
 import { useLocationInitialMode } from "../../commons/hooks/customs/useLocationInitialMode";
-import { useLocationMode } from "../../commons/hooks/customs/useLocationMode";
 import { useLocationSaveMode } from "../../commons/hooks/customs/useLocationSaveMode";
 import { useMapCreationMode } from "../../commons/hooks/customs/useMapCreationMode";
 import { useMutationLocation } from "../../commons/hooks/mutation/useMutationLocation";
 import { locationState } from "../../commons/stores";
 import MainBody from "./body/main.body.index";
-import MainFooter from "./footer/main.footer.index";
 
 export default function MainPage(): JSX.Element {
   const [_, setLevel] = useState<number>();
@@ -17,14 +14,13 @@ export default function MainPage(): JSX.Element {
   const { isOpen, mapCreation } = useMapCreationMode();
   const { position, geolocationFn } = useGeolocationMode();
   const [locations] = useMutationLocation();
-  // const { useLocation } = useLocationMode();
   const { locationSaveFn, result } = useLocationSaveMode();
   const { useLocationInitialSave } = useLocationInitialMode();
   const data = result.data;
-  // useLocationInitialSave();
+  console.log("상대방 위치", data);
+  useLocationInitialSave();
   geolocationFn();
   mapCreation();
-  // useLocation();
   console.log("리렌더링 되는중");
   const useLocation = (): void => {
     console.log(" 현재 위치를 보냈음", position);
@@ -43,6 +39,7 @@ export default function MainPage(): JSX.Element {
         clearInterval(interval);
       };
     }, []);
+    console.log("유저 위치 서버에 보냄", result);
   };
 
   useLocation();
