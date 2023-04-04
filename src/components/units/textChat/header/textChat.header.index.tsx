@@ -30,6 +30,13 @@ export default function TextChatHeader(props: TextChatHeaderProps): JSX.Element 
       window.removeEventListener("resize", updateHeight);
     };
   }, []);
+
+  useEffect(() => {
+    if (wrapperRef.current) {
+      wrapperRef.current.scrollTop = wrapperRef.current.scrollHeight;
+    }
+  }, [messages]);
+
   const isNoMessageLog = props.messageLog.length === 0;
   const isNoMessage = props.messages.length === 0;
   console.log(messages);
