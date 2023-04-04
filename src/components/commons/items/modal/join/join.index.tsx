@@ -1,3 +1,4 @@
+import { link } from "fs/promises";
 import { useEmailCode } from "../../../hooks/customs/useEmailCode";
 import { useJoinMode } from "../../../hooks/customs/useJoinMode";
 import { useFormJoin } from "../../../hooks/useForm/useForm.join";
@@ -40,7 +41,7 @@ export default function JoinUI(props: IJoinUIProps): JSX.Element {
       <S.Background onClick={onClickClose("")} />
       <S.Wrapper onSubmit={handleSubmit(onClickJoin)}>
         <S.Close onClick={onClickClose("")} />
-        <img src="/images/layout/logo01.svg" />
+        <img src="/images/layout/logo.svg" />
         <S.InputBox>
           <AccountInput placeholder="닉네임을 입력해주세요." register={register("name")} />
           <div>
@@ -96,10 +97,14 @@ export default function JoinUI(props: IJoinUIProps): JSX.Element {
         </S.DivideLineBox>
         <S.IconBox>
           <li>
-            <img src="/images/social/google.svg" />
+            <a href="https://api.upco.space/main/login/google">
+              <img src="/images/social/google.svg" />
+            </a>
           </li>
           <li>
-            <img src="/images/social/kakao.svg" />
+            <a href="https://api.upco.space/main/login/google">
+              <img src="/images/social/kakao.svg" />
+            </a>
           </li>
         </S.IconBox>
       </S.Wrapper>
