@@ -36,7 +36,6 @@ export default function ProfileEditBody(): JSX.Element {
       interests: [...interestList],
     });
   };
-  console.log(data?.fetchLoginUser.interests);
 
   const onClickCancel = async (): Promise<void> => {
     await router.push("/profile");

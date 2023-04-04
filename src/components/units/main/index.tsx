@@ -25,9 +25,7 @@ export default function MainPage(): JSX.Element {
   geolocationFn();
   mapCreation();
   // useLocation();
-  console.log("리렌더링 되는중");
   const useLocation = (): void => {
-    console.log(" 현재 위치를 보냈음", position);
     useEffect(() => {
       const interval = setInterval(() => {
         const result = locations({

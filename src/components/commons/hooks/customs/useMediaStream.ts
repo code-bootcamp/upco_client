@@ -47,7 +47,6 @@ export const useMediaStream = (): IUseMediaRequestReturnType => {
 
       // remoteVideo 출력
       pc.ontrack = (event: RTCTrackEvent) => {
-        console.log(event, "이벤트다!!!");
         if (remoteVideoRef.current) {
           remoteVideoRef.current.srcObject = event.streams[0];
         } else {
@@ -84,9 +83,7 @@ export const useMediaStream = (): IUseMediaRequestReturnType => {
       newSocket.on("candidate", async (candidate: RTCIceCandidate) => {
         try {
           await pc.addIceCandidate(candidate);
-        } catch (error) {
-          console.error("Error adding ICE candidate:", error);
-        }
+        } catch (error) {}
       });
     };
 

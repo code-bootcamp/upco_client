@@ -6,7 +6,6 @@ import * as S from "./notice.body.styles";
 
 export default function NoticeBody(): JSX.Element {
   const { data } = useQueryFetchNotices();
-  console.log("notice data", data);
 
   const result = FetchDataSlice(data?.fetchNotices ?? "")();
 

@@ -20,7 +20,6 @@ export default function ProfileEditHeader(): JSX.Element {
     // document.getElementById("파일태그ID")?.click();
     fileRef?.current?.click();
   };
-  console.log(imageUrl);
   return (
     <>
       <S.Wrapper>

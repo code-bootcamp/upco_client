@@ -45,8 +45,6 @@ export default function TextChat(): JSX.Element {
   const [isOpen, setIsOpen] = useRecoilState(isOpenState);
   const data = useQueryFetchLoginUser();
   const myId = data?.data?.fetchLoginUser.id;
-  console.log(socket);
-  console.log(roomId);
   useEffect(() => {
     const newSocket = io("https/api.upco.space/chat/", {
       path: "/socket.io",
