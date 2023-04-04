@@ -6,9 +6,6 @@ import { useRecoilState } from "recoil";
 import { roomIdState } from "../../commons/stores";
 import { useQueryFetchFriends } from "../../commons/hooks/queries/useQueryFetchFriends";
 import * as S from "./styles";
-import { useRouter } from "next/router";
-
-const CHECKOUT_PAGE = ["/main"];
 
 export default function FollowerList(): JSX.Element {
   const [roomId, setRoomId] = useRecoilState(roomIdState);
@@ -18,9 +15,8 @@ export default function FollowerList(): JSX.Element {
   const [isOpenToolTip, setIsOpenToolTip] = useState<boolean[]>(
     friendsData?.fetchFriends.map(() => false) ?? []
   );
-  const router = useRouter();
+
   const myId = data?.fetchLoginUser.id;
-  const mPage = CHECKOUT_PAGE.includes(router.asPath);
 
   const onClickChat = (e: MouseEventHandler<HTMLDivElement>): void => {
     const anotherId = e.currentTarget.id;
@@ -64,7 +60,7 @@ export default function FollowerList(): JSX.Element {
                     </S.ImageBox>
                   )}
                   <S.FollowerListColumn>
-                    <S.NickNameSection mPage={mPage}>{el.nickname}</S.NickNameSection>
+                    <S.NickNameSection>{el.nickname}</S.NickNameSection>
                     <S.ChatSection>안녕하세요안녕하세여안녕하세요안녕하세여</S.ChatSection>
                   </S.FollowerListColumn>
                   {isOpenToolTip[index] && <TooltipUI02 id={el.id} />}
@@ -82,67 +78,6 @@ export default function FollowerList(): JSX.Element {
       ) : (
         <S.NoneText>친구목록이 비어있습니다.</S.NoneText>
       )}
-      <S.Wrapper mPage={mPage}>
-        <S.FollowerWrapper onClick={onClickChat} mPage={mPage}>
-          <S.FollowerListRow mPage={mPage}>
-            <S.ImageBox>
-              <S.UserIcon />
-            </S.ImageBox>
-
-            <S.FollowerListColumn>
-              <S.NickNameSection mPage={mPage}>최현규</S.NickNameSection>
-              <S.ChatSection>안녕하세요안녕하세여안녕하세요안녕하세여</S.ChatSection>
-            </S.FollowerListColumn>
-            {/* {<TooltipUI02 />} */}
-            <S.DottedIcon onClick={onClickOpenTooltip("")}>
-              <li></li>
-              <li></li>
-              <li></li>
-            </S.DottedIcon>
-          </S.FollowerListRow>
-        </S.FollowerWrapper>
-        <S.DivideLine mPage={mPage} />
-
-        <S.FollowerWrapper onClick={onClickChat} mPage={mPage}>
-          <S.FollowerListRow mPage={mPage}>
-            <S.ImageBox>
-              <S.UserIcon />
-            </S.ImageBox>
-
-            <S.FollowerListColumn>
-              <S.NickNameSection mPage={mPage}>문성진</S.NickNameSection>
-              <S.ChatSection>안녕하세요안녕하세여안녕하세요안녕하세여</S.ChatSection>
-            </S.FollowerListColumn>
-            {/* {<TooltipUI02 />} */}
-            <S.DottedIcon onClick={onClickOpenTooltip("")}>
-              <li></li>
-              <li></li>
-              <li></li>
-            </S.DottedIcon>
-          </S.FollowerListRow>
-        </S.FollowerWrapper>
-        <S.DivideLine mPage={mPage} />
-
-        <S.FollowerWrapper onClick={onClickChat} mPage={mPage}>
-          <S.FollowerListRow mPage={mPage}>
-            <S.ImageBox>
-              <S.UserIcon />
-            </S.ImageBox>
-
-            <S.FollowerListColumn>
-              <S.NickNameSection mPage={mPage}>김덕렬</S.NickNameSection>
-              <S.ChatSection>안녕하세요안녕하세여안녕하세요안녕하세여</S.ChatSection>
-            </S.FollowerListColumn>
-            {/* {<TooltipUI02 />} */}
-            <S.DottedIcon onClick={onClickOpenTooltip("")}>
-              <li></li>
-              <li></li>
-              <li></li>
-            </S.DottedIcon>
-          </S.FollowerListRow>
-        </S.FollowerWrapper>
-        <S.DivideLine mPage={mPage} />
-      </S.Wrapper>
     </>
   );
 }
