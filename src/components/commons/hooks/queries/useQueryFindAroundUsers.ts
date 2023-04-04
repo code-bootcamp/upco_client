@@ -3,8 +3,8 @@ import { useRecoilState } from "recoil";
 import { interestFilter, locationState } from "../../stores";
 
 export const FIND_AROUND_USERS = gql`
-  query findAroundUsers($bothLocation: FindAroundUserInput!) {
-    findAroundUsers(bothLocation: $bothLocation) {
+  query findAroundUsers($bothLocation: FindAroundUserInput!, $interest: String) {
+    findAroundUsers(bothLocation: $bothLocation, interest: $interest) {
       id
       lat
       lng
@@ -27,6 +27,7 @@ export const useQueryFindAroundUsers = (): typeof result => {
         lat2: Number(location.ne.replace(/\(|\)/g, "").split(", ")[0]),
         lng2: Number(location.ne.replace(/\(|\)/g, "").split(", ")[1]),
       },
+      interest,
     },
   });
 
