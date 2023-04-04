@@ -25,7 +25,7 @@ export const MyMarker = styled.img`
 `;
 
 export const MabBox = styled.div`
-  position: relative;
+  /* position: relative;  */
   width: calc(100% - 300px);
   height: calc(100vh - 68px);
   color: #fff;
@@ -41,7 +41,7 @@ export const MabBox = styled.div`
 `;
 
 export const MabWeb = styled(Map)`
-  width: 100vh;
+  width: 100%;
   height: 100%;
 
   @media (max-width: 767px) {

@@ -4,10 +4,19 @@ import { BeatLoader } from "react-spinners";
 import { useRecoilState } from "recoil";
 import FilterlingUI from "../../../commons/items/filterling/filterling.index";
 import { isOpenState } from "../../../commons/stores";
+import MainFooter from "../footer/main.footer.index";
 import MainSideBar from "../sidebar/main.sidebar.index";
 import { MabWeb, MabBox, MyMarker, MyMarkerBox } from "./main.body.styles";
 import { IProps } from "./main.body.types";
 
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  @media (max-width: 767px) {
+    display: flex;
+    flex-direction: column;
+  }
+`;
 const SubWrapper = styled.div`
   display: row;
   flex-direction: row;
@@ -21,7 +30,7 @@ export default function MainBody(props: IProps): JSX.Element {
   const [isOpen] = useRecoilState(isOpenState);
 
   return (
-    <>
+    <Wrapper>
       {props.position === null ? (
         <MabBox>
           <BeatLoader color="#6658ca" />
@@ -71,6 +80,7 @@ export default function MainBody(props: IProps): JSX.Element {
           </MabWeb>
         </MabBox>
       )}
-    </>
+      <MainFooter data={props.data} />
+    </Wrapper>
   );
 }
