@@ -1,4 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
+import { useRecoilState } from "recoil";
+import { isJoinState, showModalState } from "../../stores";
 import { useMutationCreateUser } from "../mutation/useMutattionCreateUser";
 
 interface IData {
@@ -14,6 +16,8 @@ export const useJoinMode = (
   onClickJoin: (data: IData) => Promise<void>;
 } => {
   const [createUser] = useMutationCreateUser();
+  const [showModal, setShowModal] = useRecoilState(showModalState);
+  const [isJoin, setIsJoin] = useRecoilState(isJoinState);
 
   const onClickJoin = async (data: IData): Promise<void> => {
     if (!isVerify) {
@@ -29,7 +33,8 @@ export const useJoinMode = (
         },
       },
     });
-    alert("회원가입 되었습니다.");
+    setShowModal(true);
+    setIsJoin(false);
   };
 
   return {
