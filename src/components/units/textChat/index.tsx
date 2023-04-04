@@ -64,7 +64,7 @@ export default function TextChat(): JSX.Element {
       setMessageLog(messageLog);
       setMessages((prevMessages) => [
         ...prevMessages,
-        { contents: "채팅방에 입장하셨습니다", isSent: false },
+        { contents: "채팅방에 입장하셨습니다", isSent: true },
       ]);
     });
 
