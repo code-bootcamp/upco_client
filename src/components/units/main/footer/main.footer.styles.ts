@@ -24,7 +24,6 @@ export const Wrapper = styled.div<IWrapperProps>`
   @media (max-width: 767px) {
     width: 100%;
     padding: 0 1px;
-    height: 200px;
     /* display: ${(props) => (props.isOpen ? "block" : "none")};  */
     display: block;
     z-index: 20;
@@ -37,34 +36,6 @@ export const SubWrapper = styled.div`
     flex-direction: row;
     justify-content: center;
     border-bottom: 1px solid #e2e2e2;
-    padding-left: 30%;
-  }
-  @media (max-width: 500px) {
-    padding-left: 20%;
-  }
-  @media (max-width: 460px) {
-    padding-left: 17%;
-  }
-  @media (max-width: 440px) {
-    padding-left: 15%;
-  }
-  @media (max-width: 432px) {
-    padding-left: 12%;
-  }
-  @media (max-width: 420px) {
-    padding-left: 10%;
-  }
-  @media (max-width: 410px) {
-    padding-left: 8%;
-  }
-  @media (max-width: 400px) {
-    padding-left: 6%;
-  }
-  @media (max-width: 390px) {
-    padding-left: 4%;
-  }
-  @media (max-width: 380px) {
-    padding-left: 2%;
   }
 `;
 

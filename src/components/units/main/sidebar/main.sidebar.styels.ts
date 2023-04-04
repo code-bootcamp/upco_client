@@ -39,8 +39,12 @@ export const BottomWrapper = styled.div`
 `;
 
 export const ImgWrapper = styled.div`
-  width: 100%;
+  width: 150px;
   height: 150px;
+  border: 1px solid #e2e2e2;
+  background-color: #ddd;
+  border-radius: 150px;
+  overflow: hidden;
 `;
 
 export const ImgBox = styled.img`
@@ -49,41 +53,83 @@ export const ImgBox = styled.img`
   object-fit: cover;
 `;
 
-export const TextWrapper = styled.div`
+export const TextWrapper = styled.ul`
   width: 100%;
-  height: 30px;
-  border-bottom: 1px solid #e2e2e2;
+
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  margin-top: 20px;
 
-  > p {
-    font-size: 14px;
-  }
+  > li {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 
-  > p:last-child {
-    color: #979797;
-    font-size: 12px;
+    :first-of-type {
+      width: 100%;
+    }
+
+    :last-of-type {
+      width: 100%;
+      margin-top: 5px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #e2e2e2;
+    }
+
+    > h4 {
+      font-size: 20px;
+      margin-right: 5px;
+    }
+
+    > p {
+      font-size: 14px;
+    }
+
+    > p:last-child {
+      color: #979797;
+      font-size: 15px;
+    }
   }
 `;
 
-export const ModeWrapper = styled.div`
+export const ModeWrapper = styled.ul`
   width: 100%;
-  /* padding: 0 20px; */
-  border-top: 1px solid #e2e2e2;
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 300px;
-  padding: 20px 0;
-  /* background-color: red;  */
-`;
 
-export const ModeBox = styled.div`
-  height: 40px;
-  color: #979797;
-  :hover {
-    color: #6658ca;
+  > li {
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    color: #979797;
+    cursor: pointer;
+
+    :last-of-type {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+
+      > button {
+        font-size: 14px;
+      }
+    }
+
+    > button {
+      width: 100%;
+      height: 100%;
+      color: #979797;
+      background-color: transparent;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+      font-size: 16px;
+
+      :hover {
+        color: #6658ca;
+      }
+    }
   }
 `;
