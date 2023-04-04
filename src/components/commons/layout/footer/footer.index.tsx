@@ -14,6 +14,7 @@ export default function LayoutFooter(): JSX.Element {
   const [isTooltip, setIsTooltip] = useState(false);
   const { onClickMovePage } = movePageMode();
   const [windowSize, setWindowSize] = useState("");
+  const [isOpen] = useRecoilState(isOpenState);
 
   const onClickOpen = (): void => {
     setIsTooltip((prev) => !prev);

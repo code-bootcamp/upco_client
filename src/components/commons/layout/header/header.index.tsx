@@ -17,12 +17,16 @@ export default function LayoutHeader(): JSX.Element {
   const [isTooltip, setIsTooltip] = useState(false);
   const { data } = useQueryFetchLoginUser();
   const { onClickMovePage } = movePageMode();
-  const [windowSize, setWindowSize] = useState("");
+  const [windowSize, setWindowSize] = useState();
   const [isOpen, setIsOpen] = useRecoilState(isOpenState);
 
   const onClickOpen = (): void => {
     setIsTooltip((prev) => !prev);
   };
+
+  useEffect(() => {
+    setWindowSize(1200);
+  }, []);
 
   useEffect(() => {
     window.addEventListener("resize", windowSizeSave);

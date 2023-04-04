@@ -5,6 +5,7 @@ import { useRecoilState } from "recoil";
 import { isOpenState } from "../stores";
 import LayoutFooter from "./footer/footer.index";
 import LayoutHeader from "./header/header.index";
+import * as S from "./styles";
 
 interface ILayoutProps {
   children: JSX.Element;
@@ -14,7 +15,7 @@ const HIDDEN_LAYOUT = ["/passwordReset", "/"];
 const HIDDEN_LAYOUT_02 = ["/main", "/chat"];
 
 export default function Layout(props: ILayoutProps): JSX.Element {
-  const [windowSize, setWindowSize] = useState("");
+  const [windowSize, setWindowSize] = useState(1200);
   const [isOpen, setIsOpen] = useRecoilState(isOpenState);
 
   const router = useRouter();
@@ -32,17 +33,24 @@ export default function Layout(props: ILayoutProps): JSX.Element {
     if (windowSize >= 767) {
       setIsOpen(false);
     }
-  });
+  }, [isOpen]);
 
   const windowSizeSave = () => {
     setWindowSize(window.innerWidth);
+    console.log(windowSize);
   };
 
   return (
     <>
-      {!isHiddenLayout && <LayoutHeader />}
-      <div>{props.children}</div>
-      {isHiddenLayout02 && typeof window !== "undefined" && windowSize <= 767 && <LayoutFooter />}
+      <S.Wrapper>
+        {!isHiddenLayout && <LayoutHeader />}
+        <div>{props.children}</div>
+        {isHiddenLayout02 && typeof window !== "undefined" && windowSize <= 767 ? (
+          <LayoutFooter />
+        ) : (
+          <></>
+        )}
+      </S.Wrapper>
     </>
   );
 }

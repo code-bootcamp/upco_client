@@ -48,7 +48,7 @@ export default function TextChat(): JSX.Element {
   console.log(socket);
   console.log(roomId);
   useEffect(() => {
-    const newSocket = io("https/api.upco.space/chat/", {
+    const newSocket = io("https://api.upco.space/chat/", {
       path: "/socket.io",
       transports: ["websocket"],
     });
