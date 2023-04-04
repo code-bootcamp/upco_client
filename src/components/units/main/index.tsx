@@ -21,8 +21,8 @@ export default function MainPage(): JSX.Element {
   const { locationSaveFn, result } = useLocationSaveMode();
   const { useLocationInitialSave } = useLocationInitialMode();
   const data = result.data;
-  // useLocationInitialSave();
-  // geolocationFn();
+  useLocationInitialSave();
+  geolocationFn();
   mapCreation();
   // useLocation();
   console.log("리렌더링 되는중");
@@ -38,7 +38,7 @@ export default function MainPage(): JSX.Element {
             },
           },
         });
-      }, 30000);
+      }, 20000);
       return () => {
         clearInterval(interval);
       };
@@ -47,27 +47,19 @@ export default function MainPage(): JSX.Element {
 
   useLocation();
 
-  const Wrapper = styled.div`
-    display: flex;
-    flex-direction: row;
-    @media (max-width: 767px) {
-      display: flex;
-      flex-direction: column;
-    }
-  `;
-
   return (
-    <Wrapper>
+    <>
       {isOpen && (
-        <MainBody
-          locationSaveFn={locationSaveFn}
-          data={data}
-          location={location}
-          position={position}
-          setLevel={setLevel}
-        ></MainBody>
+        <>
+          <MainBody
+            locationSaveFn={locationSaveFn}
+            data={data}
+            location={location}
+            position={position}
+            setLevel={setLevel}
+          ></MainBody>
+        </>
       )}
-      <MainFooter data={data} />
-    </Wrapper>
+    </>
   );
 }

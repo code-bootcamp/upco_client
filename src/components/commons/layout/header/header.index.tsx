@@ -17,7 +17,7 @@ export default function LayoutHeader(): JSX.Element {
   const [isTooltip, setIsTooltip] = useState(false);
   const { data } = useQueryFetchLoginUser();
   const { onClickMovePage } = movePageMode();
-  const [windowSize, setWindowSize] = useState(1000);
+  const [windowSize, setWindowSize] = useState("");
   const [isOpen, setIsOpen] = useRecoilState(isOpenState);
 
   const onClickOpen = (): void => {
@@ -31,9 +31,9 @@ export default function LayoutHeader(): JSX.Element {
     };
   }, []);
 
-  const windowSizeSave = debounce(() => {
+  const windowSizeSave = () => {
     setWindowSize(window.innerWidth);
-  }, 500);
+  };
 
   const onClickIsOpen = () => {
     setIsOpen((prev) => !prev);
