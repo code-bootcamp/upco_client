@@ -39,11 +39,9 @@ export default function TextChatHeader(props: TextChatHeaderProps): JSX.Element 
 
   const isNoMessageLog = props.messageLog.length === 0;
   const isNoMessage = props.messages.length === 0;
-  console.log(messages);
-  console.log(props.myId);
-  console.log(props.messageLog);
+
   return (
-    <S.Wrapper>
+    <S.Wrapper ref={wrapperRef}>
       {isNoMessage && isNoMessageLog && <div className="noMessage">메시지가 없습니다.</div>}
       {!isNoMessage &&
         props.messageLog.map((msg: { senderId: string; contents: string }, index: number) => (
