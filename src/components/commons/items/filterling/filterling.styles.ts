@@ -82,11 +82,7 @@ export const List = styled(FixedSizeList)`
   /* padding: 20px; */
 
   > div {
-    cursor: pointer;
-
-    :hover {
-      background-color: #6658ca;
-      color: #fff;
-    }
+    /* cursor: pointer; */
+    /* transition: all 0.3s ease-in-out; */
   }
 `;
