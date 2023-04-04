@@ -37,12 +37,6 @@ export default function TextChatBody(props: ITextChatBodyProps): JSX.Element {
         <S.SendMenu>
           <S.IconSection>
             <S.Icon>
-              <BsEmojiSmile />
-            </S.Icon>
-            <S.Icon>
-              <SlPicture />
-            </S.Icon>
-            <S.Icon>
               <BsCameraVideo onClick={props.onClickVideo} />
             </S.Icon>
           </S.IconSection>
