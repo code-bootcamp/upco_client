@@ -76,7 +76,7 @@ export default function ChatList(): JSX.Element {
     const fetchChatRooms = async (): Promise<void> => {
       try {
         const result = await axios.get(
-          `http://10.34.233.130:4000/chatRoomList/${data.data?.fetchLoginUser.id}`
+          `https://api.upco.space/chat/chatRoomList/${data.data?.fetchLoginUser.id}`
         );
 
         const latestMessages = result.data.data.reduce((acc, cur) => {
