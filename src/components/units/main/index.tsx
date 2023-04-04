@@ -21,7 +21,7 @@ export default function MainPage(): JSX.Element {
   const { locationSaveFn, result } = useLocationSaveMode();
   const { useLocationInitialSave } = useLocationInitialMode();
   const data = result.data;
-  useLocationInitialSave();
+  // useLocationInitialSave();
   geolocationFn();
   mapCreation();
   // useLocation();
