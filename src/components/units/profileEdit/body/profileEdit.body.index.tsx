@@ -32,7 +32,7 @@ export default function ProfileEditBody(): JSX.Element {
   const handleUpdateProfile = async (): Promise<void> => {
     await onClickUpdate({
       nickname: data?.fetchLoginUser?.nickname,
-      age: 2023 - selectedAge + 1,
+      age: 2024 - selectedAge,
       interests: [...interestList],
     });
   };
