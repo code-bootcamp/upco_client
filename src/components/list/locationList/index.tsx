@@ -9,7 +9,7 @@ export default function LocationList(props): JSX.Element {
   return (
     <>
       <S.Wrapper>
-        {props.data?.findAroundUsers.map((el) => (
+        {props.data?.findAroundUsers.map((el, idx) => (
           <S.LocationWrapper key={el.id}>
             <S.ImageColumn>
               <S.ImageSection src={`https://storage.cloud.google.com/upco-bucket/${el.image}`} />
@@ -21,10 +21,9 @@ export default function LocationList(props): JSX.Element {
                 <S.AgeSection>{el.age}</S.AgeSection>
               </S.LocationListRow>
               <S.InterestBox>
-                {/* <S.InterestSection key={idx}>{interest}</S.InterestSection>  */}
-                <S.InterestSection>축구</S.InterestSection>
-                <S.InterestSection>축구</S.InterestSection>
-                <S.InterestSection>축구</S.InterestSection>
+                {el.interests.map((item: string[]) => (
+                  <S.InterestSection key={idx}>{item}</S.InterestSection>
+                ))}
               </S.InterestBox>
               <S.ButtonWrapper>
                 <S.HoverButton>
