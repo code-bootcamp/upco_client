@@ -41,7 +41,7 @@ export default function ProfileEditBody(): JSX.Element {
     });
     await refetch();
   };
-
+  // console.log(data.fetchLoginUser);
   const onClickCancel = async (): Promise<void> => {
     await router.push("/profile");
   };
