@@ -62,7 +62,6 @@ export default function FollowerList(): JSX.Element {
                   )}
                   <S.FollowerListColumn>
                     <S.NickNameSection>{el.nickname}</S.NickNameSection>
-                    <S.ChatSection>안녕하세요안녕하세여안녕하세요안녕하세여</S.ChatSection>
                   </S.FollowerListColumn>
                   {isOpenToolTip[index] && <TooltipUI02 id={el.id} />}
                   <S.DottedIcon onClick={onClickOpenTooltip(index)}>
