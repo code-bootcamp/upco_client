@@ -172,9 +172,11 @@ export const Imgbox = styled.div`
   border-radius: 40px;
   background-color: transparent;
   margin-right: 10px;
+  overflow: hidden;
 
   > img {
     width: 100%;
     height: 100%;
+    object-fit: cover;
   }
 `;

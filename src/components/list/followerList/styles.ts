@@ -17,12 +17,13 @@ export const Wrapper = styled.div`
 `;
 
 export const FollowerWrapper = styled.div`
+  width: 95%;
   position: relative;
   display: flex;
   flex-direction: row;
+  justify-content: space-evenly;
   align-items: center;
-  padding: 20px;
-  width: 300px;
+  padding: 20px 0px 20px 0px;
 
   @media (max-width: 767px) {
     width: ${(props: IProps) => (props.mPage ? "30%" : "100%")};
@@ -45,10 +46,12 @@ export const NickNameSection = styled.h4`
 `;
 
 export const ImageBox = styled.div`
-  width: 50px;
+  width: 30%;
   height: 50px;
   background-color: transparent;
-  margin-right: 10px;
+  border-radius: 50%;
+  /* margin-right: 10px; */
+  /* overflow: hidden; */
 
   @media (max-width: 767px) {
     width: 25px;
@@ -58,8 +61,10 @@ export const ImageBox = styled.div`
 `;
 
 export const ImageSection = styled.img`
-  width: 100%;
-  height: 100%;
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
 `;
 
 export const UserIcon = styled(BiUser)`
@@ -86,13 +91,14 @@ export const FollowerListRow = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
+
   @media (max-width: 767px) {
     /* justify-content: space-around; */
     align-items: ${(props: IProps) => props.mPage && "center"};
   }
 `;
 export const FollowerListColumn = styled.div`
-  width: 70%;
+  width: 63%;
   display: flex;
   flex-direction: column;
 `;
