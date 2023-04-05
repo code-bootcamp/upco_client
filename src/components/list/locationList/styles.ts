@@ -1,4 +1,3 @@
-import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { BiUser } from "react-icons/bi";
 
@@ -180,6 +179,6 @@ export const HoverTitle = styled.div`
 
 export const UserIcon = styled(BiUser)`
   width: 100%;
-  height: 100%;
+  height: 150px;
   color: #d2d2d2;
 `;
