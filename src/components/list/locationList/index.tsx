@@ -21,9 +21,10 @@ export default function LocationList(props): JSX.Element {
                 <S.AgeSection>{el.age}</S.AgeSection>
               </S.LocationListRow>
               <S.InterestBox>
-                {el.interests.map((item: string[]) => (
-                  <S.InterestSection key={idx}>{item}</S.InterestSection>
-                ))}
+                {el.interests &&
+                  el.interests.map((item: string) => (
+                    <S.InterestSection key={idx}>{item}</S.InterestSection>
+                  ))}
               </S.InterestBox>
               <S.ButtonWrapper>
                 <S.HoverButton>
