@@ -44,6 +44,7 @@ export const ChatTitle = styled(Title)`
 `;
 
 export const FollowerTitle = styled(Title)`
+  color: #6658ca;
   @media (max-width: 767px) {
     /* margin-left: 15px; */
   }

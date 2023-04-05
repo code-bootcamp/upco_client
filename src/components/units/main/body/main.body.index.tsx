@@ -76,48 +76,6 @@ export default function MainBody(props: IProps): JSX.Element {
                   </MyMarkerBox>
                 </CustomOverlayMap>
               ))}
-
-              <CustomOverlayMap
-                position={{
-                  lat: 37.4849435,
-                  lng: 126.8969924,
-                }}
-              >
-                <MyMarkerBox>
-                  <MyMarker src="/images/marker/userMarker.png" style={{ zIndex: 1 }}></MyMarker>
-                </MyMarkerBox>
-              </CustomOverlayMap>
-              <CustomOverlayMap
-                position={{
-                  lat: 37.4843435,
-                  lng: 126.8965924,
-                }}
-              >
-                <MyMarkerBox>
-                  <MyMarker src="/images/marker/userMarker.png" style={{ zIndex: 1 }}></MyMarker>
-                </MyMarkerBox>
-              </CustomOverlayMap>
-              <CustomOverlayMap
-                position={{
-                  lat: 37.4840435,
-                  lng: 126.8960924,
-                }}
-              >
-                <MyMarkerBox>
-                  <MyMarker src="/images/marker/userMarker.png" style={{ zIndex: 1 }}></MyMarker>
-                </MyMarkerBox>
-              </CustomOverlayMap>
-
-              <CustomOverlayMap
-                position={{
-                  lat: 37.4847435,
-                  lng: 126.8950924,
-                }}
-              >
-                <MyMarkerBox>
-                  <MyMarker src="/images/marker/userMarker.png" style={{ zIndex: 1 }}></MyMarker>
-                </MyMarkerBox>
-              </CustomOverlayMap>
             </MarkerClusterer>
           </MabWeb>
         </MabBox>

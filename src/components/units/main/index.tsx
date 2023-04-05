@@ -19,28 +19,29 @@ export default function MainPage(): JSX.Element {
   const { useLocationInitialSave } = useLocationInitialMode();
   const result = useQueryFindAroundUsers();
   const data = result.data;
+  console.log("영역좌표", location);
   console.log("상대방 위치", data);
   useLocationInitialSave();
   geolocationFn();
   mapCreation();
   const useLocation = (): void => {
-    console.log(" 현재 위치를 보냈음", position);
+    console.log(" 현재 위치를 보냈음", typeof position?.coords.longitude);
     useEffect(() => {
       const interval = setInterval(() => {
         const result = locations({
           variables: {
             location: {
-              lat: position?.coords.latitude ?? 36.4455,
-              lng: position?.coords.longitude ?? 126.12321,
+              lat: position?.coords.latitude ?? 37.4847446,
+              lng: position?.coords.longitude ?? 126.8965738,
             },
           },
         });
-      }, 20000);
+        console.log("내 위치 보냈음", result);
+      }, 10000);
       return () => {
         clearInterval(interval);
       };
     }, []);
-    console.log("유저 위치 서버에 보냄", result);
   };
 
   useLocation();
