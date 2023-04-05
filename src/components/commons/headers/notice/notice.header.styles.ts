@@ -8,6 +8,11 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   font-size: 20px;
+
+  @media (max-width: 767px) {
+    padding: 0 25px;
+    font-size: 16px;
+  }
 `;
 
 export const MenuTitle = styled.div`

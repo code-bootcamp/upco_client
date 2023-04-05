@@ -11,10 +11,19 @@ export const Title = styled.h4`
   padding-bottom: 15px;
   border-bottom: 2px solid #191919;
   margin-bottom: 30px;
+
+  @media (max-width: 767px) {
+    font-size: 16px;
+    margin: 0 25px;
+  }
 `;
 
 export const ContentsBox = styled.div`
   height: 600px;
+  @media (max-width: 767px) {
+    margin: 0 25px;
+    margin-top: 20px;
+  }
 `;
 
 export const ContentsList = styled.div`
@@ -58,6 +67,11 @@ export const ContentsTitle = styled.p`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+
+  @media (max-width: 767px) {
+    width: 90px;
+    font-size: 14px;
+  }
 `;
 
 export const Contents = styled.p`
@@ -66,8 +80,17 @@ export const Contents = styled.p`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+
+  @media (max-width: 767px) {
+    width: 140px;
+    font-size: 14px;
+  }
 `;
 
 export const CreateAt = styled.p`
   color: #979797;
+
+  @media (max-width: 767px) {
+    font-size: 14px;
+  }
 `;
