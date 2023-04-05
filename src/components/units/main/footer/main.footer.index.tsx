@@ -43,8 +43,6 @@ export default function MainFooter(props): JSX.Element {
     }
   };
 
-  // console.log(data);
-
   return (
     <S.Wrapper isOpen={isOpen}>
       <S.SubWrapper>
