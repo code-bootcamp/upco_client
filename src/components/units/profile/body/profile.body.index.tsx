@@ -4,6 +4,7 @@ import * as S from "./profile.body.styles";
 
 export default function ProfileBody(): JSX.Element {
   const data = useQueryFetchLoginUser();
+  console.log(data);
   return (
     <>
       <S.Wrapper>
@@ -21,11 +22,15 @@ export default function ProfileBody(): JSX.Element {
               )}
             </li>
             <li>
+              <S.InterestBox>
+                {data?.data?.fetchLoginUser?.interests?.map((interests: Interest) => (
+                  <li key={interests.id}>{interests.name}</li>
+                ))}
+              </S.InterestBox>
+            </li>
+            <li>
               <S.Email>{data?.data?.fetchLoginUser?.email}</S.Email>
             </li>
-            {data?.data?.fetchLoginUser?.interests?.map((interests) => (
-              <li key={interests.id}>{interests.name}</li>
-            ))}
           </ul>
         </S.ProfileLeft>
         <S.ProfileRight>

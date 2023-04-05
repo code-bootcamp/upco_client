@@ -31,7 +31,6 @@ export default function ProfileEditBody(): JSX.Element {
   const openInterestModal = (): void => {
     setIsModalOpen((prev) => !prev);
   };
-
   const handleUpdateProfile = async (): Promise<void> => {
     await onClickUpdate({
       nickname: data?.fetchLoginUser?.nickname,
@@ -41,7 +40,7 @@ export default function ProfileEditBody(): JSX.Element {
     });
     await refetch();
   };
-  // console.log(data.fetchLoginUser);
+
   const onClickCancel = async (): Promise<void> => {
     await router.push("/profile");
   };
