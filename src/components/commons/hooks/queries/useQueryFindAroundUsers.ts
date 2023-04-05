@@ -19,17 +19,31 @@ export const useQueryFindAroundUsers = (): typeof result => {
   const [location] = useRecoilState(locationState);
   const [interest] = useRecoilState(interestFilter);
 
-  const result = useQuery(FIND_AROUND_USERS, {
-    variables: {
-      bothLocation: {
-        lat1: Number(location.sw.replace(/\(|\)/g, "").split(", ")[0]),
-        lng1: Number(location.sw.replace(/\(|\)/g, "").split(", ")[1]),
-        lat2: Number(location.ne.replace(/\(|\)/g, "").split(", ")[0]),
-        lng2: Number(location.ne.replace(/\(|\)/g, "").split(", ")[1]),
-      },
-      interest,
-    },
-  });
+  let result;
 
+  if (interest) {
+    result = useQuery(FIND_AROUND_USERS, {
+      variables: {
+        bothLocation: {
+          lat1: Number(location.sw.replace(/\(|\)/g, "").split(", ")[0]),
+          lng1: Number(location.sw.replace(/\(|\)/g, "").split(", ")[1]),
+          lat2: Number(location.ne.replace(/\(|\)/g, "").split(", ")[0]),
+          lng2: Number(location.ne.replace(/\(|\)/g, "").split(", ")[1]),
+        },
+        interest,
+      },
+    });
+  } else {
+    result = useQuery(FIND_AROUND_USERS, {
+      variables: {
+        bothLocation: {
+          lat1: Number(location.sw.replace(/\(|\)/g, "").split(", ")[0]),
+          lng1: Number(location.sw.replace(/\(|\)/g, "").split(", ")[1]),
+          lat2: Number(location.ne.replace(/\(|\)/g, "").split(", ")[0]),
+          lng2: Number(location.ne.replace(/\(|\)/g, "").split(", ")[1]),
+        },
+      },
+    });
+  }
   return result;
 };

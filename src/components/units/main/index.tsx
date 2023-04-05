@@ -19,6 +19,7 @@ export default function MainPage(): JSX.Element {
   const { useLocationInitialSave } = useLocationInitialMode();
   const result = useQueryFindAroundUsers();
   const data = result.data;
+  console.log("영역좌표", location);
   console.log("상대방 위치", data);
   useLocationInitialSave();
   geolocationFn();
@@ -40,7 +41,6 @@ export default function MainPage(): JSX.Element {
         clearInterval(interval);
       };
     }, []);
-    console.log("유저 위치 서버에 보냄", result);
   };
 
   useLocation();
