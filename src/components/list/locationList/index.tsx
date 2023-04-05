@@ -18,7 +18,7 @@ export default function LocationList(props): JSX.Element {
             <S.LocationListColumn>
               <S.LocationListRow>
                 <S.NickNameSection>{el.nickname}</S.NickNameSection>
-                <S.AgeSection>{el.age}</S.AgeSection>
+                <S.AgeSection>{el.age}살</S.AgeSection>
               </S.LocationListRow>
               <S.InterestBox>
                 {el.interests &&
@@ -27,10 +27,10 @@ export default function LocationList(props): JSX.Element {
                   ))}
               </S.InterestBox>
               <S.ButtonWrapper>
-                <S.HoverButton>
+                {/* <S.HoverButton>
                   <AiOutlineMessage />
                   <S.HoverTitle>채팅하기</S.HoverTitle>
-                </S.HoverButton>
+                </S.HoverButton> */}
                 <S.HoverButton onClick={onClickCreateFriendRequest(el.id)}>
                   <AiOutlineUserAdd />
                   <S.HoverTitle>친구추가</S.HoverTitle>

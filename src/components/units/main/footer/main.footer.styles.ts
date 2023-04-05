@@ -15,6 +15,7 @@ export const Wrapper = styled.div<IWrapperProps>`
   width: 300px;
   height: 100vh - 80px;
   border-left: 1px solid #e2e2e2;
+  overflow: hidden;
 
   > div {
     @media (max-width: 767px) {
