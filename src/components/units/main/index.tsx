@@ -25,18 +25,19 @@ export default function MainPage(): JSX.Element {
   geolocationFn();
   mapCreation();
   const useLocation = (): void => {
-    console.log(" 현재 위치를 보냈음", position);
+    console.log(" 현재 위치를 보냈음", typeof position?.coords.longitude);
     useEffect(() => {
       const interval = setInterval(() => {
         const result = locations({
           variables: {
             location: {
-              lat: position?.coords.latitude ?? 36.4455,
-              lng: position?.coords.longitude ?? 126.12321,
+              lat: position?.coords.latitude ?? 37.4847446,
+              lng: position?.coords.longitude ?? 126.8965738,
             },
           },
         });
-      }, 20000);
+        console.log("내 위치 보냈음", result);
+      }, 10000);
       return () => {
         clearInterval(interval);
       };
