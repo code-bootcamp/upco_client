@@ -14,17 +14,17 @@ export default function ProfileEditHeader(): JSX.Element {
   const data = useQueryFetchLoginUser();
   const [deleteUser] = useMutationDeleteUser();
 
-  // const onChangeFile = async (event: ChangeEvent<HTMLInputElement>): Promise<void> => {
-  //   const file = event.target.files?.[0];
-  //   // if (!file) return;
-  //   const result = await uploadFile({ variables: { file } });
-  //   setImageUrl(result.data?.uploadFile.url ?? "");
-  // };
-  // const onClickImage = (): void => {
-  // document.getElementById("파일태그ID")?.click();
-  //   fileRef?.current?.click();
-  // };
-  // console.log(imageUrl);
+  const onChangeFile = async (event: ChangeEvent<HTMLInputElement>): Promise<void> => {
+    const file = event.target.files?.[0];
+    // if (!file) return;
+    const result = await uploadFile({ variables: { file } });
+    setImageUrl(result.data?.uploadFile.url ?? "");
+  };
+  const onClickImage = (): void => {
+    document.getElementById("파일태그ID")?.click();
+    fileRef?.current?.click();
+  };
+  console.log(imageUrl);
 
   const onClickDelete = async (): Promise<void> => {
     const userId = data?.data?.fetchLoginUser.id;
@@ -39,11 +39,11 @@ export default function ProfileEditHeader(): JSX.Element {
           <S.UserIconBox>
             <S.UserIcon></S.UserIcon>
           </S.UserIconBox>
-          {/* <img src={` https://storage.cloud.google.com/upco-bucket/${imageUrl}`}></img>  */}
+          <img src={` https://storage.cloud.google.com/upco-bucket/${imageUrl}`}></img>
           <div>
             <S.Name>{data?.data?.fetchLoginUser.nickname}</S.Name>
-            {/* <S.EditImage onClick={onClickImage}>이미지 수정</S.EditImage> */}
-            {/* <input style={{ display: "none" }} type="file" onChange={onChangeFile} ref={fileRef} /> */}
+            <S.EditImage onClick={onClickImage}>이미지 수정</S.EditImage>
+            <input style={{ display: "none" }} type="file" onChange={onChangeFile} ref={fileRef} />
           </div>
         </S.ProfileLeft>
         <S.ProfileRight>
