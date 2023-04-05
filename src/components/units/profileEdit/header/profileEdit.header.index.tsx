@@ -15,6 +15,7 @@ export default function ProfileEditHeader(): JSX.Element {
   const [uploadFile] = useMutationUploadFile();
   const data = useQueryFetchLoginUser();
   const [deleteUser] = useMutationDeleteUser();
+  console.log(imageUrl);
 
   const onChangeFile = async (event: ChangeEvent<HTMLInputElement>): Promise<void> => {
     const file = event.target.files?.[0];
@@ -39,9 +40,7 @@ export default function ProfileEditHeader(): JSX.Element {
       <S.Wrapper>
         <S.ProfileLeft>
           <S.UserIconBox>
-            <img
-              src={`https://storage.cloud.google.com/upco-bucket/${data?.data?.fetchLoginUser?.image}`}
-            ></img>
+            <img src={`https://storage.cloud.google.com/upco-bucket/${imageUrl}`}></img>
           </S.UserIconBox>
 
           <div>
