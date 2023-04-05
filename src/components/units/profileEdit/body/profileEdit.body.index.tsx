@@ -6,6 +6,8 @@ import PasswordReset from "../../passwordReset/passwordReset.index";
 import * as S from "./profileEdit.body.styles";
 import SelectedAgeInput from "../../../commons/items/selected/age.index";
 import { useRouter } from "next/router";
+import { useRecoilState } from "recoil";
+import { fileUrl } from "../../../commons/stores";
 
 interface Interest {
   id: string;
@@ -20,6 +22,7 @@ export default function ProfileEditBody(): JSX.Element {
   const [interestList, setInterestList] = useState<string[]>([]);
   const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
   const [selectedAge, setSelectedAge] = useState<number>(data?.fetchLoginUser?.age ?? 2023);
+  const [imageUrl, setImageUrl] = useRecoilState(fileUrl);
 
   const { onClickUpdate } = useUpdateUserMode();
   const openPasswordReset = (): void => {
@@ -32,6 +35,7 @@ export default function ProfileEditBody(): JSX.Element {
   const handleUpdateProfile = async (): Promise<void> => {
     await onClickUpdate({
       nickname: data?.fetchLoginUser?.nickname,
+      image: imageUrl,
       age: 2024 - selectedAge,
       interests: [...interestList],
     });
@@ -85,7 +89,6 @@ export default function ProfileEditBody(): JSX.Element {
                 {data?.fetchLoginUser?.interests?.map((interests: Interest) => (
                   <li key={interests.id}>{interests.name}</li>
                 ))}
-                {/* {interestList} */}
               </S.InterestBox>
               <S.InterestAddButton onClick={openInterestModal}>추가</S.InterestAddButton>
             </div>

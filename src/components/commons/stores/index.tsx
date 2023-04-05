@@ -61,3 +61,8 @@ export const isFindState = atom({
   key: "showFindState",
   default: false,
 });
+
+export const fileUrl = atom({
+  key: "fileUrl",
+  default: "",
+});
