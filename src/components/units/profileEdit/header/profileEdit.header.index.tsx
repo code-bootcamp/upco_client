@@ -13,18 +13,16 @@ export default function ProfileEditHeader(): JSX.Element {
   const [uploadFile] = useMutationUploadFile();
   const data = useQueryFetchLoginUser();
   const [deleteUser] = useMutationDeleteUser();
-
   const onChangeFile = async (event: ChangeEvent<HTMLInputElement>): Promise<void> => {
     const file = event.target.files?.[0];
     // if (!file) return;
     const result = await uploadFile({ variables: { file } });
-    setImageUrl(result.data?.uploadFile.url ?? "");
+    setImageUrl(result.data?.uploadFile);
   };
   const onClickImage = (): void => {
     document.getElementById("파일태그ID")?.click();
     fileRef?.current?.click();
   };
-  console.log(imageUrl);
 
   const onClickDelete = async (): Promise<void> => {
     const userId = data?.data?.fetchLoginUser.id;

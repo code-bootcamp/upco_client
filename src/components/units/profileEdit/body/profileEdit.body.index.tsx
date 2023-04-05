@@ -14,7 +14,7 @@ interface Interest {
 
 export default function ProfileEditBody(): JSX.Element {
   const router = useRouter();
-  const { data } = useQueryFetchLoginUser();
+  const { data, refetch } = useQueryFetchLoginUser();
   const [isOpen, setIsOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [interestList, setInterestList] = useState<string[]>([]);
@@ -35,13 +35,12 @@ export default function ProfileEditBody(): JSX.Element {
       age: 2024 - selectedAge,
       interests: [...interestList],
     });
+    await refetch();
   };
-  console.log(data?.fetchLoginUser.interests);
 
   const onClickCancel = async (): Promise<void> => {
     await router.push("/profile");
   };
-
   return (
     <>
       {isModalOpen && (
@@ -86,6 +85,7 @@ export default function ProfileEditBody(): JSX.Element {
                 {data?.fetchLoginUser?.interests?.map((interests: Interest) => (
                   <li key={interests.id}>{interests.name}</li>
                 ))}
+                {/* {interestList} */}
               </S.InterestBox>
               <S.InterestAddButton onClick={openInterestModal}>추가</S.InterestAddButton>
             </div>

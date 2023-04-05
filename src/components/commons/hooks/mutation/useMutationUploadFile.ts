@@ -2,9 +2,7 @@ import { useMutation, gql } from "@apollo/client";
 
 const UPLOAD_FILE = gql`
   mutation uploadFile($file: Upload!) {
-    uploadFile(file: $file) {
-      url
-    }
+    uploadFile(file: $file)
   }
 `;
 
