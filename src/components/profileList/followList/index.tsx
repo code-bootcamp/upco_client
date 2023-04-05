@@ -13,7 +13,13 @@ export default function ProfileFollowListUI(): JSX.Element {
           <>
             {data?.fetchFriends.map((el) => (
               <li key={el.id} id={el.id}>
-                <S.ImgBox>{el.image ? <img src={el.image} /> : <S.UserIcon />}</S.ImgBox>
+                <S.ImgBox>
+                  {el.image ? (
+                    <img src={`https://storage.cloud.google.com/upco-bucket/${el.image}`} />
+                  ) : (
+                    <S.UserIcon />
+                  )}
+                </S.ImgBox>
                 <S.Name>{el.nickname}</S.Name>
                 <S.DeleteFollow onClick={onClickDeleteFriend(el.id)}>친구삭제</S.DeleteFollow>
               </li>

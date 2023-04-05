@@ -51,7 +51,9 @@ export default function FollowerList(): JSX.Element {
                 <S.FollowerListRow>
                   {el.image ? (
                     <S.ImageBox>
-                      <S.ImageSection src={el.image} />
+                      <S.ImageSection
+                        src={`https://storage.cloud.google.com/upco-bucketel.image/${el.image}`}
+                      />
                     </S.ImageBox>
                   ) : (
                     <S.ImageBox>

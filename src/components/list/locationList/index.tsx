@@ -12,7 +12,7 @@ export default function LocationList(props): JSX.Element {
         {props.data?.findAroundUsers.map((el) => (
           <S.LocationWrapper key={el.id}>
             <S.ImageColumn>
-              <S.ImageSection src={el.image} />
+              <S.ImageSection src={`https://storage.cloud.google.com/upco-bucket/${el.image}`} />
             </S.ImageColumn>
 
             <S.LocationListColumn>

@@ -71,7 +71,11 @@ export default function MainFooter(props): JSX.Element {
             <S.FriendRequestList key={el.id} id={el.id}>
               <li>
                 <S.Imgbox>
-                  {el.sender.image ? <img src={el.sender.image} /> : <S.UserIcon />}
+                  {el.sender.image ? (
+                    <img src={`https://storage.cloud.google.com/upco-bucket/${el.sender.image}`} />
+                  ) : (
+                    <S.UserIcon />
+                  )}
                 </S.Imgbox>
                 <p>{el.sender.nickname}</p>
               </li>

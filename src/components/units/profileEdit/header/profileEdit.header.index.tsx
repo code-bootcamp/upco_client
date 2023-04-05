@@ -15,7 +15,6 @@ export default function ProfileEditHeader(): JSX.Element {
   const [uploadFile] = useMutationUploadFile();
   const data = useQueryFetchLoginUser();
   const [deleteUser] = useMutationDeleteUser();
-  console.log(imageUrl);
 
   const onChangeFile = async (event: ChangeEvent<HTMLInputElement>): Promise<void> => {
     const file = event.target.files?.[0];
