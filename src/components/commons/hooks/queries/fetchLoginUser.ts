@@ -8,6 +8,7 @@ const FETCH_LOGIN_USER = gql`
       email
       age
       reported
+      image
       interests {
         name
       }

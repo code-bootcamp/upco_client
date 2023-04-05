@@ -3,25 +3,26 @@ import { useQueryFetchLoginUser } from "../../../commons/hooks/queries/fetchLogi
 import * as S from "./profile.body.styles";
 
 export default function ProfileBody(): JSX.Element {
-  const { data } = useQueryFetchLoginUser();
-
+  const data = useQueryFetchLoginUser();
+  console.log(data);
   return (
     <>
       <S.Wrapper>
-        {/* 프로필 */}
         <S.ProfileLeft>
           <S.UserIconBox>
-            <img />
+            <img
+              src={`https://storage.cloud.google.com/upco-bucket/${data?.data?.fetchLoginUser?.image}`}
+            ></img>
           </S.UserIconBox>
           <ul>
             <li>
-              <S.Name>{data?.fetchLoginUser?.nickname}</S.Name>
-              <S.Age>{data?.fetchLoginUser?.age}세</S.Age>
+              <S.Name>{data?.data?.fetchLoginUser?.nickname}</S.Name>
+              <S.Age>{data?.data?.fetchLoginUser?.age}세</S.Age>
             </li>
             <li>
-              <S.Email>{data?.fetchLoginUser?.email}</S.Email>
+              <S.Email>{data?.data?.fetchLoginUser?.email}</S.Email>
             </li>
-            {data?.fetchLoginUser?.interests?.map((interests) => (
+            {data?.data?.fetchLoginUser?.interests?.map((interests) => (
               <li key={interests.id}>{interests.name}</li>
             ))}
           </ul>
