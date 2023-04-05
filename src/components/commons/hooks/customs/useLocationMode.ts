@@ -9,7 +9,6 @@ export const useLocationMode = (): {
   const [location] = useMutationLocation();
 
   const useLocation = (): void => {
-    console.log(" 현재 위치를 보냈음", position);
     useEffect(() => {
       const interval = setInterval(() => {
         const result = location({

@@ -6,8 +6,6 @@ export default function ProfileBlockListUI(): JSX.Element {
   const { data } = useQueryFetchBlockUsers();
   const { onClickUnblockUser } = useOnClickUnblockUser();
 
-  console.log(data, "!!");
-
   return (
     <>
       <S.Wrapper>

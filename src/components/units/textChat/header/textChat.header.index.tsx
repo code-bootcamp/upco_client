@@ -15,7 +15,6 @@ export default function TextChatHeader(props: TextChatHeaderProps): JSX.Element 
       }))
     );
   }, [props.messages, props.roomId, props.messageLog]);
-  console.log(props.myId);
   useEffect(() => {
     const updateHeight = (): void => {
       if (wrapperRef.current) {

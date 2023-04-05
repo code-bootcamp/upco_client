@@ -14,9 +14,6 @@ const FETCH_USER = gql`
 `;
 
 export const useQueryFetchUser = (): typeof result => {
-  // const anotherIds = JSON.parse(localStorage.getItem("anotherIds"));
-  // const ids = anotherIds.map((item) => item.anotherId);
-
   const result = useQuery<Pick<IQuery, "fetchUser">, IQueryFetchUserArgs>(FETCH_USER, {});
   return result;
 };

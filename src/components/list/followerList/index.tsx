@@ -41,7 +41,6 @@ export default function FollowerList(): JSX.Element {
     });
   };
 
-  console.log(friendsData?.fetchFriends);
   return (
     <>
       {friendsData?.fetchFriends.length !== 0 ? (

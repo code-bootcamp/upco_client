@@ -13,9 +13,6 @@ export const getAccessToken = async (): Promise<string | undefined> => {
     });
     const result = await graphQLClient.request(RESTORE_ACCESS_TOKEN);
     const newAccessToken = result.restoreAccessToken;
-    console.log("새어세스토큰", newAccessToken);
     return newAccessToken;
-  } catch (error) {
-    if (error instanceof Error) console.log(error.message);
-  }
+  } catch (error) {}
 };

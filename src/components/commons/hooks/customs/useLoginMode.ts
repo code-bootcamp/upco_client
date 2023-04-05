@@ -35,10 +35,6 @@ export const useLoginMode = (): {
 
     setShowModal(true);
     setIsOpen(false);
-
-    if ("/".includes(router.asPath)) {
-      // router.push("/main");
-    }
   };
 
   return { onSubmit };

@@ -4,7 +4,6 @@ import * as S from "./profile.body.styles";
 
 export default function ProfileBody(): JSX.Element {
   const data = useQueryFetchLoginUser();
-  console.log(data);
   return (
     <>
       <S.Wrapper>

@@ -9,7 +9,6 @@ interface IUseOnClickAcceptFriendRequest {
 export const useOnClickAcceptFriendRequest = (): IUseOnClickAcceptFriendRequest => {
   const router = useRouter();
   const [acceptFriendRequest] = useMutationAcceptFriendRequest();
-  console.log("렌더링!");
 
   const onClickAcceptFriendRequest = (requestId: string) => async (): Promise<void> => {
     await acceptFriendRequest({
