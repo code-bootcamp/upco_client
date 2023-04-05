@@ -86,7 +86,7 @@ export default function LoginUI(props: ILoginUIProps): JSX.Element {
               </a>
             </li>
             <li>
-              <a href="https://api.upco.space/login/google">
+              <a href="https://api.upco.space/login/kakao">
                 <img src="/images/social/kakao.svg" />
               </a>
             </li>
