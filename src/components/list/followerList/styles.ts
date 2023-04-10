@@ -50,6 +50,9 @@ export const ImageBox = styled.div`
   height: 50px;
   background-color: transparent;
   border-radius: 50%;
+  /* margin-right: 10px; */
+  /* overflow: hidden; */
+
 
   @media (max-width: 767px) {
     width: 25px;

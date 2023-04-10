@@ -39,7 +39,10 @@ export default function ProfileEditHeader(): JSX.Element {
       <S.Wrapper>
         <S.ProfileLeft>
           <S.UserIconBox>
-            <img src={`https://storage.cloud.google.com/upco-bucket/${imageUrl}`}></img>
+            <img
+              src={`https://storage.cloud.google.com/upco-bucket/${data?.data?.fetchLoginUser?.image}`}
+            ></img>
+
           </S.UserIconBox>
 
           <div>
