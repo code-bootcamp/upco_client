@@ -1,7 +1,5 @@
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import { useRecoilState, useRecoilValueLoadable } from "recoil";
-import { accessTokenState, restoreAccessTokenLoadable } from "../../stores";
 import { getAccessToken } from "../getAccessToken";
 
 export const useAuth = (): void => {
