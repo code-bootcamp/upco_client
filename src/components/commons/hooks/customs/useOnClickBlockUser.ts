@@ -13,7 +13,6 @@ export const useOnClickBlockUser = (): IUseOnClickBlockUser => {
         blockedUserId,
       },
     });
-    console.log(result);
   };
 
   return { onClickBlockUser };

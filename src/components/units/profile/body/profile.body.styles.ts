@@ -32,7 +32,6 @@ export const ProfileLeft = styled.div`
       flex-direction: row;
       flex-wrap: wrap;
       align-items: center;
-      justify-content: center;
       margin-top: 10px;
     }
   }
@@ -103,7 +102,21 @@ export const Interest = styled.p`
     padding: 2px 15px;
   }
 `;
+export const InterestBox = styled.ul`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 
+  li {
+    font-size: 14px;
+    color: #fff;
+    background-color: #6658ca;
+    padding: 5px 20px;
+    border-radius: 20px;
+    margin-right: 5px;
+    margin-bottom: 8px;
+  }
+`;
 export const ProfileRight = styled.div`
   div {
     a {

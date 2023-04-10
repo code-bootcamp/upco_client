@@ -42,6 +42,7 @@ export default function ProfileEditHeader(): JSX.Element {
             <img
               src={`https://storage.cloud.google.com/upco-bucket/${data?.data?.fetchLoginUser?.image}`}
             ></img>
+
           </S.UserIconBox>
 
           <div>

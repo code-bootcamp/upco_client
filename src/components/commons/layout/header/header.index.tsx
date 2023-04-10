@@ -69,7 +69,15 @@ export default function LayoutHeader(): JSX.Element {
               </S.MenuBox>
               <S.UserBox style={{ position: "relative" }}>
                 {isTooltip && <TooltipUI />}
-                <S.UserIcon onClick={onClickOpen} />
+
+                {data?.fetchLoginUser.image ? (
+                  <S.UserImg
+                    src={`https://storage.cloud.google.com/upco-bucket/${data?.fetchLoginUser.image}`}
+                    onClick={onClickOpen}
+                  />
+                ) : (
+                  <S.UserIcon onClick={onClickOpen} />
+                )}
               </S.UserBox>
             </>
           ) : (

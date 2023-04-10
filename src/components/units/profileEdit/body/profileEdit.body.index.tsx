@@ -31,7 +31,6 @@ export default function ProfileEditBody(): JSX.Element {
   const openInterestModal = (): void => {
     setIsModalOpen((prev) => !prev);
   };
-
   const handleUpdateProfile = async (): Promise<void> => {
     await onClickUpdate({
       nickname: data?.fetchLoginUser?.nickname,

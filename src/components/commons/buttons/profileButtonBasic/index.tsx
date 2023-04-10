@@ -16,6 +16,10 @@ const SubmitBtn = styled.button`
     background-color: #6658ca;
     border: 1px solid #6658ca;
   }
+
+  @media (max-width: 767px) {
+    padding: 10px 50px;
+  }
 `;
 
 interface IProfileButtonBasicProps {

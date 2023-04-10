@@ -53,6 +53,7 @@ export const ImageBox = styled.div`
   /* margin-right: 10px; */
   /* overflow: hidden; */
 
+
   @media (max-width: 767px) {
     width: 25px;
     height: 25px;

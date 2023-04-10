@@ -3,9 +3,11 @@ import { movePageMode } from "../../../commons/hooks/customs/movePageMode";
 import { useMutationLogout } from "../../../commons/hooks/mutation/useMutationLogout";
 import { SubWrapper } from "../footer/main.footer.styles";
 import * as S from "./main.sidebar.styels";
+import { useQueryFetchLoginUser } from "../../../commons/hooks/queries/fetchLoginUser";
 
 export default function MainSideBar(props): JSX.Element {
   const { onClickMovePage } = movePageMode();
+  const { data } = useQueryFetchLoginUser();
 
   const [logout] = useMutationLogout();
 
@@ -22,15 +24,17 @@ export default function MainSideBar(props): JSX.Element {
       </S.TopWrapper>
       <S.BottomWrapper>
         <S.ImgWrapper>
-          <S.ImgBox src=""></S.ImgBox>
+          <S.ImgBox
+            src={`https://storage.cloud.google.com/upco-bucket${data?.fetchLoginUser.image}`}
+          ></S.ImgBox>
         </S.ImgWrapper>
         <S.TextWrapper>
           <li>
-            <h4>문성진</h4>
-            <p>20대</p>
+            <h4>{data?.fetchLoginUser.nickname}</h4>
+            <p>{data?.fetchLoginUser.age}</p>
           </li>
           <li>
-            <p>eggmun98@gmail.com</p>
+            <p>{data?.fetchLoginUser.email}</p>
           </li>
         </S.TextWrapper>
       </S.BottomWrapper>

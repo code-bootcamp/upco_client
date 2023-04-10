@@ -82,7 +82,7 @@ export default function ChatList(): JSX.Element {
         });
         setChatData(latestMessagesArray);
       } catch (error) {
-        console.error(error);
+        alert(error);
       }
     };
     fetchChatRooms().catch(() => {});

@@ -11,11 +11,10 @@ export const useGeolocationMode = (): {
       const watcher = navigator.geolocation.watchPosition(
         (position) => {
           setPosition(position);
-          console.log("현재 위치:", position);
         },
 
         (error) => {
-          console.error(error);
+          alert(error);
         },
         { enableHighAccuracy: true }
       );

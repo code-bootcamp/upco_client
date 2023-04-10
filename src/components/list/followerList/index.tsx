@@ -41,7 +41,6 @@ export default function FollowerList(): JSX.Element {
     });
   };
 
-  console.log(friendsData?.fetchFriends);
   return (
     <>
       {friendsData?.fetchFriends.length !== 0 ? (
@@ -52,7 +51,9 @@ export default function FollowerList(): JSX.Element {
                 <S.FollowerListRow>
                   {el.image ? (
                     <S.ImageBox>
-                      <S.ImageSection src={el.image} />
+                      <S.ImageSection
+                        src={`https://storage.cloud.google.com/upco-bucketel.image/${el.image}`}
+                      />
                     </S.ImageBox>
                   ) : (
                     <S.ImageBox>
@@ -61,7 +62,6 @@ export default function FollowerList(): JSX.Element {
                   )}
                   <S.FollowerListColumn>
                     <S.NickNameSection>{el.nickname}</S.NickNameSection>
-                    <S.ChatSection>안녕하세요안녕하세여안녕하세요안녕하세여</S.ChatSection>
                   </S.FollowerListColumn>
                   {isOpenToolTip[index] && <TooltipUI02 id={el.id} />}
                   <S.DottedIcon onClick={onClickOpenTooltip(index)}>
