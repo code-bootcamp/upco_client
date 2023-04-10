@@ -4,13 +4,11 @@ import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { useRecoilState } from "recoil";
 import { interestFilter } from "../../stores";
 import { debounce } from "lodash";
-import { useQueryFindAroundUsers } from "../../hooks/queries/useQueryFindAroundUsers";
 
 export default function FilterlingUI(): JSX.Element {
   const [hoverIndex, setHoverIndex] = useState(-1);
   const [selectedValue, setSelectedValue] = useRecoilState(interestFilter);
   const focusRef = useRef(null);
-  const { refetch } = useQueryFindAroundUsers();
 
   const interestArr = [...interestMeeting];
 
