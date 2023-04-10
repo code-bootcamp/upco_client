@@ -1,6 +1,5 @@
 import * as S from "./textChat.body.styles";
-import { BsEmojiSmile, BsCameraVideo } from "react-icons/bs";
-import { SlPicture } from "react-icons/sl";
+import { BsCameraVideo } from "react-icons/bs";
 import { ITextChatBodyProps } from "./textChat.body.types";
 import { KeyboardEventHandler, useState } from "react";
 
@@ -24,7 +23,7 @@ export default function TextChatBody(props: ITextChatBodyProps): JSX.Element {
       handleSubmit(e);
     }
   };
-
+  console.log("a");
   return (
     <form onSubmit={handleSubmit}>
       <S.Wrapper>
