@@ -18,7 +18,7 @@ export default function FollowerList(): JSX.Element {
 
   const myId = data?.fetchLoginUser.id;
 
-  const onClickChat = (e: MouseEventHandler<HTMLDivElement>): void => {
+  const onClickChat: MouseEventHandler<HTMLDivElement> = (e) => {
     const anotherId = e.currentTarget.id;
 
     const newSocket = io("https://api.upco.space/", {

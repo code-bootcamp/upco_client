@@ -45,35 +45,44 @@ export default function TextChat(): JSX.Element {
   const [isOpen, setIsOpen] = useRecoilState(isOpenState);
   const data = useQueryFetchLoginUser();
   const myId = data?.data?.fetchLoginUser.id;
+
   useEffect(() => {
     const newSocket = io("https://api.upco.space/", {
       path: "/chat/socket.io",
       transports: ["websocket"],
     });
-    newSocket.on("client", (contents) => {
-      setMessages((prevMessages) => [...prevMessages, { contents, isSent: false }]);
-    });
-
-    newSocket.on("roomCreateOrJoin", (roomId) => {
-      setRoomId(roomId);
-    });
-
-    newSocket.on("load Message", (messageLog) => {
-      setMessageLog(messageLog);
-      setMessages((prevMessages) => [
-        ...prevMessages,
-        { contents: "채팅방에 입장하셨습니다", isSent: true },
-      ]);
-    });
-
-    newSocket.emit("joinRoom", roomId);
     setSocket(newSocket);
 
     return () => {
       newSocket.disconnect();
+    };
+  }, []);
+
+  useEffect(() => {
+    if (socket) {
+      socket.on("client", (contents: string) => {
+        setMessages((prevMessages) => [...prevMessages, { contents, isSent: false }]);
+      });
+
+      socket.on("roomCreateOrJoin", (roomId: string) => {
+        setRoomId(roomId);
+      });
+
+      socket.on("load Message", (messageLog: Array<{ contents: string; senderId: string }>) => {
+        setMessageLog(messageLog);
+        setMessages((prevMessages) => [
+          ...prevMessages,
+          { contents: "채팅방에 입장하셨습니다", isSent: true },
+        ]);
+      });
+
+      socket.emit("joinRoom", roomId);
+    }
+
+    return () => {
       setMessages([]);
     };
-  }, [roomId, setMessages, setMessageLog]);
+  }, [socket, roomId, setMessages, setMessageLog, setRoomId]);
 
   const emitData = (contents: string): void => {
     if (socket) {
