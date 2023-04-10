@@ -4,6 +4,8 @@ import * as S from "./profile.body.styles";
 
 export default function ProfileBody(): JSX.Element {
   const data = useQueryFetchLoginUser();
+  console.log(data);
+
   return (
     <>
       <S.Wrapper>
@@ -16,6 +18,7 @@ export default function ProfileBody(): JSX.Element {
           <ul>
             <li>
               <S.Name>{data?.data?.fetchLoginUser?.nickname}</S.Name>
+              <S.Age>{data?.data?.fetchLoginUser?.age}세</S.Age>
               {data?.data?.fetchLoginUser?.age && (
                 <S.Age>{data?.data?.fetchLoginUser?.age}세</S.Age>
               )}
@@ -30,6 +33,7 @@ export default function ProfileBody(): JSX.Element {
             <li>
               <S.Email>{data?.data?.fetchLoginUser?.email}</S.Email>
             </li>
+
           </ul>
         </S.ProfileLeft>
         <S.ProfileRight>
