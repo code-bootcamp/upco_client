@@ -121,3 +121,10 @@ export const MessageIcon = styled(TbMessageCircle2)`
   transform: scale(1.2);
   stroke-width: 1.2;
 `;
+
+export const UserImg = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50px;
+`;

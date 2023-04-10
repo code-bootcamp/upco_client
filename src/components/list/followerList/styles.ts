@@ -1,42 +1,55 @@
 import styled from "@emotion/styled";
 import { BiUser } from "react-icons/bi";
 
+interface IProps {
+  mPage: boolean;
+}
+
 export const Wrapper = styled.div`
   width: 100%;
-  /* background-color: blue; */
-  /* display: flex; */
-
   @media (max-width: 767px) {
     display: flex;
-    flex-direction: ${(props) => (props.mPage ? "row" : "column")};
+    flex-direction: ${(props: IProps) => (props.mPage ? "row" : "column")};
+    align-items: ${(props) => (props.mPage ? "center" : "flex-start")};
+    height: ${(props) => props.mPage && "155px"};
+    padding: ${(props) => props.mPage && "20px"};
   }
 `;
 
 export const FollowerWrapper = styled.div`
+  width: 95%;
   position: relative;
   display: flex;
   flex-direction: row;
+  justify-content: space-evenly;
   align-items: center;
-  padding: 20px;
-  width: 300px;
-  background-color: ${(props) => (props.mPage ? "red" : "blue")};
+  padding: 20px 0px 20px 0px;
 
   @media (max-width: 767px) {
-    width: 100%;
+    width: ${(props: IProps) => (props.mPage ? "30%" : "100%")};
+    height: ${(props) => props.mPage && "100%"};
     padding: 15px;
-    /* background-color: red; */
+    border-width: ${(props) => (props.mPage ? "1px" : "0px")};
+    border-style: ${(props) => (props.mPage ? "solid" : "none")};
+    border-color: ${(props) => props.mPage && "#e2e2e2"};
+    border-radius: ${(props) => props.mPage && "6px"};
+    margin-right: 20px;
   }
 `;
 export const NickNameSection = styled.h4`
   font-family: "Bold";
   font-size: 16px;
+
+  @media (max-width: 767px) {
+    font-size: ${(props: IProps) => props.mPage && "14px"};
+  }
 `;
 
 export const ImageBox = styled.div`
-  width: 50px;
+  width: 30%;
   height: 50px;
   background-color: transparent;
-  margin-right: 10px;
+  border-radius: 50%;
 
   @media (max-width: 767px) {
     width: 25px;
@@ -46,8 +59,10 @@ export const ImageBox = styled.div`
 `;
 
 export const ImageSection = styled.img`
-  width: 100%;
-  height: 100%;
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
 `;
 
 export const UserIcon = styled(BiUser)`
@@ -74,12 +89,14 @@ export const FollowerListRow = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
+
   @media (max-width: 767px) {
-    justify-content: space-around;
+    /* justify-content: space-around; */
+    align-items: ${(props: IProps) => props.mPage && "center"};
   }
 `;
 export const FollowerListColumn = styled.div`
-  width: 70%;
+  width: 63%;
   display: flex;
   flex-direction: column;
 `;
@@ -87,6 +104,9 @@ export const FollowerListColumn = styled.div`
 export const DivideLine = styled.div`
   border-bottom: 1px solid #d9d9d9;
   width: 100%;
+  @media (max-width: 767px) {
+    width: ${(props: IProps) => (props.mPage ? "0%" : "100%")};
+  }
 `;
 
 export const DottedIcon = styled.ul`

@@ -17,12 +17,16 @@ export default function LayoutHeader(): JSX.Element {
   const [isTooltip, setIsTooltip] = useState(false);
   const { data } = useQueryFetchLoginUser();
   const { onClickMovePage } = movePageMode();
-  const [windowSize, setWindowSize] = useState("");
+  const [windowSize, setWindowSize] = useState();
   const [isOpen, setIsOpen] = useRecoilState(isOpenState);
 
   const onClickOpen = (): void => {
     setIsTooltip((prev) => !prev);
   };
+
+  useEffect(() => {
+    setWindowSize(1200);
+  }, []);
 
   useEffect(() => {
     window.addEventListener("resize", windowSizeSave);
@@ -65,7 +69,15 @@ export default function LayoutHeader(): JSX.Element {
               </S.MenuBox>
               <S.UserBox style={{ position: "relative" }}>
                 {isTooltip && <TooltipUI />}
-                <S.UserIcon onClick={onClickOpen} />
+
+                {data?.fetchLoginUser.image ? (
+                  <S.UserImg
+                    src={`https://storage.cloud.google.com/upco-bucket/${data?.fetchLoginUser.image}`}
+                    onClick={onClickOpen}
+                  />
+                ) : (
+                  <S.UserIcon onClick={onClickOpen} />
+                )}
               </S.UserBox>
             </>
           ) : (

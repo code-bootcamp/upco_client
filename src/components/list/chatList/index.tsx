@@ -55,28 +55,12 @@ export default function ChatList(): JSX.Element {
   const [chatData, setChatData] = useState([]);
   const data = useQueryFetchLoginUser();
   const userData = useQueryFetchUser();
-  // console.log(data);
-  // const anotherIds = JSON.parse(localStorage.getItem("anotherIds"));
-  // console.log(anotherIds);
-  // const result = useQueryFetchUser();
-  // console.log(result);
-  // useEffect(() => {
-  //   if (result.data?.fetchUser) {
-  //     const rooms = result.data.fetchUser.map((user) => ({
-  //       id: user.id,
-  //       name: user.nickname,
-  //       imageUrl: user.profileImageUrl,
-  //       preview: "",
-  //     }));
-  //     setChatRooms(chatRooms);
-  //   }
-  // }, [result.data]);
-  // console.log(chatRooms);
+
   useEffect(() => {
     const fetchChatRooms = async (): Promise<void> => {
       try {
         const result = await axios.get(
-          `http://10.34.233.130:4000/chatRoomList/${data.data?.fetchLoginUser.id}`
+          `https://api.upco.space/chat/chatRoomList/${data.data?.fetchLoginUser.id}`
         );
 
         const latestMessages = result.data.data.reduce((acc, cur) => {
@@ -98,7 +82,7 @@ export default function ChatList(): JSX.Element {
         });
         setChatData(latestMessagesArray);
       } catch (error) {
-        console.error(error);
+        alert(error);
       }
     };
     fetchChatRooms().catch(() => {});

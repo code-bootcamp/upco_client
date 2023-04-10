@@ -9,28 +9,32 @@ export default function LocationList(props): JSX.Element {
   return (
     <>
       <S.Wrapper>
-        {props.data?.findAroundUsers.map((el) => (
+        {props.data?.findAroundUsers.map((el, idx) => (
           <S.LocationWrapper key={el.id}>
             <S.ImageColumn>
-              <S.ImageSection src={el.image} />
+              {el.image ? (
+                <S.ImageSection src={`https://storage.cloud.google.com/upco-bucket/${el.image}`} />
+              ) : (
+                <S.UserIcon />
+              )}
             </S.ImageColumn>
 
             <S.LocationListColumn>
               <S.LocationListRow>
                 <S.NickNameSection>{el.nickname}</S.NickNameSection>
-                <S.AgeSection>{el.age}</S.AgeSection>
+                <S.AgeSection>{el.age}살</S.AgeSection>
               </S.LocationListRow>
               <S.InterestBox>
-                {/* <S.InterestSection key={idx}>{interest}</S.InterestSection>  */}
-                <S.InterestSection>축구</S.InterestSection>
-                <S.InterestSection>축구</S.InterestSection>
-                <S.InterestSection>축구</S.InterestSection>
+                {el.interests &&
+                  el.interests.map((item: string) => (
+                    <S.InterestSection key={idx}>{item}</S.InterestSection>
+                  ))}
               </S.InterestBox>
               <S.ButtonWrapper>
-                <S.HoverButton>
+                {/* <S.HoverButton>
                   <AiOutlineMessage />
                   <S.HoverTitle>채팅하기</S.HoverTitle>
-                </S.HoverButton>
+                </S.HoverButton> */}
                 <S.HoverButton onClick={onClickCreateFriendRequest(el.id)}>
                   <AiOutlineUserAdd />
                   <S.HoverTitle>친구추가</S.HoverTitle>

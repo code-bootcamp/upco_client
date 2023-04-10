@@ -6,6 +6,8 @@ import PasswordReset from "../../passwordReset/passwordReset.index";
 import * as S from "./profileEdit.body.styles";
 import SelectedAgeInput from "../../../commons/items/selected/age.index";
 import { useRouter } from "next/router";
+import { useRecoilState } from "recoil";
+import { fileUrl } from "../../../commons/stores";
 
 interface Interest {
   id: string;
@@ -14,12 +16,13 @@ interface Interest {
 
 export default function ProfileEditBody(): JSX.Element {
   const router = useRouter();
-  const { data } = useQueryFetchLoginUser();
+  const { data, refetch } = useQueryFetchLoginUser();
   const [isOpen, setIsOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [interestList, setInterestList] = useState<string[]>([]);
   const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
   const [selectedAge, setSelectedAge] = useState<number>(data?.fetchLoginUser?.age ?? 2023);
+  const [imageUrl, setImageUrl] = useRecoilState(fileUrl);
 
   const { onClickUpdate } = useUpdateUserMode();
   const openPasswordReset = (): void => {
@@ -28,20 +31,19 @@ export default function ProfileEditBody(): JSX.Element {
   const openInterestModal = (): void => {
     setIsModalOpen((prev) => !prev);
   };
-
   const handleUpdateProfile = async (): Promise<void> => {
     await onClickUpdate({
       nickname: data?.fetchLoginUser?.nickname,
-      age: 2023 - selectedAge + 1,
+      image: imageUrl,
+      age: 2024 - selectedAge,
       interests: [...interestList],
     });
+    await refetch();
   };
-  console.log(data?.fetchLoginUser.interests);
 
   const onClickCancel = async (): Promise<void> => {
     await router.push("/profile");
   };
-
   return (
     <>
       {isModalOpen && (

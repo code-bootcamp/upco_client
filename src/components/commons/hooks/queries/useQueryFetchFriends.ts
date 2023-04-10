@@ -1,7 +1,7 @@
 import { gql, useQuery } from "@apollo/client";
 import { IQuery, IQueryFetchUserArgs } from "../../../../commons/types/generated/types";
 
-const FETCH_FRIENDS = gql`
+export const FETCH_FRIENDS = gql`
   query fetchFriends {
     fetchFriends {
       id

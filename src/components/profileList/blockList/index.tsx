@@ -6,8 +6,6 @@ export default function ProfileBlockListUI(): JSX.Element {
   const { data } = useQueryFetchBlockUsers();
   const { onClickUnblockUser } = useOnClickUnblockUser();
 
-  console.log(data, "!!");
-
   return (
     <>
       <S.Wrapper>
@@ -16,7 +14,13 @@ export default function ProfileBlockListUI(): JSX.Element {
             {data?.fetchBlockUsers.map((el) => (
               <li key={el.id} id={el.id}>
                 <S.ImgBox>
-                  {el.blocked_user.image ? <img src={el.blocked_user.image} /> : <S.UserIcon />}
+                  {el.blocked_user.image ? (
+                    <img
+                      src={`https://storage.cloud.google.com/upco-bucket/${el.blocked_user.image}`}
+                    />
+                  ) : (
+                    <S.UserIcon />
+                  )}
                 </S.ImgBox>
                 <S.Name>최현규</S.Name>
                 <S.DeleteFollow onClick={onClickUnblockUser(el.id)}>차단해제</S.DeleteFollow>

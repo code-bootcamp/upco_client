@@ -97,12 +97,12 @@ export default function JoinUI(props: IJoinUIProps): JSX.Element {
         </S.DivideLineBox>
         <S.IconBox>
           <li>
-            <a href="https://api.upco.space/main/login/google">
+            <a href="https://api.upco.space/login/google">
               <img src="/images/social/google.svg" />
             </a>
           </li>
           <li>
-            <a href="https://api.upco.space/main/login/google">
+            <a href="https://api.upco.space/login/kakao">
               <img src="/images/social/kakao.svg" />
             </a>
           </li>

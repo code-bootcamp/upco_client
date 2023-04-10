@@ -9,7 +9,6 @@ import { useLoginMode } from "../../../hooks/customs/useLoginMode";
 
 export default function LoginUI(props: ILoginUIProps): JSX.Element {
   const [isFind, setIsFind] = useState(false);
-  // const [isJoin, setIsJoin] = useState(false);
 
   const { onSubmit } = useLoginMode();
   const {
@@ -27,14 +26,6 @@ export default function LoginUI(props: ILoginUIProps): JSX.Element {
       props.setIsFind((prev) => !prev);
       props.setIsOpen((prev) => !prev);
     }
-  };
-
-  const onClickMoved = (move: string) => () => {
-    // if (move === "join" || move === "") {
-    //   props.setIsJoin((prev) => !prev);
-    // } else {
-    //   setIsFind((prev) => !prev);
-    // }
   };
 
   return (
@@ -81,12 +72,12 @@ export default function LoginUI(props: ILoginUIProps): JSX.Element {
           </S.DivideLineBox>
           <S.IconBox>
             <li>
-              <a href="https://api.upco.space/main/login/google">
+              <a href="https://api.upco.space/login/google">
                 <img src="/images/social/google.svg" />
               </a>
             </li>
             <li>
-              <a href="https://api.upco.space/main/login/google">
+              <a href="https://api.upco.space/login/kakao">
                 <img src="/images/social/kakao.svg" />
               </a>
             </li>

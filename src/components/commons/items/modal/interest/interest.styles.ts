@@ -87,6 +87,7 @@ export const InterestBox = styled.div<InterestModalProps>`
   margin-bottom: 10px;
   font-size: 14px;
   transition: all 0.3s ease-in-out;
+  cursor: pointer;
 
   :hover {
     color: #fff;

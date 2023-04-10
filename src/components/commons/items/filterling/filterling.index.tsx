@@ -30,14 +30,8 @@ export default function FilterlingUI(): JSX.Element {
     setSelectedValue(selectedValue);
   };
 
-  // const onChangeValue = (event: ChangeEvent<HTMLInputElement>): void => {
-  //   const inputValue = event.target.value;
-  //   setSelectedValue(inputValue);
-  // };
-
   const onChangeValue = (event: ChangeEvent<HTMLInputElement>): void => {
     const inputValue = event.target.value;
-    console.log("inputValue", inputValue);
     setSelectedValue(event.target.value);
   };
 
@@ -46,7 +40,6 @@ export default function FilterlingUI(): JSX.Element {
   }, 300);
 
   useEffect(() => {
-    // focusRef.current.focus()
     if (focusRef.current) {
       focusRef.current.focus();
     }

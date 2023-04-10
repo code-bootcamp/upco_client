@@ -45,11 +45,9 @@ export default function TextChat(): JSX.Element {
   const [isOpen, setIsOpen] = useRecoilState(isOpenState);
   const data = useQueryFetchLoginUser();
   const myId = data?.data?.fetchLoginUser.id;
-  console.log(socket);
-  console.log(roomId);
   useEffect(() => {
-    const newSocket = io("https/api.upco.space/chat/", {
-      path: "/socket.io",
+    const newSocket = io("https://api.upco.space/", {
+      path: "/chat/socket.io",
       transports: ["websocket"],
     });
     newSocket.on("client", (contents) => {
@@ -64,7 +62,7 @@ export default function TextChat(): JSX.Element {
       setMessageLog(messageLog);
       setMessages((prevMessages) => [
         ...prevMessages,
-        { contents: "채팅방에 입장하셨습니다", isSent: false },
+        { contents: "채팅방에 입장하셨습니다", isSent: true },
       ]);
     });
 

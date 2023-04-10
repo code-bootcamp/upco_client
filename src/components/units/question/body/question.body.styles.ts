@@ -19,6 +19,10 @@ export const BodyRow = styled.ul`
   > li:last-of-type {
     align-items: flex-start;
   }
+
+  @media (max-width: 767px) {
+    padding: 0 25px;
+  }
 `;
 
 export const LabelBox = styled.div`
@@ -52,6 +56,10 @@ export const CounselContents = styled.textarea`
   resize: none;
   height: auto;
   outline: none;
+
+  @media (max-width: 767px) {
+    min-height: 200px;
+  }
 `;
 
 export const ErrorMessageBox = styled.div`

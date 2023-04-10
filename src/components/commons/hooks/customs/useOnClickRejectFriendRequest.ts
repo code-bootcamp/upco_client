@@ -24,7 +24,7 @@ export const useOnClickRejectFriendRequest = (): IUseOnClickRejectFriendRequest 
         ],
       });
     } catch (error) {
-      console.log(error);
+      alert(error);
     }
   };
 

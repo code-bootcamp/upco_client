@@ -1,4 +1,4 @@
-schema: https://api.upco.space/main/graphql
+schema: https://api.upco.space/graphql
 generates:
   ./src/commons/types/generated/types.ts:
     plugins:
