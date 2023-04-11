@@ -6,6 +6,9 @@ import { useRecoilState } from "recoil";
 import { roomIdState } from "../../commons/stores";
 import { useQueryFetchFriends } from "../../commons/hooks/queries/useQueryFetchFriends";
 import * as S from "./styles";
+import { useRouter } from "next/router";
+
+const MPAGE = ["/main"];
 
 export default function FollowerList(): JSX.Element {
   const [roomId, setRoomId] = useRecoilState(roomIdState);
@@ -41,14 +44,18 @@ export default function FollowerList(): JSX.Element {
     });
   };
 
+  const router = useRouter();
+
+  const mPage = MPAGE.includes(router.asPath);
+
   return (
     <>
       {friendsData?.fetchFriends.length !== 0 ? (
         <>
           {friendsData?.fetchFriends.map((el, index) => (
             <>
-              <S.FollowerWrapper key={el.id} id={el.id} onClick={onClickChat}>
-                <S.FollowerListRow>
+              <S.FollowerWrapper mPage={mPage} key={el.id} id={el.id} onClick={onClickChat}>
+                <S.FollowerListRow mPage={mPage}>
                   {el.image ? (
                     <S.ImageBox>
                       <S.ImageSection
@@ -61,7 +68,7 @@ export default function FollowerList(): JSX.Element {
                     </S.ImageBox>
                   )}
                   <S.FollowerListColumn>
-                    <S.NickNameSection>{el.nickname}</S.NickNameSection>
+                    <S.NickNameSection mPage={mPage}>{el.nickname}</S.NickNameSection>
                   </S.FollowerListColumn>
                   {isOpenToolTip[index] && <TooltipUI02 id={el.id} />}
                   <S.DottedIcon onClick={onClickOpenTooltip(index)}>
@@ -71,7 +78,7 @@ export default function FollowerList(): JSX.Element {
                   </S.DottedIcon>
                 </S.FollowerListRow>
               </S.FollowerWrapper>
-              <S.DivideLine />
+              <S.DivideLine mPage={mPage} />
             </>
           ))}
         </>

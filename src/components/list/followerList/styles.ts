@@ -10,9 +10,9 @@ export const Wrapper = styled.div`
   @media (max-width: 767px) {
     display: flex;
     flex-direction: ${(props: IProps) => (props.mPage ? "row" : "column")};
-    align-items: ${(props) => (props.mPage ? "center" : "flex-start")};
-    height: ${(props) => props.mPage && "155px"};
-    padding: ${(props) => props.mPage && "20px"};
+    align-items: ${(props: IProps) => (props.mPage ? "center" : "flex-start")};
+    height: ${(props: IProps) => props.mPage && "155px"};
+    padding: ${(props: IProps) => props.mPage && "20px"};
   }
 `;
 
@@ -27,12 +27,12 @@ export const FollowerWrapper = styled.div`
 
   @media (max-width: 767px) {
     width: ${(props: IProps) => (props.mPage ? "30%" : "100%")};
-    height: ${(props) => props.mPage && "100%"};
+    height: ${(props: IProps) => props.mPage && "100%"};
     padding: 15px;
-    border-width: ${(props) => (props.mPage ? "1px" : "0px")};
-    border-style: ${(props) => (props.mPage ? "solid" : "none")};
-    border-color: ${(props) => props.mPage && "#e2e2e2"};
-    border-radius: ${(props) => props.mPage && "6px"};
+    border-width: ${(props: IProps) => (props.mPage ? "1px" : "0px")};
+    border-style: ${(props: IProps) => (props.mPage ? "solid" : "none")};
+    border-color: ${(props: IProps) => props.mPage && "#e2e2e2"};
+    border-radius: ${(props: IProps) => props.mPage && "6px"};
     margin-right: 20px;
   }
 `;
@@ -52,7 +52,6 @@ export const ImageBox = styled.div`
   border-radius: 50%;
   /* margin-right: 10px; */
   /* overflow: hidden; */
-
 
   @media (max-width: 767px) {
     width: 25px;
