@@ -10,7 +10,7 @@ import { fileUrl } from "../../../commons/stores";
 import * as S from "./profileEdit.header.styles";
 
 export default function ProfileEditHeader(): JSX.Element {
-  const fileRef = useRef();
+  const fileRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
   const [imageUrl, setImageUrl] = useRecoilState(fileUrl);
   const [uploadFile] = useMutationUploadFile();
@@ -31,11 +31,11 @@ export default function ProfileEditHeader(): JSX.Element {
     setEditorOpen(true);
   };
 
-  const onClickImage = async (): Promise<void> => {
-    if (fileRef?.current) {
-      await fileRef.current.click();
-    }
+
+  const onClickImage = (): void => {
+    fileRef?.current?.click();
   };
+  
   const onClickDelete = async (): Promise<void> => {
     if (confirm("정말 탈퇴하시겠습니까?")) {
       const userId = data?.data?.fetchLoginUser.id;

@@ -24,7 +24,7 @@ export const useJoinMode = (
       setErrors("이메일 인증이 필요합니다.");
       return;
     }
-    const result = await createUser({
+    await createUser({
       variables: {
         createUserInput: {
           nickname: data.name,
