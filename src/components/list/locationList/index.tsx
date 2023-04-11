@@ -12,7 +12,7 @@ export default function LocationList(props: IProps): JSX.Element {
   return (
     <>
       <S.Wrapper>
-        {props.result.data?.findAroundUsers.map((el, idx) => (
+        {props.result.data?.findAroundUsers.map((el) => (
           <S.LocationWrapper key={el.id}>
             <S.ImageColumn>
               {el.image ? (
@@ -25,7 +25,7 @@ export default function LocationList(props: IProps): JSX.Element {
             <S.LocationListColumn>
               <S.LocationListRow>
                 <S.NickNameSection>{el.nickname}</S.NickNameSection>
-                <S.AgeSection>{el.age}살</S.AgeSection>
+                {el.age ? <S.AgeSection>{el.age}살</S.AgeSection> : <></>}
               </S.LocationListRow>
               <S.InterestBox>
                 {el.interests?.map((item) => (
