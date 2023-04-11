@@ -16,7 +16,9 @@ export default function LocationList(props: IProps): JSX.Element {
           <S.LocationWrapper key={el.id}>
             <S.ImageColumn>
               {el.image ? (
-                <S.ImageSection src={`https://storage.cloud.google.com/upco-bucket/${el.image}`} />
+                <S.ImageSection
+                  src={`https://storage.cloud.google.com/upco-bucket/${String(el.image)}`}
+                />
               ) : (
                 <S.UserIcon />
               )}
