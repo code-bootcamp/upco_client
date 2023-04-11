@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { ChangeEvent, useRef, useState } from "react";
+import { ChangeEvent, SetStateAction, useRef, useState } from "react";
 import { useRecoilState } from "recoil";
 import { checkValidationFile } from "../../../../commons/libraries/vaildation/upload";
 import { useMutationDeleteUser } from "../../../commons/hooks/mutation/useMutationDeleteUser";
@@ -35,10 +35,12 @@ export default function ProfileEditHeader(): JSX.Element {
     await fileRef?.current?.click();
   };
   const onClickDelete = async (): Promise<void> => {
-    const userId = data?.data?.fetchLoginUser.id;
-    await deleteUser({ variables: { id: userId } });
-    alert("회원 탈퇴가 완료되었습니다.");
-    await router.push("/");
+    if (confirm("정말 탈퇴하시겠습니까?")) {
+      const userId = data?.data?.fetchLoginUser.id;
+      await deleteUser({ variables: { id: userId } });
+      alert("회원 탈퇴가 완료되었습니다.");
+      await router.push("/");
+    }
   };
   return (
     <>
@@ -46,14 +48,14 @@ export default function ProfileEditHeader(): JSX.Element {
         <S.ProfileLeft>
           <S.UserIconBox>
             <img
-              src={`https://storage.cloud.google.com/upco-bucket/${data?.data?.fetchLoginUser?.image}`}
+              src={`https://storage.cloud.google.com/upco-bucket/${imageUrl}`}
               onClick={onClickEditImage}
             ></img>
             {editor && (
               <S.EditorContainer>
                 <AvatarEditor
-                  ref={(ref) => setEditor(ref)}
-                  image={`https://storage.cloud.google.com/upco-bucket/${data?.data?.fetchLoginUser?.image}`}
+                  ref={(ref: SetStateAction<null>) => setEditor(ref)}
+                  image={`https://storage.cloud.google.com/upco-bucket/${imageUrl}`}
                   width={250}
                   height={250}
                   border={50}

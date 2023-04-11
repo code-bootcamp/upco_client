@@ -18,14 +18,13 @@ export default function ProfileBody(): JSX.Element {
           <ul>
             <li>
               <S.Name>{data?.data?.fetchLoginUser?.nickname}</S.Name>
-              <S.Age>{data?.data?.fetchLoginUser?.age}세</S.Age>
               {data?.data?.fetchLoginUser?.age && (
                 <S.Age>{data?.data?.fetchLoginUser?.age}세</S.Age>
               )}
             </li>
             <li>
               <S.InterestBox>
-                {data?.data?.fetchLoginUser?.interests?.map((interests: Interest) => (
+                {data?.data?.fetchLoginUser?.interests?.map((interests) => (
                   <li key={interests.id}>{interests.name}</li>
                 ))}
               </S.InterestBox>
@@ -33,7 +32,6 @@ export default function ProfileBody(): JSX.Element {
             <li>
               <S.Email>{data?.data?.fetchLoginUser?.email}</S.Email>
             </li>
-
           </ul>
         </S.ProfileLeft>
         <S.ProfileRight>
