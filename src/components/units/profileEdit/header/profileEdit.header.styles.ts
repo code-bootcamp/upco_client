@@ -35,6 +35,8 @@ export const ProfileLeft = styled.div`
   }
 `;
 
+export const EditorContainer = styled.div``;
+
 export const UserIconBox = styled.div`
   width: 100px;
   height: 100px;

@@ -20,7 +20,7 @@ export default function ProfileEditBody(): JSX.Element {
   const [isOpen, setIsOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [interestList, setInterestList] = useState<string[]>([]);
-  const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
+  const [prevInterests, setPrevInterests] = useState<string[]>([]);
   const [selectedAge, setSelectedAge] = useState<number>(data?.fetchLoginUser?.age ?? 2023);
   const [imageUrl, setImageUrl] = useRecoilState(fileUrl);
 
@@ -50,7 +50,7 @@ export default function ProfileEditBody(): JSX.Element {
         <InterestUI
           setInterestList={setInterestList}
           setIsModalOpen={setIsModalOpen}
-          selectedInterests={selectedInterests}
+          setPrevInterests={setPrevInterests}
         />
       )}
       {isOpen && <PasswordReset setIsOpen={setIsOpen}></PasswordReset>}
@@ -85,9 +85,11 @@ export default function ProfileEditBody(): JSX.Element {
           <S.DefaultBox>
             <div>
               <S.InterestBox>
-                {data?.fetchLoginUser?.interests?.map((interests: Interest) => (
-                  <li key={interests.id}>{interests.name}</li>
-                ))}
+                {prevInterests.length > 0
+                  ? prevInterests.map((interest: string) => <li key={interest}>{interest}</li>)
+                  : data?.fetchLoginUser?.interests?.map((interest: Interest) => (
+                      <li key={interest.id}>{interest.name}</li>
+                    ))}
               </S.InterestBox>
               <S.InterestAddButton onClick={openInterestModal}>추가</S.InterestAddButton>
             </div>

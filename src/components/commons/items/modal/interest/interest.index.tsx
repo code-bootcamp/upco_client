@@ -4,7 +4,7 @@ import * as S from "./interest.styles";
 interface InterestUIProps {
   setIsModalOpen: (value: boolean) => void;
   setInterestList: (value: string[]) => void;
-  selectedInterests: string[];
+  setPrevInterests: (value: string[]) => void;
 }
 
 export const interestMeeting = [
@@ -64,6 +64,7 @@ export default function InterestUI(props: InterestUIProps): JSX.Element {
 
   const onClickComplete = (): void => {
     props.setInterestList(selectedInterests);
+    props.setPrevInterests(selectedInterests);
     props.setIsModalOpen(false);
   };
 
