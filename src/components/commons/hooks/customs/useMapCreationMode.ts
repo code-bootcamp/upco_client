@@ -14,7 +14,7 @@ export const useMapCreationMode = (): {
       const script = document.createElement("script");
       script.async = true;
       script.src =
-        "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=%REACT_APP_API_KEY%&libraries=services&libraries=clusterer";
+        "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=546bab6b1ad8e036b1f679bbb9af2e7c&libraries=services&libraries=clusterer";
 
       document.head.appendChild(script);
       script.onload = () => {
