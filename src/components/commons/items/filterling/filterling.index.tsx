@@ -33,9 +33,9 @@ export default function FilterlingUI(): JSX.Element {
     setSelectedValue(event.target.value);
   };
 
-  const debouncedOnChangeValue = debounce((event) => {
-    onChangeValue(event);
-  }, 300);
+  // const debouncedOnChangeValue = debounce((event) => {
+  //   onChangeValue(event);
+  // }, 300);
 
   useEffect(() => {
     if (focusRef.current) {
