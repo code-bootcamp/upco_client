@@ -1,4 +1,5 @@
 import { useMutationDeleteFriend } from "../mutation/useMutationDeleteFriend";
+import { FETCH_FRIENDS } from "../queries/useQueryFetchFriends";
 
 interface IUseOnClickDeleteFriend {
   onClickDeleteFriend: (friendId: string) => () => Promise<void>;
@@ -12,6 +13,11 @@ export const useOnClickDeleteFriend = (): IUseOnClickDeleteFriend => {
       variables: {
         friendId,
       },
+      refetchQueries: [
+        {
+          query: FETCH_FRIENDS,
+        },
+      ],
     });
   };
 

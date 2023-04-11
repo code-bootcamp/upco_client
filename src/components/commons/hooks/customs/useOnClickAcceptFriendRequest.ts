@@ -1,5 +1,5 @@
-import { useRouter } from "next/router";
 import { useMutationAcceptFriendRequest } from "../mutation/useMutationAcceptFriendRequest";
+import { FETCH_FRIEND_REQUESTS } from "../queries/useQueryFetchFriendRequests";
 import { FETCH_FRIENDS } from "../queries/useQueryFetchFriends";
 
 interface IUseOnClickAcceptFriendRequest {
@@ -7,7 +7,6 @@ interface IUseOnClickAcceptFriendRequest {
 }
 
 export const useOnClickAcceptFriendRequest = (): IUseOnClickAcceptFriendRequest => {
-  const router = useRouter();
   const [acceptFriendRequest] = useMutationAcceptFriendRequest();
 
   const onClickAcceptFriendRequest = (requestId: string) => async (): Promise<void> => {
@@ -18,6 +17,9 @@ export const useOnClickAcceptFriendRequest = (): IUseOnClickAcceptFriendRequest 
       refetchQueries: [
         {
           query: FETCH_FRIENDS,
+        },
+        {
+          query: FETCH_FRIEND_REQUESTS,
         },
       ],
     });
