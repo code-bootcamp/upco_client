@@ -7,7 +7,6 @@ import { useRecoilState } from "recoil";
 import { useQueryFetchFriendRequests } from "../../../commons/hooks/queries/useQueryFetchFriendRequests";
 import { useOnClickAcceptFriendRequest } from "../../../commons/hooks/customs/useOnClickAcceptFriendRequest";
 import { useOnClickRejectFriendRequest } from "../../../commons/hooks/customs/useOnClickRejectFriendRequest";
-import { useRouter } from "next/router";
 import { IProps } from "./main.footer.types";
 
 export default function MainFooter(props: IProps): JSX.Element {
