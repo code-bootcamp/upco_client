@@ -85,6 +85,7 @@ export default function MainFooter(props: IProps): JSX.Element {
       )}
 
       {selectedComponent === "location" ? (
+
         <LocationList result={props.result} />
       ) : (
         selectedComponent === "follower" && <FollowerList />
