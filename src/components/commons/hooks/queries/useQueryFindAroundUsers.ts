@@ -16,6 +16,10 @@ export const FIND_AROUND_USERS = gql`
       age
       nickname
       image
+      interests {
+        id
+        name
+      }
     }
   }
 `;
