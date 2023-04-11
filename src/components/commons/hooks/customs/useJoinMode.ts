@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
+import { FieldValues, SubmitHandler } from "react-hook-form";
 import { useRecoilState } from "recoil";
 import { isJoinState, showModalState } from "../../stores";
 import { useMutationCreateUser } from "../mutation/useMutattionCreateUser";
@@ -13,13 +14,13 @@ export const useJoinMode = (
   isVerify: boolean,
   setErrors: Dispatch<SetStateAction<string>>
 ): {
-  onClickJoin: (data: IData) => Promise<void>;
+  onClickJoin: SubmitHandler<FieldValues>;
 } => {
   const [createUser] = useMutationCreateUser();
   const [showModal, setShowModal] = useRecoilState(showModalState);
   const [isJoin, setIsJoin] = useRecoilState(isJoinState);
 
-  const onClickJoin = async (data: IData): Promise<void> => {
+  const onClickJoin: SubmitHandler<FieldValues> = async (data) => {
     if (!isVerify) {
       setErrors("이메일 인증이 필요합니다.");
       return;
