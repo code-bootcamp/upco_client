@@ -1,54 +1,34 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useRecoilState } from "recoil";
 import { useGeolocationMode } from "../../commons/hooks/customs/useGeolocationMode";
 import { useLocationInitialMode } from "../../commons/hooks/customs/useLocationInitialMode";
+import { useLocationMode } from "../../commons/hooks/customs/useLocationMode";
 import { useLocationSaveMode } from "../../commons/hooks/customs/useLocationSaveMode";
 import { useMapCreationMode } from "../../commons/hooks/customs/useMapCreationMode";
-import { useMutationLocation } from "../../commons/hooks/mutation/useMutationLocation";
 import { useQueryFindAroundUsers } from "../../commons/hooks/queries/useQueryFindAroundUsers";
-import { locationState } from "../../commons/stores";
+import { locationState, positionState } from "../../commons/stores";
 import MainBody from "./body/main.body.index";
 
 export default function MainPage(): JSX.Element {
   const [_, setLevel] = useState<number>();
   const [location] = useRecoilState(locationState);
+  const [position] = useRecoilState(positionState);
+
   const { isOpen, mapCreation } = useMapCreationMode();
-  const { position, geolocationFn } = useGeolocationMode();
-  const [locations] = useMutationLocation();
+  const { geolocationFn } = useGeolocationMode();
   const { locationSaveFn } = useLocationSaveMode();
   const { useLocationInitialSave } = useLocationInitialMode();
+  const { useLocation } = useLocationMode();
+
   const result = useQueryFindAroundUsers();
-  // const data = result;
+
   useLocationInitialSave();
   geolocationFn();
   mapCreation();
-
-  console.log("현재 내 위치", position);
-  console.log("유저 위치 데이터", result.data);
-
-  const useLocation = (): void => {
-    useEffect(() => {
-      if (!position) {
-        return;
-      }
-      const interval = setInterval(() => {
-        const results = locations({
-          variables: {
-            location: {
-              lat: position?.coords?.latitude,
-              lng: position?.coords?.longitude,
-            },
-          },
-        });
-        console.log("내 위치 서버에 보냈습니다.", results);
-      }, 10000);
-      return () => {
-        clearInterval(interval);
-      };
-    }, [position]);
-  };
-
   useLocation();
+
+  console.log("현재 내 위치", position?.coords.latitude);
+  console.log("유저 위치 데이터", result.data);
 
   return (
     <>

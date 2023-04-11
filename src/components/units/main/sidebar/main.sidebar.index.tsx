@@ -7,7 +7,6 @@ import { IProps } from "./main.sidebar.types";
 export default function MainSideBar(props: IProps): JSX.Element {
   const { onClickMovePage } = movePageMode();
   const { data } = useQueryFetchLoginUser();
-
   const [logout] = useMutationLogout();
 
   const onClickLogout = async (): Promise<void> => {
