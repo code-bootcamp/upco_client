@@ -6,6 +6,8 @@ import * as S from "./styles";
 export default function LocationList(props): JSX.Element {
   const { onClickCreateFriendRequest } = useOnClickCreateFriendRequest();
 
+  console.log("로케이션 페이지-유저 위치", props.data?.findAroundUsers);
+
   return (
     <>
       <S.Wrapper>
