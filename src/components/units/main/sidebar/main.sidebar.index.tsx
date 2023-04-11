@@ -1,11 +1,10 @@
-import { FiX } from "react-icons/fi";
 import { movePageMode } from "../../../commons/hooks/customs/movePageMode";
 import { useMutationLogout } from "../../../commons/hooks/mutation/useMutationLogout";
-import { SubWrapper } from "../footer/main.footer.styles";
 import * as S from "./main.sidebar.styels";
 import { useQueryFetchLoginUser } from "../../../commons/hooks/queries/fetchLoginUser";
+import { IProps } from "./main.sidebar.types";
 
-export default function MainSideBar(props): JSX.Element {
+export default function MainSideBar(props: IProps): JSX.Element {
   const { onClickMovePage } = movePageMode();
   const { data } = useQueryFetchLoginUser();
 
@@ -25,7 +24,9 @@ export default function MainSideBar(props): JSX.Element {
       <S.BottomWrapper>
         <S.ImgWrapper>
           <S.ImgBox
-            src={`https://storage.cloud.google.com/upco-bucket${data?.fetchLoginUser.image}`}
+            src={`https://storage.cloud.google.com/upco-bucket${
+              data?.fetchLoginUser?.image as string
+            }`}
           ></S.ImgBox>
         </S.ImgWrapper>
         <S.TextWrapper>

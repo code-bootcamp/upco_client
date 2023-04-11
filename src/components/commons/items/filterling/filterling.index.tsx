@@ -8,7 +8,7 @@ import { debounce } from "lodash";
 export default function FilterlingUI(): JSX.Element {
   const [hoverIndex, setHoverIndex] = useState(-1);
   const [selectedValue, setSelectedValue] = useRecoilState(interestFilter);
-  const focusRef = useRef(null);
+  const focusRef = useRef<HTMLInputElement>(null);
 
   const interestArr = [...interestMeeting];
 
@@ -28,14 +28,14 @@ export default function FilterlingUI(): JSX.Element {
     setSelectedValue(selectedValue);
   };
 
+  // const debouncedOnChangeValue = debounce((event: ChangeEvent<HTMLInputElement>) => {
+  //   const inputValue = event.target.value;
+  //   setSelectedValue(event.target.value);
+  // }, 300);
+
   const onChangeValue = (event: ChangeEvent<HTMLInputElement>): void => {
-    const inputValue = event.target.value;
     setSelectedValue(event.target.value);
   };
-
-  const debouncedOnChangeValue = debounce((event) => {
-    onChangeValue(event);
-  }, 300);
 
   useEffect(() => {
     if (focusRef.current) {
