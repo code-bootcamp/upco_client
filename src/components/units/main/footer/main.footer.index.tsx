@@ -21,8 +21,6 @@ export default function MainFooter(props: IProps): JSX.Element {
   const [selectedComponent, setSelectedComponent] = useState("location");
   const [isFollower, setIsFollower] = useState(false);
 
-  const router = useRouter();
-
   const handleChatClick = (): void => {
     setSelectedComponent("location");
     setIsClose(false);
@@ -85,7 +83,6 @@ export default function MainFooter(props: IProps): JSX.Element {
       )}
 
       {selectedComponent === "location" ? (
-
         <LocationList result={props.result} />
       ) : (
         selectedComponent === "follower" && <FollowerList />
