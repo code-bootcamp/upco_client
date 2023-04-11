@@ -23,7 +23,7 @@ export default function HomeUIPage(): JSX.Element {
       setIsJoin((prev) => !prev);
     }
   };
-  const handleCloseModal = () => {
+  const handleCloseModal = (): void => {
     setShowModal(false);
     router.push("/main");
   };

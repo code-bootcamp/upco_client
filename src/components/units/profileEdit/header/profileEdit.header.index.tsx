@@ -31,9 +31,11 @@ export default function ProfileEditHeader(): JSX.Element {
     setEditorOpen(true);
   };
 
+
   const onClickImage = (): void => {
     fileRef?.current?.click();
   };
+  
   const onClickDelete = async (): Promise<void> => {
     if (confirm("정말 탈퇴하시겠습니까?")) {
       const userId = data?.data?.fetchLoginUser.id;

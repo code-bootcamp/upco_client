@@ -1,4 +1,3 @@
-import { maybe } from "@apollo/client/utilities";
 import { Maybe } from "yup";
 import { INotice, IQuestion } from "../../../../commons/types/generated/types";
 
