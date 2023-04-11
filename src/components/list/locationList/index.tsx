@@ -2,16 +2,17 @@ import { AiOutlineMessage, AiOutlineUserAdd } from "react-icons/ai";
 import { RiAlarmWarningLine } from "react-icons/ri";
 import { useOnClickCreateFriendRequest } from "../../commons/hooks/customs/useOnClickCreateFriendRequest";
 import * as S from "./styles";
+import { IProps } from "./types";
 
-export default function LocationList(props): JSX.Element {
+export default function LocationList(props: IProps): JSX.Element {
   const { onClickCreateFriendRequest } = useOnClickCreateFriendRequest();
 
-  console.log("로케이션 페이지-유저 위치", props.data?.findAroundUsers);
+  console.log("로케이션 페이지-유저 위치", props.result.data?.findAroundUsers);
 
   return (
     <>
       <S.Wrapper>
-        {props.data?.findAroundUsers.map((el, idx) => (
+        {props.result.data?.findAroundUsers.map((el, idx) => (
           <S.LocationWrapper key={el.id}>
             <S.ImageColumn>
               {el.image ? (
@@ -27,10 +28,9 @@ export default function LocationList(props): JSX.Element {
                 <S.AgeSection>{el.age}살</S.AgeSection>
               </S.LocationListRow>
               <S.InterestBox>
-                {el.interests &&
-                  el.interests.map((item: string) => (
-                    <S.InterestSection key={idx}>{item}</S.InterestSection>
-                  ))}
+                {el.interests?.map((item) => (
+                  <S.InterestSection key={idx}>{item}</S.InterestSection>
+                ))}
               </S.InterestBox>
               <S.ButtonWrapper>
                 {/* <S.HoverButton>
