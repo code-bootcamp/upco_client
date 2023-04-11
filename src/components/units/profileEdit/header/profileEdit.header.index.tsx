@@ -32,7 +32,9 @@ export default function ProfileEditHeader(): JSX.Element {
   };
 
   const onClickImage = async (): Promise<void> => {
-    await fileRef?.current?.click();
+    if (fileRef?.current) {
+      await fileRef.current.click();
+    }
   };
   const onClickDelete = async (): Promise<void> => {
     if (confirm("정말 탈퇴하시겠습니까?")) {
