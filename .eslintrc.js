@@ -20,6 +20,7 @@ module.exports = {
     "@typescript-eslint/array-type": "off",
     "no-unneeded-ternary": "off",
     "react/no-unknown-property": "off",
+    "@typescript-eslint/consistent-indexed-object-style": "off",
     "@typescript-eslint/no-confusing-void-expression": "off",
     "@typescript-eslint/no-misused-promises": [
       2,
