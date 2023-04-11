@@ -25,7 +25,7 @@ export default function HomeUIPage(): JSX.Element {
   };
   const handleCloseModal = (): void => {
     setShowModal(false);
-    router.push("/main");
+    void router.push("/main");
   };
 
   return (
@@ -40,8 +40,8 @@ export default function HomeUIPage(): JSX.Element {
         onHide={handleCloseModal}
         style={{
           display: "flex",
-          justifyContent: "row",
-          flexDirection: "center",
+          justifyContent: "center",
+          flexDirection: "row",
         }}
       >
         <Modal.Body style={{ textAlign: "center" }}>

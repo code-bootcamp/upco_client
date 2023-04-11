@@ -1,7 +1,4 @@
-import { useQueryFetchQuestion } from "../../../commons/hooks/queries/useQueryFetchQuestion";
-import { getDate } from "../../../../commons/libraries/utils";
 import * as S from "./notice.body.styles";
-import { useOnClickDeleteQuestion } from "../../../commons/hooks/customs/useOnClickDeleteQuestion";
 
 export default function NoticeDetailBody(): JSX.Element {
   return (
