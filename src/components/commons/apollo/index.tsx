@@ -20,34 +20,40 @@ interface IApolloSettingProps {
 
 export default function ApolloSetting(props: IApolloSettingProps): JSX.Element {
   const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
-  const refresh = useRecoilValueLoadable(restoreAccessTokenLoadable);
 
+  // 임시 로컬 방식 로그인
   useEffect(() => {
-    void refresh.toPromise().then((newAccessToken) => {
-      setAccessToken(newAccessToken ?? "");
-    });
+    const result = localStorage.getItem("accessToken");
+    setAccessToken(result ?? "");
   }, []);
+  // const refresh = useRecoilValueLoadable(restoreAccessTokenLoadable);
 
-  const errorLink = onError(({ graphQLErrors, operation, forward }) => {
-    if (typeof graphQLErrors !== "undefined") {
-      for (const err of graphQLErrors) {
-        if (err.extensions.code === "UNAUTHENTICATED") {
-          return fromPromise(
-            getAccessToken().then((newAccessToken) => {
-              setAccessToken(newAccessToken ?? "");
+  // useEffect(() => {
+  //   void refresh.toPromise().then((newAccessToken) => {
+  //     setAccessToken(newAccessToken ?? "");
+  //   });
+  // }, []);
 
-              operation.setContext({
-                headers: {
-                  ...operation.getContext().headers,
-                  Authorization: `Bearer ${newAccessToken as string}`,
-                },
-              });
-            })
-          ).flatMap(() => forward(operation));
-        }
-      }
-    }
-  });
+  // const errorLink = onError(({ graphQLErrors, operation, forward }) => {
+  //   if (typeof graphQLErrors !== "undefined") {
+  //     for (const err of graphQLErrors) {
+  //       if (err.extensions.code === "UNAUTHENTICATED") {
+  //         return fromPromise(
+  //           getAccessToken().then((newAccessToken) => {
+  //             setAccessToken(newAccessToken ?? "");
+
+  //             operation.setContext({
+  //               headers: {
+  //                 ...operation.getContext().headers,
+  //                 Authorization: `Bearer ${newAccessToken as string}`,
+  //               },
+  //             });
+  //           })
+  //         ).flatMap(() => forward(operation));
+  //       }
+  //     }
+  //   }
+  // });
 
   const uploadLink = createUploadLink({
     uri: "https://api.upco.space/graphql",
@@ -55,11 +61,11 @@ export default function ApolloSetting(props: IApolloSettingProps): JSX.Element {
       Authorization: `Bearer ${accessToken}`,
       "X-Apollo-Operation-Name": "post",
     },
-    credentials: "include",
+    credentials: "omit",
   });
 
   const client = new ApolloClient({
-    link: ApolloLink.from([errorLink, uploadLink]),
+    link: ApolloLink.from([uploadLink]),
     cache: GLOBAL_STATE,
   });
 

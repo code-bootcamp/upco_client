@@ -32,7 +32,7 @@ export const useLoginMode = (): {
       return;
     }
     setAccessToken(accessToken);
-
+    localStorage.setItem("accessToken", accessToken); // 임시
     setShowModal(true);
     setIsOpen(false);
   };
