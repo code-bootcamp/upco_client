@@ -1,7 +1,15 @@
-import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { FaMapMarkerAlt, FaUserAlt } from "react-icons/fa";
 import { Map } from "react-kakao-maps-sdk";
+
+export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  @media (max-width: 767px) {
+    display: flex;
+    flex-direction: column;
+  }
+`;
 
 export const CustomMarker = styled(FaMapMarkerAlt)`
   color: #29a2c6;
