@@ -87,5 +87,7 @@ export const NoneList = styled.div`
   align-items: center;
   font-size: 14px;
   color: #979797;
+  margin-top: 2px;
+  border: 1px solid #e2e2e2;
   user-select: none;
 `;
