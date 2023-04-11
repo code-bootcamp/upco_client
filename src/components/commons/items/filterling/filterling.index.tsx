@@ -3,7 +3,6 @@ import * as S from "./filterling.styles";
 import { ChangeEvent, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useRecoilState } from "recoil";
 import { interestFilter } from "../../stores";
-import { debounce } from "lodash";
 
 export default function FilterlingUI(): JSX.Element {
   const [hoverIndex, setHoverIndex] = useState(-1);
@@ -32,18 +31,14 @@ export default function FilterlingUI(): JSX.Element {
     [interestArr, setSelectedValue]
   );
 
-  const debouncedValue = debounce((value) => {
-    setSelectedValue(value);
-  }, 300);
-
   const onChangeValue = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
-      const query = event.target.value.trim(); // 입력값에서 불필요한 공백 제거
-      const filtered = interestMeeting.filter(
-        (interest) => interest.toLowerCase().includes(query.toLowerCase()) // 소문자로 일치 여부 비교
+      const query = event.target.value.trim();
+      const filtered = interestMeeting.filter((interest) =>
+        interest.toLowerCase().includes(query.toLowerCase())
       );
-      setFilteredList(filtered); // 필터링된 배열 업데이트
-      setSelectedValue(query); // 검색어 업데이트
+      setFilteredList(filtered);
+      setSelectedValue(query);
     },
     [setSelectedValue]
   );
