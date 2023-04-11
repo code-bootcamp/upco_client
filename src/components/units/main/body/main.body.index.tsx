@@ -5,7 +5,6 @@ import { useRecoilState } from "recoil";
 import FilterlingUI from "../../../commons/items/filterling/filterling.index";
 import { isOpenState } from "../../../commons/stores";
 import MainFooter from "../footer/main.footer.index";
-import MainSideBar from "../sidebar/main.sidebar.index";
 import { MabWeb, MabBox, MyMarker, MyMarkerBox } from "./main.body.styles";
 import { IProps } from "./main.body.types";
 
@@ -66,8 +65,8 @@ export default function MainBody(props: IProps): JSX.Element {
               {props?.data?.findAroundUsers.map((el) => (
                 <CustomOverlayMap
                   position={{
-                    lat: el.lat,
-                    lng: el.lng,
+                    lat: Number(el.lat),
+                    lng: Number(el.lng),
                   }}
                   key={el.id}
                 >

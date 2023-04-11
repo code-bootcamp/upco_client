@@ -18,25 +18,31 @@ export default function MainPage(): JSX.Element {
   const { locationSaveFn } = useLocationSaveMode();
   const { useLocationInitialSave } = useLocationInitialMode();
   const result = useQueryFindAroundUsers();
-  const data = result.data;
+  const data = result?.data;
   useLocationInitialSave();
   geolocationFn();
   mapCreation();
+
+  console.log("현재 내 위치", position);
+  console.log("유저 위치 데이터", data);
+
   const useLocation = (): void => {
     useEffect(() => {
-      const interval = setInterval(() => {
-        const result = locations({
-          variables: {
-            location: {
-              lat: position?.coords.latitude ?? 37.4847446,
-              lng: position?.coords.longitude ?? 126.8965738,
+      if (position?.coords) {
+        const interval = setInterval(() => {
+          const result = locations({
+            variables: {
+              location: {
+                lat: position?.coords.latitude,
+                lng: position?.coords.longitude,
+              },
             },
-          },
-        });
-      }, 10000);
-      return () => {
-        clearInterval(interval);
-      };
+          });
+        }, 10000);
+        return () => {
+          clearInterval(interval);
+        };
+      }
     }, []);
   };
 
