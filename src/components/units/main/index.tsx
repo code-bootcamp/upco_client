@@ -18,13 +18,13 @@ export default function MainPage(): JSX.Element {
   const { locationSaveFn } = useLocationSaveMode();
   const { useLocationInitialSave } = useLocationInitialMode();
   const result = useQueryFindAroundUsers();
-  const data = result?.data;
+  // const data = result;
   useLocationInitialSave();
   geolocationFn();
   mapCreation();
 
   console.log("현재 내 위치", position);
-  console.log("유저 위치 데이터", data);
+  console.log("유저 위치 데이터", result.data);
 
   const useLocation = (): void => {
     useEffect(() => {
@@ -54,7 +54,7 @@ export default function MainPage(): JSX.Element {
         <>
           <MainBody
             locationSaveFn={locationSaveFn}
-            data={data}
+            result={result}
             location={location}
             position={position}
             setLevel={setLevel}

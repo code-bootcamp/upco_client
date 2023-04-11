@@ -1,42 +1,24 @@
-import styled from "@emotion/styled";
 import { CustomOverlayMap, MarkerClusterer, ZoomControl } from "react-kakao-maps-sdk";
 import { BeatLoader } from "react-spinners";
 import { useRecoilState } from "recoil";
 import FilterlingUI from "../../../commons/items/filterling/filterling.index";
 import { isOpenState } from "../../../commons/stores";
 import MainFooter from "../footer/main.footer.index";
-import { MabWeb, MabBox, MyMarker, MyMarkerBox } from "./main.body.styles";
+import * as S from "./main.body.styles";
 import { IProps } from "./main.body.types";
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  @media (max-width: 767px) {
-    display: flex;
-    flex-direction: column;
-  }
-`;
-const SubWrapper = styled.div`
-  display: row;
-  flex-direction: row;
-  @media (max-width: 767px) {
-    display: flex;
-    flex-direction: row;
-  }
-`;
 
 export default function MainBody(props: IProps): JSX.Element {
   const [isOpen] = useRecoilState(isOpenState);
 
   return (
-    <Wrapper>
+    <S.Wrapper>
       {props.position === null ? (
-        <MabBox>
+        <S.MabBox>
           <BeatLoader color="#6658ca" />
-        </MabBox>
+        </S.MabBox>
       ) : (
-        <MabBox>
-          <MabWeb
+        <S.MabBox>
+          <S.MabWeb
             isOpen={isOpen}
             center={{
               lat: props.position?.coords.latitude ?? 34.55635,
@@ -58,11 +40,11 @@ export default function MainBody(props: IProps): JSX.Element {
                   lng: props.position.coords.longitude ?? 126.88,
                 }}
               >
-                <MyMarkerBox>
-                  <MyMarker src="/images/marker/myMarker.png" style={{ zIndex: 5 }}></MyMarker>
-                </MyMarkerBox>
+                <S.MyMarkerBox>
+                  <S.MyMarker src="/images/marker/myMarker.png" style={{ zIndex: 5 }}></S.MyMarker>
+                </S.MyMarkerBox>
               </CustomOverlayMap>
-              {props?.data?.findAroundUsers.map((el) => (
+              {props.result?.data?.findAroundUsers.map((el) => (
                 <CustomOverlayMap
                   position={{
                     lat: Number(el.lat),
@@ -70,16 +52,19 @@ export default function MainBody(props: IProps): JSX.Element {
                   }}
                   key={el.id}
                 >
-                  <MyMarkerBox>
-                    <MyMarker src="/images/marker/userMarker.png" style={{ zIndex: 1 }}></MyMarker>
-                  </MyMarkerBox>
+                  <S.MyMarkerBox>
+                    <S.MyMarker
+                      src="/images/marker/userMarker.png"
+                      style={{ zIndex: 1 }}
+                    ></S.MyMarker>
+                  </S.MyMarkerBox>
                 </CustomOverlayMap>
               ))}
             </MarkerClusterer>
-          </MabWeb>
-        </MabBox>
+          </S.MabWeb>
+        </S.MabBox>
       )}
-      <MainFooter data={props.data} />
-    </Wrapper>
+      <MainFooter result={props.result} />
+    </S.Wrapper>
   );
 }

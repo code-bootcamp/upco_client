@@ -1,4 +1,5 @@
-import { IQuery } from "../../../../commons/types/generated/types";
+import { QueryResult } from "@apollo/client";
+import { IQuery, IQueryFindAroundUsersArgs } from "../../../../commons/types/generated/types";
 
 interface IData {
   id: string;
@@ -7,5 +8,6 @@ interface IData {
 }
 
 export interface IProps {
-  data: Pick<IQuery, "findAroundUsers">;
+  // data: QueryResult<Pick<IQuery, "findAroundUsers">, IQueryFindAroundUsersArgs>;
+  result: QueryResult<Pick<IQuery, "findAroundUsers">, IQueryFindAroundUsersArgs>;
 }
