@@ -1,86 +1,83 @@
-import styled from "@emotion/styled";
+import { MouseEventHandler, useState } from "react";
+import { io, Socket } from "socket.io-client";
+import { useQueryFetchLoginUser } from "../../commons/hooks/queries/fetchLoginUser";
+import TooltipUI02 from "../../commons/items/tooltip/02/tooltip02.index";
+import { useRecoilState } from "recoil";
+import { roomIdState } from "../../commons/stores";
+import { useQueryFetchFriends } from "../../commons/hooks/queries/useQueryFetchFriends";
+import * as S from "./styles";
 
-const FollowerWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 20px 0px 20px 18px;
-  width: 300px;
-`;
-const NickNameSection = styled.div`
-  font-weight: bold;
-`;
-const ImageSection = styled.img`
-  width: 50px;
-  height: 50px;
-  margin-right: 20px;
-`;
-const ChatSection = styled.div`
-  color: #b1b1b1;
-  font-size: 14px;
-`;
-const FollowerListRow = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
-const FollowerListColumn = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
+export default function FollowerList(): JSX.Element {
+  const [roomId, setRoomId] = useRecoilState(roomIdState);
+  const [socket, setSocket] = useState<Socket<DefaultEventsMap, DefaultEventsMap> | null>(null);
+  const { data } = useQueryFetchLoginUser();
+  const { data: friendsData } = useQueryFetchFriends();
+  const [isOpenToolTip, setIsOpenToolTip] = useState<boolean[]>(
+    friendsData?.fetchFriends.map(() => false) ?? []
+  );
 
-const DivideLine = styled.div`
-  border-bottom: 1px solid #d9d9d9;
-  width: 100%;
-`;
+  const myId = data?.fetchLoginUser.id;
 
-interface ChatData {
-  _id: string;
-  name: string;
-  images: string;
-  chat: string;
-}
+  const onClickChat: MouseEventHandler<HTMLDivElement> = (e) => {
+    const anotherId = e.currentTarget.id;
 
-const chatData: ChatData[] = [
-  {
-    _id: "1",
-    name: "이진호",
-    images: "/images/textChat/emoji.webp",
-    chat: "안녕하세요!",
-  },
-  {
-    _id: "2",
-    name: "문성진",
-    images: "/images/textChat/faceChat.webp",
-    chat: "반갑습니다!ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ",
-  },
-  {
-    _id: "3",
-    name: "최현규",
-    images: "/images/textChat/image.webp",
-    chat: "안녕하세요! 반갑습니다!!ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ",
-  },
-];
-
-export default function ChatList(): JSX.Element {
-  const chatCut = (str: string, n: number): string => {
-    return str.length > n ? str.substr(0, n - 1) + "..." : str;
+    const newSocket = io("https://api.upco.space/", {
+      path: "/chat/socket.io",
+      transports: ["websocket"],
+    });
+    newSocket.emit("createRoom", myId, anotherId);
+    newSocket.on("roomCreateOrJoin", (roomId) => {
+      setRoomId(roomId);
+    });
+    setSocket(newSocket);
+    setRoomId("");
   };
+
+  const onClickOpenTooltip = (index: number) => () => {
+    setIsOpenToolTip((prev) => {
+      const newPrev = [...prev];
+      newPrev[index] = !newPrev[index];
+      return newPrev;
+    });
+  };
+
   return (
     <>
-      <DivideLine />
-      {chatData.map((el) => (
+      {friendsData?.fetchFriends.length !== 0 ? (
         <>
-          <FollowerWrapper key={el._id} id={el._id}>
-            <FollowerListRow>
-              <ImageSection src={el.images} />
-              <FollowerListColumn>
-                <NickNameSection>{el.name}</NickNameSection>
-                <ChatSection>{chatCut(el.chat, 11)}</ChatSection>
-              </FollowerListColumn>
-            </FollowerListRow>
-          </FollowerWrapper>
-          <DivideLine />
+          {friendsData?.fetchFriends.map((el, index) => (
+            <>
+              <S.FollowerWrapper key={el.id} id={el.id} onClick={onClickChat}>
+                <S.FollowerListRow>
+                  {el.image ? (
+                    <S.ImageBox>
+                      <S.ImageSection
+                        src={`https://storage.cloud.google.com/upco-bucketel.image/${el.image}`}
+                      />
+                    </S.ImageBox>
+                  ) : (
+                    <S.ImageBox>
+                      <S.UserIcon />
+                    </S.ImageBox>
+                  )}
+                  <S.FollowerListColumn>
+                    <S.NickNameSection>{el.nickname}</S.NickNameSection>
+                  </S.FollowerListColumn>
+                  {isOpenToolTip[index] && <TooltipUI02 id={el.id} />}
+                  <S.DottedIcon onClick={onClickOpenTooltip(index)}>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                  </S.DottedIcon>
+                </S.FollowerListRow>
+              </S.FollowerWrapper>
+              <S.DivideLine />
+            </>
+          ))}
         </>
-      ))}
+      ) : (
+        <S.NoneText>친구목록이 비어있습니다.</S.NoneText>
+      )}
     </>
   );
 }

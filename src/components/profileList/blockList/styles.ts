@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { BiUser } from "react-icons/bi";
 
 export const Wrapper = styled.ul`
   display: flex;
@@ -17,6 +18,31 @@ export const Wrapper = styled.ul`
     border-radius: 6px;
     padding: 10px 15px;
     margin-bottom: calc(4% / 3);
+    transition: all 0.3s ease-in-out;
+
+    :hover {
+      background-color: #6658ca;
+      color: #fff;
+
+      > p {
+        color: #fff;
+      }
+
+      > button {
+        color: #fff;
+      }
+
+      BiUser {
+        color: #fff;
+      }
+    }
+
+    @media (max-width: 1023px) {
+      width: 49%;
+    }
+    @media (max-width: 767px) {
+      width: 100%;
+    }
   }
 `;
 
@@ -40,20 +66,20 @@ export const ImgBox = styled.div`
 export const Name = styled.p`
   font-size: 16px;
   color: #191919;
+  @media (max-width: 767px) {
+    font-size: 14px;
+  }
 `;
 
 export const DeleteFollow = styled.button`
   position: absolute;
-  /* top: 10px; */
   right: 20px;
   font-size: 12px;
   color: #979797;
-  background-color: #fff;
+  background-color: transparent;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
-
-  :hover {
-    color: #6658ca;
+  @media (max-width: 767px) {
+    font-size: 12px;
   }
 `;
 
@@ -72,5 +98,16 @@ export const BlockList = styled.div`
   color: #191919;
   > h4 {
     font-size: 14px;
+    color: #979797;
+
+    @media (max-width: 767px) {
+      font-size: 12px;
+    }
   }
+`;
+
+export const UserIcon = styled(BiUser)`
+  width: 100%;
+  height: 100%;
+  color: #d2d2d2;
 `;

@@ -1,5 +1,5 @@
-import Header from "../../../commons/headers/mypage/profile.header.index";
+import NoticeHeader from "../../../commons/headers/notice/notice.header.index";
 
-export default function NoticeHeader(): JSX.Element {
-  return <Header />;
+export default function Header(): JSX.Element {
+  return <NoticeHeader />;
 }

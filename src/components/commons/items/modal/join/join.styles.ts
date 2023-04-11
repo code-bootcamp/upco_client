@@ -66,6 +66,7 @@ export const DivideLineBox = styled.div`
 export const InputBox = styled.div`
   display: flex;
   flex-direction: column;
+  position: relative;
 
   > div {
     margin-bottom: 7px;

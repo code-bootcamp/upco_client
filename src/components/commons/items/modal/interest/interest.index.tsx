@@ -1,40 +1,71 @@
 import { useState } from "react";
 import * as S from "./interest.styles";
 
-const interestMeeting = [
-  "축구",
-  "농구",
-  "야구",
-  "수영",
-  "등산",
-  "그림",
-  "술",
-  "맛집 탐방",
-  "레저 스포츠",
-  "영화 감상",
-  "음악 감상",
-  "독서",
+interface InterestUIProps {
+  setIsModalOpen: (value: boolean) => void;
+  setInterestList: (value: string[]) => void;
+  setPrevInterests: (value: string[]) => void;
+}
+
+export const interestMeeting = [
+  "INTJ",
+  "INTP",
+  "INFJ",
+  "INFP",
+  "ISTJ",
+  "ISFJ",
+  "ISTP",
+  "ISFP",
+  "ENTJ",
+  "ENTP",
+  "ENFJ",
+  "ENFP",
+  "ESTJ",
+  "ESFJ",
+  "ESTP",
+  "ESFP",
+  "헬스",
+  "스케이트보드",
+  "전자기기",
+  "노래",
+  "영화",
+  "드라마",
+  "패션",
+  "댄스",
   "뮤지컬",
-  "연극",
-  "스카이 다이빙",
-  "스케이트 보드",
-  "연주회",
-  "요리",
-  "공부",
+  "전시회",
+  "산책",
+  "등산",
+  "맛집",
+  "카페",
+  "연예인",
+  "주식",
+  "게임",
+  "드라이브",
+  "여행",
 ];
 
-export default function InterestUI(): JSX.Element {
+export default function InterestUI(props: InterestUIProps): JSX.Element {
   const [isOpen, setIsOpen] = useState(false);
+  const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
 
   const onClickClose = (): void => {
     setIsOpen((prev) => !prev);
   };
 
-  const interestBox = [];
-
   const onClickPush = (el: string) => () => {
-    interestBox.push(el);
-    alert();
+    const index = selectedInterests.indexOf(el);
+    if (index === -1) {
+      setSelectedInterests((prev) => [...prev, el]);
+    } else {
+      setSelectedInterests((prev) => prev.filter((item) => item !== el));
+    }
+  };
+
+  const onClickComplete = (): void => {
+    props.setInterestList(selectedInterests);
+    props.setPrevInterests(selectedInterests);
+    props.setIsModalOpen(false);
   };
 
   return (
@@ -52,12 +83,18 @@ export default function InterestUI(): JSX.Element {
             <S.DivideLine></S.DivideLine>
             <S.InterestWrapper>
               {interestMeeting.map((el) => (
-                <S.InterestBox key={el} onClick={onClickPush(el)}>
+                <S.InterestBox
+                  key={el}
+                  onClick={onClickPush(el)}
+                  selected={selectedInterests.includes(el)}
+                >
                   {el}
                 </S.InterestBox>
               ))}
             </S.InterestWrapper>
-            <S.InterestButton>선택 완료</S.InterestButton>
+            <S.InterestButton selected={true} onClick={onClickComplete}>
+              선택 완료
+            </S.InterestButton>
           </S.Wrapper>
         </>
       )}

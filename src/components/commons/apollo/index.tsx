@@ -39,7 +39,7 @@ export default function ApolloSetting(props: IApolloSettingProps): JSX.Element {
               operation.setContext({
                 headers: {
                   ...operation.getContext().headers,
-                  Authorization: `Bearer ${newAccessToken}`,
+                  Authorization: `Bearer ${newAccessToken as string}`,
                 },
               });
             })
@@ -50,11 +50,12 @@ export default function ApolloSetting(props: IApolloSettingProps): JSX.Element {
   });
 
   const uploadLink = createUploadLink({
-    uri: "https://api.upco.space/main",
+    uri: "https://api.upco.space/graphql",
     headers: {
       Authorization: `Bearer ${accessToken}`,
+      "X-Apollo-Operation-Name": "post",
     },
-    credentials: "omit",
+    credentials: "include",
   });
 
   const client = new ApolloClient({

@@ -60,17 +60,16 @@ export const InterestBox = styled.ul`
   flex-direction: row;
   flex-wrap: wrap;
 
-  > li {
+  li {
     font-size: 14px;
     color: #fff;
     background-color: #6658ca;
-    padding: 5px 10px;
+    padding: 5px 20px;
     border-radius: 20px;
     margin-right: 5px;
     margin-bottom: 8px;
   }
 `;
-
 export const InterestAddButton = styled.button`
   margin-bottom: 8px;
   padding: 0 20px;
@@ -82,4 +81,34 @@ export const InterestAddButton = styled.button`
   cursor: pointer;
   transition: all 0.3s ease-in-out;
   white-space: nowrap;
+`;
+
+export const BtnSection = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+`;
+
+export const CancelBtn = styled.button`
+  width: 120px;
+  height: 40px;
+  font-size: 14px;
+  background-color: #979797;
+  color: #fff;
+  margin-top: 40px;
+  margin-right: 20px;
+  cursor: pointer;
+  user-select: none;
+`;
+
+export const UpdateBtn = styled.button`
+  width: 120px;
+  height: 40px;
+  font-size: 14px;
+  background-color: #6658ca;
+  color: #fff;
+  margin-top: 40px;
+  cursor: pointer;
+  user-select: none;
 `;

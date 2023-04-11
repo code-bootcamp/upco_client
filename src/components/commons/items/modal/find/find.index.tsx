@@ -1,21 +1,38 @@
+import { useForm } from "react-hook-form";
+import { usePasswordMailerMode } from "../../../hooks/customs/usePasswordMailerMode";
 import { useFormLogin } from "../../../hooks/useForm/useForm.login";
 import AccountInput from "../../inputs/account/account.input.index";
 import * as S from "./find.styles";
 import { ILoginUIProps } from "./find.types";
+
+interface IData {
+  email: string;
+}
 
 export default function FindUI(props: ILoginUIProps): JSX.Element {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useFormLogin();
+  } = useForm<IData>();
+
+  const { usePasswordMaier } = usePasswordMailerMode();
+
+  const onClickClose = (move: string) => (): void => {
+    if (move === "") {
+      props.setIsFind((prev) => !prev);
+    } else if (move === "login") {
+      props.setIsFind((prev) => !prev);
+      props.setIsOpen((prev) => !prev);
+    }
+  };
 
   return (
     <>
       <>
-        <S.Background onClick={props.onClickClose} />
-        <S.Wrapper>
-          <S.Close onClick={props.onClickClose} />
+        <S.Background onClick={onClickClose("")} />
+        <S.Wrapper onSubmit={handleSubmit(usePasswordMaier)}>
+          <S.Close onClick={onClickClose("")} />
           <img src="/images/layout/logo01.svg" />
           <S.InputBox>
             <AccountInput placeholder="이메일을 입력해주세요." register={register("email")} />
@@ -27,7 +44,7 @@ export default function FindUI(props: ILoginUIProps): JSX.Element {
           <button>비밀번호 찾기</button>
 
           <S.FindText>
-            <p onClick={props.onClickMoved}>로그인 하러가기</p>
+            <p onClick={onClickClose("login")}>로그인 하러가기</p>
           </S.FindText>
 
           <S.DivideLineBox>

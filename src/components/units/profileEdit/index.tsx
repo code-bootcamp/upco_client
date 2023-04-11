@@ -5,10 +5,12 @@ import Header from "../../commons/headers/mypage/profile.header.index";
 
 export default function ProfileEditUI(): JSX.Element {
   return (
-    <S.Wrapper>
-      <Header />
-      <ProfileEditHeader />
-      <ProfileEditBody />
-    </S.Wrapper>
+    <>
+      <S.Wrapper>
+        <Header />
+        <ProfileEditHeader />
+        <ProfileEditBody />
+      </S.Wrapper>
+    </>
   );
 }

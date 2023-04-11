@@ -1,4 +1,7 @@
 export interface TextChatHeaderProps {
   isVideo: boolean;
-  messages: Array<{ content: string; isSent: boolean }>;
+  messages: Array<{ contents: string; isSent: boolean }>;
+  messageLog: any;
+  myId: string;
+  roomId: string;
 }

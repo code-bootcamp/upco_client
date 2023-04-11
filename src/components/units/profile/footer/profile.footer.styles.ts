@@ -27,4 +27,8 @@ export const Title = styled.h4`
   :last-of-type {
     color: ${(props) => (props.isSelector === "block" ? "#191919" : "#979797")};
   }
+
+  @media (max-width: 767px) {
+    font-size: 14px;
+  }
 `;

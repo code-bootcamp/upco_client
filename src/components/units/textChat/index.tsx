@@ -1,17 +1,24 @@
 import styled from "@emotion/styled";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import io, { Socket } from "socket.io-client";
 import VideoChat from "../videoChat";
 import TextChatBody from "./body/textChat.body.index";
 import TextChatFooter from "./footer/textChat.footer.index";
 import TextChatHeader from "./header/textChat.header.index";
+import { useQueryFetchLoginUser } from "../../commons/hooks/queries/fetchLoginUser";
+import { useRecoilState } from "recoil";
+import { isOpenState, roomIdState } from "../../commons/stores";
 
 const Wrapper = styled.div`
   max-width: 100%;
-  height: calc(100vh - 68px);
+  height: calc(100vh - 64px);
   margin: 0 auto;
   display: flex;
   flex-direction: row;
+  @media (max-width: 767px) {
+    height: calc(100vh - 54px - 64px);
+    border-bottom: 1px solid #e2e2e2;
+  }
 `;
 
 const LeftContents = styled.div`
@@ -24,23 +31,26 @@ const LeftContents = styled.div`
     display: flex;
     flex-direction: column;
   }
+  @media (max-width: 767px) {
+    display: ${(props) => (props.isOpen ? "none" : "")};
+  }
 `;
 
 export default function TextChat(): JSX.Element {
   const [isVideo, setIsVideo] = useState(false);
-  const [messages, setMessages] = useState<Array<{ content: string; isSent: boolean }>>([]);
+  const [messages, setMessages] = useState<Array<{ contents: string; isSent: boolean }>>([]);
   const [socket, setSocket] = useState<Socket<DefaultEventsMap, DefaultEventsMap> | null>(null);
-  console.log(socket);
+  const [roomId, setRoomId] = useRecoilState(roomIdState);
+  const [messageLog, setMessageLog] = useState<Array<{ contents: string; senderId: string }>>([]);
+  const [isOpen, setIsOpen] = useRecoilState(isOpenState);
+  const data = useQueryFetchLoginUser();
+  const myId = data?.data?.fetchLoginUser.id;
+
   useEffect(() => {
-    const newSocket = io("http://10.34.232.83:4000/", {
-      path: "/socket.io",
+    const newSocket = io("https://api.upco.space/", {
+      path: "/chat/socket.io",
       transports: ["websocket"],
     });
-
-    newSocket.on("client", (data: string) => {
-      setMessages((prevMessages) => [...prevMessages, { content: data, isSent: false }]);
-    });
-
     setSocket(newSocket);
 
     return () => {
@@ -48,10 +58,36 @@ export default function TextChat(): JSX.Element {
     };
   }, []);
 
+  useEffect(() => {
+    if (socket) {
+      socket.on("client", (contents: string) => {
+        setMessages((prevMessages) => [...prevMessages, { contents, isSent: false }]);
+      });
+
+      socket.on("roomCreateOrJoin", (roomId: string) => {
+        setRoomId(roomId);
+      });
+
+      socket.on("load Message", (messageLog: Array<{ contents: string; senderId: string }>) => {
+        setMessageLog(messageLog);
+        setMessages((prevMessages) => [
+          ...prevMessages,
+          { contents: "채팅방에 입장하셨습니다", isSent: true },
+        ]);
+      });
+
+      socket.emit("joinRoom", roomId);
+    }
+
+    return () => {
+      setMessages([]);
+    };
+  }, [socket, roomId, setMessages, setMessageLog, setRoomId]);
+
   const emitData = (contents: string): void => {
     if (socket) {
-      setMessages((prevMessages) => [...prevMessages, { content: contents, isSent: true }]);
-      socket.emit("server", contents);
+      setMessages((prevMessages) => [...prevMessages, { contents, isSent: true }]);
+      socket.emit("message", { roomId, contents, myId });
     }
   };
   const onClickVideo = (): void => {
@@ -61,10 +97,18 @@ export default function TextChat(): JSX.Element {
   return (
     <>
       <Wrapper>
-        <LeftContents>
+        <LeftContents isOpen={isOpen}>
           <div>
-            <TextChatHeader isVideo={isVideo} messages={messages} />
-            <TextChatBody emitData={emitData} onClickVideo={onClickVideo} messages={messages} />
+            <TextChatHeader
+              isVideo={isVideo}
+              messages={messages}
+              messageLog={messageLog}
+              myId={myId}
+              roomId={roomId}
+            />
+            {roomId && (
+              <TextChatBody emitData={emitData} onClickVideo={onClickVideo} messages={messages} />
+            )}
           </div>
           {isVideo && <VideoChat />}
         </LeftContents>

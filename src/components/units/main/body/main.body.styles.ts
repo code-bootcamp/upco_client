@@ -2,6 +2,15 @@ import styled from "@emotion/styled";
 import { FaMapMarkerAlt, FaUserAlt } from "react-icons/fa";
 import { Map } from "react-kakao-maps-sdk";
 
+export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  @media (max-width: 767px) {
+    display: flex;
+    flex-direction: column;
+  }
+`;
+
 export const CustomMarker = styled(FaMapMarkerAlt)`
   color: #29a2c6;
   font-size: 40px;
@@ -24,17 +33,28 @@ export const MyMarker = styled.img`
 `;
 
 export const MabBox = styled.div`
+  position: relative;
   width: calc(100% - 300px);
   height: calc(100vh - 68px);
-  background-color: #e2e2e2;
   color: #fff;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 767px) {
+    width: 100%;
+    height: calc(100vh - 263px - 56px);
+  }
 `;
 
 export const MabWeb = styled(Map)`
-  width: calc(100% - 300px);
-  height: calc(100vh - 68px);
+  width: 100%;
+  height: 100%;
+
+  @media (max-width: 767px) {
+    /* height: calc(100vh - 64px - 54px); */
+    width: 100%;
+    height: calc(100vh - 263px - 56px);
+  }
 `;

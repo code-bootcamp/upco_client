@@ -5,6 +5,7 @@ import ProfileHeader from "./header/profile.header.index";
 
 const Wrapper = styled.div`
   max-width: 1200px;
+  padding: 0 50px;
   margin: 0 auto;
 `;
 

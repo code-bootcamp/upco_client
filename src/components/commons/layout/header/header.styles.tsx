@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import { TbMessageCircle2 } from "react-icons/tb";
 import { BsMap } from "react-icons/bs";
 import { BiUser } from "react-icons/bi";
+import { AiOutlineMenu } from "react-icons/ai";
 
 export const colors = {
   menuColor: "#979797",
@@ -27,11 +28,19 @@ export const Wrapper = styled.div`
     align-items: center;
     justify-content: space-between;
   }
+  @media (max-width: 767px) {
+    padding: 0 25px;
+    height: 54px;
+  }
 `;
 
 export const Logo = styled.img`
   height: 24px;
   cursor: pointer;
+
+  @media (max-width: 767px) {
+    height: 20px;
+  }
 `;
 
 export const UserBox = styled.div`
@@ -48,6 +57,12 @@ export const UserBox = styled.div`
 `;
 
 export const UserIcon = styled(BiUser)`
+  width: 100%;
+  height: 100%;
+  color: #d2d2d2;
+`;
+
+export const UserIcon02 = styled(AiOutlineMenu)`
   width: 100%;
   height: 100%;
   color: #d2d2d2;
@@ -93,7 +108,7 @@ export const MenuBox = styled.div`
   }
 
   > div:nth-of-type(2) {
-    margin: 0 45px;
+    margin-left: 45px;
   }
 `;
 
@@ -107,24 +122,9 @@ export const MessageIcon = styled(TbMessageCircle2)`
   stroke-width: 1.2;
 `;
 
-export const LoginBox = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  width: 50px;
-  height: 35px;
-  padding: 2px;
+export const UserImg = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   border-radius: 50px;
-  cursor: pointer;
-`;
-
-export const LoginButton = styled.button`
-  width: 70px;
-  height: 35px;
-  padding: 2px;
-  background-color: #6658ca;
-  border: 1px solid #6658ca;
-  color: white;
-  border-radius: 30px;
 `;

@@ -19,7 +19,6 @@ export const useLocationMode = (): {
             },
           },
         });
-        console.log(" 현재 위치를 보냈음", result);
       }, 10000);
 
       return () => {

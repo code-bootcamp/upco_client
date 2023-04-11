@@ -7,7 +7,7 @@ export const globalStyles = css`
     padding: 0;
     border: 0;
     list-style: none;
-    font-family: "Regular", "Roboto";
+    font-family: "Regular";
   }
 
   @font-face {
@@ -23,5 +23,25 @@ export const globalStyles = css`
   @font-face {
     font-family: "Roboto";
     src: url(/fonts/Roboto-Regular.ttf);
+  }
+
+  @font-face {
+    font-family: "MainTitle01";
+    src: url(/fonts/Title_Bold.woff);
+  }
+
+  @font-face {
+    font-family: "MainTitle02";
+    src: url(/fonts/Batang_Bold.woff);
+  }
+
+  @font-face {
+    font-family: "Jalnan";
+    src: url(/fonts/JalnanOTF.otf);
+  }
+
+  @font-face {
+    font-family: "Cafe24";
+    src: url(/fonts/Cafe24SsurroundAir.ttf);
   }
 `;

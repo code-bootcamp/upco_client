@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useMediaRequest } from "../../commons/hooks/customs/useMediaRequest";
+import { useMediaStream } from "../../commons/hooks/customs/useMediaStream";
 import * as S from "./styles";
 
 export default function VideoChat(): JSX.Element {
@@ -7,7 +7,7 @@ export default function VideoChat(): JSX.Element {
   const [isMic, setIsMic] = useState(false);
   const [isVideo, setIsVideo] = useState(false);
 
-  const { localVideoRef, remoteVideoRef } = useMediaRequest();
+  const { localVideoRef, remoteVideoRef } = useMediaStream();
 
   const onClickVolume = (): void => {
     setIsVolume((prev) => !prev);

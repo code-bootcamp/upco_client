@@ -6,16 +6,17 @@ const RESTORE_ACCESS_TOKEN = gql`
   }
 `;
 
+interface IToken {
+  restoreAccessToken: string;
+}
+
 export const getAccessToken = async (): Promise<string | undefined> => {
   try {
-    const graphQLClient = new GraphQLClient("https://api.upco.space/main", {
+    const graphQLClient = new GraphQLClient("https://api.upco.space/graphql", {
       credentials: "include",
     });
-    const result = await graphQLClient.request(RESTORE_ACCESS_TOKEN);
+    const result = await graphQLClient.request<IToken>(RESTORE_ACCESS_TOKEN);
     const newAccessToken = result.restoreAccessToken;
-    console.log("새어세스토큰", newAccessToken);
     return newAccessToken;
-  } catch (error) {
-    if (error instanceof Error) console.log(error.message);
-  }
+  } catch (error) {}
 };

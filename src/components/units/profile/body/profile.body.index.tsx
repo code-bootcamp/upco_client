@@ -1,34 +1,39 @@
 import Link from "next/link";
+import { useQueryFetchLoginUser } from "../../../commons/hooks/queries/fetchLoginUser";
 import * as S from "./profile.body.styles";
 
 export default function ProfileBody(): JSX.Element {
+  const data = useQueryFetchLoginUser();
+  console.log(data);
+
   return (
     <>
       <S.Wrapper>
-        {/* 프로필 */}
         <S.ProfileLeft>
           <S.UserIconBox>
-            <img />
+            <img
+              src={`https://storage.cloud.google.com/upco-bucket/${data?.data?.fetchLoginUser?.image}`}
+            ></img>
           </S.UserIconBox>
           <ul>
             <li>
-              <S.Name>문성진</S.Name>
-              <S.Age>20대중반</S.Age>
+              <S.Name>{data?.data?.fetchLoginUser?.nickname}</S.Name>
+              <S.Age>{data?.data?.fetchLoginUser?.age}세</S.Age>
+              {data?.data?.fetchLoginUser?.age && (
+                <S.Age>{data?.data?.fetchLoginUser?.age}세</S.Age>
+              )}
             </li>
             <li>
-              <S.Email>eggmun98@naver.com</S.Email>
+              <S.InterestBox>
+                {data?.data?.fetchLoginUser?.interests?.map((interests: Interest) => (
+                  <li key={interests.id}>{interests.name}</li>
+                ))}
+              </S.InterestBox>
             </li>
             <li>
-              <S.Interest>축구</S.Interest>
-              <S.Interest>축구</S.Interest>
-              <S.Interest>축구</S.Interest>
-              <S.Interest>축구</S.Interest>
-              <S.Interest>축구</S.Interest>
-              <S.Interest>축구</S.Interest>
-              <S.Interest>축구</S.Interest>
-              <S.Interest>축구</S.Interest>
-              <S.Interest>축구</S.Interest>
+              <S.Email>{data?.data?.fetchLoginUser?.email}</S.Email>
             </li>
+
           </ul>
         </S.ProfileLeft>
         <S.ProfileRight>
