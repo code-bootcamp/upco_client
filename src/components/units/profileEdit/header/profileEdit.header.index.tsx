@@ -1,10 +1,11 @@
 import { useRouter } from "next/router";
-import { useRef, useState } from "react";
+import { ChangeEvent, useRef, useState } from "react";
 import { useRecoilState } from "recoil";
 import { checkValidationFile } from "../../../../commons/libraries/vaildation/upload";
 import { useMutationDeleteUser } from "../../../commons/hooks/mutation/useMutationDeleteUser";
 import { useMutationUploadFile } from "../../../commons/hooks/mutation/useMutationUploadFile";
 import { useQueryFetchLoginUser } from "../../../commons/hooks/queries/fetchLoginUser";
+import AvatarEditor from "react-avatar-editor";
 import { fileUrl } from "../../../commons/stores";
 import * as S from "./profileEdit.header.styles";
 
@@ -15,6 +16,8 @@ export default function ProfileEditHeader(): JSX.Element {
   const [uploadFile] = useMutationUploadFile();
   const data = useQueryFetchLoginUser();
   const [deleteUser] = useMutationDeleteUser();
+  const [editorOpen, setEditorOpen] = useState(false);
+  const [editor, setEditor] = useState(null);
 
   const onChangeFile = async (event: ChangeEvent<HTMLInputElement>): Promise<void> => {
     const file = event.target.files?.[0];
@@ -23,6 +26,9 @@ export default function ProfileEditHeader(): JSX.Element {
 
     const result = await uploadFile({ variables: { file } });
     setImageUrl(result.data?.uploadFile);
+  };
+  const onClickEditImage = (): void => {
+    setEditorOpen(true);
   };
 
   const onClickImage = async (): Promise<void> => {
@@ -41,8 +47,22 @@ export default function ProfileEditHeader(): JSX.Element {
           <S.UserIconBox>
             <img
               src={`https://storage.cloud.google.com/upco-bucket/${data?.data?.fetchLoginUser?.image}`}
+              onClick={onClickEditImage}
             ></img>
-
+            {editor && (
+              <S.EditorContainer>
+                <AvatarEditor
+                  ref={(ref) => setEditor(ref)}
+                  image={`https://storage.cloud.google.com/upco-bucket/${data?.data?.fetchLoginUser?.image}`}
+                  width={250}
+                  height={250}
+                  border={50}
+                  color={[255, 255, 255, 0.6]}
+                  scale={1.2}
+                  rotate={0}
+                />
+              </S.EditorContainer>
+            )}
           </S.UserIconBox>
 
           <div>

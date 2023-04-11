@@ -17,22 +17,17 @@ export default function TextChatBody(props: ITextChatBodyProps): JSX.Element {
     setContents("");
   };
 
-  const handleKeyDown: (e: React.KeyboardEvent<HTMLTextAreaElement>) => void = (e) => {
+  const handleKeyDown: KeyboardEventHandler<HTMLTextAreaElement> = (e) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       handleSubmit(e);
     }
   };
-  console.log("a");
+
   return (
     <form onSubmit={handleSubmit}>
       <S.Wrapper>
-        <S.SendContents
-          onChange={handleChange}
-          onKeyDown={handleKeyDown as KeyboardEventHandler<HTMLTextAreaElement>}
-          value={contents}
-        />
-
+        <S.SendContents onChange={handleChange} onKeyDown={handleKeyDown} value={contents} />
         <S.SendMenu>
           <S.IconSection>
             <S.Icon>

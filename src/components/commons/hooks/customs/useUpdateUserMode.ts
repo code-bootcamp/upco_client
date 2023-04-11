@@ -3,6 +3,7 @@ import { useMutationUpdateUser } from "../mutation/useMutationUpdateUser";
 interface IData {
   nickname?: string;
   age: number;
+  image: string;
   interests: string[];
 }
 
