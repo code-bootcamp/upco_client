@@ -29,7 +29,7 @@ export default function LocationList(props: IProps): JSX.Element {
               </S.LocationListRow>
               <S.InterestBox>
                 {el.interests?.map((item) => (
-                  <S.InterestSection key={idx}>{item}</S.InterestSection>
+                  <S.InterestSection key={item.id}>{item.name}</S.InterestSection>
                 ))}
               </S.InterestBox>
               <S.ButtonWrapper>
