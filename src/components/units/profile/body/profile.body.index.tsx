@@ -12,7 +12,9 @@ export default function ProfileBody(): JSX.Element {
         <S.ProfileLeft>
           <S.UserIconBox>
             <img
-              src={`https://storage.cloud.google.com/upco-bucket/${data?.data?.fetchLoginUser?.image}`}
+              src={`https://storage.cloud.google.com/upco-bucket/${String(
+                data?.data?.fetchLoginUser?.image
+              )}`}
             ></img>
           </S.UserIconBox>
           <ul>
