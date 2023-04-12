@@ -8,6 +8,9 @@ interface IWrapperProps {
   isOpen?: boolean;
 }
 
+interface IProps {
+  mPage: boolean;
+}
 export const Wrapper = styled.div<IWrapperProps>`
   display: flex;
   flex-direction: column;
@@ -74,7 +77,7 @@ export const FollowList = styled.div`
   padding: 10px 0;
   border-top: 1px solid #e2e2e2;
   @media (max-width: 767px) {
-    display: flex;
+    display: ${(props: IProps) => (props.mPage ? "none" : "flex")};
     flex-direction: row;
     justify-content: flex-start;
     font-size: 15px;
