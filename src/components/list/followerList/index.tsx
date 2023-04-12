@@ -49,7 +49,7 @@ export default function FollowerList(): JSX.Element {
   const mPage = MPAGE.includes(router.asPath);
 
   return (
-    <>
+    <S.Wrapper mPage={mPage}>
       {friendsData?.fetchFriends.length !== 0 ? (
         <>
           {friendsData?.fetchFriends.map((el, index) => (
@@ -83,8 +83,10 @@ export default function FollowerList(): JSX.Element {
           ))}
         </>
       ) : (
-        <S.NoneText>친구목록이 비어있습니다.</S.NoneText>
+        <>
+          <S.NoneText>친구목록이 비어있습니다.</S.NoneText>
+        </>
       )}
-    </>
+    </S.Wrapper>
   );
 }
