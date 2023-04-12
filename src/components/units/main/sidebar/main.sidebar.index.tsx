@@ -5,9 +5,9 @@ import { IProps } from "./main.sidebar.types";
 import { onClickLogoutMode } from "../../../commons/hooks/customs/onClickLogoutMode";
 
 export default function MainSideBar(props: IProps): JSX.Element {
-  const { data } = useQueryFetchLoginUser();
-  const { onClickMovePage } = movePageMode();
-  const { onClickLogout } = onClickLogoutMode();
+  const { data } = useQueryFetchLoginUser(); // 내 프로필 정보
+  const { onClickMovePage } = movePageMode(); // 페이지 이동 함수
+  const { onClickLogout } = onClickLogoutMode(); // 로그아웃 함수
 
   return (
     <S.Wrapper>

@@ -10,17 +10,16 @@ import { IProps } from "./main.footer.types";
 import { mainFooterMode } from "../../../commons/hooks/customs/mainFooterMode";
 
 export default function MainFooter(props: IProps): JSX.Element {
-  const [isOpen] = useRecoilState(isOpenState);
-  const [selectedComponent] = useRecoilState(selectedComponentState);
-  const [isFollower] = useRecoilState(isFollowerState);
+  const [selectedComponent] = useRecoilState(selectedComponentState); // 사이드 바 목록 교체
+  const [isFollower] = useRecoilState(isFollowerState); // 친구 요청 목록
 
-  const { data } = useQueryFetchFriendRequests();
+  const { data } = useQueryFetchFriendRequests(); // 친구 요청 목록
   const { onClickAcceptFriendRequest } = useOnClickAcceptFriendRequest();
   const { onClickRejectFriendRequest } = useOnClickRejectFriendRequest();
   const { handleChatClick, handleFollowerClick, followerOpen } = mainFooterMode();
 
   return (
-    <S.Wrapper isOpen={isOpen}>
+    <S.Wrapper>
       <S.SubWrapper>
         <S.ChatFooterTitle>
           <S.ChatTitle selected={selectedComponent === "location"} onClick={handleChatClick}>

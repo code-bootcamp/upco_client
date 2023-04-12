@@ -17,15 +17,9 @@ export const Wrapper = styled.div<IWrapperProps>`
   border-left: 1px solid #e2e2e2;
   overflow-y: auto;
 
-  > div {
-    @media (max-width: 767px) {
-    }
-  }
-
   @media (max-width: 767px) {
     width: 100%;
     padding: 0 1px;
-    /* display: ${(props) => (props.isOpen ? "block" : "none")};  */
     display: block;
     z-index: 20;
   }
