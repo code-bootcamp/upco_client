@@ -53,7 +53,6 @@ export const MabWeb = styled(Map)`
   height: 100%;
 
   @media (max-width: 767px) {
-    /* height: calc(100vh - 64px - 54px); */
     width: 100%;
     height: calc(100vh - 263px - 56px);
   }

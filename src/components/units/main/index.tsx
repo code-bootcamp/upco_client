@@ -10,22 +10,22 @@ import { locationState, positionState } from "../../commons/stores";
 import MainBody from "./body/main.body.index";
 
 export default function MainPage(): JSX.Element {
-  const [_, setLevel] = useState<number>();
-  const [location] = useRecoilState(locationState);
-  const [position] = useRecoilState(positionState);
+  const [_, setLevel] = useState<number>(); // 지도 축소 확대 크기
+  const [location] = useRecoilState(locationState); // 영역 좌표
+  const [position] = useRecoilState(positionState); // 내 현재 위치
 
   const { isOpen, mapCreation } = useMapCreationMode();
   const { geolocationFn } = useGeolocationMode();
-  const { locationSaveFn } = useLocationSaveMode();
+  const { locationSaveFn } = useLocationSaveMode(); // 영역 좌표 location 변수에 저장
   const { useLocationInitialSave } = useLocationInitialMode();
   const { useLocation } = useLocationMode();
 
-  const result = useQueryFindAroundUsers();
+  const result = useQueryFindAroundUsers(); // 현재 영역좌표 내 다른 유저 위치 출력
 
-  useLocationInitialSave();
-  geolocationFn();
-  mapCreation();
-  useLocation();
+  useLocationInitialSave(); // 영역 좌표 location 변수에 마운트 이후 초기값 저장
+  geolocationFn(); // 내 위치 position 변수에 저장
+  mapCreation(); // 지도 출력
+  useLocation(); // 내 현재 위치 서버에 보내는 함수
 
   console.log("현재 내 위치", position?.coords.latitude);
   console.log("유저 위치 데이터", result.data);
