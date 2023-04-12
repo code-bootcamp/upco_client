@@ -18,6 +18,7 @@ export default function LayoutHeader(): JSX.Element {
   const { onClickMovePage } = movePageMode();
   const [windowSize, setWindowSize] = useState<number | undefined>();
   const [isOpen, setIsOpen] = useRecoilState(isOpenState);
+  const [isSide, setIsSide] = useState(false);
 
   const onClickOpen = (): void => {
     setIsTooltip((prev) => !prev);
@@ -42,11 +43,15 @@ export default function LayoutHeader(): JSX.Element {
     setIsOpen((prev) => !prev);
   };
 
+  const onClickIsSide = (): void => {
+    setIsSide((prev) => !prev);
+  };
+
   const mainPage = MAIN_PAGE.includes(router.asPath);
 
   return (
     <>
-      {isOpen && mainPage && <MainSideBar onClickIsOpen={onClickIsOpen} />}
+      {isSide && mainPage && <MainSideBar onClickIsOpen={onClickIsSide} />}
       <S.Wrapper>
         <div>
           <S.Logo src="/images/layout/logo.svg" onClick={onClickMovePage("/main")} />
@@ -81,7 +86,7 @@ export default function LayoutHeader(): JSX.Element {
             </>
           ) : (
             <S.UserBox style={{ position: "relative" }}>
-              <S.UserIcon02 onClick={onClickIsOpen} />
+              <S.UserIcon02 onClick={mainPage ? onClickIsSide : onClickIsOpen} />
             </S.UserBox>
           )}
         </div>

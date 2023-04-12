@@ -24,8 +24,6 @@ export const useLocationMode = (): {
             },
           },
         });
-        console.log("hooks패턴에서 포지션", position);
-        console.log("내 위치 서버에 보냈습니다.", results);
       }, 10000);
       return () => {
         clearInterval(interval);

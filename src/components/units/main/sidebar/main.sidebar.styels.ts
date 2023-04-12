@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import { FiX } from "react-icons/fi";
 
 export const Wrapper = styled.div`
+  display: none;
   @media (max-width: 767px) {
     display: flex;
     flex-direction: column;
