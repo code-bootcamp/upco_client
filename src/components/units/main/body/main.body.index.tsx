@@ -1,15 +1,11 @@
 import { CustomOverlayMap, MarkerClusterer, ZoomControl } from "react-kakao-maps-sdk";
 import { BeatLoader } from "react-spinners";
-import { useRecoilState } from "recoil";
 import FilterlingUI from "../../../commons/items/filterling/filterling.index";
-import { isOpenState } from "../../../commons/stores";
 import MainFooter from "../footer/main.footer.index";
 import * as S from "./main.body.styles";
 import { IProps } from "./main.body.types";
 
 export default function MainBody(props: IProps): JSX.Element {
-  const [isOpen] = useRecoilState(isOpenState);
-
   return (
     <S.Wrapper>
       {props.position === null ? (
@@ -19,7 +15,6 @@ export default function MainBody(props: IProps): JSX.Element {
       ) : (
         <S.MabBox>
           <S.MabWeb
-            isOpen={isOpen}
             center={{
               lat: props.position?.coords.latitude ?? 34.55635,
               lng: props.position?.coords.longitude ?? 127.795841,

@@ -1,19 +1,13 @@
 import { movePageMode } from "../../../commons/hooks/customs/movePageMode";
-import { useMutationLogout } from "../../../commons/hooks/mutation/useMutationLogout";
 import * as S from "./main.sidebar.styels";
 import { useQueryFetchLoginUser } from "../../../commons/hooks/queries/fetchLoginUser";
 import { IProps } from "./main.sidebar.types";
+import { onClickLogoutMode } from "../../../commons/hooks/customs/onClickLogoutMode";
 
 export default function MainSideBar(props: IProps): JSX.Element {
-  const { onClickMovePage } = movePageMode();
   const { data } = useQueryFetchLoginUser();
-  const [logout] = useMutationLogout();
-
-  const onClickLogout = async (): Promise<void> => {
-    await logout();
-    alert("로그아웃 되었습니다.");
-    onClickMovePage("/");
-  };
+  const { onClickMovePage } = movePageMode();
+  const { onClickLogout } = onClickLogoutMode();
 
   return (
     <S.Wrapper>

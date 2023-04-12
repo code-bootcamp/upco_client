@@ -1,42 +1,23 @@
 import * as S from "./main.footer.styles";
-import React, { useState } from "react";
 import FollowerList from "../../../list/followerList";
 import LocationList from "../../../list/locationList";
-import { isCloseState, isOpenState } from "../../../commons/stores";
+import { isFollowerState, isOpenState, selectedComponentState } from "../../../commons/stores";
 import { useRecoilState } from "recoil";
 import { useQueryFetchFriendRequests } from "../../../commons/hooks/queries/useQueryFetchFriendRequests";
 import { useOnClickAcceptFriendRequest } from "../../../commons/hooks/customs/useOnClickAcceptFriendRequest";
 import { useOnClickRejectFriendRequest } from "../../../commons/hooks/customs/useOnClickRejectFriendRequest";
 import { IProps } from "./main.footer.types";
+import { mainFooterMode } from "../../../commons/hooks/customs/mainFooterMode";
 
 export default function MainFooter(props: IProps): JSX.Element {
-  const { data } = useQueryFetchFriendRequests();
   const [isOpen] = useRecoilState(isOpenState);
-  const [_, setIsClose] = useRecoilState(isCloseState);
+  const [selectedComponent] = useRecoilState(selectedComponentState);
+  const [isFollower] = useRecoilState(isFollowerState);
 
+  const { data } = useQueryFetchFriendRequests();
   const { onClickAcceptFriendRequest } = useOnClickAcceptFriendRequest();
   const { onClickRejectFriendRequest } = useOnClickRejectFriendRequest();
-
-  const [selectedComponent, setSelectedComponent] = useState("location");
-  const [isFollower, setIsFollower] = useState(false);
-
-  const handleChatClick = (): void => {
-    setSelectedComponent("location");
-    setIsClose(false);
-  };
-
-  const handleFollowerClick = (): void => {
-    setSelectedComponent("follower");
-    setIsClose(false);
-  };
-
-  const followerOpen = (): void => {
-    setIsFollower((prev) => !prev);
-
-    if (window.innerWidth <= 767) {
-      setIsClose(true);
-    }
-  };
+  const { handleChatClick, handleFollowerClick, followerOpen } = mainFooterMode();
 
   return (
     <S.Wrapper isOpen={isOpen}>
