@@ -44,16 +44,16 @@ export const MabBox = styled.div`
 
   @media (max-width: 767px) {
     width: 100%;
-    height: calc(100vh - 263px - 56px);
+    height: calc(80vh - 64px - 56px);
   }
 `;
 
 export const MabWeb = styled(Map)`
   width: 100%;
-  height: 100%;
+  height: calc(100vh - 68px);
 
   @media (max-width: 767px) {
     width: 100%;
-    height: calc(100vh - 263px - 56px);
+    height: calc(80vh - 64px - 56px);
   }
 `;
