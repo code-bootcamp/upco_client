@@ -27,9 +27,6 @@ export default function MainPage(): JSX.Element {
   mapCreation(); // 지도 출력
   useLocation(); // 내 현재 위치 서버에 보내는 함수
 
-  console.log("현재 내 위치", position?.coords.latitude);
-  console.log("유저 위치 데이터", result.data);
-
   return (
     <>
       {isOpen && (

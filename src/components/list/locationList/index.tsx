@@ -13,8 +13,6 @@ export default function LocationList(props: IProps): JSX.Element {
 
   const mPage = MPAGE.includes(router.asPath);
 
-  console.log("로케이션 페이지-유저 위치", props.result.data?.findAroundUsers);
-
   return (
     <S.Wrapper>
       {props.result.data?.findAroundUsers.map((el) => (

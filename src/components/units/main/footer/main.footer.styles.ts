@@ -17,7 +17,6 @@ export const Wrapper = styled.div<IWrapperProps>`
   align-items: center;
   width: 300px;
   border-left: 1px solid #e2e2e2;
-  /* background: red;  */
   overflow-y: auto;
 
   @media (max-width: 767px) {
@@ -122,7 +121,6 @@ export const FriendRequestListBox = styled.div`
   background-color: #fff;
   @media (max-width: 767px) {
     height: 15vh;
-    background: blue;
   }
 `;
 

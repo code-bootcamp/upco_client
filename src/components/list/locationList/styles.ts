@@ -34,7 +34,6 @@ export const LocationWrapper = styled.div`
   @media (max-width: 767px) {
     width: 320px;
     height: 100%;
-    background: red;
     display: flex;
     flex-direction: row;
     border-right: 1px solid #e2e2e2;
@@ -65,7 +64,6 @@ export const ImageColumn = styled.div`
   @media (max-width: 767px) {
     height: 100%;
     width: 158px;
-    /* background-color: blue; */
   }
 `;
 
