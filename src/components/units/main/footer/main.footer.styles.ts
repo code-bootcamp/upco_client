@@ -16,8 +16,8 @@ export const Wrapper = styled.div<IWrapperProps>`
   flex-direction: column;
   align-items: center;
   width: 300px;
-  height: 100vh - 80px;
   border-left: 1px solid #e2e2e2;
+  /* background: red;  */
   overflow-y: auto;
 
   @media (max-width: 767px) {
@@ -25,11 +25,13 @@ export const Wrapper = styled.div<IWrapperProps>`
     padding: 0 1px;
     display: block;
     z-index: 20;
+    height: calc(20vh);
   }
 `;
 
 export const SubWrapper = styled.div`
   @media (max-width: 767px) {
+    height: 5vh;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -118,6 +120,10 @@ export const FriendRequestListBox = styled.div`
   max-height: 250px;
   border-bottom: 1px solid #e2e2e2;
   background-color: #fff;
+  @media (max-width: 767px) {
+    height: 15vh;
+    background: blue;
+  }
 `;
 
 export const FriendRequestList = styled.ul`

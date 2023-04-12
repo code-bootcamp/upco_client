@@ -11,6 +11,7 @@ export const Wrapper = styled.div`
   @media (max-width: 767px) {
     display: flex;
     flex-direction: row;
+    height: 15vh;
   }
 `;
 
@@ -25,13 +26,15 @@ export const LocationWrapper = styled.div`
 
   &:hover {
     background-color: rgba(0, 0, 0, 0.7);
+
     button {
       display: block;
     }
   }
   @media (max-width: 767px) {
     width: 320px;
-    height: 158px;
+    height: 100%;
+    background: red;
     display: flex;
     flex-direction: row;
     border-right: 1px solid #e2e2e2;
@@ -48,11 +51,9 @@ export const ImageSection = styled.img`
   z-index: -1;
   border-radius: 6px;
   @media (max-width: 767px) {
-    height: 130px;
-    width: 130px;
-    margin: 14px 0 0 0px;
-    /* margin-top: 7px;  */
-    /* margin-bottom: 7px; */
+    height: 100%;
+    width: 50px;
+    margin: 0 5px;
     object-fit: cover;
   }
 `;
@@ -62,7 +63,7 @@ export const ImageColumn = styled.div`
   flex-direction: row;
   justify-content: center;
   @media (max-width: 767px) {
-    height: 158px;
+    height: 100%;
     width: 158px;
     /* background-color: blue; */
   }
@@ -151,6 +152,11 @@ export const ButtonWrapper = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+
+  @media (max-width: 767px) {
+    height: 100%;
+    align-items: center;
+  }
 `;
 
 export const HoverButton = styled.button`
@@ -181,12 +187,19 @@ export const HoverButton = styled.button`
 export const HoverTitle = styled.div`
   font-size: 12px;
   margin-top: 10px;
+  @media (max-width: 767px) {
+    font-size: 10px;
+  }
 `;
 
 export const UserIcon = styled(BiUser)`
   width: 100%;
   height: 150px;
   color: #d2d2d2;
+  @media (max-width: 767px) {
+    height: 100%;
+    margin: 0 5px;
+  }
 `;
 
 export const LocationWrapper02 = styled.div`
@@ -200,8 +213,8 @@ export const LocationWrapper02 = styled.div`
 
  
   @media (max-width: 767px) {
-    width: 100px;
-    height: 158px;
+    width: 320px;
+    height: 50px;
     display: flex;
     flex-direction: row;
     margin: 0px;

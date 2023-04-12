@@ -11,7 +11,6 @@ export const Wrapper = styled.div`
     display: flex;
     flex-direction: ${(props: IProps) => (props.mPage ? "row" : "column")};
     align-items: ${(props: IProps) => (props.mPage ? "center" : "flex-start")};
-    height: ${(props: IProps) => props.mPage && "155px"};
     padding: ${(props: IProps) => props.mPage && "20px"};
   }
 `;
