@@ -93,8 +93,8 @@ export const FollowerListRow = styled.div`
   flex-direction: row;
 
   @media (max-width: 767px) {
-    /* justify-content: space-around; */
     align-items: ${(props: IProps) => props.mPage && "center"};
+    height: ${(props: IProps) => props.mPage && "80%"};
   }
 `;
 export const FollowerListColumn = styled.div`

@@ -1,7 +1,13 @@
 import styled from "@emotion/styled";
 import { BiUser } from "react-icons/bi";
 
+interface IProps {
+  mPage: boolean;
+}
+
 export const Wrapper = styled.div`
+  weight: 100%;
+  height: 100%;
   @media (max-width: 767px) {
     display: flex;
     flex-direction: row;
@@ -181,4 +187,24 @@ export const UserIcon = styled(BiUser)`
   width: 100%;
   height: 150px;
   color: #d2d2d2;
+`;
+
+export const LocationWrapper02 = styled.div`
+  display: ${(props: IProps) => (props.mPage ? "flex" : "none")}
+  flex-direction: column;
+  justify-content: center;
+  width: 300px;
+  position: relative;
+  background-color: transparent;
+  transition: background-color 0.2s ease-in-out;
+
+ 
+  @media (max-width: 767px) {
+    width: 320px;
+    height: 158px;
+    display: flex;
+    flex-direction: row;
+    border-right: 1px solid #e2e2e2;
+    margin: 0px;
+  }
 `;
