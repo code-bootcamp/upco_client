@@ -193,18 +193,17 @@ export const LocationWrapper02 = styled.div`
   display: ${(props: IProps) => (props.mPage ? "flex" : "none")}
   flex-direction: column;
   justify-content: center;
-  width: 300px;
+  width: 100px;
   position: relative;
   background-color: transparent;
   transition: background-color 0.2s ease-in-out;
 
  
   @media (max-width: 767px) {
-    width: 320px;
+    width: 100px;
     height: 158px;
     display: flex;
     flex-direction: row;
-    border-right: 1px solid #e2e2e2;
     margin: 0px;
   }
 `;
