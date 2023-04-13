@@ -1,15 +1,11 @@
 import { useState } from "react";
 import { useFormLogin } from "../../../hooks/useForm/useForm.login";
 import AccountInput from "../../inputs/account/account.input.index";
-import JoinUI from "../join/join.index";
 import * as S from "./login.styles";
 import { ILoginUIProps } from "./login.types";
-import FindUI from "../find/find.index";
 import { useLoginMode } from "../../../hooks/customs/useLoginMode";
 
 export default function LoginUI(props: ILoginUIProps): JSX.Element {
-  const [isFind, setIsFind] = useState(false);
-
   const { onSubmit } = useLoginMode();
   const {
     register,

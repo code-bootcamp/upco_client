@@ -1,9 +1,5 @@
 import { QueryResult } from "@apollo/client";
-import {
-  IQuery,
-  IQueryFetchUserArgs,
-  IQueryFindAroundUsersArgs,
-} from "../../../../commons/types/generated/types";
+import { IQuery, IQueryFindAroundUsersArgs } from "../../../../commons/types/generated/types";
 
 interface IData {
   id: string;

@@ -1,8 +1,6 @@
 import {
-  ApolloCache,
   DefaultContext,
   gql,
-  MutationFunctionOptions,
   MutationTuple,
   OperationVariables,
   useMutation,
