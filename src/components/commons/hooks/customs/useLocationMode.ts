@@ -2,13 +2,12 @@ import { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { positionState } from "../../stores";
 import { useMutationLocation } from "../mutation/useMutationLocation";
-import { useGeolocationMode } from "./useGeolocationMode";
 
 export const useLocationMode = (): {
   useLocation: () => void;
 } => {
-  const [locations] = useMutationLocation();
-  const [position] = useRecoilState(positionState);
+  const [locations] = useMutationLocation(); // 내 위치 저장 뮤테이션
+  const [position] = useRecoilState(positionState); // gps로 현재 위치 가져오기
 
   const useLocation = (): void => {
     useEffect(() => {

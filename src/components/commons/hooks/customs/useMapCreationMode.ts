@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 declare const window: typeof globalThis & {
-  kakao?: any;
+  kakao?: typeof import("react-kakao-maps-sdk");
 };
 
 export const useMapCreationMode = (): {
