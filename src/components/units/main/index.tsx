@@ -5,6 +5,7 @@ import { useLocationInitialMode } from "../../commons/hooks/customs/useLocationI
 import { useLocationMode } from "../../commons/hooks/customs/useLocationMode";
 import { useLocationSaveMode } from "../../commons/hooks/customs/useLocationSaveMode";
 import { useMapCreationMode } from "../../commons/hooks/customs/useMapCreationMode";
+import { useQueryFetchLoginUser } from "../../commons/hooks/queries/fetchLoginUser";
 import { useQueryFindAroundUsers } from "../../commons/hooks/queries/useQueryFindAroundUsers";
 import { locationState, positionState } from "../../commons/stores";
 import MainBody from "./body/main.body.index";
@@ -19,7 +20,7 @@ export default function MainPage(): JSX.Element {
   const { locationSaveFn } = useLocationSaveMode(); // 영역 좌표 location 변수에 저장
   const { useLocationInitialSave } = useLocationInitialMode();
   const { useLocation } = useLocationMode();
-
+  const { data } = useQueryFetchLoginUser(); // 로그인 유저 데이터
   const result = useQueryFindAroundUsers(); // 현재 영역좌표 내 다른 유저 위치 출력
 
   useLocationInitialSave(); // 영역 좌표 location 변수에 마운트 이후 초기값 저장
@@ -32,6 +33,7 @@ export default function MainPage(): JSX.Element {
       {isOpen && (
         <>
           <MainBody
+            data={data}
             locationSaveFn={locationSaveFn}
             result={result}
             location={location}
