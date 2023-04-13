@@ -33,7 +33,7 @@ export const useEmailCode = (
           code,
         },
       });
-      if (result.data.verifyEmail) {
+      if (result?.data?.verifyEmail) {
         setIsVerify(true);
         setCode("인증이 완료되었습니다.");
       } else {

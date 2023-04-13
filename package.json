@@ -37,7 +37,6 @@
     "react-kakao-maps-sdk": "^1.1.6",
     "react-spinners": "^0.13.8",
     "react-toast-notifications": "^2.5.1",
-    "react-transition-group": "^4.4.0",
     "react-window": "^1.8.8",
     "recoil": "^0.7.7",
     "socket.io-client": "^4.6.1",
@@ -64,6 +63,7 @@
     "eslint-plugin-n": "^15.0.0",
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "^7.32.2",
+    "kakao.maps.d.ts": "^0.1.35",
     "prettier": "2.8.4",
     "typescript": "*"
   },

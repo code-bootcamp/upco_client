@@ -2,17 +2,16 @@ import { debounce } from "lodash";
 import { useCallback } from "react";
 import { useRecoilState } from "recoil";
 import { locationState } from "../../stores";
-import { useQueryFindAroundUsers } from "../queries/useQueryFindAroundUsers";
+
+type MapType = kakao.maps.Map;
 
 export const useLocationSaveMode = (): {
-  locationSaveFn: (map: any) => void;
+  locationSaveFn: (map: MapType) => void;
 } => {
   const [_, setLocation] = useRecoilState(locationState);
 
-  const result = useQueryFindAroundUsers();
-
   const locationSaveFn = useCallback(
-    debounce((map) => {
+    debounce((map: MapType) => {
       setLocation({
         sw: map.getBounds().getSouthWest().toString(),
         ne: map.getBounds().getNorthEast().toString(),
