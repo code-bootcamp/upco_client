@@ -39,27 +39,29 @@ export default function MainBody(props: IProps): JSX.Element {
                   <S.MyMarker src="/images/marker/myMarker.png" style={{ zIndex: 5 }}></S.MyMarker>
                 </S.MyMarkerBox>
               </CustomOverlayMap>
-              {props.result?.data?.findAroundUsers.map((el) => (
-                <CustomOverlayMap
-                  position={{
-                    lat: Number(el.lat),
-                    lng: Number(el.lng),
-                  }}
-                  key={el.id}
-                >
-                  <S.MyMarkerBox>
-                    <S.MyMarker
-                      src="/images/marker/userMarker.png"
-                      style={{ zIndex: 1 }}
-                    ></S.MyMarker>
-                  </S.MyMarkerBox>
-                </CustomOverlayMap>
-              ))}
+              {props.result?.data?.findAroundUsers
+                .filter((el) => el.id !== props.data?.fetchLoginUser?.id)
+                .map((el) => (
+                  <CustomOverlayMap
+                    position={{
+                      lat: Number(el.lat),
+                      lng: Number(el.lng),
+                    }}
+                    key={el.id}
+                  >
+                    <S.MyMarkerBox>
+                      <S.MyMarker
+                        src="/images/marker/userMarker.png"
+                        style={{ zIndex: 1 }}
+                      ></S.MyMarker>
+                    </S.MyMarkerBox>
+                  </CustomOverlayMap>
+                ))}
             </MarkerClusterer>
           </S.MabWeb>
         </S.MabBox>
       )}
-      <MainFooter result={props.result} />
+      <MainFooter result={props.result} data={props.data} />
     </S.Wrapper>
   );
 }
