@@ -1,7 +1,7 @@
 import * as S from "./main.footer.styles";
 import FollowerList from "../../../list/followerList";
 import LocationList from "../../../list/locationList";
-import { isFollowerState, isOpenState, selectedComponentState } from "../../../commons/stores";
+import { isFollowerState, selectedComponentState } from "../../../commons/stores";
 import { useRecoilState } from "recoil";
 import { useQueryFetchFriendRequests } from "../../../commons/hooks/queries/useQueryFetchFriendRequests";
 import { useOnClickAcceptFriendRequest } from "../../../commons/hooks/customs/useOnClickAcceptFriendRequest";

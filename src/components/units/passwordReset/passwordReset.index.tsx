@@ -4,8 +4,6 @@ import { IPasswordReset } from "./passwordReset.types";
 
 export default function PasswordReset(props: IPasswordReset): JSX.Element {
   const {
-    register,
-    handleSubmit,
     formState: { errors },
   } = useForm<{
     email: string;

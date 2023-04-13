@@ -2,8 +2,6 @@ import { useRouter } from "next/router";
 import { AiOutlineUserAdd } from "react-icons/ai";
 import { RiAlarmWarningLine } from "react-icons/ri";
 import { useOnClickCreateFriendRequest } from "../../commons/hooks/customs/useOnClickCreateFriendRequest";
-import { useQueryFetchLoginUser } from "../../commons/hooks/queries/fetchLoginUser";
-import { useQueryFetchUser } from "../../commons/hooks/queries/useQueryFetchUser";
 import * as S from "./styles";
 import { IProps } from "./types";
 

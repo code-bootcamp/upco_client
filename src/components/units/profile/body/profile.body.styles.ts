@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import { FiEdit } from "react-icons/fi";
 
 export const Wrapper = styled.div`
   display: flex;

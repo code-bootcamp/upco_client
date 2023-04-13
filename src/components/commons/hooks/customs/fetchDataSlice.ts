@@ -1,5 +1,5 @@
 import { Maybe } from "yup";
-import { INotice, IQuestion } from "../../../../commons/types/generated/types";
+import { INotice } from "../../../../commons/types/generated/types";
 
 interface IFetchDataSlice {
   length: number;
