@@ -1,7 +1,7 @@
 # **Upco**
 
 ### 배포 주소 및 깃 주소
-**[UPCO 배포](https://upco.space)**
+**[https://upco.space](https://upco.space)**
 <br>
 **[UPCO GitHubServer](https://github.com/code-bootcamp/seb11_team02_server)**
 <br>
