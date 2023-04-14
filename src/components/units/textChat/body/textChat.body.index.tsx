@@ -1,7 +1,7 @@
 import * as S from "./textChat.body.styles";
 import { BsCameraVideo } from "react-icons/bs";
 import { ITextChatBodyProps } from "./textChat.body.types";
-import { KeyboardEventHandler, useState } from "react";
+import { FormEvent, KeyboardEventHandler, useState } from "react";
 
 export default function TextChatBody(props: ITextChatBodyProps): JSX.Element {
   const [contents, setContents] = useState("");
@@ -10,17 +10,19 @@ export default function TextChatBody(props: ITextChatBodyProps): JSX.Element {
     setContents(e.target.value);
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     if (contents.trim() === "") return;
     props.emitData(contents);
     setContents("");
   };
 
-  const handleKeyDown: KeyboardEventHandler<HTMLTextAreaElement> = (e) => {
+  const handleKeyDown: KeyboardEventHandler<HTMLTextAreaElement> = (
+    e: React.KeyboardEvent<HTMLTextAreaElement>
+  ) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
-      handleSubmit(e);
+      handleSubmit(e as any);
     }
   };
 
