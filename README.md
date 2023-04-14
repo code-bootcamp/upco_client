@@ -15,6 +15,9 @@
 가볍고 튀는 네이밍으로 사람들에게 쉽게 다가가고자 했습니다.
 <br><hr><br>
 
+
+
+
 ### 기획의도
 
 - 우리 'Upco'는 '위치기반 동네친구 찾기 서비스'입니다. 이미 우리 서비스와 비슷한 특성을 가진 서비스는 많지만, 기존 시장에 나와 있는 '친구 찾기' 서비스가 단순 남녀 관계에 초점을 가지고 있는 경우가 많아 건전하게 사용할 수 없었고, 신뢰할 수 없는 단순 명시적인 거리로 근처 유저를 추천해주는 것에 대해 불편함을 느낄 수밖에 없었습니다.
@@ -28,6 +31,7 @@
 ![기술스택](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FyhzQI%2Fbtr725mBy5N%2F1JJTfOTFpPeI9KMcdkUmgk%2Fimg.png)
 <br><hr><br>
 
-### 프론트엔드 팀원 소개
+### 프론트엔드 팀원 소개 
+![프론트엔드](https://user-images.githubusercontent.com/120009393/231961114-a419c741-b6db-4982-820b-be55b4280340.png)
 
 <br><hr><br>
