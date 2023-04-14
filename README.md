@@ -7,11 +7,8 @@
 <br>
 **[UPCO GitHubClient](https://github.com/code-bootcamp/upco_client)**
 
-
 <br><hr><br>
 ![UPCO](https://user-images.githubusercontent.com/120009393/231974424-29c4d83b-c6fa-4710-9a5c-f8a8c7ed9c4d.png)
-
-
 
 <br><hr><br>
 
@@ -30,11 +27,9 @@
 
 <br><hr><br>
 
-
-
 ### 프론트엔드 팀원 소개
 
-![프론트엔드](https://user-images.githubusercontent.com/120009393/231961114-a419c741-b6db-4982-820b-be55b4280340.png)
+![프론트엔드](https://user-images.githubusercontent.com/120009393/231981416-fbe3e1c3-6689-4431-9b27-b18909bb0dcf.png)
 | 이름 | 주소 |
 | ------ | -------------------------------- |
 | 최현규 | https://github.com/chlgusrb97 |
