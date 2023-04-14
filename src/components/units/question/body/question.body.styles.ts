@@ -5,6 +5,7 @@ export const Wrapper = styled.form`
   width: 100%;
   display: flex;
   flex-direction: column;
+  padding: 0 50px;
 `;
 export const BodyRow = styled.ul`
   display: flex;

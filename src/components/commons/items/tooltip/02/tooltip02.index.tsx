@@ -21,13 +21,6 @@ export default function TooltipUI02(props: ITooltipUI02Props): JSX.Element {
         <li>
           <button onClick={onClickBlockUser(props.id)}>차단</button>
         </li>
-        <li>
-          <button onClick={onClickBlock}>신고</button>
-        </li>
-        {/* <S.divideLine></S.divideLine>
-        <S.RoomWrapper>
-          <div onClick={onClickReport}>신고</div>
-        </S.RoomWrapper> */}
       </S.Wrapper>
     </>
   );

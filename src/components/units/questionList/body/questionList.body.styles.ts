@@ -1,9 +1,10 @@
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
-  max-width: 1200px;
+  /* max-width: 1200px;  */
   margin: 0 auto;
   margin-top: 50px;
+  padding: 0 50px;
 `;
 
 export const Title = styled.h4`
@@ -13,8 +14,8 @@ export const Title = styled.h4`
   margin-bottom: 30px;
 
   @media (max-width: 767px) {
-    font-size: 16px;
-    margin: 0 25px;
+    /* font-size: 16px;  */
+    /* margin: 0 25px; */
   }
 `;
 

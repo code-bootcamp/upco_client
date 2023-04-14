@@ -1,15 +1,11 @@
 import { CustomOverlayMap, MarkerClusterer, ZoomControl } from "react-kakao-maps-sdk";
 import { BeatLoader } from "react-spinners";
-import { useRecoilState } from "recoil";
 import FilterlingUI from "../../../commons/items/filterling/filterling.index";
-import { isOpenState } from "../../../commons/stores";
 import MainFooter from "../footer/main.footer.index";
 import * as S from "./main.body.styles";
 import { IProps } from "./main.body.types";
 
 export default function MainBody(props: IProps): JSX.Element {
-  const [isOpen] = useRecoilState(isOpenState);
-
   return (
     <S.Wrapper>
       {props.position === null ? (
@@ -19,7 +15,6 @@ export default function MainBody(props: IProps): JSX.Element {
       ) : (
         <S.MabBox>
           <S.MabWeb
-            isOpen={isOpen}
             center={{
               lat: props.position?.coords.latitude ?? 34.55635,
               lng: props.position?.coords.longitude ?? 127.795841,
@@ -44,27 +39,29 @@ export default function MainBody(props: IProps): JSX.Element {
                   <S.MyMarker src="/images/marker/myMarker.png" style={{ zIndex: 5 }}></S.MyMarker>
                 </S.MyMarkerBox>
               </CustomOverlayMap>
-              {props.result?.data?.findAroundUsers.map((el) => (
-                <CustomOverlayMap
-                  position={{
-                    lat: Number(el.lat),
-                    lng: Number(el.lng),
-                  }}
-                  key={el.id}
-                >
-                  <S.MyMarkerBox>
-                    <S.MyMarker
-                      src="/images/marker/userMarker.png"
-                      style={{ zIndex: 1 }}
-                    ></S.MyMarker>
-                  </S.MyMarkerBox>
-                </CustomOverlayMap>
-              ))}
+              {props.result?.data?.findAroundUsers
+                .filter((el) => el.id !== props.data?.fetchLoginUser?.id)
+                .map((el) => (
+                  <CustomOverlayMap
+                    position={{
+                      lat: Number(el.lat),
+                      lng: Number(el.lng),
+                    }}
+                    key={el.id}
+                  >
+                    <S.MyMarkerBox>
+                      <S.MyMarker
+                        src="/images/marker/userMarker.png"
+                        style={{ zIndex: 1 }}
+                      ></S.MyMarker>
+                    </S.MyMarkerBox>
+                  </CustomOverlayMap>
+                ))}
             </MarkerClusterer>
           </S.MabWeb>
         </S.MabBox>
       )}
-      <MainFooter result={props.result} />
+      <MainFooter result={props.result} data={props.data} />
     </S.Wrapper>
   );
 }

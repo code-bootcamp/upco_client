@@ -1,10 +1,6 @@
 import { gql, QueryResult, useQuery } from "@apollo/client";
 import { useRecoilState } from "recoil";
-import {
-  IMutation,
-  IQuery,
-  IQueryFindAroundUsersArgs,
-} from "../../../../commons/types/generated/types";
+import { IQuery, IQueryFindAroundUsersArgs } from "../../../../commons/types/generated/types";
 import { interestFilter, locationState } from "../../stores";
 
 export const FIND_AROUND_USERS = gql`
@@ -16,6 +12,10 @@ export const FIND_AROUND_USERS = gql`
       age
       nickname
       image
+      interests {
+        id
+        name
+      }
     }
   }
 `;

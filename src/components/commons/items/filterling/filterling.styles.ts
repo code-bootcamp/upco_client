@@ -73,16 +73,21 @@ export const InterestToolTip = styled.div`
 
 export const List = styled(FixedSizeList)`
   width: calc(100% - 50px);
-  height: 150px;
   position: absolute;
   background-color: #fff;
   border: 1px solid #e2e2e2;
   margin-top: 2px;
-  /* color: #191919; */
-  /* padding: 20px; */
+`;
 
-  > div {
-    /* cursor: pointer; */
-    /* transition: all 0.3s ease-in-out; */
-  }
+export const NoneList = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  color: #979797;
+  margin-top: 2px;
+  border: 1px solid #e2e2e2;
+  user-select: none;
 `;

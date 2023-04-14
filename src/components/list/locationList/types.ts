@@ -10,5 +10,6 @@ export interface LocationData {
 }
 
 export interface IProps {
+  data: Pick<IQuery, "fetchLoginUser"> | undefined;
   result: QueryResult<Pick<IQuery, "findAroundUsers">, IQueryFindAroundUsersArgs>;
 }

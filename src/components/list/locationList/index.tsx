@@ -1,22 +1,29 @@
-import { AiOutlineMessage, AiOutlineUserAdd } from "react-icons/ai";
+import { useRouter } from "next/router";
+import { AiOutlineUserAdd } from "react-icons/ai";
 import { RiAlarmWarningLine } from "react-icons/ri";
 import { useOnClickCreateFriendRequest } from "../../commons/hooks/customs/useOnClickCreateFriendRequest";
 import * as S from "./styles";
 import { IProps } from "./types";
 
+const MPAGE = ["/main"];
+
 export default function LocationList(props: IProps): JSX.Element {
   const { onClickCreateFriendRequest } = useOnClickCreateFriendRequest();
+  const router = useRouter();
 
-  console.log("로케이션 페이지-유저 위치", props.result.data?.findAroundUsers);
+  const mPage = MPAGE.includes(router.asPath);
 
   return (
-    <>
-      <S.Wrapper>
-        {props.result.data?.findAroundUsers.map((el, idx) => (
+    <S.Wrapper>
+      {props.result?.data?.findAroundUsers
+        .filter((el) => el.id !== props.data?.fetchLoginUser.id)
+        .map((el) => (
           <S.LocationWrapper key={el.id}>
             <S.ImageColumn>
               {el.image ? (
-                <S.ImageSection src={`https://storage.cloud.google.com/upco-bucket/${el.image}`} />
+                <S.ImageSection
+                  src={`https://storage.cloud.google.com/upco-bucket/${String(el.image)}`}
+                />
               ) : (
                 <S.UserIcon />
               )}
@@ -25,11 +32,11 @@ export default function LocationList(props: IProps): JSX.Element {
             <S.LocationListColumn>
               <S.LocationListRow>
                 <S.NickNameSection>{el.nickname}</S.NickNameSection>
-                <S.AgeSection>{el.age}살</S.AgeSection>
+                {el.age ? <S.AgeSection>{el.age}살</S.AgeSection> : <></>}
               </S.LocationListRow>
               <S.InterestBox>
                 {el.interests?.map((item) => (
-                  <S.InterestSection key={idx}>{item}</S.InterestSection>
+                  <S.InterestSection key={item.id}>{item.name}</S.InterestSection>
                 ))}
               </S.InterestBox>
               <S.ButtonWrapper>
@@ -50,7 +57,7 @@ export default function LocationList(props: IProps): JSX.Element {
             <S.DivideLine />
           </S.LocationWrapper>
         ))}
-      </S.Wrapper>
-    </>
+      <S.LocationWrapper02 mPage={mPage}></S.LocationWrapper02>
+    </S.Wrapper>
   );
 }

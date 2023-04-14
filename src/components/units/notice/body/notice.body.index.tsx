@@ -5,11 +5,11 @@ import Pagination from "../../../commons/paginations/pagination.index";
 import * as S from "./notice.body.styles";
 
 export default function NoticeBody(): JSX.Element {
+  const [page, setPage] = useState(0);
+
   const { data } = useQueryFetchNotices();
 
   const result = FetchDataSlice(data?.fetchNotices ?? "")();
-
-  const [page, setPage] = useState(0);
 
   return (
     <>

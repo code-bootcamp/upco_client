@@ -1,11 +1,9 @@
-import { gql, useMutation } from "@apollo/client";
 import { useForm } from "react-hook-form";
 import * as S from "./passwordReset.styles";
+import { IPasswordReset } from "./passwordReset.types";
 
-export default function PasswordReset(props): JSX.Element {
+export default function PasswordReset(props: IPasswordReset): JSX.Element {
   const {
-    register,
-    handleSubmit,
     formState: { errors },
   } = useForm<{
     email: string;

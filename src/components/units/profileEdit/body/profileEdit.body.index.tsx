@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useQueryFetchLoginUser } from "../../../commons/hooks/queries/fetchLoginUser";
 import { useUpdateUserMode } from "../../../commons/hooks/customs/useUpdateUserMode";
 import InterestUI from "../../../commons/items/modal/interest/interest.index";
@@ -25,12 +25,15 @@ export default function ProfileEditBody(): JSX.Element {
   const [imageUrl, setImageUrl] = useRecoilState(fileUrl);
 
   const { onClickUpdate } = useUpdateUserMode();
+
   const openPasswordReset = (): void => {
     setIsOpen((prev) => !prev);
   };
+
   const openInterestModal = (): void => {
     setIsModalOpen((prev) => !prev);
   };
+
   const handleUpdateProfile = async (): Promise<void> => {
     await onClickUpdate({
       nickname: data?.fetchLoginUser?.nickname,
@@ -39,11 +42,16 @@ export default function ProfileEditBody(): JSX.Element {
       interests: [...interestList],
     });
     await refetch();
+    await router.push("/profile");
   };
 
   const onClickCancel = async (): Promise<void> => {
     await router.push("/profile");
   };
+
+  useEffect(() => {
+    setSelectedAge(2024 - data?.fetchLoginUser?.age ?? 2023);
+  }, [data]);
   return (
     <>
       {isModalOpen && (

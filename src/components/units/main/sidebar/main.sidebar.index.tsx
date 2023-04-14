@@ -1,20 +1,31 @@
 import { movePageMode } from "../../../commons/hooks/customs/movePageMode";
-import { useMutationLogout } from "../../../commons/hooks/mutation/useMutationLogout";
 import * as S from "./main.sidebar.styels";
 import { useQueryFetchLoginUser } from "../../../commons/hooks/queries/fetchLoginUser";
 import { IProps } from "./main.sidebar.types";
+import { onClickLogoutMode } from "../../../commons/hooks/customs/onClickLogoutMode";
+import { useQueryFetchFriendRequests } from "../../../commons/hooks/queries/useQueryFetchFriendRequests";
+import { useRecoilState } from "recoil";
+import { isFollowerState } from "../../../commons/stores";
+import { mainFooterMode } from "../../../commons/hooks/customs/mainFooterMode";
+import {
+  FriendRequestList,
+  FriendRequestListBox,
+  Imgbox,
+  UserIcon,
+} from "../footer/main.footer.styles";
+import { useOnClickAcceptFriendRequest } from "../../../commons/hooks/customs/useOnClickAcceptFriendRequest";
+import { useOnClickRejectFriendRequest } from "../../../commons/hooks/customs/useOnClickRejectFriendRequest";
 
 export default function MainSideBar(props: IProps): JSX.Element {
-  const { onClickMovePage } = movePageMode();
-  const { data } = useQueryFetchLoginUser();
+  const { data } = useQueryFetchLoginUser(); // 내 프로필 정보
+  const { data: friendData } = useQueryFetchFriendRequests(); // 친구 요청 목록
+  const [isFollower] = useRecoilState(isFollowerState); // 친구 요청 목록
 
-  const [logout] = useMutationLogout();
-
-  const onClickLogout = async (): Promise<void> => {
-    await logout();
-    alert("로그아웃 되었습니다.");
-    onClickMovePage("/");
-  };
+  const { followerOpen } = mainFooterMode();
+  const { onClickAcceptFriendRequest } = useOnClickAcceptFriendRequest();
+  const { onClickRejectFriendRequest } = useOnClickRejectFriendRequest();
+  const { onClickMovePage } = movePageMode(); // 페이지 이동 함수
+  const { onClickLogout } = onClickLogoutMode(); // 로그아웃 함수
 
   return (
     <S.Wrapper>
@@ -41,7 +52,35 @@ export default function MainSideBar(props: IProps): JSX.Element {
       </S.BottomWrapper>
       <S.ModeWrapper>
         <li>
-          <button>친구요청</button>
+          {friendData?.fetchFriendRequests.length !== 0 && (
+            <button onClick={followerOpen}>친구요청</button>
+          )}
+        </li>
+        <li>
+          {isFollower && (
+            <FriendRequestListBox>
+              {friendData?.fetchFriendRequests.map((el) => (
+                <FriendRequestList key={el.id} id={el.id}>
+                  <li>
+                    <Imgbox>
+                      {el.sender.image ? (
+                        <img
+                          src={`https://storage.cloud.google.com/upco-bucket/${el.sender.image}`}
+                        />
+                      ) : (
+                        <UserIcon />
+                      )}
+                    </Imgbox>
+                    <p>{el.sender.nickname}</p>
+                  </li>
+                  <li>
+                    <button onClick={onClickAcceptFriendRequest(el.id)}>수락</button>
+                    <button onClick={onClickRejectFriendRequest(el.id)}>거절</button>
+                  </li>
+                </FriendRequestList>
+              ))}
+            </FriendRequestListBox>
+          )}
         </li>
         <li onClick={onClickMovePage("/profile")}>
           <button>내 정보</button>

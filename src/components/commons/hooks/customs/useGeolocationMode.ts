@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useRecoilState } from "recoil";
+import { positionState } from "../../stores";
 
 export const useGeolocationMode = (): {
   geolocationFn: () => void;
-  position: GeolocationPosition | null;
 } => {
-  const [position, setPosition] = useState<GeolocationPosition | null>(null);
-
+  const [_, setPosition] = useRecoilState<GeolocationPosition | null>(positionState);
   const geolocationFn = (): void => {
     useEffect(() => {
       const watcher = navigator.geolocation.watchPosition(
@@ -25,7 +25,6 @@ export const useGeolocationMode = (): {
   };
 
   return {
-    position,
     geolocationFn,
   };
 };

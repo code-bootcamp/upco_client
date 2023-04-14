@@ -66,3 +66,18 @@ export const fileUrl = atom({
   key: "fileUrl",
   default: "",
 });
+
+export const positionState = atom<GeolocationPosition | null>({
+  key: "positionState",
+  default: null,
+});
+
+export const selectedComponentState = atom({
+  key: "selectedComponentState",
+  default: "location",
+});
+
+export const isFollowerState = atom({
+  key: "isFollowerState",
+  default: false,
+});

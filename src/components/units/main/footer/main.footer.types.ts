@@ -8,6 +8,6 @@ interface IData {
 }
 
 export interface IProps {
-  // data: QueryResult<Pick<IQuery, "findAroundUsers">, IQueryFindAroundUsersArgs>;
+  data: Pick<IQuery, "fetchLoginUser"> | undefined;
   result: QueryResult<Pick<IQuery, "findAroundUsers">, IQueryFindAroundUsersArgs>;
 }

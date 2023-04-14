@@ -1,4 +1,8 @@
 import { gql, useMutation } from "@apollo/client";
+import {
+  IMutation,
+  IMutationSendMailForVerificationArgs,
+} from "../../../../commons/types/generated/types";
 
 const SEND_MAIL_FOR_VERIFICATION = gql`
   mutation sendMailForVerification($email: String!) {
@@ -6,8 +10,11 @@ const SEND_MAIL_FOR_VERIFICATION = gql`
   }
 `;
 
-export const useMutationSendMailForVerification = () => {
-  const result = useMutation(SEND_MAIL_FOR_VERIFICATION);
+export const useMutationSendMailForVerification = (): typeof result => {
+  const result = useMutation<
+    Pick<IMutation, "sendMailForVerification">,
+    IMutationSendMailForVerificationArgs
+  >(SEND_MAIL_FOR_VERIFICATION);
 
   return result;
 };

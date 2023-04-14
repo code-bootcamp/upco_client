@@ -6,13 +6,14 @@ export default function ProfileBlockListUI(): JSX.Element {
   const { data } = useQueryFetchBlockUsers();
   const { onClickUnblockUser } = useOnClickUnblockUser();
 
+  console.log(data, "차단목록");
   return (
     <>
       <S.Wrapper>
         {data?.fetchBlockUsers.length !== 0 ? (
           <>
             {data?.fetchBlockUsers.map((el) => (
-              <li key={el.id} id={el.id}>
+              <li key={el.id}>
                 <S.ImgBox>
                   {el.blocked_user.image ? (
                     <img

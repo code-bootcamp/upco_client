@@ -1,48 +1,31 @@
 import * as S from "./main.footer.styles";
-import React, { useState } from "react";
 import FollowerList from "../../../list/followerList";
 import LocationList from "../../../list/locationList";
-import { isCloseState, isOpenState } from "../../../commons/stores";
+import { isFollowerState, selectedComponentState } from "../../../commons/stores";
 import { useRecoilState } from "recoil";
 import { useQueryFetchFriendRequests } from "../../../commons/hooks/queries/useQueryFetchFriendRequests";
 import { useOnClickAcceptFriendRequest } from "../../../commons/hooks/customs/useOnClickAcceptFriendRequest";
 import { useOnClickRejectFriendRequest } from "../../../commons/hooks/customs/useOnClickRejectFriendRequest";
-import { useRouter } from "next/router";
 import { IProps } from "./main.footer.types";
+import { mainFooterMode } from "../../../commons/hooks/customs/mainFooterMode";
+import { useRouter } from "next/router";
+
+const MPAGE = ["/main"];
 
 export default function MainFooter(props: IProps): JSX.Element {
-  const { data } = useQueryFetchFriendRequests();
-  const [isOpen] = useRecoilState(isOpenState);
-  const [_, setIsClose] = useRecoilState(isCloseState);
-
-  const { onClickAcceptFriendRequest } = useOnClickAcceptFriendRequest();
-  const { onClickRejectFriendRequest } = useOnClickRejectFriendRequest();
-
-  const [selectedComponent, setSelectedComponent] = useState("location");
-  const [isFollower, setIsFollower] = useState(false);
+  const [selectedComponent] = useRecoilState(selectedComponentState); // 사이드 바 목록 교체
+  const [isFollower] = useRecoilState(isFollowerState); // 친구 요청 목록
 
   const router = useRouter();
+  const mPage = MPAGE.includes(router.asPath);
 
-  const handleChatClick = (): void => {
-    setSelectedComponent("location");
-    setIsClose(false);
-  };
-
-  const handleFollowerClick = (): void => {
-    setSelectedComponent("follower");
-    setIsClose(false);
-  };
-
-  const followerOpen = (): void => {
-    setIsFollower((prev) => !prev);
-
-    if (window.innerWidth <= 767) {
-      setIsClose(true);
-    }
-  };
+  const { data } = useQueryFetchFriendRequests(); // 친구 요청 목록
+  const { onClickAcceptFriendRequest } = useOnClickAcceptFriendRequest();
+  const { onClickRejectFriendRequest } = useOnClickRejectFriendRequest();
+  const { handleChatClick, handleFollowerClick, followerOpen } = mainFooterMode();
 
   return (
-    <S.Wrapper isOpen={isOpen}>
+    <S.Wrapper>
       <S.SubWrapper>
         <S.ChatFooterTitle>
           <S.ChatTitle selected={selectedComponent === "location"} onClick={handleChatClick}>
@@ -57,7 +40,9 @@ export default function MainFooter(props: IProps): JSX.Element {
         </S.ChatFooterTitle>
 
         {data?.fetchFriendRequests.length !== 0 && (
-          <S.FollowList onClick={followerOpen}>친구 요청</S.FollowList>
+          <S.FollowList onClick={followerOpen} mPage={mPage}>
+            친구 요청
+          </S.FollowList>
         )}
       </S.SubWrapper>
       <S.DivideLine />
@@ -85,7 +70,7 @@ export default function MainFooter(props: IProps): JSX.Element {
       )}
 
       {selectedComponent === "location" ? (
-        <LocationList result={props.result} />
+        <LocationList result={props.result} data={props.data} />
       ) : (
         selectedComponent === "follower" && <FollowerList />
       )}
