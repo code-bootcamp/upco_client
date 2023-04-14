@@ -32,13 +32,15 @@ export const useMediaStream = (): IUseMediaRequestReturnType => {
     };
   }, []);
 
-  pcRef.current = new RTCPeerConnection({
-    iceServers: [
-      {
-        urls: "stun:stun.l.google.com:19302",
-      },
-    ],
-  });
+  useEffect(() => {
+    pcRef.current = new RTCPeerConnection({
+      iceServers: [
+        {
+          urls: "stun:stun.l.google.com:19302",
+        },
+      ],
+    });
+  }, []);
 
   const getUserMedia = async (): Promise<void> => {
     try {
@@ -98,6 +100,12 @@ export const useMediaStream = (): IUseMediaRequestReturnType => {
     if (!pcRef.current) {
       return;
     }
+
+    const currentState = pcRef.current.signalingState;
+    if (currentState !== "stable") {
+      return;
+    }
+
     const answer = await pcRef.current.createAnswer();
     await pcRef.current.setLocalDescription(answer);
     socket?.emit("answer", answer.sdp);
@@ -133,6 +141,14 @@ export const useMediaStream = (): IUseMediaRequestReturnType => {
   };
 
   void getUserMedia();
+
+  if (pcRef.current) {
+    pcRef.current.ontrack = (e) => {
+      if (remoteVideoRef.current) {
+        remoteVideoRef.current.srcObject = e.streams[0];
+      }
+    };
+  }
   console.log(pcRef);
   return { localVideoRef, remoteVideoRef };
 };
