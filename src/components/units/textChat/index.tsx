@@ -21,7 +21,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const LeftContents = styled.div`
+const LeftContents = styled.div<{ isOpen: boolean }>`
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -39,7 +39,7 @@ const LeftContents = styled.div`
 export default function TextChat(): JSX.Element {
   const [isVideo, setIsVideo] = useState(false);
   const [messages, setMessages] = useState<Array<{ contents: string; isSent: boolean }>>([]);
-  const [socket, setSocket] = useState<Socket<DefaultEventsMap, DefaultEventsMap> | null>(null);
+  const [socket, setSocket] = useState<Socket<any, any> | null>(null);
   const [roomId, setRoomId] = useRecoilState(roomIdState);
   const [messageLog, setMessageLog] = useState<Array<{ contents: string; senderId: string }>>([]);
   const [isOpen, setIsOpen] = useRecoilState(isOpenState);
@@ -103,12 +103,10 @@ export default function TextChat(): JSX.Element {
               isVideo={isVideo}
               messages={messages}
               messageLog={messageLog}
-              myId={myId}
+              myId={myId ?? ""}
               roomId={roomId}
             />
-            {roomId && (
-              <TextChatBody emitData={emitData} onClickVideo={onClickVideo} messages={messages} />
-            )}
+            {roomId && <TextChatBody emitData={emitData} onClickVideo={onClickVideo} />}
           </div>
           {isVideo && <VideoChat />}
         </LeftContents>

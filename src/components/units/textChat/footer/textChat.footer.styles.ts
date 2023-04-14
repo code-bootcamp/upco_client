@@ -3,7 +3,11 @@ import styled from "@emotion/styled";
 const activeColor = "#6658ca";
 const inactiveColor = "#979797";
 
-export const Wrapper = styled.div`
+type WrapperProps = {
+  isOpen: boolean;
+};
+
+export const Wrapper = styled.div<WrapperProps>`
   display: flex;
   flex-direction: column;
   align-items: center;

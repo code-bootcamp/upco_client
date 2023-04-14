@@ -1,6 +1,5 @@
 import * as S from "./textChat.footer.styles";
 import { useState } from "react";
-import ChatList from "../../../list/chatList";
 import FollowerList from "../../../list/followerList";
 import { useRecoilState } from "recoil";
 import { isOpenState } from "../../../commons/stores";
@@ -10,10 +9,6 @@ export default function TextChatFooter(): JSX.Element {
   const [isFollower, setIsFollower] = useState(false);
   const [roomId, setRoomId] = useState("");
   const [isOpen, setIsOpen] = useRecoilState(isOpenState);
-
-  const handleChatClick = (): void => {
-    setSelectedComponent("chat");
-  };
 
   const handleFollowerClick = (): void => {
     setSelectedComponent("follower");
