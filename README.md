@@ -30,11 +30,7 @@
 
 <br><hr><br>
 
-### 기술스택
 
-![기술스택](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FyhzQI%2Fbtr725mBy5N%2F1JJTfOTFpPeI9KMcdkUmgk%2Fimg.png)
-
-<br><hr><br>
 
 ### 프론트엔드 팀원 소개
 
@@ -44,6 +40,12 @@
 | 최현규 | https://github.com/chlgusrb97 |
 | 김덕렬 | https://github.com/kkasol |
 | 문성진 | https://github.com/eggmun98 |
+
+<br><hr><br>
+
+### 기술스택
+
+![기술스택](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FyhzQI%2Fbtr725mBy5N%2F1JJTfOTFpPeI9KMcdkUmgk%2Fimg.png)
 
 <br><hr><br>
 
