@@ -51,9 +51,10 @@ export const ImageSection = styled.img`
   border-radius: 6px;
   @media (max-width: 767px) {
     height: 100%;
-    width: 50px;
+    width: 100%;
     margin: 0 5px;
     object-fit: cover;
+    padding: 5px;
   }
 `;
 
@@ -63,7 +64,7 @@ export const ImageColumn = styled.div`
   justify-content: center;
   @media (max-width: 767px) {
     height: 100%;
-    width: 158px;
+    width: 100px;
   }
 `;
 
@@ -73,6 +74,9 @@ export const NickNameSection = styled.div`
   margin-right: 5px;
   @media (max-width: 767px) {
     font-size: 14px;
+  }
+  @media (max-width: 480px) {
+    font-size: 12px;
   }
 `;
 
