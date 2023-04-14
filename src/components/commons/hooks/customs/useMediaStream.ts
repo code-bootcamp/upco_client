@@ -132,64 +132,7 @@ export const useMediaStream = (): IUseMediaRequestReturnType => {
     });
   };
 
-  // const createAnswer = async (sdp: RTCSessionDescription): Promise<void> => {
-  //   console.log("createAnswer");
-  //   if (!(pcRef.current && socket)) {
-  //     return;
-  //   }
-
-  //   try {
-  //     console.log("나무아미타불!!");
-  //     await pcRef.current.setRemoteDescription(sdp);
-  //     const answerSdp = await pcRef.current.createAnswer();
-  //     await pcRef.current.setLocalDescription(answerSdp);
-
-  //     console.log("sent the answer");
-  //     socket.emit("answer", answerSdp, roomId);
-  //   } catch (e) {
-  //     console.error(e);
-  //   }
-  // };
-
-  // const socketOn = async (): Promise<void> => {
-  //   await createOffer();
-
-  //   if (!socket) {
-  //     return;
-  //   }
-  //   socket.on("getOffer", async (sdp: RTCSessionDescription) => {
-  //     await createAnswer(sdp);
-
-  //     console.log(sdp, "GETOFFER!!");
-  //   });
-
-  //   socket.on("getAnswer", async (sdp: RTCSessionDescription) => {
-  //     console.log(sdp, "GETANSWER!!");
-  //     if (!pcRef.current) {
-  //       return;
-  //     }
-  //     await pcRef.current.setRemoteDescription(sdp);
-  //   });
-
-  // socket.on("getCandidate", async (candidate: RTCIceCandidate) => {
-  //   console.log(candidate, "GETCANDIDATE!!");
-  //   if (!pcRef.current) {
-  //     return;
-  //   }
-
-  //   await pcRef.current.addIceCandidate(candidate);
-  // });
-
-  // socket.on("connect_error", () => {
-  //   console.log("Connection error");
-  // });
-
-  // socket.emit("join_room", {
-  //   room: roomId,
-  // });
-  // };
-
   void getUserMedia();
-
+  console.log(pcRef);
   return { localVideoRef, remoteVideoRef };
 };
