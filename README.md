@@ -1,12 +1,14 @@
 # **Upco**
 
-### 배포 주소
-
-**[https//upco.space](https://upco.space)**
+### 배포 주소 및 깃 주소
+**[https://upco.space](https://upco.space)**
+<br>
+**[UPCO GitHubServer](https://github.com/code-bootcamp/seb11_team02_server)**
+<br>
+**[UPCO GitHubClient](https://github.com/code-bootcamp/upco_client)**
 
 <br><hr><br>
-
-![업코](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FGmfpW%2Fbtr744UE9p6%2FLrJST6j0fpzxvwVe1KYkv1%2Fimg.png)
+![UPCO](https://user-images.githubusercontent.com/120009393/231974424-29c4d83b-c6fa-4710-9a5c-f8a8c7ed9c4d.png)
 
 <br><hr><br>
 
@@ -25,20 +27,20 @@
 
 <br><hr><br>
 
-### 기술스택
-
-![기술스택](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FyhzQI%2Fbtr725mBy5N%2F1JJTfOTFpPeI9KMcdkUmgk%2Fimg.png)
-
-<br><hr><br>
-
 ### 프론트엔드 팀원 소개
 
-![프론트엔드](https://user-images.githubusercontent.com/120009393/231961114-a419c741-b6db-4982-820b-be55b4280340.png)
+![프론트엔드](https://user-images.githubusercontent.com/120009393/231981416-fbe3e1c3-6689-4431-9b27-b18909bb0dcf.png)
 | 이름 | 주소 |
 | ------ | -------------------------------- |
 | 최현규 | https://github.com/chlgusrb97 |
 | 김덕렬 | https://github.com/kkasol |
 | 문성진 | https://github.com/eggmun98 |
+
+<br><hr><br>
+
+### 기술스택
+
+![기술스택](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FyhzQI%2Fbtr725mBy5N%2F1JJTfOTFpPeI9KMcdkUmgk%2Fimg.png)
 
 <br><hr><br>
 
@@ -57,3 +59,25 @@
 <br><hr><br>
 
 ### 시연 자료
+
+![010101](https://user-images.githubusercontent.com/120009393/232046615-1738d638-cc79-4dda-8c8d-1eb35e5013ea.gif)
+
+<br>
+
+![0202](https://user-images.githubusercontent.com/120009393/232045376-b3708d44-cb02-40dd-8eb4-5d434ad5cf9b.gif)
+
+<br>
+
+![0303](https://user-images.githubusercontent.com/120009393/232045392-1221da51-9a5c-4ee6-afcb-c94b6d7a66c6.gif)
+
+<br>
+
+![0304](https://user-images.githubusercontent.com/120009393/232046605-6833608a-ac4b-42c3-a640-f4f58256e449.gif)
+
+<br>
+
+![0404](https://user-images.githubusercontent.com/120009393/232045383-4a7e7507-3184-42c2-ba7a-3488c21f1711.gif)
+
+
+
+
