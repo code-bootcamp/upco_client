@@ -8,13 +8,13 @@ export const useMapCreationMode = (): {
   mapCreation: () => void;
 } => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const myKey = String(process.env.NEXT_PUBLIC_API_KEY);
 
   const mapCreation = (): void => {
     useEffect(() => {
       const script = document.createElement("script");
       script.async = true;
-      script.src =
-        "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=546bab6b1ad8e036b1f679bbb9af2e7c&libraries=services&libraries=clusterer";
+      script.src = `//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=${myKey}&libraries=services&libraries=clusterer`;
 
       document.head.appendChild(script);
       script.onload = () => {
